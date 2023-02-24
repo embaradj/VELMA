@@ -61,7 +61,8 @@ public class Controller implements ActionListener {
                 .subscribeOn(Schedulers.io())
                 .map(ad -> new Job(ad.getTitle(), ad.getText()))
                 .doOnNext(model::addJob)
-                .doOnNext(x -> System.out.println(Thread.currentThread().getName()))
+//                .doOnNext(x -> System.out.println(Thread.currentThread().getName()))
+//                .doOnNext(x -> Thread.sleep(10))
                 .subscribe();
     }
 

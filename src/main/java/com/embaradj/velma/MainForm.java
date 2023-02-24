@@ -65,37 +65,28 @@ public class MainForm extends JFrame {
 //        srcJobsBtn.addActionListener(listener -> tempTest());
     }
 
-    private void tempTest() {
-        System.out.println("search jbos clicked");
-        listModel2.addElement("test");
-    }
-
     private void setListener() {
         model.addListener(e -> {
             if (e.getPropertyName().contains("hve")) {
                 String desc = ((Hve) e.getNewValue()).getDescription();
                 listModel1.addElement(desc);
+                System.out.println("view: " + Thread.currentThread().getName());
             } else {
                 String title = ((Job) e.getNewValue()).getTitle();
-                listModel2.addElement(title);
+//                System.out.println(title);
+//                System.out.println(Thread.currentThread().getName());
+//                listModel2.addElement(title);
+                System.out.println("view: " + Thread.currentThread().getName());
+                SwingUtilities.invokeLater(new Runnable() {
+                                               @Override
+                                               public void run() {
+                                                   System.out.println("runnable: " + Thread.currentThread().getName());
+                                                   listModel2.addElement(title);
+                                               }
+                                           });
+//                        listModel2.addElement(title);
             }
         });
     }
-
-    public void update(java.util.Observable obs, Object obj) {
-        System.out.println("Observer invoked by " + obj.getClass());
-        if (obj.getClass() == Hve.class) {
-            System.out.println("IS HVE 2");
-            String desc = ((Hve) obj).getDescription();
-            System.out.println(desc);
-            listModel1.addElement(desc);
-            listModel2.addElement("testing");
-        } else {
-            String title = ((Job) obj).getTitle();
-            System.out.println(title);
-            listModel2.addElement(title);
-        }
-    }
-
 
 }
