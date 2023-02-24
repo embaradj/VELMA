@@ -1,15 +1,20 @@
 package com.embaradj.velma;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 
 import static java.lang.System.out;
+
+import com.embaradj.velma.apis.APIJobStream;
+import com.embaradj.velma.apis.APISusa;
+import com.embaradj.velma.apis.APIMyh;
+import com.embaradj.velma.models.DataModel;
+import com.embaradj.velma.models.Hve;
+import com.embaradj.velma.models.Job;
+import com.embaradj.velma.results.JobResults;
+import com.embaradj.velma.results.SusaResult;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import javax.swing.*;
@@ -33,16 +38,33 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("Clicked: " + e.getActionCommand());
         if (e.getActionCommand().equals("srcHve")) searchHve();
+        if (e.getActionCommand().equals("srcJobs")) searchJobs();
     }
 
-    protected void searchHve() {
+    public void searchJobs() {
+        out.println("search jobs button clicked");
+        APIJobStream jobStream = new APIJobStream();
+
+        Observable<JobResults> jobOBs = Observable.create(emitter -> {
+            for (JobResults result : jobStream.getResults()) emitter.onNext(result);
+        });
+
+        jobOBs.subscribeOn(Schedulers.io())
+                .map(ad -> new Job(ad.getTitle(), ad.getText()))
+                .doOnNext(model::addJob)
+                .subscribe();
+    }
+
+    public void searchHve() {
         out.println("button clicked");
 
         // Create instance of Susa API parser and fetch all HVE's
         APISusa susa = new APISusa();
 
         // Create instance of MYH API parser
-        APImyh myh = new APImyh();
+        APIMyh myh = new APIMyh();
+
+
 /*
         // For each found HVE in Susa use the MYH API to fetch the URL of corresponding syllabus PDF
         List<SusaResult.SusaHit> susaHits = susa.getResult().getResults();
@@ -95,7 +117,7 @@ public class Controller implements ActionListener {
                     String localFilePath = FileDownloader.download(pdfUrl);
 
                     if (!Objects.isNull(localFilePath)) {
-                        PdfReader pdfReader = new PdfReader(localFilePath);
+                        PDFReader pdfReader = new PDFReader(localFilePath);
                         Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses());
                         model.addHve(hve);
                     }
@@ -106,9 +128,10 @@ public class Controller implements ActionListener {
                     System.out.println(susaHit + "\n" + pdfUrl + "\n----------------");
                 });
 
+
+
         System.out.println("Finished");
 
     }
-
 
 }

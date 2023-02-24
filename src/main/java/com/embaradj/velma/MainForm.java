@@ -1,6 +1,8 @@
 package com.embaradj.velma;
 
-import io.reactivex.rxjava3.core.Observable;
+import com.embaradj.velma.models.DataModel;
+import com.embaradj.velma.models.Hve;
+import com.embaradj.velma.models.Job;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -9,7 +11,9 @@ import java.util.Observer;
 /**
  * Represents the view of the MVC pattern
  */
-public class MainForm extends JFrame implements Observer {
+public class MainForm extends JFrame {
+
+    private DataModel model;
     protected JPanel panel1;
     private JButton srcHveBtn;
     private JButton srcJobsBtn;
@@ -28,13 +32,15 @@ public class MainForm extends JFrame implements Observer {
 
     private ActionListener controller;
 
-    public MainForm() {
-
+    public MainForm(DataModel model) {
+        this.model = model;
         setTitle("HVE Matcher alpha");
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
+
+        setListener();
 
         list1.setModel(listModel1);
         list2.setModel(listModel2);
@@ -56,7 +62,7 @@ public class MainForm extends JFrame implements Observer {
         helpBtn.addActionListener(controller);
 
         // temp for testing
-        srcJobsBtn.addActionListener(listener -> tempTest());
+//        srcJobsBtn.addActionListener(listener -> tempTest());
     }
 
     private void tempTest() {
@@ -64,13 +70,31 @@ public class MainForm extends JFrame implements Observer {
         listModel2.addElement("test");
     }
 
+    private void setListener() {
+        model.addListener(e -> {
+            if (e.getPropertyName().contains("hve")) {
+                String desc = ((Hve) e.getNewValue()).getDescription();
+                listModel1.addElement(desc);
+            } else {
+                String title = ((Job) e.getNewValue()).getTitle();
+                listModel2.addElement(title);
+            }
+        });
+    }
+
     public void update(java.util.Observable obs, Object obj) {
         System.out.println("Observer invoked by " + obj.getClass());
-        if (obj.getClass() == Hve.class) System.out.println("IS HVE 2");
-        String desc = ((Hve) obj).getDescription();
-        System.out.println(desc);
-        listModel1.addElement(desc);
-        listModel2.addElement("testing");
+        if (obj.getClass() == Hve.class) {
+            System.out.println("IS HVE 2");
+            String desc = ((Hve) obj).getDescription();
+            System.out.println(desc);
+            listModel1.addElement(desc);
+            listModel2.addElement("testing");
+        } else {
+            String title = ((Job) obj).getTitle();
+            System.out.println(title);
+            listModel2.addElement(title);
+        }
     }
 
 

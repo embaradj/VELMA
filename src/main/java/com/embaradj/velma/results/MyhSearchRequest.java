@@ -1,4 +1,4 @@
-package com.embaradj.velma;
+package com.embaradj.velma.results;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +14,7 @@ public class MyhSearchRequest {
     private String query = "Systemutvecklare inriktning säkerhet";
     private int skip = 0;
 
-    protected MyhSearchRequest(String query) {
+    public MyhSearchRequest(String query) {
         this.query = query;
     }
 }

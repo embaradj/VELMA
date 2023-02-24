@@ -1,4 +1,4 @@
-package com.embaradj.velma;
+package com.embaradj.velma.results;
 
 import java.util.List;
 
@@ -9,17 +9,17 @@ import java.util.List;
 public class MyhSearchResult {
 
     private List<Hit> result;
-    protected List<Hit> getResult() { return result; }
+    public List<Hit> getResult() { return result; }
 
-    class Handling {
-        protected List<Dokument> dokument;
+    public class Handling {
+        private List<Dokument> dokument;
         private String namn, typ;
 
-        protected Boolean isDecision() {
+        public Boolean isDecision() {
             return this.typ.toLowerCase().contains("beslut");
         }
 
-        protected boolean isApproved() {
+        public boolean isApproved() {
             if (namn.toLowerCase().contains("beviljande")) return true;
             if (namn.toLowerCase().contains("avslag")) return false;
 
@@ -38,28 +38,28 @@ public class MyhSearchResult {
 
     }
 
-    class Dokument {
+    public class Dokument {
         private String namn, typ, url;
 
-        protected boolean isRequest() {
+        public boolean isRequest() {
             // todo: problem! Många dokument innnehåller inte texten ansökan i namnet,, och det kan finnas flera
             // kompletterande dokument  i samma "handling".
 //            return (this.namn.toLowerCase().contains("ansökan"));
             return true;
         }
-        protected String getPdfUrl() { return this.url; }
+        public String getPdfUrl() { return this.url; }
     }
 
-    class Hit {
+    public class Hit {
         private String id;
         private String katalog, registreringsdatum, typ, anordnare;
         private List<Handling> handlingar;
 
-        protected List<Handling> getHandlingar() { return this.handlingar; }
-        protected String getAnordnare() { return this.anordnare; }
-        protected String getId() { return this.id; }
+        public List<Handling> getHandlingar() { return this.handlingar; }
+        public String getAnordnare() { return this.anordnare; }
+        public String getId() { return this.id; }
 
-        protected int getYear() {
+        public int getYear() {
             return Integer.parseInt(this.registreringsdatum.split("-")[0]);
         }
 
@@ -79,7 +79,7 @@ public class MyhSearchResult {
             return false;
         }
 
-        protected String getInstitution() { return this.anordnare; }
+        public String getInstitution() { return this.anordnare; }
 
         public String getSyllabusUrl() {
 

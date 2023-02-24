@@ -1,5 +1,7 @@
-package com.embaradj.velma;
+package com.embaradj.velma.apis;
 
+import com.embaradj.velma.results.MyhSearchRequest;
+import com.embaradj.velma.results.MyhSearchResult;
 import com.google.gson.Gson;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -10,18 +12,17 @@ import java.util.*;
 import static java.lang.System.out;
 import static java.util.stream.Collectors.joining;
 
-public class APImyh {
+public class APIMyh {
     public boolean DEBUG = true;
 
-    protected APImyh() {
-    }
+    public APIMyh() { }
 
     /**
      * Get the URL to the syllabus of a HVE program
      * @param
      * @return A string containing the URL
      */
-    protected String getPdfUrl(String query) {
+    public String getPdfUrl(String query) {
         List<MyhSearchResult.Hit> hits = search(query);
 
         if (hits.isEmpty()) {

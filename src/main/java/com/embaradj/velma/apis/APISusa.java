@@ -1,5 +1,6 @@
-package com.embaradj.velma;
+package com.embaradj.velma.apis;
 
+import com.embaradj.velma.results.SusaResult;
 import com.google.gson.Gson;
 
 import java.net.URI;
@@ -11,7 +12,7 @@ public class APISusa {
     final String searchUrl = "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=1000";
     private SusaResult searchResult;
 
-    protected APISusa() {}
+    public APISusa() {}
 
     private void fetchPrograms() {
         Gson gson = new Gson();
@@ -32,7 +33,7 @@ public class APISusa {
         }
     }
 
-    protected SusaResult getResult() {
+    public SusaResult getResult() {
         fetchPrograms();
         return this.searchResult;
     }

@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public class PdfReader {
+public class PDFReader {
     private String[] lines;
     private final HashMap<String, List<String>> courses = new HashMap<>();
     private final String[] filter = {"Kursöversikt", "Obligatoriska kurser", "Poäng", "Summa",
@@ -17,8 +17,7 @@ public class PdfReader {
      * Initierar filen som skall läsas samt kallar på relevanta metoder för att läsa och hitta kurser.
      * Hämtar även namnet på utbildningen, namnet på institutionen och hur många platser utbildningen har.
      */
-    public PdfReader(String path) {
-//        File file = new File("resources/YH_Ans&ouml;kan_1981_Rev233_2020-09-14_16_27_27_203.pdf");
+    public PDFReader(String path) {
         File file = new File(path);
         read(file);
         extractCourses();

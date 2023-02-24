@@ -1,4 +1,4 @@
-package com.embaradj.velma;
+package com.embaradj.velma.models;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -12,14 +12,14 @@ public class Hve {
     private String description;
     HashMap<String, List<String>> courses;
 
-    protected Hve(String code, String description, HashMap<String, List<String>> courses) {
+    public Hve(String code, String description, HashMap<String, List<String>> courses) {
         this.code = code;
         this.description = description;
         this.courses = courses;
     }
 
-    protected String getCode() { return this.code; }
-    protected String getDescription() { return this.description; }
-    protected HashMap<String, List<String>> getCourses() { return this.courses; }
+    public String getCode() { return this.code; }
+    public String getDescription() { return this.description; }
+    public HashMap<String, List<String>> getCourses() { return this.courses; }
 
 }
