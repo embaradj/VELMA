@@ -1,22 +1,15 @@
 package com.embaradj.velma;
 
-import java.awt.*;
+import static java.lang.System.out;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
-
-import static java.lang.System.out;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
 import javax.swing.*;
 
 public class Controller implements ActionListener {
 
-//    private final MainForm rootframe;
     private final JFrame rootframe;
     private final DataModel model;
 
@@ -33,7 +26,34 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("Clicked: " + e.getActionCommand());
         if (e.getActionCommand().equals("srcHve")) searchHve();
+        if (e.getActionCommand().equals("srcJobs")) searchJobs();
     }
+
+    private void searchJobs() {
+        APIJobStream jobStream = new APIJobStream();
+
+        Observable<JobResults> jresults = Observable.create(emitter -> {
+            for (JobResults res : jobStream.getResults()) emitter.onNext(res);
+        });
+
+        jresults
+//                .subscribeOn(Schedulers.io())
+                .doOnNext(out::println)
+                .map(result -> new Job(result.getTitle(), result.getText()))
+                .subscribe(model::addJob);
+
+/*
+        int hits = 0;
+        for (JobResults result : jobStream.getResults()) {
+            Job job = new Job(result.getTitle(), result.getText());
+            model.addJob(job);
+            hits++;
+        }
+        out.printf("number of ads: %d", hits);
+ */
+
+    }
+
 
     protected void searchHve() {
         out.println("button clicked");

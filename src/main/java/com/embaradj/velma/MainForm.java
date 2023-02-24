@@ -54,9 +54,6 @@ public class MainForm extends JFrame implements Observer {
         settingsBtn.addActionListener(controller);
         quitBtn.addActionListener(controller);
         helpBtn.addActionListener(controller);
-
-        // temp for testing
-        srcJobsBtn.addActionListener(listener -> tempTest());
     }
 
     private void tempTest() {
@@ -65,12 +62,19 @@ public class MainForm extends JFrame implements Observer {
     }
 
     public void update(java.util.Observable obs, Object obj) {
+
         System.out.println("Observer invoked by " + obj.getClass());
-        if (obj.getClass() == Hve.class) System.out.println("IS HVE 2");
-        String desc = ((Hve) obj).getDescription();
-        System.out.println(desc);
-        listModel1.addElement(desc);
-        listModel2.addElement("testing");
+
+        if (obj.getClass() == Hve.class) {
+            String desc = ((Hve) obj).getDescription();
+            listModel1.addElement(desc);
+        }
+
+        if (obj.getClass() == Job.class) {
+            String desc = ((Job) obj).getTitle();
+            listModel2.addElement(desc);
+        }
+
     }
 
 

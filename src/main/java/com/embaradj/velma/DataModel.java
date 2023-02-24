@@ -22,4 +22,7 @@ public class DataModel extends java.util.Observable {
         setChanged();
         notifyObservers(job);
     }
+
+    protected LinkedList<Hve> getHves() { return this.hves; }
+    protected LinkedList<Job> getJobs() { return this.jobs; }
 }
