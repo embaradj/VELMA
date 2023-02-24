@@ -60,31 +60,34 @@ public class MainForm extends JFrame {
         settingsBtn.addActionListener(controller);
         quitBtn.addActionListener(controller);
         helpBtn.addActionListener(controller);
-
-        // temp for testing
-//        srcJobsBtn.addActionListener(listener -> tempTest());
     }
 
     private void setListener() {
         model.addListener(e -> {
             if (e.getPropertyName().contains("hve")) {
                 String desc = ((Hve) e.getNewValue()).getDescription();
-                listModel1.addElement(desc);
-                System.out.println("view: " + Thread.currentThread().getName());
-            } else {
-                String title = ((Job) e.getNewValue()).getTitle();
-//                System.out.println(title);
-//                System.out.println(Thread.currentThread().getName());
-//                listModel2.addElement(title);
-                System.out.println("view: " + Thread.currentThread().getName());
+
+                // Update the JList on the EDT thread
                 SwingUtilities.invokeLater(new Runnable() {
-                                               @Override
-                                               public void run() {
-                                                   System.out.println("runnable: " + Thread.currentThread().getName());
-                                                   listModel2.addElement(title);
-                                               }
-                                           });
-//                        listModel2.addElement(title);
+                    @Override
+                    public void run() {
+                        listModel1.addElement(desc);
+                    }
+                });
+
+            } else {
+
+                String title = ( (Job) e.getNewValue()).getTitle();
+
+                // Update the JList on the EDT thread
+                SwingUtilities.invokeLater(new Runnable() {
+                   @Override
+                   public void run() {
+                       System.out.println("runnable: " + Thread.currentThread().getName());
+                       listModel2.addElement(title);
+                   }
+               });
+
             }
         });
     }
