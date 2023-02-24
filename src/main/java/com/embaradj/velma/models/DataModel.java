@@ -13,33 +13,20 @@ public class DataModel {
     private final LinkedList<Hve> hves = new LinkedList<>();
     private final LinkedList<Job> jobs = new LinkedList<>();
 
+    // Used by the View to listen for changes in the Model
     public void addListener(final PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
 
     public void addHve(Hve hve) {
-        Hve oldHve;
-        if (!hves.isEmpty()) {
-            oldHve = hves.getLast();
-        } else {
-            oldHve = hve;
-        }
+        Hve oldHve = (hves.isEmpty()) ? hve : hves.getLast();
         this.hves.add(hve);
         support.firePropertyChange("hve", oldHve, hve);
-//        setChanged();
-//        notifyObservers(hve);
     }
 
     public void addJob(Job job) {
-        Job oldJob;
-        if (!jobs.isEmpty()) {
-            oldJob = jobs.getLast();
-        } else {
-            oldJob = job;
-        }
+        Job oldJob = (jobs.isEmpty()) ? job : jobs.getLast();
         this.jobs.add(job);
         support.firePropertyChange("job", oldJob, job);
-//        setChanged();
-//        notifyObservers(job);
     }
 }
