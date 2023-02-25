@@ -70,6 +70,27 @@ public class MainForm extends JFrame {
         quitBtn.addActionListener(controller);
         helpBtn.addActionListener(controller);
 
+        class CustomMouseAdapter extends MouseAdapter {
+            JList list;
+
+            CustomMouseAdapter(JList list) {
+                this.list = list;
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                int index = list.locationToIndex(e.getPoint());
+                Object hit = list.getModel().getElementAt(index);
+                System.out.println("Object type in list: " + hit.getClass().getName());
+                SearchHit sh = (SearchHit)  hit;
+                System.out.println("Clicked: " + index + "  " + sh.getTitle());
+                DetailsForm detailsForm = new DetailsForm(sh);
+                detailsForm.setTitle("Job details for " + sh.getTitle());
+            }
+        }
+
+        /*
         MouseListener mouseListener = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -84,7 +105,11 @@ public class MainForm extends JFrame {
             }
         };
 
-        list2.addMouseListener(mouseListener);
+         */
+
+//        list2.addMouseListener(mouseListener);
+        list1.addMouseListener(new CustomMouseAdapter(list1));
+        list2.addMouseListener(new CustomMouseAdapter(list2));
     }
 
     /**

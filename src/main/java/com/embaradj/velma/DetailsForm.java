@@ -11,7 +11,7 @@ public class DetailsForm extends JFrame{
 
     public DetailsForm(SearchHit searchHit) {
         setContentPane(mainPanel);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
         setVisible(true);
         showText(searchHit);
@@ -20,6 +20,6 @@ public class DetailsForm extends JFrame{
     private void showText(SearchHit searchHit) {
 
 //        detailsTextField.setText(((Job) searchHit).getTitle() + "\n\n" + ((Job) obj).getDescription());
-        detailsTextField.setText(((Job) searchHit).getTitle() + "\n\n");
+        detailsTextField.setText(searchHit.getTitle());
     }
 }

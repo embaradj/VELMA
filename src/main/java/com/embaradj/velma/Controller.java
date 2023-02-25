@@ -1,5 +1,6 @@
 package com.embaradj.velma;
 
+import java.awt.*;
 import java.awt.event.*;
 import java.util.Objects;
 
@@ -59,8 +60,14 @@ public class Controller implements ActionListener {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
                 null);
-        System.out.println(userInput);
-        if (userInput == 0) viewFrame.dispose();
+
+        if (userInput == 0) {
+
+            // Close all open forms
+            for (Frame frame : viewFrame.getFrames()) {
+                frame.dispose();
+            }
+        }
     }
 
     public void searchJobs() {
