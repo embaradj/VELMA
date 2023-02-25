@@ -1,18 +1,9 @@
 package com.embaradj.velma;
 
 import com.embaradj.velma.models.DataModel;
-import com.embaradj.velma.models.Hve;
-import com.embaradj.velma.models.Job;
 import com.embaradj.velma.results.SearchHit;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Observer;
-
-import static javax.swing.SwingUtilities.isEventDispatchThread;
 
 /**
  * Represents the view of the MVC pattern
@@ -35,7 +26,6 @@ public class MainForm extends JFrame {
     private DefaultListModel<SearchHit> listModel2 = new DefaultListModel<>(); // Used for the JLists
     private JList list1;
     private JList list2;
-
     private ActionListener controller;
 
     public MainForm(Controller controller, DataModel model) {
@@ -55,10 +45,6 @@ public class MainForm extends JFrame {
         list2.setModel(listModel2);
     }
 
-    protected void addController(ActionListener controller) {
-        this.controller = controller;
-    }
-
     /**
      * Let the controller setup listeners for the components
      */
@@ -70,44 +56,6 @@ public class MainForm extends JFrame {
         quitBtn.addActionListener(controller);
         helpBtn.addActionListener(controller);
 
-        class CustomMouseAdapter extends MouseAdapter {
-            JList list;
-
-            CustomMouseAdapter(JList list) {
-                this.list = list;
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                int index = list.locationToIndex(e.getPoint());
-                Object hit = list.getModel().getElementAt(index);
-                System.out.println("Object type in list: " + hit.getClass().getName());
-                SearchHit sh = (SearchHit)  hit;
-                System.out.println("Clicked: " + index + "  " + sh.getTitle());
-                DetailsForm detailsForm = new DetailsForm(sh);
-                detailsForm.setTitle("Job details for " + sh.getTitle());
-            }
-        }
-
-        /*
-        MouseListener mouseListener = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                int index = list2.locationToIndex(e.getPoint());
-                Object hit = list2.getModel().getElementAt(index);
-                System.out.println("Object type in list: " + hit.getClass().getName());
-                SearchHit sh = (SearchHit)  hit;
-                System.out.println("Clicked: " + index + "  " + sh.getTitle());
-                DetailsForm detailsForm = new DetailsForm(sh);
-                detailsForm.setTitle("Job details for " + sh.getTitle());
-            }
-        };
-
-         */
-
-//        list2.addMouseListener(mouseListener);
         list1.addMouseListener(new CustomMouseAdapter(list1));
         list2.addMouseListener(new CustomMouseAdapter(list2));
     }

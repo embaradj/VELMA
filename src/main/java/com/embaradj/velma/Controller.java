@@ -3,10 +3,7 @@ package com.embaradj.velma;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Objects;
-
-import static java.lang.System.out;
 import static javax.swing.SwingUtilities.isEventDispatchThread;
-
 import com.embaradj.velma.apis.APIJobStream;
 import com.embaradj.velma.apis.APISusa;
 import com.embaradj.velma.apis.APIMyh;
@@ -43,6 +40,8 @@ public class Controller implements ActionListener {
         if (e.getActionCommand().equals("srcHve")) searchHve();
         if (e.getActionCommand().equals("srcJobs")) searchJobs();
         if (e.getActionCommand().equals("analyse")) analyse();
+        if (e.getActionCommand().equals("settings")) analyse();     // todo
+        if (e.getActionCommand().equals("help")) analyse();         // todo
         if (e.getActionCommand().equals("quit")) quit();
     }
 
@@ -117,7 +116,7 @@ public class Controller implements ActionListener {
                     System.out.println(susaHit + "\n" + pdfUrl + "\n----------------");
                 });
 
-        // todo: update progressbar or something to show that we are finished..
+        // todo: update progressbar or something to show when we are finished..
 
     }
 

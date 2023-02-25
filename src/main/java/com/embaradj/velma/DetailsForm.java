@@ -1,10 +1,12 @@
 package com.embaradj.velma;
 
-import com.embaradj.velma.models.Job;
+import com.embaradj.velma.models.Hve;
 import com.embaradj.velma.results.SearchHit;
-
 import javax.swing.*;
 
+/**
+ * Menu to show details about a HVE or a Job
+ */
 public class DetailsForm extends JFrame{
     private JTextField detailsTextField;
     private JPanel mainPanel;
@@ -18,8 +20,9 @@ public class DetailsForm extends JFrame{
     }
 
     private void showText(SearchHit searchHit) {
+        boolean isHve = (searchHit.getType() == "hve");
 
-//        detailsTextField.setText(((Job) searchHit).getTitle() + "\n\n" + ((Job) obj).getDescription());
+        setTitle((isHve ? "HVE: " : "Job: ") + searchHit.getTitle());
         detailsTextField.setText(searchHit.getTitle());
     }
 }

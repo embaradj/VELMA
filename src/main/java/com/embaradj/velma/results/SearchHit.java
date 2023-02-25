@@ -9,4 +9,6 @@ public interface SearchHit {
     String getTitle();
     String toString();
 
+    String getType();
+
 }

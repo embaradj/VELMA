@@ -10,6 +10,7 @@ import java.util.List;
  * Represents one HVE
  */
 public class Hve implements SearchHit {
+    private String type = "hve";
     private String code;
     private String title;
     HashMap<String, List<String>> courses;
@@ -20,6 +21,7 @@ public class Hve implements SearchHit {
         this.courses = courses;
     }
 
+    public String getType() { return this.type; }
     public String toString() { return this.title; }
     public String getCode() { return this.code; }
     public String getTitle() { return this.title; }
