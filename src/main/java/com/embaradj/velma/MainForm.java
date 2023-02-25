@@ -43,11 +43,7 @@ public class MainForm extends JFrame {
         pack();
         setVisible(true);
 
-        System.out.println("Running on EDT? " + isEventDispatchThread());
-        System.out.println(Thread.currentThread().getName());
-
         setListener();
-
         controller.setView(this);
         addActionListeners();
 
@@ -69,6 +65,7 @@ public class MainForm extends JFrame {
         settingsBtn.addActionListener(controller);
         quitBtn.addActionListener(controller);
         helpBtn.addActionListener(controller);
+
     }
 
     private void setListener() {

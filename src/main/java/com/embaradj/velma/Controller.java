@@ -44,11 +44,25 @@ public class Controller implements ActionListener {
         if (e.getActionCommand().equals("srcHve")) searchHve();
         if (e.getActionCommand().equals("srcJobs")) searchJobs();
         if (e.getActionCommand().equals("analyse")) analyse();
+        if (e.getActionCommand().equals("quit")) quit();
     }
 
     private void analyse() {
         System.out.println("Running on EDT? " + isEventDispatchThread());
         System.out.println(Thread.currentThread().getName());
+    }
+
+    private void quit() {
+
+        int userInput = JOptionPane.showConfirmDialog(
+                null,
+                "Are you sure you want to quit?",
+                "Quit application",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null);
+        System.out.println(userInput);
+        if (userInput == 0) viewFrame.dispose();
     }
 
     public void searchJobs() {
