@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.Observer;
 
+import static javax.swing.SwingUtilities.isEventDispatchThread;
+
 /**
  * Represents the view of the MVC pattern
  */
@@ -32,7 +34,8 @@ public class MainForm extends JFrame {
 
     private ActionListener controller;
 
-    public MainForm(DataModel model) {
+    public MainForm(Controller controller, DataModel model) {
+        this.controller = controller;
         this.model = model;
         setTitle("HVE Matcher alpha");
         setContentPane(panel1);
@@ -40,7 +43,13 @@ public class MainForm extends JFrame {
         pack();
         setVisible(true);
 
+        System.out.println("Running on EDT? " + isEventDispatchThread());
+        System.out.println(Thread.currentThread().getName());
+
         setListener();
+
+        controller.setView(this);
+        addActionListeners();
 
         list1.setModel(listModel1);
         list2.setModel(listModel2);
@@ -64,7 +73,7 @@ public class MainForm extends JFrame {
 
     private void setListener() {
         model.addListener(e -> {
-            if (e.getPropertyName().contains("hve")) {
+            if (e.getPropertyName().equals("hve")) {
                 String desc = ((Hve) e.getNewValue()).getDescription();
 
                 // Update the JList on the EDT thread
@@ -75,15 +84,13 @@ public class MainForm extends JFrame {
                     }
                 });
 
-            } else {
-
+            } else if (e.getPropertyName().equals("job")){
                 String title = ( (Job) e.getNewValue()).getTitle();
 
                 // Update the JList on the EDT thread
                 SwingUtilities.invokeLater(new Runnable() {
                    @Override
                    public void run() {
-                       System.out.println("runnable: " + Thread.currentThread().getName());
                        listModel2.addElement(title);
                    }
                });

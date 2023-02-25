@@ -23,12 +23,15 @@ import javax.swing.*;
 public class Controller implements ActionListener {
 
 //    private final MainForm rootframe;
-    private final JFrame rootframe;
+    private JFrame viewFrame;
     private final DataModel model;
 
-    public Controller(DataModel model, JFrame rootFrame) {
-        this.rootframe = rootFrame;
+    public Controller(DataModel model) {
         this.model = model;
+    }
+
+    protected void setView(JFrame viewFrame) {
+        this.viewFrame = viewFrame;
     }
 
     /**
