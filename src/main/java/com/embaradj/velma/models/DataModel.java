@@ -19,13 +19,13 @@ public class DataModel {
     }
 
     public void addHve(Hve hve) {
-        Hve oldHve = (hves.isEmpty()) ? hve : hves.getLast();
+        Hve oldHve = (hves.isEmpty()) ? null : hves.getLast();
         this.hves.add(hve);
         support.firePropertyChange("hve", oldHve, hve);
     }
 
     public void addJob(Job job) {
-        Job oldJob = (jobs.isEmpty()) ? job : jobs.getLast();
+        Job oldJob = (jobs.isEmpty()) ? null : jobs.getLast();
         this.jobs.add(job);
         support.firePropertyChange("job", oldJob, job);
     }

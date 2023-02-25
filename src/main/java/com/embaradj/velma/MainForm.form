@@ -65,6 +65,7 @@
           <component id="58116" class="javax.swing.JList" binding="list2" default-binding="true">
             <constraints/>
             <properties>
+              <selectionMode value="0"/>
               <toolTipText value="test"/>
             </properties>
           </component>

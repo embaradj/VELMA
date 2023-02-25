@@ -3,9 +3,13 @@ package com.embaradj.velma;
 import com.embaradj.velma.models.DataModel;
 import com.embaradj.velma.models.Hve;
 import com.embaradj.velma.models.Job;
+import com.embaradj.velma.results.SearchHit;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Observer;
 
 import static javax.swing.SwingUtilities.isEventDispatchThread;
@@ -27,8 +31,8 @@ public class MainForm extends JFrame {
     private JButton helpBtn;
     private JScrollPane scrollPaneLeft;
     private JScrollPane scrollPaneRight;
-    private DefaultListModel<String> listModel1 = new DefaultListModel<>(); // Used for the JLists
-    private DefaultListModel<String> listModel2 = new DefaultListModel<>(); // Used for the JLists
+    private DefaultListModel<SearchHit> listModel1 = new DefaultListModel<>(); // Used for the JLists
+    private DefaultListModel<SearchHit> listModel2 = new DefaultListModel<>(); // Used for the JLists
     private JList list1;
     private JList list2;
 
@@ -66,33 +70,39 @@ public class MainForm extends JFrame {
         quitBtn.addActionListener(controller);
         helpBtn.addActionListener(controller);
 
+        MouseListener mouseListener = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                int index = list2.locationToIndex(e.getPoint());
+                Object hit = list2.getModel().getElementAt(index);
+                System.out.println("Object type in list: " + hit.getClass().getName());
+                SearchHit sh = (SearchHit)  hit;
+                System.out.println("Clicked: " + index + "  " + sh.getTitle());
+                DetailsForm detailsForm = new DetailsForm(sh);
+                detailsForm.setTitle("Job details for " + sh.getTitle());
+            }
+        };
+
+        list2.addMouseListener(mouseListener);
     }
 
+    /**
+     * Listen to changes in the Model and updates the Lists of HVEs and Jobs
+     */
     private void setListener() {
         model.addListener(e -> {
-            if (e.getPropertyName().equals("hve")) {
-                String desc = ((Hve) e.getNewValue()).getDescription();
 
-                // Update the JList on the EDT thread
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        listModel1.addElement(desc);
-                    }
-                });
+            SearchHit searchHit = (SearchHit) e.getNewValue();
 
-            } else if (e.getPropertyName().equals("job")){
-                String title = ( (Job) e.getNewValue()).getTitle();
-
-                // Update the JList on the EDT thread
-                SwingUtilities.invokeLater(new Runnable() {
-                   @Override
-                   public void run() {
-                       listModel2.addElement(title);
-                   }
-               });
-
-            }
+            // Update the JList on the EDT thread
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    if (e.getPropertyName().equals("hve")) listModel1.addElement(searchHit);
+                    if (e.getPropertyName().equals("job")) listModel2.addElement(searchHit);
+                }
+            });
         });
     }
 

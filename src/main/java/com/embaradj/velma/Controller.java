@@ -1,7 +1,6 @@
 package com.embaradj.velma;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Objects;
 
 import static java.lang.System.out;
@@ -22,7 +21,6 @@ import javax.swing.*;
 
 public class Controller implements ActionListener {
 
-//    private final MainForm rootframe;
     private JFrame viewFrame;
     private final DataModel model;
 
@@ -78,8 +76,6 @@ public class Controller implements ActionListener {
                 .subscribeOn(Schedulers.io())
                 .map(ad -> new Job(ad.getTitle(), ad.getText()))
                 .doOnNext(model::addJob)
-//                .doOnNext(x -> System.out.println(Thread.currentThread().getName()))
-//                .doOnNext(x -> Thread.sleep(10))
                 .subscribe();
     }
 
@@ -115,8 +111,8 @@ public class Controller implements ActionListener {
                 });
 
         // todo: update progressbar or something to show that we are finished..
-        System.out.println("Finished");
 
     }
+
 
 }
