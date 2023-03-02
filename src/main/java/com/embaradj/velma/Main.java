@@ -6,19 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Main {
-
     public static void main(String[] args) {
-
-        DataModel model = new DataModel();
-        Controller controller = new Controller(model);
-
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                MainForm viewFrame = new MainForm(controller, model);
-            }
+        EventQueue.invokeLater(() -> {
+            DataModel model = new DataModel();
+            Controller controller = new Controller(model);
+            MainForm viewFrame = new MainForm(controller, model);
         });
-
     }
 
 }

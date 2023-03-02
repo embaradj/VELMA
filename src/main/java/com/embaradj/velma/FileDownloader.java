@@ -20,7 +20,7 @@ public class FileDownloader {
 
             URL url = new URL(urlString);
             String filename = url.getFile().split("/")[url.getFile().split("/").length - 1];
-            localPath = FileDownloader.class.getResource("") + filename;
+            localPath = "resources/" + filename + ".pdf";
 
             System.out.println("Downloading " + url.toString() + " to " + localPath + "...");
 
