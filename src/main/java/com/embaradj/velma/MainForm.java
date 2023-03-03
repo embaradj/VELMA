@@ -36,6 +36,7 @@ public class MainForm extends JFrame {
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
+        setLocationRelativeTo(null);    // Position the frame in the center of the screen
         setVisible(true);
 
         setListeners();
@@ -70,14 +71,23 @@ public class MainForm extends JFrame {
     private void setListeners() {
         model.addListener(e -> {
 
-            SearchHit searchHit = (SearchHit) e.getNewValue();
-
             // Update the JList on the EDT thread
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    if (e.getPropertyName().equals("hve")) listModel1.addElement(searchHit);
-                    if (e.getPropertyName().equals("job")) listModel2.addElement(searchHit);
+                    if (e.getNewValue() != null) {
+                        SearchHit searchHit = (SearchHit) e.getNewValue();
+                        if (e.getPropertyName().equals("hve")) listModel1.addElement(searchHit);
+                        if (e.getPropertyName().equals("job")) listModel2.addElement(searchHit);
+                    } else {
+                        if (e.getPropertyName().equals("hve")) {
+                            listModel1.clear();
+                        }
+                        if (e.getPropertyName().equals("job")) {
+                            System.out.println("clearing listmodel2");
+                            listModel2.clear();
+                        }
+                    }
                 }
             });
         });
@@ -126,6 +136,7 @@ public class MainForm extends JFrame {
     private void $$$setupUI$$$() {
         panel1 = new JPanel();
         panel1.setLayout(new GridBagLayout());
+        panel1.setPreferredSize(new Dimension(800, 500));
         scrollPaneLeft = new JScrollPane();
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
@@ -180,7 +191,7 @@ public class MainForm extends JFrame {
         panel1.add(scrollPaneRight, gbc);
         list2 = new JList();
         list2.setSelectionMode(0);
-        list2.setToolTipText("test");
+        list2.setToolTipText("null");
         scrollPaneRight.setViewportView(list2);
         srcJobsBtn = new JButton();
         srcJobsBtn.setActionCommand("srcJobs");

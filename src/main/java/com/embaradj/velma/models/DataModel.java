@@ -20,6 +20,16 @@ public class DataModel {
         support.addPropertyChangeListener(listener);
     }
 
+    public void clearHve() {
+        hves.clear();
+        support.firePropertyChange("hve", null, null);
+    }
+
+    public void clearJob() {
+        jobs.clear();
+        support.firePropertyChange("job", null, null);
+    }
+
     public void addHve(Hve hve) {
         Hve oldHve = (hves.isEmpty()) ? null : hves.getLast();
         this.hves.add(hve);

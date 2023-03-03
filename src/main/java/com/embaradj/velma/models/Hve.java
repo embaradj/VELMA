@@ -1,10 +1,9 @@
 package com.embaradj.velma.models;
 
 import com.embaradj.velma.results.SearchHit;
-
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Represents one HVE
@@ -26,5 +25,16 @@ public class Hve implements SearchHit {
     public String getCode() { return this.code; }
     public String getTitle() { return this.title; }
     public HashMap<String, List<String>> getCourses() { return this.courses; }
+    public String getDescription() {
+        StringBuilder sb = new StringBuilder();
+
+        getCourses().forEach((course, contents) -> {
+            sb.append(course + "\n");
+            contents.forEach(i -> sb.append("\t" + i + "\n"));
+            sb.append("\n");
+        });
+
+        return sb.toString();
+    }
 
 }

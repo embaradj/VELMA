@@ -1,8 +1,8 @@
 package com.embaradj.velma;
 
-import com.embaradj.velma.models.Hve;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 /**
@@ -11,11 +11,14 @@ import java.awt.*;
 public class DetailsForm extends JFrame {
     private JTextField detailsTextField;
     private JPanel mainPanel;
+    private JTextArea textArea;
+    private JButton closeBtn;
 
     public DetailsForm(SearchHit searchHit) {
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
+        setLocationRelativeTo(null);    // Position the frame in the center of the screen
         setVisible(true);
         showText(searchHit);
     }
@@ -24,7 +27,9 @@ public class DetailsForm extends JFrame {
         boolean isHve = (searchHit.getType() == "hve");
 
         setTitle((isHve ? "HVE: " : "Job: ") + searchHit.getTitle());
-        detailsTextField.setText(searchHit.getTitle());
+
+        textArea.setText(searchHit.getDescription());
+
     }
 
     {
@@ -44,15 +49,33 @@ public class DetailsForm extends JFrame {
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
-        detailsTextField = new JTextField();
-        detailsTextField.setText("Details..");
+        mainPanel.setMinimumSize(new Dimension(200, 200));
+        mainPanel.setName("mainP");
+        mainPanel.setPreferredSize(new Dimension(600, 400));
+        final JScrollPane scrollPane1 = new JScrollPane();
+        scrollPane1.setPreferredSize(new Dimension(600, 400));
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 100.0;
+        gbc.weighty = 100.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        mainPanel.add(scrollPane1, gbc);
+        textArea = new JTextArea();
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setMargin(new Insets(20, 20, 0, 0));
+        scrollPane1.setViewportView(textArea);
+        closeBtn = new JButton();
+        closeBtn.setText("Close");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        mainPanel.add(detailsTextField, gbc);
+        gbc.insets = new Insets(0, 5, 5, 5);
+        mainPanel.add(closeBtn, gbc);
     }
 
     /**
@@ -61,4 +84,5 @@ public class DetailsForm extends JFrame {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }

@@ -24,13 +24,18 @@ public class APIMyh {
     private int totalHves = 0;
     private DataModel model;
     private PropertyChangeSupport support;
+    private boolean searched = false;
 
     public APIMyh(DataModel model, PropertyChangeSupport support) {
         this.model = model;
         this.support = support;
     }
 
+    public boolean searched() { return this.searched; }
+
     public void doSearch() {
+        this.model.clearHve();
+        this.searched = true;
 
         // Create instance of Susa API parser in order to get list of HVEs (codes)
         APISusa susa = new APISusa();
@@ -39,12 +44,12 @@ public class APIMyh {
         Observable<SusaResult.SusaHit> susaObs = Observable.create(emitter -> {
             List<SusaResult.SusaHit> susaResults = susa.getResult().getResults();
 
-            // For the progressbar
+            // Progressbar
             processedHves = 0;
             totalHves = susaResults.size();
             updateProgressBar(false);
 
-            // Generate an emission for each found HVE in Susa
+            // Generate an emission for each HVE found in Susa
             susaResults.forEach(hit -> emitter.onNext(hit));
         });
 

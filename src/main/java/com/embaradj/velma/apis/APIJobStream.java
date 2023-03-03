@@ -41,6 +41,7 @@ public class APIJobStream {
     public boolean searched() { return this.searched; }
 
     public void doSearch() {
+        this.model.clearJob();
         searched = true;
         Observable<JobResults> jobOBs = Observable.create(emitter -> {
             getResults().forEach(emitter::onNext);
@@ -52,7 +53,6 @@ public class APIJobStream {
                 .doOnNext(model::addJob)
                 .subscribe();
     }
-
 
     private void fetchAds() {
         Gson gson = new Gson();
@@ -83,7 +83,6 @@ public class APIJobStream {
     }
 
     public List<JobResults> getResults() {
-        System.out.println("TRÅD: " + Thread.currentThread().getName());
         fetchAds();
         filter();
         return jobResults;

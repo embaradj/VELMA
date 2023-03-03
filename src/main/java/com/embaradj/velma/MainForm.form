@@ -4,7 +4,9 @@
     <constraints>
       <xy x="20" y="17" width="663" height="502"/>
     </constraints>
-    <properties/>
+    <properties>
+      <preferredSize width="800" height="500"/>
+    </properties>
     <border type="none"/>
     <children>
       <scrollpane id="e9172" binding="scrollPaneLeft">
@@ -70,7 +72,7 @@
             <constraints/>
             <properties>
               <selectionMode value="0"/>
-              <toolTipText value="test"/>
+              <toolTipText value=""/>
             </properties>
           </component>
         </children>

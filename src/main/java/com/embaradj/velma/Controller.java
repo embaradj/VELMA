@@ -54,51 +54,38 @@ public class Controller implements ActionListener {
     }
 
     private void quit() {
-
-        int userInput = JOptionPane.showConfirmDialog(
-                null,
-                "Are you sure you want to quit?",
-                "Quit application",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null);
-
-        if (userInput == 0) {
-
-            // Close all open frames
-            for (Frame frame : view.getFrames()) {
-                frame.dispose();
-            }
+        if (confirmYesNo("Quit application?","Are you sure you want to quit?")) {
+            for (Frame frame : view.getFrames()) frame.dispose();
         }
     }
 
     public void searchJobs() {
-
         if (apiJobStream.searched()) {
-            if (confirmRedoSearch("Are you sure you want to download Job ads again?")) apiJobStream.doSearch();
+            if (confirmYesNo("Search again?","Are you sure you want to download Job ads again?")) apiJobStream.doSearch();
         } else apiJobStream.doSearch();
-
     }
 
-    private boolean confirmRedoSearch(String question) {
+    public void searchHve() {
+        if (apiMyh.searched()) {
+            if (confirmYesNo("Search again?", "Are you sure you want to download HVEs again?")) apiMyh.doSearch();
+        } else apiMyh.doSearch();
+    }
+
+    private boolean confirmYesNo(String title, String question) {
         int userInput = JOptionPane.showConfirmDialog(
                 null,
                 question,
-                "Confirmation needed",
+                title,
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
-                null);
+                null
+        );
 
-        if (userInput == 0) {   // YES
-            return true;
-        }
+        if (userInput == 0) return true;   // YES
 
         return false;
     }
 
-    public void searchHve() {
-        apiMyh.doSearch();
-    }
 
     // Used by the View to listen for changes in the Controller (Progressbar)
     public void addListener(final PropertyChangeListener listener) {
