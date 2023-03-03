@@ -4,6 +4,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.LinkedList;
 
+import static javax.swing.SwingUtilities.isEventDispatchThread;
+
 /**
  * Represents the model of the MVC pattern
  * The View subscribes to the members of this object
