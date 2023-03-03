@@ -26,7 +26,8 @@ public class MainForm extends JFrame {
     private DefaultListModel<SearchHit> listModel2 = new DefaultListModel<>(); // Used for the JLists
     private JList list1;
     private JList list2;
-    private ActionListener controller;
+    //private ActionListener controller;
+    private Controller controller;
 
     public MainForm(Controller controller, DataModel model) {
         this.controller = controller;
@@ -77,6 +78,15 @@ public class MainForm extends JFrame {
                 }
             });
         });
+
+        this.controller.addListener(e -> {
+            int progress = (int) e.getNewValue();
+            System.out.println("Updating progressbar.." + progress);
+            progressBar1.setValue(progress);
+        });
+
     }
+
+
 
 }

@@ -2,6 +2,11 @@ package com.embaradj.velma;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.util.List;
+
+import java.util.LinkedList;
 import java.util.Objects;
 import static javax.swing.SwingUtilities.isEventDispatchThread;
 import com.embaradj.velma.apis.APIJobStream;
@@ -21,6 +26,9 @@ public class Controller implements ActionListener {
 
     private JFrame viewFrame;
     private final DataModel model;
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+    private int totalHves = 0;
+    private int processedHves = 0;
 
     public Controller(DataModel model) {
         this.model = model;
@@ -62,7 +70,7 @@ public class Controller implements ActionListener {
 
         if (userInput == 0) {
 
-            // Close all open forms
+            // Close all open frames
             for (Frame frame : viewFrame.getFrames()) {
                 frame.dispose();
             }
@@ -96,8 +104,19 @@ public class Controller implements ActionListener {
         Observable<SusaResult.SusaHit> susaObs = Observable.create(emitter -> {
 
             // Call getResult() in here in order to run it on another thread, subscribeOn
-            for (SusaResult.SusaHit hit : susa.getResult().getResults()) emitter.onNext(hit);
+            List<SusaResult.SusaHit> susaResults = susa.getResult().getResults();
+            totalHves = susaResults.size();
+
+            for (SusaResult.SusaHit hit : susaResults) {
+                emitter.onNext(hit);
+            }
+
+//            for (SusaResult.SusaHit hit : susa.getResult().getResults()) {
+//                emitter.onNext(hit);
+//            }
         });
+
+
 
         susaObs.subscribeOn(Schedulers.io())
                 .subscribe(susaHit -> {
@@ -113,12 +132,21 @@ public class Controller implements ActionListener {
                         System.out.println("could not download pdf " + susaHit);
                     }
 
+                    updateProgressBar();
+
                     System.out.println(susaHit + "\n" + pdfUrl + "\n----------------");
                 });
 
-        // todo: update progressbar or something to show when we are finished..
-
     }
 
+    private void updateProgressBar() {
+        int progress = ((100) * ++processedHves) / totalHves;
+        support.firePropertyChange("hveProgess", null, progress);
+    }
+
+    // Used by the View to listen for changes in the Controller (Progressbar)
+    public void addListener(final PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
 
 }
