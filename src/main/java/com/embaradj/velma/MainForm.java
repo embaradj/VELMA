@@ -80,10 +80,21 @@ public class MainForm extends JFrame {
             });
         });
 
-        this.controller.addListener(e -> {
-            int progress = (int) e.getNewValue();
-            System.out.println("Updating progressbar.." + progress);
-            progressBar1.setValue(progress);
+        controller.addListener(e -> {
+
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+
+                    int progress = (int) e.getNewValue();
+                    System.out.println("Updating progressbar.." + progress);
+                    System.out.println(Thread.currentThread().getName());
+
+                    if (e.getPropertyName().equals("hveProgress")) progressBar1.setValue(progress);
+                    if (e.getPropertyName().equals("jobProgress")) progressBar2.setValue(progress);
+                }
+            });
+
         });
 
     }

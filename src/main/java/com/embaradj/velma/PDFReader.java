@@ -35,7 +35,7 @@ public class PDFReader {
         courses.forEach((key, value) -> System.out.println(key + " >> " + value));
     }
 
-    protected HashMap<String, List<String>> getCourses() { return this.courses; }
+    public HashMap<String, List<String>> getCourses() { return this.courses; }
 
     /**
      * Hämtar alla kurser genom att bara hämta text i sektionen "Kurser i bokstavsordning".

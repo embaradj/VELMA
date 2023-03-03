@@ -1,21 +1,77 @@
 package com.embaradj.velma.apis;
 
+import com.embaradj.velma.FileDownloader;
+import com.embaradj.velma.PDFReader;
+import com.embaradj.velma.models.Hve;
 import com.embaradj.velma.results.MyhSearchRequest;
 import com.embaradj.velma.results.MyhSearchResult;
+import com.embaradj.velma.results.SearchHit;
+import com.embaradj.velma.results.SusaResult;
 import com.google.gson.Gson;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
+import java.beans.PropertyChangeSupport;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.*;
-
+import com.embaradj.velma.models.DataModel;
 import static java.lang.System.out;
-import static java.util.stream.Collectors.joining;
 
 public class APIMyh {
     public boolean DEBUG = true;
+    private int processedHves = 0;
+    private int totalHves = 0;
+    private DataModel model;
+    private PropertyChangeSupport support;
 
-    public APIMyh() { }
+    public APIMyh(DataModel model, PropertyChangeSupport support) {
+        this.model = model;
+        this.support = support;
+    }
+
+    public void doSearch() {
+
+        processedHves = 0;
+        updateProgressBar();
+
+        // Create instance of Susa API parser in order to get list of HVEs (codes)
+        APISusa susa = new APISusa();
+
+        Observable<SusaResult.SusaHit> susaObs = Observable.create(emitter -> {
+
+            // Calling getResult() in here to run on another thread, (subscribeOn)
+            List<SusaResult.SusaHit> susaResults = susa.getResult().getResults();
+            totalHves = susaResults.size();
+
+            for (SusaResult.SusaHit hit : susaResults) {
+                emitter.onNext(hit);
+            }
+
+        });
+
+        susaObs.subscribeOn(Schedulers.io())
+                .subscribe(susaHit -> {
+                    String pdfUrl = getPdfUrl(susaHit.getCode());
+                    String localFilePath = FileDownloader.download(pdfUrl);
+
+                    if (!Objects.isNull(localFilePath)) {
+                        PDFReader pdfReader = new PDFReader(localFilePath);
+                        Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses());
+                        model.addHve(hve);
+                    }
+                    else {
+                        System.out.println("could not download pdf " + susaHit);
+                    }
+
+                    updateProgressBar();
+
+                    System.out.println(susaHit + "\n" + pdfUrl + "\n----------------");
+                });
+
+    }
 
     /**
      * Get the URL to the syllabus of a HVE program
@@ -102,4 +158,8 @@ public class APIMyh {
 
     }
 
+    public void updateProgressBar() {
+        int progress = ((100) * ++processedHves) / totalHves;
+        support.firePropertyChange("hveProgress", null, progress);
+    }
 }

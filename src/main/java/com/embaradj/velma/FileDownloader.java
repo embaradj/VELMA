@@ -10,7 +10,7 @@ public class FileDownloader {
     final static int CONNECT_TIMEOUT = 5000;
     final static int READ_TIMEOUT = 5000;
 
-    protected static String download(String urlString) {
+    public static String download(String urlString) {
         String localPath = null;
 
         try {
