@@ -53,6 +53,7 @@ public class APIJobStream {
 //        System.out.println(query + parameter);
 
         processedJobs = 0;
+        jobResults.clear();
 
         try {
 

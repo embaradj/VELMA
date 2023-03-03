@@ -35,7 +35,6 @@ public class APIMyh {
     public void doSearch() {
 
         processedHves = 0;
-        updateProgressBar();
 
         // Create instance of Susa API parser in order to get list of HVEs (codes)
         APISusa susa = new APISusa();
@@ -45,6 +44,7 @@ public class APIMyh {
             // Calling getResult() in here to run on another thread, (subscribeOn)
             List<SusaResult.SusaHit> susaResults = susa.getResult().getResults();
             totalHves = susaResults.size();
+            updateProgressBar();
 
             for (SusaResult.SusaHit hit : susaResults) {
                 emitter.onNext(hit);
