@@ -21,6 +21,8 @@ public class DetailsForm extends JFrame {
         setLocationRelativeTo(null);    // Position the frame in the center of the screen
         setVisible(true);
         showText(searchHit);
+
+        closeBtn.addActionListener(e -> { dispose(); });
     }
 
     private void showText(SearchHit searchHit) {

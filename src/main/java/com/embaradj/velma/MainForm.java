@@ -191,7 +191,6 @@ public class MainForm extends JFrame {
         panel1.add(scrollPaneRight, gbc);
         list2 = new JList();
         list2.setSelectionMode(0);
-        list2.setToolTipText("null");
         scrollPaneRight.setViewportView(list2);
         srcJobsBtn = new JButton();
         srcJobsBtn.setActionCommand("srcJobs");
