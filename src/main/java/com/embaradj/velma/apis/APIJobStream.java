@@ -13,6 +13,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,22 +22,28 @@ import java.util.stream.Collectors;
 public class APIJobStream {
     private DataModel model;
     private PropertyChangeSupport support;
-    private List<JobResults> jobResults = new LinkedList<JobResults>() {
-    };
+    private List<JobResults> jobResults;
     private final String query = "https://jobstream.api.jobtechdev.se/stream?date=2022-01-01T00:01:00";
     private final String prefix = "&occupation-concept-id=";
     private final String[] ssykCodes = {"UXKZ_3zZ_ipB", "DJh5_yyF_hEM", "Q5DF_juj_8do", "D9SL_mtn_vGM", "cBBa_ngH_fCx", "BAeH_eg8_T2d", "UxT1_tPF_Kbg"};
     private int processedJobs = 0;
+    private boolean searched = false;
 
     public APIJobStream(DataModel model, PropertyChangeSupport support) {
         this.model = model;
         this.support = support;
     }
 
-    public void doSearch() {
-        Observable<JobResults> jobOBs = Observable.create(emitter -> {
+    /**
+     * Whether search has been done already
+     * @return
+     */
+    public boolean searched() { return this.searched; }
 
-            for (JobResults result : getResults()) emitter.onNext(result);
+    public void doSearch() {
+        searched = true;
+        Observable<JobResults> jobOBs = Observable.create(emitter -> {
+            getResults().forEach(emitter::onNext);
         });
 
         jobOBs
@@ -49,14 +56,12 @@ public class APIJobStream {
 
     private void fetchAds() {
         Gson gson = new Gson();
-//        String parameter = Arrays.stream(ssykCodes).map(code -> prefix + code).collect(Collectors.joining());
-//        System.out.println(query + parameter);
 
         processedJobs = 0;
-        jobResults.clear();
+        updateProgressBar(false);
+        jobResults = new ArrayList<>();
 
         try {
-
             for (String param : ssykCodes) {
 
                 HttpRequest httpRequest = HttpRequest.newBuilder()
@@ -66,10 +71,9 @@ public class APIJobStream {
 
                 HttpClient httpClient = HttpClient.newHttpClient();
                 HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-                updateProgressBar();
+                updateProgressBar(true);
 
                 jobResults.addAll(gson.fromJson(response.body(), new TypeToken<List<JobResults>>() {}.getType()));
-
             }
 
 
@@ -79,6 +83,7 @@ public class APIJobStream {
     }
 
     public List<JobResults> getResults() {
+        System.out.println("TRÅD: " + Thread.currentThread().getName());
         fetchAds();
         filter();
         return jobResults;
@@ -88,8 +93,9 @@ public class APIJobStream {
         jobResults = jobResults.stream().filter(JobResults::isRemoved).toList();
     }
 
-    public void updateProgressBar() {
-        int progress = ((100) * ++processedJobs) / ssykCodes.length;
+    public void updateProgressBar(boolean increase) {
+        if (increase) processedJobs++;
+        int progress = ((100) * processedJobs) / ssykCodes.length;
         support.firePropertyChange("jobProgress", null, progress);
     }
 }

@@ -2,6 +2,7 @@ package com.embaradj.velma.apis;
 
 import com.embaradj.velma.results.SusaResult;
 import com.google.gson.Gson;
+import io.reactivex.rxjava3.core.Observable;
 
 import java.net.URI;
 import java.net.http.HttpClient;

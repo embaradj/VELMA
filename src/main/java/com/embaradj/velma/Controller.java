@@ -13,7 +13,7 @@ import static javax.swing.SwingUtilities.isEventDispatchThread;
 
 public class Controller implements ActionListener {
 
-    private JFrame viewFrame;
+    private JFrame view;
     private final DataModel model;
     private final APIMyh apiMyh;
     private final APIJobStream apiJobStream;
@@ -30,7 +30,7 @@ public class Controller implements ActionListener {
     }
 
     protected void setView(JFrame viewFrame) {
-        this.viewFrame = viewFrame;
+        this.view = viewFrame;
     }
 
     /**
@@ -66,14 +66,34 @@ public class Controller implements ActionListener {
         if (userInput == 0) {
 
             // Close all open frames
-            for (Frame frame : viewFrame.getFrames()) {
+            for (Frame frame : view.getFrames()) {
                 frame.dispose();
             }
         }
     }
 
     public void searchJobs() {
-        apiJobStream.doSearch();
+
+        if (apiJobStream.searched()) {
+            if (confirmRedoSearch("Are you sure you want to download Job ads again?")) apiJobStream.doSearch();
+        } else apiJobStream.doSearch();
+
+    }
+
+    private boolean confirmRedoSearch(String question) {
+        int userInput = JOptionPane.showConfirmDialog(
+                null,
+                question,
+                "Confirmation needed",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null);
+
+        if (userInput == 0) {   // YES
+            return true;
+        }
+
+        return false;
     }
 
     public void searchHve() {

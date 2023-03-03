@@ -5,12 +5,10 @@ import com.embaradj.velma.PDFReader;
 import com.embaradj.velma.models.Hve;
 import com.embaradj.velma.results.MyhSearchRequest;
 import com.embaradj.velma.results.MyhSearchResult;
-import com.embaradj.velma.results.SearchHit;
 import com.embaradj.velma.results.SusaResult;
 import com.google.gson.Gson;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
 import java.beans.PropertyChangeSupport;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -34,42 +32,58 @@ public class APIMyh {
 
     public void doSearch() {
 
-        processedHves = 0;
-
         // Create instance of Susa API parser in order to get list of HVEs (codes)
         APISusa susa = new APISusa();
 
+        // Everything in here will be run on other thread (subscribeOn)
         Observable<SusaResult.SusaHit> susaObs = Observable.create(emitter -> {
-
-            // Calling getResult() in here to run on another thread, (subscribeOn)
             List<SusaResult.SusaHit> susaResults = susa.getResult().getResults();
+
+            // For the progressbar
+            processedHves = 0;
             totalHves = susaResults.size();
-            updateProgressBar();
+            updateProgressBar(false);
 
-            for (SusaResult.SusaHit hit : susaResults) {
-                emitter.onNext(hit);
-            }
-
+            // Generate an emission for each found HVE in Susa
+            susaResults.forEach(hit -> emitter.onNext(hit));
         });
 
-        susaObs.subscribeOn(Schedulers.io())
-                .subscribe(susaHit -> {
-                    String pdfUrl = getPdfUrl(susaHit.getCode());
-                    String localFilePath = FileDownloader.download(pdfUrl);
+//        susaObs
+//                .subscribeOn(Schedulers.io())
+//                .doOnNext(susaHit -> {
+//                    String localFilePath = FileDownloader.download(getPdfUrl(susaHit.getCode()));
+//                    if (Objects.isNull(localFilePath)) System.out.println("Could not download pdf " + susaHit);
+//                    else {
+//                        PDFReader pdfReader = new PDFReader(localFilePath);
+//                        Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses());
+//                        model.addHve(hve);
+//                    }
+//                    updateProgressBar();
+//                })
+//                .subscribe(susaHit -> System.out.println("Could not download pdf " + susaHit)
+//                        , err -> {err.printStackTrace(); });
+        susaObs
+            .subscribeOn(Schedulers.io())
+            .subscribe(susaHit -> {
+                String pdfUrl = getPdfUrl(susaHit.getCode());
+                String localFilePath = FileDownloader.download(pdfUrl);
 
-                    if (!Objects.isNull(localFilePath)) {
-                        PDFReader pdfReader = new PDFReader(localFilePath);
-                        Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses());
-                        model.addHve(hve);
-                    }
-                    else {
-                        System.out.println("could not download pdf " + susaHit);
-                    }
+                if (!Objects.isNull(localFilePath)) {
+                    PDFReader pdfReader = new PDFReader(localFilePath);
+                    Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses());
+                    model.addHve(hve);
+                }
+                else {
+                    System.out.println("Could not download pdf " + susaHit);
+                }
 
-                    updateProgressBar();
+                updateProgressBar(true);
 
-                    System.out.println(susaHit + "\n" + pdfUrl + "\n----------------");
-                });
+                System.out.println(susaHit + "\n" + pdfUrl + "\n----------------");
+            }, error -> {
+                error.printStackTrace();
+            });
+
 
     }
 
@@ -158,8 +172,14 @@ public class APIMyh {
 
     }
 
-    public void updateProgressBar() {
-        int progress = ((100) * ++processedHves) / totalHves;
+    /**
+     * Ask the GUI to update a progressbar
+     * @param increase Whether the number of processed elements should be increased (false to reset)
+     */
+    public void updateProgressBar(boolean increase) {
+        int progress = 0;
+        if (increase) processedHves++;
+        if (totalHves > 0) progress = ((100) * processedHves) / totalHves;
         support.firePropertyChange("hveProgress", null, progress);
     }
 }
