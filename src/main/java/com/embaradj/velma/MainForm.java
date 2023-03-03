@@ -3,6 +3,7 @@ package com.embaradj.velma;
 import com.embaradj.velma.models.DataModel;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
