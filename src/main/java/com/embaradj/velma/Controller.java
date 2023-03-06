@@ -4,9 +4,17 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
+import cc.mallet.types.Instance;
+import cc.mallet.types.InstanceList;
 import com.embaradj.velma.apis.APIJobStream;
 import com.embaradj.velma.apis.APIMyh;
+import com.embaradj.velma.lda.Importer;
+import com.embaradj.velma.lda.Modeller;
 import com.embaradj.velma.models.DataModel;
 import javax.swing.*;
 import static javax.swing.SwingUtilities.isEventDispatchThread;
@@ -51,6 +59,15 @@ public class Controller implements ActionListener {
     private void analyse() {
         System.out.println("Running on EDT? " + isEventDispatchThread());
         System.out.println(Thread.currentThread().getName());
+
+        // Run the importer which will read files in resources/ and create a '.mallet' file
+        Importer importer = new Importer();
+        InstanceList inst = importer.readDir(new File("resources/"));
+        inst.save(new File("conf/test.mallet"));
+
+        // Run the modeller which will do the topic modelling on the '.mallet' file
+        Modeller modeller = new Modeller();
+        modeller.worker("conf/test.mallet");
     }
 
     private void quit() {

@@ -1,0 +1,85 @@
+Vi får samhället att fungera för människor på väg, på spår, i luften och på sjön. Därför behöver vi den bästa kompetensen. Vårt uppdrag är viktigt och har betydelse i vardagen – både för privatpersoner och företag. Hos oss tar vi ansvar, behandlar alla på ett bra sätt och har respekt för olikheter. Som medarbetare bidrar du till en hållbar framtid.
+
+Om jobbet
+På Transportstyrelsens it-avdelning är vi idag totalt cirka 450 medarbetare och konsulter. Vi vill nu bli fler och hoppas att just du kommer till oss och hjälper oss med vårt samhällsuppdrag. Här får du chansen att jobba med unika system som verkligen har betydelse för samhället, nu och i framtiden. 
+
+I rollen som it-arkitekt på Transportstyrelsen utvecklar du effektiva, smarta och hållbara lösningar för det svenska samhället. Du arbetar med verksamhetskritiska system inom våra kärnområden fordon, körkort och yrkestrafik, system som stödjer hundratusentals användare. Du designar nya lösningar och features samt vidareutvecklar hållbarheten av befintliga system. Inom området finns en komplex affärslogik och en hög andel integrationer vilket garanterar en utmanade och omväxlande vardag.
+
+Du kommer att jobba inom ett produktområde som jobbar med produktion, utskick, certifikat och kort, och som är ett stödobjekt åt verksamheten. Där stödjer man myndigheten inom områdena utskick av digitala och fysiska brev, korttillverkning, certifikatutgivning och färdskrivarkort.
+
+Vi har ett 40-tal arkitekter på myndigheten idag och har även ett väletablerat arkitektforum som jobbar på ett övergripande plan och ser till att vi jobbar enhetligt med vår arkitektur.
+
+
+
+Hos oss är du viktig
+Gillar du att jobba tillsammans och vill du utvecklas i din yrkesroll? Hos oss kan du förvänta dig karriärsutveckling, ett modernt chefs- och medarbetarskap samt ett hållbart arbetsliv. Vi är en trygg arbetsplats som månar om din hälsa med tid för friskvård på arbetstid, flexibla arbetstider, väl tilltagna antal semesterdagar och lediga klämdagar.
+
+Läs mer om att jobba med IT hos oss
+
+Du kommer att
+
+• ansvara och förvalta it-arkitekturen inom ditt verksamhets- eller teknikområde
+• ansvara för att analysera, göra avvägningar och ta fram lösningar för verksamhetens behov, för en kort- och långsiktigt hållbar it-arkitektur
+• ingå i nätverket av it-arkitekter på myndigheten
+• designa och utforma it-lösningar så att de uppfyller både verksamhetens krav samt de tekniska regler och riktlinjer som gäller
+• stötta och vägleda systemutvecklare och systemförvaltare för att säkerställa en hög kvalitet samt att beslutade strategier följs
+• samarbeta med systemdrift för att lösa akuta problem och anpassa lösningar för en effektiv och stabil drift.
+
+Du måste ha
+
+• en akademisk utbildning inom it-området eller motsvarande kunskap förvärvad på annat sätt
+• erfarenhet av systemutveckling inom .Net
+• flerårig erfarenhet av arbete som it-arkitekt
+• goda kunskaper i svenska, i tal och skrift.
+
+Det är meriterande om du också har
+
+• certifiering inom it-arkitektur som DF-kompetens eller motsvarande
+• erfarenhet av att ha arbetat inom systemutvecklingsområdet i en stor och komplex it-organisation
+• erfarenhet av arbete i Windows-miljöer
+• erfarenhet av it-drift
+• arbetat med utveckling och drift av samhällskritiska system
+• erfarenhet av Enterprise Architect.
+
+Vi vill att du
+
+• är en analytisk och van problemlösare, som ser logik och samband i komplex information eller miljö 
+• har god kommunikativ förmåga, är lyhörd, tydlig och kan anpassa din kommunikation efter situation
+• arbetar enligt en tydlig process där du organiserar och planerar ditt arbete väl och håller uppsatta deadlines
+• är samarbetsorienterad och har ett prestigelöst fokus på det gemensamma målet
+
+Stor vikt läggs vid personlig lämplighet.
+
+Mer information
+Anställningen är tillsvidare med placering i Örebro. Tillsättning enligt överenskommelse. Vi tillämpar normalt provanställning. Anställningen är placerad i säkerhetsklass och säkerhetsprövning kommer att genomföras enligt säkerhetsskyddslagen (2018:585).
+
+Vid frågor är du välkommen att kontakta sektionschef Azad Kaveh, 010-495 60 63 azad.kaveh@transportstyrelsen.se, Saco, Anneli Hjalmarsson och ST, Siv Nederman nås via vår växel på 0771-503 503.
+
+Vi vill inte att annonsörer och bemanningsföretag kontaktar oss.
+
+Ansök
+Ansök via vår webbplats och bifoga ditt CV samt ett personligt brev märkt med referensnummer TSG 2023-1027.  Vi behöver din ansökan senast den 13 mars 2023. Vi gör första urvalet utifrån de frågor som du får svara på i vårt e-rekryteringssystem och kan komma att använda urvalstest.
+
+Välkommen att bli vår nya kollega!
+
+Kort om Transportstyrelsen
+
+Antal anställda:
+Ca 2000.
+
+Verksamhetsområden:
+Transportstyrelsen arbetar för att uppnå god tillgänglighet, hög kvalitet, säkra och miljöanpassade transporter inom järnväg, luftfart, sjöfart och väg. Vi tar fram regler, ger tillstånd och följer upp hur de efterlevs. Med hjälp av våra register arbetar vi bland annat med avgifter, tillstånd och ägarbyten.
+
+Verksamhetsorter:
+Vi har medarbetare på 12 orter i landet. Den största delen av verksamheten finns i Borlänge, Norrköping och Örebro.
+
+Huvudkontoret ligger i Norrköping.
+
+Läs mer om Transportstyrelsen
+
+
+Kort om avdelning It
+
+Avdelning It består av fem enheter med tillhörande sektioner. Vi är cirka 300 medarbetare och finns i Örebro, Borlänge och Norrköping.
+
+Vi stöder samtliga avdelningar inom Transportstyrelsen både strategiskt och operativt i it-frågor. Vi arbetar med arkitektur, systemutveckling, förvaltning och drift av it-system samt infrastruktur.

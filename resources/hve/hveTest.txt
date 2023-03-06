@@ -1,0 +1,2345 @@
+Ansökan om att en utbildning ska ingå i yrkeshögskolan och ansökan
+att erhålla statsbidrag eller särskilda medel
+Utbildningens namn:
+Webbutvecklare inom e-handel
+Ansvarig utbildningsanordnare:
+Medieinstitutet i Sverige AB
+Omfattning, poäng:
+410
+Studieform:
+Bunden
+Studietakt:
+Heltid
+Diarienummer:
+MYH 2022/4923
+Ansökningsnummer:
+202128090
+Registreringstidpunkt:
+2022-06-14
+Examensbeteckning:
+Utbildningen ger yrkeshögskoleexamen
+Föregångare till den sökta utbildningen:
+Utbildningsnummer YH00254
+Arbetslivets medverkan i utbildningens planering och genomförande:
+Totalt antal medverkande organisationer: 25 st
+Totalt antal bekräftade: 25 st
+Totalt antal dementerade: 0 st
+Totalt antal som satt sig in i utbildningen: 25 st
+Totalt antal som medverkat i framtagning av 16 st
+utbildningens innehåll och upplägg:
+Totalt antal studerande som planeras att anställas 364 - 455 st
+eller köpa tjänster av i utbildningen:
+Totalt antal LIA-platser i den sökta utbildningen: 158 st
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Faktauppgifter
+K1
+Ansvarig utbildningsanordnare *
+Medieinstitutet i Sverige AB
+Organisationsnummer
+556701-9699
+Organisationsform
+Aktiebolag
+Postadress och besöksadress
+Postadress
+Organisation: Medieinstitutet i Sverige AB
+Adress: Tulegatan 41
+Postnr/ort: 11353 Stockholm
+Besöksadress
+Organisation: Medieinstitutet i Sverige AB
+Adress: Gustavslundsvägen 151 D
+Ort: Bromma
+Webbadress, telefonnummer och e-postadress till ansvarig utbildningsanordnare
+Telefon: 08-4429500
+Hemsida: http://www.medieinstitutet.se
+E-post: runo@medieinstitutet.se
+Fullmaktsgivare
+Förnamn: Runo
+Efternamn: Lundström
+Telefon: 08-4429500
+E-post: runo@medieinstitutet.se
+K33
+Kontaktperson för ansökan
+Förnamn: Erik
+Efternamn: Bodén
+Telefon: 0706689368
+Epost: erik@medieinstitutet.se
+Uppgifter om utbildningen
+K2
+Utbildningsområde
+Data/IT
+K3
+Utbildningens namn *
+Webbutvecklare inom e-handel
+Sida 1 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+K4
+Omfattning poäng *
+410
+Motivering
+Programmets omfattning om 410 yrkeshögskolepoäng avser tillgodose de kompetenskrav som
+anställande arbetsliv formulerat kring yrkesrollen Webbutvecklare inom e-handel.
+Programmet är utformat för att möta de kompetenskrav och krav på specialiserat yrkeskunnande inom
+utveckling, utformning och programmering av programvara, applikationer, system och databaser inom
+ehandeln som efterfrågas av arbetslivet. Dessa kunskaper, färdigheter och kompetenser utvecklas
+genom en kombination av teoretiska och praktiska studier och säkerställer att den studerande kan
+utföra de specialiserade arbetsuppgifter som avses i yrkesrollen. För att tillgodose anställande
+arbetsliv och de förändringar som yrkesrollen möter innehåller programmet även kursen
+Kompetensportfölj och entreprenörskap.
+Kursernas läranderesultat uppfyller tillsammans programmets övergripande lärandemål och
+säkerställer därmed att de studerande ges möjlighet att utveckla de kunskaper, färdigheter och
+kompetenser som yrkesrollen kräver. LIA-kursernas fördelning, omfattning och placering i programmet
+har tagits fram i samverkan med anställande arbetsliv och omfattar en tredjedel av programmet.
+K5
+Studietakt *
+Heltid
+K9
+Undervisning på engelska *
+Nej
+Motivering
+Undervisningen på programmet kommer inte alls bedrivas på engelska i den mening att programmet
+innehåller någon kurs i det engelska språket eller att den undervisande personalen föreläser på
+engelska.
+I programmets övergripande lärandemål ingår att den studerande ska kunna kommunicera åtaganden
+och lösningar gällande arbete med utveckling, utformning och programmering av programvara,
+applikationer, system och databaser inom ehandeln i yrkesrollen som Webbutvecklare inom e-handel
+på såväl svenska som engelska.
+Denna färdighet tillgodoses genom yrkeshögskolans grundläggande behörighetskrav samt genom att
+yrkesrelevanta och branschspecifika begrepp och uttryck genomgående behandlas i kurslitteratur,
+digitala lär-resurser och programvaror på engelska. Därutöver ska den studerande i kursen
+Examensarbete sammanfatta sitt arbete i ett abstract skrivet på engelska.
+K10
+Utbildningsomgångar
+# Startår Startmånad Slutår Slutmånad
+1 2023 augusti 2025 maj
+2 2024 augusti 2026 maj
+3 2025 augusti 2027 maj
+K6
+Studieort
+Län Kommun Ort Antal platser
+Stockholm Stockholm Bromma 35
+Totalt antal platser för utbildningen
+35
+Motivering antal studerandeplatser
+Programmen på Medieinstitutet (MI) ska tillgodose arbetslivets behov av kompetens samt bidra till att
+Sida 2 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+eftergymnasiala yrkesutbildningar bedrivs effektivt och med hög kvalitet. Antalet studerandeplatser på
+programmet ska således baseras på en avvägning av arbetslivets efterfrågan på yrkesrollen samt MIs
+förmåga att fylla beviljade studerandeplatser.
+MI bedömer att efterfrågan på yrkesrollen och den kompetens som programmet ger är tillräckligt stor
+för att motivera 35 studerandeplatser och tre starter av programmet. Detta överensstämmer med det
+anställningsbehov som ledningsgruppen, LIA-företagen och övriga företag och branschföreträdare MI
+samverkar med gett uttryck för i enkäter, intervjuer och workshops.
+Studerande vid programmets start har för tidigare beviljade omgångar motsvarat antal beviljade
+platser. Årets tillträdesprocess har resulterat i 386 sökanden och i skrivande stund 148 behöriga.
+K12
+Alternativa utbildningsvägar
+Inom ramen för gymnasieskolan finns inriktningen Informations- och medieteknik på
+Teknikprogrammet. Inriktningen innehåller kurser i bland annat Dator- och kommunikationsteknik,
+Programmering och Webbutveckling. Teknikprogrammet är dock ett högskoleförberedande program
+och syftar därmed till vidare studier.
+Inom högskolan finns Systemvetarprogrammet samt ett fåtal program inom datateknik och
+programvaruteknik med inriktning på webbutveckling. För yrkesrollen Webbutvecklare inom e-handel
+efterfrågar anställande praktiskt förankrade kunskaper snarare än teoretiskt avancerade. En student
+på en högskoleutbildning kommer ofta endast i kontakt med arbetslivet under examensarbetet men
+även det görs i många fall internt på institutionen.
+En ny typ av intensivutbildning har under det senaste åren introducerats på den svenska
+utbildningsmarknaden, bland annat inom programmering. Utbildningarna är anpassade efter ett
+specifikt företag och ger inte de färdigheter, kompetenser och specialiserade kunskaper som
+tillsammans motsvarar de av branschen uppställda kvalitetskritiska kompetenskraven på yrkesrollen.
+Förekomsten av intensivutbildningar på marknaden kan dock ses som ett tecken på att IT-branschen
+har stora utmaningar med sin kompetensförsörjning.
+"Denna utbildning är mer dynamisk än en universitetsutbildning. Den är enklare att anpassa efter vad
+som behövs på marknaden idag. Det finns ingen vits att läsa, memorera och studera som du gör på
+universitetet, för att bli utvecklare. För yrkesrollen är learning by doing den bästa vägen, därför passar
+utbildningen bäst på YH", Julia Wallin, Co-founder, Amöba.
+K32
+Tillträde
+K14
+Behörighet *
+Särskilda förkunskaper krävs i följande
+Kurser
+Lägst betyget E/3/G i följande kurser eller motsvarande kunskaper
+Matematik 2
+Webbutveckling 1
+Motivering av förkunskaper kurser
+I arbetet med att utarbeta kursernas innehåll och lärandemål har MI i samverkan med
+ledningsgruppen konstaterat att fördjupade kunskaper och färdigheter inom matematik och
+webbutveckling är nödvändigt för att de studerande ska kunna tillgodogöra sig programmet. Den
+gymnasiekurs vars centrala innehåll den studerande behöver behärska utgörs av Matematik 2 och
+Webbutveckling 1 (Skolverket, 2022).
+K45
+Planerar utbildningen att erbjuda behörighetsgivande förutbildning
+Sida 3 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Nej
+K15
+Urvalsgrunder *
+Betyg
+Särskilt prov
+Tidigare utbildning
+Innehåll och upplägg
+K17
+Examensbeteckning *
+Utbildningen ger yrkeshögskoleexamen
+Examen
+Utbildningar som leder till en examen inom yrkeshögskolan ska uppfylla kraven i 2kap 13-14 §§ i
+förordningen om yrkeshögskolan (2009:130) vad gäller kunskaper, färdigheter och kompetenser.
+Examensbenämning
+Yrkeshögskoleexamen Webbutvecklare inom e-handel
+Mål och krav för examen
+Medieinstitutet (MI) har planerat programmet Webbutvecklare inom e-handel i samverkan med
+anställande arbetsliv genom framför allt ledningsgruppen för pågående program som tagit initiativ till
+denna ansökan. Därutöver medverkar mottagande arbetsliv i programmet genom att tillhandahålla
+LIA-platser, delta i workshops kring programinnehåll och besvara enkäter och remisser i framtagandet
+av programmet.
+I arbetet med att beskriva vilka, samt den nivå på, kunskaper, färdigheter och kompetenser som är
+avgörande i yrkesutövningen för yrkesrollen har programmets mål samt nivå och krav för vald examen
+diskuterats utifrån en beskrivning av yrkesrollen Webbutvecklare inom e-handel som teoretisk och
+praktisk utveckling, utformning och programmering av programvara, applikationer, system och
+databaser inom ehandeln.
+Utifrån de kompetenskrav på yrkesrollen som arbetslivet genom ledningsgruppen för pågående
+program uppgett har detta program i ansökan om att ingå i yrkeshögskolan placerats som SeQF 5.
+Detta överensstämmer även med nivåplaceringen för andra yrkeshögskoleprogram med liknande
+inriktning. Ledningsgruppen för pågående program framhåller att man för yrkesrollen efterfrågar
+kompetens på en tydligt eftergymnasial nivå, men inte den nivå på kunskaper, färdigheter och
+kompetenser som en kvalificerad yrkeshögskoleexamen skulle ge.
+MI har, sedan regeringen beslutade om införandet av en svensk referensram för kvalifikationer,
+erfarenhet av att utfärda kvalifikationer på en eftergymnasial nivå vars resultat av lärande är
+författningsreglerade. MI har därmed kännedom om de definierade krav på resultat av lärande i form
+av kunskaper, färdigheter och kompetenser som krävs för respektive nivå.
+Tydliga kursbeskrivningar och lärandemål säkerställer överförbarhet och kvalitet av läranderesultat. MI
+strävar efter att programmets mål och kursbeskrivningar ska vara så tydliga att programmets nivå och
+innehåll kan bli korrekt bedömda.
+Efter avslutad utbildning ska den studerande ha kunskaper om/ i
+1. Om specialiserad teoretisk och praktisk utveckling, utformning och programmering av applikationer,
+system och databaser inom e-handeln i yrkesrollen som Webbutvecklare inom e-handel.
+2. Kunskaper om angränsande yrkes-och kompetensområden såsom frontendutveckling, UX-design
+och digital marknadsföring.
+3. Om arbetsprocesser och kvalitetskriterier inom teoretisk och praktisk utveckling, utformning och
+Sida 4 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+programmering av applikationer, system och databaser inom e-handeln i yrkesrollen som
+Webbutvecklare inom e-handel.
+Efter avslutad utbildning ska den studerande ha färdigheter i att
+1.  I planering och utförandet samt identifiering av resurser för att utföra, specialiserade
+arbetsuppgifter inom arbete med utveckling, utformning och programmering av applikationer, system
+och databaser inom e-handeln i yrkesrollen som Webbutvecklare inom e-handel.
+2. I problemlösning av sammansatta utmaningar inom arbete med utveckling, utformning och
+programmering av applikationer, system och databaser inom e-handeln i yrkesrollen som
+Webbutvecklare inom e-handel.
+3. I att definiera åtaganden och lösningar samt kommunicera gällande arbete med utveckling,
+utformning och programmering av applikationer, system och databaser inom e-handeln i yrkesrollen
+som Webbutvecklare inom e-handel på såväl svenska som ytterligare ett språk.
+Efter avslutad utbildning ska den studerande ha kompetenser att
+1. Att självständigt behandla teoretisk och praktisk utveckling, utformning och programmering av
+applikationer, system och databaser inom e-handeln på ett sådant sätt att det leder vidare till lärande
+och professionell utveckling i yrkesrollen som Webbutvecklare inom e-handel.
+2. Att säkerställa arbetet med utveckling, utformning och programmering av applikationer, system och
+databaser inom e-handeln samt slutföra förelagda projekt inom yrkesrollen som Webbutvecklare inom
+e-handel.
+K16
+Kursöversikt *
+Obligatoriska kurser
+Kursnamn Kurstyp Poäng
+Arbets- och projektmetodik Standard 15
+Databasteknik Standard 20
+Examensarbete Examensarbete 30
+Frontendutveckling Standard 60
+Kompetensportfölj och Entreprenörskap Standard 10
+LIA 1 LIA 50
+LIA 2 LIA 75
+Systemstöd och integration med 3-partssystem Standard 30
+Systemutveckling Standard 60
+Systemutveckling ramverk Standard 30
+Utveckling mot E-handelsplattformar Standard 30
+Summa: 410
+Kurser i bokstavsordning
+Kursnamn: Arbets- och projektmetodik
+Poäng: 15
+Kurstyp: Standard
+Valbar: Nej
+Beskrivning: Kursens syfte är att behandla arbetsmetoder och digitala
+verktyg som är relevanta för utvecklarrollen samt hantera
+teorier och metoder för att tillsammans i utvecklingsteam
+kunna arbeta effektivt och standardiserat för att säkerställa
+tidsenliga projektleveranser.
+Sida 5 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Målet med kursen är att den studerande ska få grundläggande
+kunskaper och orientering i verktyg och arbetsmetoder som
+förekommer i utvecklarrollen såsom tekniker för
+versionshantering och terminalgränssnitt. Därutöver ska den
+studerande förstå principer för standardiserad kod,
+refaktorisering samt kvalitetssäkring av kod. Kodgranskning
+genom hjälp av mob/parprogrammering. Den studerande ska
+utveckla en förståelse för olika roller i grupper och
+arbetsmetoder som underlättar projektarbete i team utifrån agil
+projektmetodik.
+Kunskaper
+Om olika typer av projektformer, såväl agila som traditionella.
+Om hur en projektmetodik påverkar projektets utfall.
+Om hur man arbetar i grupp med agila metoder.
+Om utvecklingsprinciper för att skriva hållbar kod.
+Om olika tekniker för att kvalitetssäkra etablerad korrekt kod.
+Om bakomliggande motiveringar till val av arbetsverktyg och
+metoder
+Färdigheter:
+I verktyg och praxis för optimering av webbprojekt
+I att använda i branschen vanligt förekommande verktyg och
+hjälpmedel för utveckling av webbapplikationer.
+I att använda verktyg för samarbete i utvecklingsprojekt, för
+hantering av källkod och buggrapporter.
+I att kunna tillämpa etablerad kodstandard.
+I att genomföra projektarbeten i team med agila
+arbetsmetoder.
+Kompetenser
+Att tillämpa olika tekniker, verktyg och arbetsmetoder som är
+till hjälp i yrkesrollen som webbutvecklare.
+............................................. ..........................................................................................
+Kursnamn: Databasteknik
+Poäng: 20
+Kurstyp: Standard
+Valbar: Nej
+Beskrivning: Kursens syfte är att behandla tekniker, administration,
+arkitektur, anpassning, optimering och systemdesign inom
+databasutveckling för att skapa användarvänliga och optimala
+e-handelsplattformar.
+Målet med kursen är att den studerande ska utveckla fördjupad
+kunskap om informations- och datahantering i e-
+handelsapplikationer samt förmåga att hantera, lagra och
+analysera information om användare och deras köp på ett
+optimalt sätt och ta fram fungerande och snabba
+databaslösningar för optimala e-handelslösningar i yrkesrollen
+som e-handelsutvecklare.
+Kunskaper
+Om frågespråket SQL
+Om hantering och administration av SQL-databaser
+Om optimering och normalisering av databaser
+Om hur data struktureras och ordnas i databaser
+Om hur tabeller och databaser optimeras och normaliseras
+Om frågespråk för dataextrahering från SQL-databaser.
+Sida 6 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Om frågeställning mot databaser.
+Om relevanta administrativa verktyg som t ex MAMP, mysql
+och Workbench
+Färdigheter
+I att ta fram, optimera och strukturera databaser.
+I att planera och genomföra design av större databaser.
+I praktisk användning av relevanta verktyg
+Kompetenser
+Att planera och genomföra framtagandet av databaser samt
+optimera och anpassa dessa utifrån e-handelsplattformar samt
+använda administrativt verktyg för databaser.
+............................................. ..........................................................................................
+Kursnamn: Examensarbete
+Poäng: 30
+Kurstyp: Examensarbete
+Valbar: Nej
+Beskrivning: Syfte och mål:
+Kursens syfte är att den studerande ska lösa ett sammansatt
+yrkesrelaterat problem genom att tillämpa och kombinera
+förvärvade kunskaper, färdigheter och kompetenser.
+Målet med kursen är att den studerande ska behandla innehåll
+inom teoretisk och praktisk utveckling, utformning och
+programmering av programvara, applikationer, system och
+databaser inom ehandeln på ett sådant sätt att det leder till
+vidare lärande och professionell utveckling.
+Examensarbetet presenteras muntligt och skriftligt. I den
+skriftliga rapporten ska den studerande sammanfatta arbetet i
+ett abstract skrivet på engelska.
+Kunskaper:
+Kursen ger kunskaper om metoder för rapportskrivning.
+Kursen ger kunskaper i praktiskt utrednings- och
+underlagsarbete som metod för lärande och professionell
+utveckling.
+Färdigheter:
+Kursen ger färdigheter i att kombinera olika modeller, metoder
+och verktyg för att pröva ett eller flera handlingsalternativ eller
+underlag.
+Kompetenser:
+Kursen ger kompetens att självständigt behandla innehåll inom
+teoretisk och praktisk utveckling, utformning och
+programmering av programvara, applikationer, system och
+databaser inom ehandeln på ett sådant sätt att det leder till
+vidare lärande och professionell utveckling.
+............................................. ..........................................................................................
+Kursnamn: Frontendutveckling
+Poäng: 60
+Kurstyp: Standard
+Valbar: Nej
+Beskrivning: Kursens syfte är att behandla grundläggande tekniker inom
+webbutveckling för att skapa webbplatser där information kan
+Sida 7 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+lagras, hanteras, analyseras och presenteras.
+Målet med kursen är att den studerande ska utveckla en
+helhetsförståelse för användarflöden i webbapplikationer,
+kunna hantera och lagra information om användare samt
+förmåga i yrkesrollen som webbutvecklare ta fram fungerande,
+databasdrivna, responsiva webbapplikationer. Samt få en
+förståelse för grundläggade tekniska koncept som ligger till
+grund för webbens uppbyggnad.
+Kunskaper
+Om syntaxspråken HTML och CSS samt relevanta
+arbetsverktyg för dessa.
+Om grundläggande programmering i ett webbutvecklingsspråk
+Om datalagring på klientsidan, local host
+Om programmeringsspråk för webben.
+Om planering och projektering av dynamiska
+klientapplikationer
+Om tekniker som bygger upp webben. Exempel, HTTP, FTP,
+Client-server, DNS/Domäner, SSH m.m.
+Om GDPR och Coocies
+Färdigheter
+I att programmera användardrivna webbplatser
+I validering och standardisering av språk för frontend-
+utveckling
+I montering av utvecklingsmiljöer för frontendprojekt
+I säkerhetalagring av personuppgifter
+Kompetenser
+Att utveckla webbfrontend i enlighet med säkerhetskrav och
+aktuella standarder i HTML, CSS och Java- eller Ecmascript
+samt relaterade tekniker.
+Att utifrån en skiss eller design implementera utseende och
+funktion.
+............................................. ..........................................................................................
+Kursnamn: Kompetensportfölj och Entreprenörskap
+Poäng: 10
+Kurstyp: Standard
+Valbar: Nej
+Beskrivning: Syfte och mål:
+Kursens syfte är att behandla verktyg för självledarskap,
+lärande och professionell utveckling.
+Målet med kursen är att den studerande ska utveckla
+kunskaper om de generella kompetenskraven på yrkesrollen
+samt förmåga att ta ansvar för sin egen kompetensutveckling.
+Kunskaper:
+Om olika metoder och tekniker för instudering och inhämtning
+av kunskap.
+Om vilka delar av arbetsmarknaden som är relevanta med
+utgångspunkt i önskad karriärväg inom yrkesrollen.
+Om värdegrund, jämställdhet, mångfald och likabehandling.
+I kompetensinventering.
+I entreprenöriell metod.
+Färdigheter:
+I att aktivt förhålla sig till den egna utvecklingen i yrkesrollen.
+I att kommunicera sin kompetens i enlighet med branschkrav
+Sida 8 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+och förväntningar.
+Att tillämpa entreprenörskap och intraprenörsskap som
+redskap i yrkesrollen som Webbutvecklare inom e-handel.
+Kompetenser:
+Att reflektera över det egna lärandet och sin professionella
+utveckling i yrkesrollen som Webbutvecklare inom e-handel.
+Att identifiera och hantera egna värderingar som kan påverka
+samverkan med medarbetare och uppdragsgivare i arbetslivet.
+............................................. ..........................................................................................
+Kursnamn: LIA 1
+Poäng: 50
+Kurstyp: LIA
+Valbar: Nej
+Beskrivning: Syfte och mål:
+Kursens syfte är att förbereda för ett självständigt utövande i
+yrkesrollen som Webbutvecklare inom e-handel.
+Målet med kursen är att den studerande ska utveckla
+specialiserad yrkespraktisk kompetens inom arbete med
+utveckling, utformning och programmering av programvara,
+applikationer, system och databaser inom ehandeln.
+Kunskaper:
+Kursen ger kunskaper om yrkesrollens och den specifika
+arbetsplatsens praktiska arbete med utveckling, utformning
+och programmering av programvara, applikationer, system och
+databaser inom ehandeln.
+Kursen ger yrkespraktiska kunskaper i arbetsprocesser och
+kvalitetskriterier inom utveckling, utformning och
+programmering av programvara, applikationer, system och
+databaser inom ehandeln.
+Färdigheter:
+Kursen ger praktiska färdigheter i att hantera för yrkesrollen
+aktuella programvaror och system.
+Kursen ger praktiska färdigheter i att lösa sammansatta
+problem inom arbete med utveckling, utformning och
+programmering av programvara, applikationer, system och
+databaser inom ehandeln.
+Kompetenser:
+Kursen ger kompetens att med handledarstöd eller visst
+handledarstöd bedriva arbete med utveckling, utformning och
+programmering av programvara, applikationer, system och
+databaser inom ehandeln i yrkesrollen som Webbutvecklare
+inom e-handel.
+............................................. ..........................................................................................
+Kursnamn: LIA 2
+Poäng: 75
+Kurstyp: LIA
+Valbar: Nej
+Beskrivning: Syfte och mål:
+Kursens syfte är att förbereda för ett självständigt utövande i
+yrkesrollen som Webbutvecklare inom e-handel.
+Målet med kursen är att den studerande ska utveckla
+specialiserad yrkespraktisk kompetens inom arbete med
+Sida 9 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+utveckling, utformning och programmering av programvara,
+applikationer, system och databaser inom ehandeln.
+Kunskaper:
+Kursen ger kunskaper om yrkesrollens och den specifika
+arbetsplatsens praktiska arbete med utveckling, utformning
+och programmering av programvara, applikationer, system och
+databaser inom ehandeln.
+Kursen ger yrkespraktiska kunskaper i arbetsprocesser och
+kvalitetskriterier inom utveckling, utformning och
+programmering av programvara, applikationer, system och
+databaser inom ehandeln.
+Färdigheter:
+Kursen ger praktiska färdigheter i att hantera för yrkesrollen
+aktuella programvaror och system.
+Kursen ger praktiska färdigheter i att lösa sammansatta
+problem inom arbete med utveckling, utformning och
+programmering av programvara, applikationer, system och
+databaser inom ehandeln.
+Kompetenser:
+Kursen ger kompetens att med visst handledarstöd eller
+självständigt bedriva arbete med utveckling, utformning och
+programmering av programvara, applikationer, system och
+databaser inom ehandeln i yrkesrollen som Webbutvecklare
+inom e-handel.
+............................................. ..........................................................................................
+Kursnamn: Systemstöd och integration med 3-partssystem
+Poäng: 30
+Kurstyp: Standard
+Valbar: Nej
+Beskrivning: Syftet med kursen är att den studerande ska få kunskaper,
+färdigheter och kompetens för att integrera tredjepartssystem.
+Dessa system kan vara allt från betalningslösningar till
+sökmotorer och API:er för sociala medier. Huvudfokus kommer
+att ligga på att implementera REST-system men andra
+modeller kommer också att tas upp.
+Målet är att den studerande ska kunna använda,
+rekommendera, integrera och implementera lämpliga
+tredjepartssystem.
+Kunskaper
+Om olika tredjepartssystem och deras användningsområden.
+Om vilka tredjepartssystem som finns och hur API:er från
+dessa fungerar och används
+Om betalningsmoduler och leverantörskontakter
+implementeras.
+Om hur olika typer av tredjepartssystem integreras och
+anpassas.
+Färdigheter
+I att använda API:er för olika tredjepartssystem.
+I att implementera, använda och anpassa tredjepartssystem.
+I att läsa in och generera standardiserade dataformat. Ex.
+JSON, XML och CSV.
+Kompetenser
+Sida 10 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Att välja, motivera och rekommendera lämpliga
+tredjepartssystem utifrån behov och plattform.
+Att integrera och implementera tredjepartssystem samt
+använda och implementera API:er från tredjepartssystem.
+............................................. ..........................................................................................
+Kursnamn: Systemutveckling
+Poäng: 60
+Kurstyp: Standard
+Valbar: Nej
+Beskrivning: Kursens syfte är att behandla grundläggande tekniker,
+arkitektur och systemdesign inom backend-webbutveckling för
+att skapa e-handelsdrivna webbplatser där information kan
+lagras, hanteras, analyseras och presenteras.
+Målet med kursen är att den studerande ska utveckla en
+helhetsförståelse för information- och användarflöden i e-
+handelsapplikationer och förmåga att i yrkesrollen som e-
+handelsutvecklare ta fram fungerande, databasdrivna e-
+handelsplattformar med relevanta tekniker och funktioner.
+Kunskaper
+Om grundläggande programmering i ett backend-
+webbutvecklingsspråk.
+Om arkitektur och systemdesign för e-handelsapplikationer.
+Om programstruktur för hantering av användare och
+användardata.
+Om programstruktur för hantering av information och
+informationsflöde.
+Om säkerhet, integritet och kodpraxis
+Om backend-programmeringsspråk för webben.
+Om planering kring dynamiska e-handelsapplikationer.
+Färdigheter
+I att ta fram en e-handelsplattform.
+I att planera och genomföra större databasdrivna
+programmeringsprojekt.
+I att välja ut, designa och anpassa databaser utifrån den givna
+uppgiften.
+I att designa system och kodbaser utifrån arkitektoniska
+principer.
+Kompetenser
+Att planera och genomföra framtagandet av användar- och
+databasdrivna e-handelsapplikationer.
+Att optimera och anpassa databaser utifrån e-
+handelsplattformar.
+............................................. ..........................................................................................
+Kursnamn: Systemutveckling ramverk
+Poäng: 30
+Kurstyp: Standard
+Valbar: Nej
+Beskrivning: Kursens syfte är att fördjupa den studerandes kunskaper inom
+e-handelsutveckling och webbutveckling.
+Målet med kursen är den studerande ska utveckla sin förmåga
+Sida 11 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+att självständigt planera, utveckla och ta fram system och
+tjänster med befintliga ramverk och programmeringsparadigm
+som grund.
+Kunskap
+Om olika typer av programmeringsramverk.
+Om olika typer av algoritmer och optimeringstekniker inom
+programmering.
+Om hur verktyg och ramverk väljs utifrån behov och uppgift.
+Om hur man väljer rätt algoritmer och plattformar för en
+särskild uppgift
+Om hur efterforskningar görs och lämpliga ramverk för
+ändamålet väljs.
+Färdigheter
+I att genomföra större programmeringsprojekt på egen hand
+och i team.
+I att jämföra optimerade programmeringsprojekt med icke-
+optimerade sådana.
+I att välja ramverk och plattform utifrån behov.
+Kompetenser
+Att utveckla och implementera programmeringsprojekt inom
+utsatta tidsramar med branschaktuellt ramverk och standarder.
+............................................. ..........................................................................................
+Kursnamn: Utveckling mot E-handelsplattformar
+Poäng: 30
+Kurstyp: Standard
+Valbar: Nej
+Beskrivning: Kursens syfte är att behandla och arbeta mot utveckling inom
+en vanligt förekommande e-handelsplattform.
+Målet med kursen är att den studerande ska utveckla
+kunskaper om funktioner, möjligheter och begränsningar i en
+vanligt förekommande plattform. Vidare ska den studerande,
+inför den framtida yrkesrollen som e-handelsutvecklare,
+utveckla förmågan att hantera olika typer av funktioner i en
+plattform givet plattformens möjligheter och begränsningar.
+Kunskaper
+Om en vanligt förekommande e-handelsplattform som finns på
+marknaden och dess funktioner, möjligheter och
+begränsningar.
+Om hur administration av och utveckling mot en vanligt
+förekommande e-handelsplattform och lösning sker.
+Om hur plattform väljs utifrån behov, önskemål, begränsningar
+och möjligheter.
+Färdigheter
+I att välja, vidareutveckla, anpassa och underhålla en vanligt
+förekommande e-handelslösning.
+I att anpassa funktioner och lösningar utifrån behov.
+Kompetenser
+Att anpassa en e-handelsplattform utifrån behov och kunna
+bedöma dess styrkor och svagheter.
+............................................. ..........................................................................................
+Sida 12 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+K18
+Yrkesroller *
+1 Backendutvecklare
+2 Fullstackutvecklare
+3 Systemutvecklare
+4 Webbutvecklare
+5 Webbutvecklare inom e-handel
+K20
+Utbildningens upplägg *
+Utbildningsprocessen med upplägg och organisation av programmet ingår i Eleveramodellen och är
+en huvudprocess som MI arbetar systematiskt med. Vid programstart går utbildningsledaren igenom
+programmets upplägg, pedagogik, schema, förväntningar samt programmets mål och kursplaner med
+de studerande.
+På programmets LMS publiceras programmets samtliga styrdokument och undervisningsmaterial. Till
+alla teoretiska kurser hör en, av den kursansvariga undervisande eller handledande personalen,
+utformad lektionsplan som möjliggör för den studerande att planera sitt arbete. Programmets LMS är
+också en kommunikationskanal för ansvarig utbildningsledare och undervisande och handledande
+personal samt ger de studerande möjlighet att samverka i grupper, spara sitt studiematerial och
+diskutera i forum.
+Programmet ska dels förmedla de specialiserade kunskaper som krävs för att framgångsrikt verka i
+yrkesrollen som Webbutvecklare inom e-handel, men även möjliggöra för de studerande att lösa
+sammansatta problem inom utveckling, utformning och programmering av programvara, applikationer,
+system och databaser inom ehandeln. Programmets kurser är utformade så att de på ett tydligt sätt
+relaterar till varandra innehållsmässigt samt bidrar till en lärandeprogression i både teoretiska och
+yrkespraktiska kunskaper, färdigheter och kompetenser. Kunskapskontroller genomförs löpande i
+programmet för att säkra de studerandes måluppfyllelse. Uppföljning av måluppfyllelse samt
+självskattning mot lärandemålen är avsedda att öka de studerandes motivation, inlärning och
+förståelse.
+Programmet innehåller skarpa projekt, dessa är en viktig del av upplägget och bidrar till programmets
+verklighetsanknytning. I den skolförlagda delen av programmet genomförs upp till en tredjedel av de
+lärarledda lektionerna som nätbaserat lärande/fjärrundervisning. Undervisande personal från
+branschen ger koppling mellan studier och arbetsliv. Därtill tillkommer LIA, studiebesök och
+branschdagar med anställande arbetsliv. För att skapa förutsättningar för "den röda tråden" i
+genomförande, överlämning och pedagogiskt upplägg av programmet anordnar MI regelbundna
+gemensamma möten med den undervisande och handledande personalen.
+I planering och framtagning av programmet har anställande arbetsliv uttryckt tydliga förväntanskrav på
+att de studerande ska kunna hantera den ökade förändringstakten i arbetslivet och av yrkesrollen.
+Programmet ska utöver specialiserade yrkesfärdigheter förmedla breda nyckelkompetenser och
+förmåga till omställning och anpassning. Programmen på MI ska förse de studerande med kompetens
+att ta till sig nya kunskaper och ansvara för den egna kompetensutvecklingen, i programmets upplägg
+ingår därför kursen Kompetensportfölj och Entreprenörskap. Kursen knyter an till referensramen för
+nyckelkompetenser för livslångt lärande och genomförs i nära samarbete med anställande arbetsliv
+för att anpassas efter den yrkesroll som programmet syftar till.
+Förändring/utveckling i utbildningen
+Myndigheten för yrkeshögskolan identifierade förbättringsområde i den fördjupade
+kvalitetsgranskningen våren 2020, enligt följande:
+- Ledningsgruppen bör gå igenom vad i utbildningen som kan förändras för att öka
+genomströmningen, utifrån att bara hälften av de studerande som startar på utbildningen tagit
+examen.
+Vi har i ledningsgruppen samt med våra lärare och studerande haft kontinuerliga möten och samtalat
+kring innevarande utbildningsprogram samt utveckling av detta. Examinationsgraden har ökat och
+avhopp minskat årligen, programmet har en positiv trend. Vi har i skrivande stund på innevarande
+program, 37 studerande.
+Sida 13 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Ledningsgruppen har beslutat om följande åtgärder:
+- Urvalsprocessen har ändrats inför start 2021. Vi ger mer urvalspoäng till gymnasiekurser
+innehållande programmering eller matematik för att hitta studenter med vana från programmering och
+med det en ökat förståelse för utbildningens innebörd.
+- Vi har ändrat i innevarande utbildnings (start 2021) kursupplägg för att förhoppningsvis få
+utbildningen att bli lättare att genomföra för de studerande. Kurser med JavaScript, HTML med CSS
+kommer efter varandra vilket även kurserna innehållande PHP, WP samt systemintegration också gör.
+Det medför att de studerande inte behöver hoppa mellan olika programspråk, vilket de gjort tidigare.
+- Vi tar bort kursen E-handel och M-handel (10yhp) till förmån för programmering. Vi förlänger kursen
+Frontendutveckling med 10 YHP (från 50 till 60 yhp). Kunskapskraven kommer inte att öka utan vi vill
+att de studerande ska få mer tid att öva.
+-Vi förlänger programmet med 2 veckor (10yhp) från 400 till 410 yhp, kursen Systemutveckling
+(objektorienterad programmering) förlängs från 50 yhp till 60 yhp.  Kunskapskraven kommer inte att
+öka utan vi vill ge de studerande ytterligare möjlighet att öva och träna i de moment som upplevs som
+svåra.
+- Vi kommer att ge de antagna (för start 2022) till utbildningen möjlighet att träna under sommaren
+innan kursstart med vår preparandkurs, vilken erbjuds samtligt antagna, men också digitala
+gratiskurser i PHP, JS, html och CSS. Allt för att förbered de studerande om utbildningens innehåll.
+
+- Ledningsgruppsmötet har nu med en stående punkt i agendan som heter ¨utbildningens
+genomströmning och resultat¨, det för att med kontinutet följa upp tidigare åtgärder samt utveckla
+utbildningen vidare.
+- Vi har infört processer där vi intervjuar studeranden som vill hoppa av programmet för att försöka
+förstå varför de inte fullföljer.
+- Kursen Arbets- och projektmetodik (15yhp) har skrivits om till förmån för mer övning i par-
+programmering och versionshanteringssystem. De studerande får mer tid till träning i programmering
+samtidigt som de arbetar agilt.
+- Vi har gått igenom och förtydligat innehållet i texterna i beskrivningen av utbildningen i vår
+marknadsföring och kommunikation. Detta för att tydliggöra för de studerande vad utbildningen
+innebär och leder till.
+K22
+Antal lärar- eller handledarledda timmar *
+1075
+K23
+Kvalitetssäkring av utbildningen *
+MI har bedrivit yrkeshögskoleutbildningar sedan 2009 och ingår i Elevera Education Group (EEG)
+som har bedrivit utbildning inom den föregående utbildningsformen KY- utbildning sedan 2004.
+Kompetens att bedriva och kvalitetssäkra utbildning är således något EEG som organisation utvecklat
+under lång tid. EEG samlar ytterligare tre branschskolor inom yrkeshögskolan och understödjer MI
+genom gemensam metodutveckling och erfarenhetsutbyte.
+MI är auktoriserat av Almega Utbildningsföretagen. Auktorisationen säkerställer att MI som
+utbildningsleverantör håller god kvalitet, har rutiner för kvalitetssäkring och rutiner för åtgärder i de fall
+klagomål ändå uppstår. Kvalitetsarbetet på MI utgår ifrån en övergripande arbetsprocess för
+kvalitetssäkring och utveckling av verksamheten – Eleveramodellen – där utvecklingsprocessen,
+marknadsföringsprocessen, antagningsprocessen, utbildningsprocessen och LIA-processen
+identifierats som 5 huvudprocesser.
+Kvalitetsarbetet på MI utvecklas kontinuerligt – MYHs Kvalitetstriangel med process-, resultat- och
+effektkvalitet har under 2022 införlivats i samtliga 5 huvudprocesser för att framförallt stärka det
+systematiska kvalitetsarbetet kring programmens resultat och effekt.
+Planering
+Sida 14 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Programmen på MI ska svara mot arbetslivets behov. Inom huvudprocesserna finns ett antal
+stödprocesser och kvalitetsindikatorer vars övergripande syfte är att säkerställa programmens
+resultatmål i examensgrad och andel examinerade med arbete som överensstämmer med
+programmet.
+Arbetslivet är genom ledningsgruppen programmets beställare av kompetens och ska agera
+kravställare i det strategiska utvecklingsarbetet kring branschens utveckling och kommande
+kompetenskrav. Utvecklingsarbetet möjliggör för MI att i samråd med ledningsgruppen utveckla eller
+uppdatera kursernas lärandemål och utformning och säkerställer på så sätt att programmet svarar
+mot arbetslivets behov.
+Ledningsgruppen ska visa på högt engagemang i form av såväl mötesnärvaro som i tillhandahållande
+av LIA-platser och övrig medfinansiering.
+Marknadsföringsprocessen ska säkerställa att programmet får tillräckligt många relevanta sökanden
+samt understödja målet om en jämn könsfördelning på programmet.
+Antagningsprocessen ska genomföras på ett rättssäkert sätt, främja breddad rekrytering samt
+resultera i ett standardiserat och strukturerat urval så att de sökanden som bäst kan tillgodogöra sig
+programmet antas.
+Utbildningsprocessen ska säkerställa starka relationer mellan läranderesultat, läraktiviteter och
+examinationer samt resultera i att de studerande utvecklar kunskaper, färdigheter och kompetenser
+med hög yrkesrelevans.
+LIA-processen ska säkerställa tillräckligt antal relevanta kvalitetssäkrade LIA-platser, bibehålla och
+utveckla MIs branschnätverk samt tillvarata arbetslivets bidrag och information kring de
+kompetenskrav som ställs på yrkesrollen.
+Arbetsförhållandena på MIs program ska lämpa sig för alla och kulturen ska kännetecknas av ett
+inkluderande förhållningssätt, öppenhet och respekt samt delaktighet och gemenskap. Ingen anställd
+eller studerande ska utsättas för diskriminering, trakasserier eller kränkande särbehandling.
+Genomförande
+Kvalitetsmålen inom Eleveramodellen mäts genom ett flertal metoder. Inom utbildningsprocessen ska
+relationen mellan de studerandes resultat av lärande och kursernas lärandemål, programmets
+upplägg och organisation samt metoder för kunskapskontroll och betygskriterier undersökas. Detta
+sker bland annat genom regelbundna kursutvärderingar som undersöker de studerandes nöjdhet med
+programmet, utbildarna, pedagogiken och organisationen av programmet. Men också genom
+självskattningar mot lärandemålen samt genom uppföljning av kunskapskontroller och
+studerandegenomströmning på aggregerad nivå.
+Uppgifterna i kvalitetsarbetet är fördelade på flera funktioner.
+Utbildningsledaren ansvarar för att under programmets gång genomföra regelbundna gemensamma
+möten med den undervisande och handledande personalen, kvalitetssäkrande samtal med
+studeranderepresentanterna och regelbundna avstämningar med klassen. Utbildningsledaren
+ansvarar även för att samordna och understödja ledningsgruppens arbete samt för sammanställning
+av underlag.
+Kvalitetssäkringsansvarig ansvarar för systematiska och proaktiva stödprocesser i kvalitetsarbetet,
+säkerställer en god internkontroll samt uppdaterar EEGs interna kvalitetssäkringshandbok där
+kvalitetsarbetet och rollfördelningen inom det beskrivs.
+Verksamhetschefen samordnar det övergripande utvecklings- och kvalitetsarbetet på MI samt
+ansvarar för att generella slutsatser i kvalitetsarbetet vidarebefordras i hela MIs organisation.
+Utvärdera
+Under gemensamma utvecklingsdagar jämförs verksamhetens resultat med i vilken utsträckning MI
+når de uppställda målen samt om MI arbetar på ett ändamålsenligt sätt i relation till eftersträvade mål.
+Ledningsgruppens granskning och bedömning av programmets kvalitet utgår från det underlag som
+utbildningsledaren sammanställer. Ledningsgruppen sammanträder till ordinarie möte fyra gånger per
+år samt följer upp programmet fram till 6 månader efter den avslutats.
+Sida 15 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Förbättra
+I ledningsgruppens uppdrag ingår att analysera underlaget och initiera utvecklingsarbete, förändringar
+samt besluta om åtgärder vid konstaterad kvalitetsavvikelse. Utbildningsledaren ansvarar för att i
+samråd med verksamhetsansvarig genomföra eventuell åtgärd samt följa upp och återrapportera
+utfallet till ledningsgruppen.
+Syftet med kvalitetsarbetet på MI är kontinuerlig utveckling och kvalitetshöjning i programmen.
+Kursutvärderingar på MI anges i skalan 1-6. Eventuell förekomst av svarsalternativen ett eller två ska
+följas upp oavsett kursutvärderingens medelvärde.
+Granskningsresultat och utvärderingar ligger även till grund för analys, översyn och revidering av
+ingående stödprocesser och kvalitetsindikatorer.
+Arbetsmarknadens efterfrågan
+K24
+Arbetslivets kompetenskrav
+1 Arbeta i projektteam som styrs efter etablerade arbetsmetodiker, t ex agila metoder som Scrum
+2 Arbetsmetodik som par- och mobprogrammering
+3 Databashantering, databasteknik och databasfunktionalitet
+4 Integration mot affärssystem, betalsystem och kommunikation med externa system som t ex
+CMS, PIM
+5 Javascript även ramverk t ex Angular, React, Vue, HTML5, CSS3
+6 Kvalitetssäkring och testning av kod samt kunskaper om GDPR
+7 Responsiv webbutveckling och mobila plattformar.
+8 Systemutveckling med objektorienterat programmeringsspråk
+9 Utveckla mot de viktigaste e-handelsplattformarna tex Woocommerce, Magento
+10 Webbserverteknologi och dess påverkan på prestanda, tillgänglighet mm
+K52
+Nationellt perspektiv
+Under pandemin har den ständigt växande e-handeln tagit enorma kliv. ”Rekommendationerna från
+Folkhälsomyndigheten att undvika fysiska butiker och istället handla på nätet gav resultat. Dessutom
+lärde sig många svenskar att handla på nätet, framförallt de äldre som nu också är med på e-
+handelståget”, konstaterar Nets i sin rapport om Svensk e-handel. Under 2020 växte e-handeln i
+Sverige med 40% och under 2021 med 20% till en omsättning på 146 mdr kr. Andelen av den totala
+handeln steg till 16%. Postnord förutspår att e-handeln utgör 25% av den totala handeln år 2025, och
+40 procent år 2030. Den ökande e-handeln driver på efterfrågan på IT-kompetens och i synnerhet på
+webbutvecklare inriktade mot e-handel.
+”Det är en otrolig tillväxttakt inom e-handel. Vi har en tillväxt på ca 40% och ser att vi kommer fortsätta
+växa”, menar Karl Kihlbom på Vendre, som planerar att anställa upp till 20 personer från detta
+program: ”Medieinstitutet har en hög kvalité på de studenter som kommer därifrån”.
+För Nespresso kommer merparten av försäljningen numer från onlinehandeln. ”E-handeln ökar hela
+tiden. Behovet av utvecklare kommer att öka, vi har anställt 3 utvecklare i år”, Katarina Johansson, E-
+handelschef.
+IT-KOMPETENSBRISTEN
+70 000 personer saknas i IT-branschen år 2024 menar TechSverige (före detta IT &
+Telekomföretagen) i “IT-kompetensbristen” från 2020.  Webbutvecklare (som i rapporten närmast
+efterliknas av Frontend-utvecklare och Backend-utvecklare) tillhör de mest efterfrågade yrkesrollerna
+såväl idag som på 3-5 års sikt. De språk som webbutvecklaren använder tillhör också de mest
+Sida 16 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+efterfrågade enligt Techsveriges rapport. Högst efter ”generell programmering” ligger Javascript, följt
+av C#/.NET och HTML5/CSS.
+Fanny Sundlöf, Utvecklare på Sopra Steria, ser stora och växande behov av denna kompetens:
+”Utbildningen innehåller både frontend och backend vilket matchar bra hos oss. Vi börjar jobba mer
+med e-handel nu. Vi är nu i en växtresa och tror att vi inom 5 år anställt 20-30 juniora utvecklare”.
+ARBETSFÖRMEDLINGEN
+I rapporten “Arbetsmarknadsutsikter hösten 2021” lyfter Arbetsförmedlingen behovet inom Data/IT:
+“Den digitalisering och automatisering som sker på arbetsmarknaden medför också ett ökat behov av
+kompetenser inom teknik, data och it. /…/ Under det tredje kvartalet 2021 ökade antalet anställda
+med närmare 12 000 personer, motsvarande 6 procent, jämfört med samma kvartal 2019. Nästan
+hela ökningen kom från programmering och datakonsultverksamhet.” I Arbetsförmedlingens
+Yrkesprognos 2022-04-14 konstateras att behovet av systemutvecklare är på den absolut högsta
+nivån, “Mycket stora möjligheter” till jobb i hela landet fram till åtminstone 2026.
+ANDRA BRANSCHER
+Kompetensbristen har också stor effekt långt utanför IT-sektorn. IT-branschen är idag inte en isolerad
+bransch utan en integrerad del av i princip alla branscher. “Den har utvecklats till ett fundament i
+svensk ekonomi vars lösningar och tjänster genererar tillväxt och produktivitet i alla branscher. Det gör
+att techbranschens bidrag till sysselsättning, BNP och export sannolikt konstant kommer att
+underskattas eftersom branschens indirekta effekter i form av nya arbetstillfällen, tillväxt, produkter
+och tjänster i andra branscher är svåra att kvantifiera”, (Tech är Sveriges nya basindustri, 2021).
+Sverige är ett exportberoende land och vår export av varor och tjänster uppgick år 2020 till ett värde
+motsvarande 44% av BNP. Techbranschens bidrag till svensk export har ökat med närmare 1 200
+procent sedan 1998 och uppgick år 2020 till 140 mdr kr. Det motsvarar över sex procent av Sveriges
+totala export. Traditionella basindustrier som papper, pappersmassa och pappersavfall, metaller samt
+plast och gummi utgjorde knappt fem, fyra respektive två procent av den totala exporten under 2020.
+”Rekryterings- och bemanningsföretaget Techstars förser de flesta branscher med IT-kompetens. ”Jag
+tror att vi kommer rekrytera ca 150 juniora utvecklare på 3-5års sikt”, bedömer Clara Åström som
+tycker att ”samarbetet med Medieinstitutet fungerar hur bra som helst”.
+MYH
+En stark techsektor är således fundamental för i princip samtliga branscher. Även MYH drar samma
+slutsats i sin områdesanalys från 2021: “Digitaliseringen leder också till stora behov av
+mjukvaruutvecklare, eller programmerare. Väldigt mycket av det vi dagligen gör kräver någon form av
+mjukvara, både inom arbete och fritid. Enligt rapporten "Den programmeringsbara ekonomin" från
+organisationen Swedsoft (2020) använder nästan alla svenska företag i någon utsträckning
+mjukvarubaserade produkter eller tjänster, medan ungefär en femtedel utvecklar sin egen mjukvara.
+Detta innebär också att programmerare och deras kompetens är brett efterfrågade i dagens
+samhälle.”
+HÖGSTA KVALITET
+MYH bedömer vid kvalitetsgranskning 20210519 att Medieinstitutets program Webbutvecklare inom
+e-handel i hög grad uppfyller myndighetens fastställda kvalitetskriterier och har hög kvalitet.
+Regionalt perspektiv
+Arbetsförmedlingen bedömer att utvecklare kommer ha mycket goda möjligheter till arbete, Under
+statistik, yrken och framtid, är behovet drygt 1000 utvecklare i Stockholm det kommande året.
+Möjligheten till arbete under en femårsperiod är stor. Det bekräftas även av Digitalskills.se prognoser
+för de olika kompetenserna under region Stockholm. Statistiken påvisar att antalet utvecklare som går
+i pension under de kommande fem åren förväntas öka. I Sthlm är behovet störst. (AF, 2022).
+Stockholms handelskammare skriver i sin rapport, (SH analys 2014:3 uppdaterad 2021) av alla
+utvecklare i Sverige så arbetar ca 50 % av dem i Sthlm. Det regionala behovet är och kommer bestå.
+Det finns 36 000 anställda i gruppen vilket är 3,5 procent av alla anställda i länet. I riket är gruppen
+det åttonde vanligaste yrket (78 734 anställda). Det finns ett stort regionalt behov av kompetensen i
+Sthlm.
+RÖSTER FRÅN BRANSCHEN:
+”Vi ser en stor brist på kompetensen och den blir större! Företag digitaliseras hela tiden, kompetensen
+Sida 17 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+kommer efterfrågas ännu mer! Det är svårare att rekrytera utvecklare än för andra roller”, Johanna
+Hallenberg, FreeCode AB.
+”Vi kommer bygga ett team i Sthlm nu och inom 2 år anställa 25 nya utvecklare. 80% juniora och 20%
+ seniora. Vi finns på flera orter och vill finnas på ännu fler, vi växer”, Prince Siflah Talhaoui, Kruso
+Digital AB.
+”Vi ökat tredubbelt inom alla områden, omsättning, anställda. Hade det funnit fler fullstack-utvecklare
+att tillgå hade vi kunnat växa ännu mer. Utvecklare är helt klart flaskhalsen för oss”, CTO Niclas
+Vänström på Grebban AB.
+LEDNINGSGRUPP:
+”Jag har själv gått utbildningen och har inte sökt något jobb sedan examen, rekryterare rycker i mig
+hela tiden. Det är en brist på backendutvecklare. Det ser jättebra ut för oss, vi växer varje år och tror
+oss fortsätta växa 30% i år”, Musa Jallow, Tryggsam AB.
+ ”Vi har gått från 30-40 anställda till ca 60. Ökat omsättningen & lönsamhet, samt lanserat ett nytt
+varumärke på marknaden. Vi ser en stor tillväxtpotential det närmaste åren.”, Ludvig Ohlsson, Isobar
+Sweden AB.
+”Vi är nu i en växtresa och tror att vi inom 5 år anställt 20-30 juniora utvecklare. Utbildningen
+innehåller både frontend och backend vilket matchar bra hos oss. Vi börjar jobba mer med e-handel
+nu vilket är roligt”, Fanny Sundlöf, Sopra Steria AB.
+”Behovet av duktiga utvecklare är fortsatt väldigt stort och Vaimo kommer att fortsätta vara med i
+ledningsgruppen för att både bidra och påverka innehållet i utbildningen. Vi kommer också att kunna
+ta emot upp till 6 LIA per år samt kommer att anställa mellan 12 -20 studenter från utbildningen. Vi vill
+inspirera studenterna med till exempel föreläsningar och annat för att de ska välja oss.”, Fabian Åberg
+HR-manager Vaimo.
+”Eucaps har utvecklats markant de senaste 6 månaderna och har växt från 2 till 27 anställda på 6
+månader och vi växer fortfarande. Denna utbildning är viktig för Eucaps och för branschen. Allt
+digitaliseras mer och mer. E-handel har vuxit med 50% de senaste 2 åren. Det bästa med
+utbildningen är att den är uppdaterad, relevant och praktisk. LIA är en bra rekryteringsväg för företag
+och ger en bra ingång för studenten.” Rakib Shelah, Eucaps Holding AB
+PROGRAMMET BEHÖVS
+ ”Jag anser att behovet av Webbutvecklare inom e-handel är stort. Mer blir digitalt och konsumenten
+ställer också högre krav på att själva upplevelsen. Köp online skall vara så enkel & smidig som
+möjligt. Utbildningen fyller verkligen en funktion och utbildar inom en kompetens som vi behöver”,
+Moa Göransdotter, United Eyes AB.
+”MI har en hög kvalité på studenterna, vilket vi uppskattar mycket. Det är en otrolig tillväxttakt inom e-
+handel. Vi har en tillväxt på ca 40 % och ser att vi kommer fortsätta växa. Utvecklare är en enormt
+viktig roll som det kommer behövas hur många som helst”, Karl Kihlblom, Vendre AB.
+”Vi har letat utvecklare sedan i höstas och lyckats anställa några men skulle gärna anställa några till.
+Vi har ett omedelbart behov av utvecklare nu och det ser ut att hålla i sig. Jag ser ett stort behov av
+utvecklare i branschen. Att denna utbildning har e-handel som nisch ser jag som en styrka. Kan du
+Woocommerce kan du Wordpress, transaktioner, betallösning osv vilket är jättebra. De tekniker vi
+arbetar med passar jättebra med denna utbildning.”, Philip Saltskog Tankbar AB Digitalbyrå
+POSTIV TREND
+MI:s program visar en positiv trend där examinationsgraden ökat med 5% enheter under de senaste
+två åren.
+MEDVERKANDE FÖRETAG
+De 25 företag som medverkar i denna ansökan, är eller arbetar med e-handlare och indikerar ett
+anställningsbehov motsvarande ca 364 - 455 Webbutvecklare från detta utbildningsprogram på 3-5
+års sikt. Dessa 25 företag representerar självfallet endast en bråkdel av regionens branschföretag.
+Totalt i Sverige finns nära 50.000 företag inom IT- och Telekomsektorn enligt Almega. En majoritet är
+baserade i Stockholm.
+Sida 18 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+K51
+Eget företagande eller anställning
+Yrkesrollen leder i första hand till anställning
+K54
+Motivering till efterfrågan trots utbud
+Inom yrkesområdet ” Utbildningar till webbutvecklare”, uppgår de beviljade platserna med avslut 2022
+-2029 till 6.021 stycken (MYH, Utbildningsomgångar slutar 2022- 2029). Endast ett fåtal av dessa
+innehåller den specialiserade inriktning mot e-handel som detta program erbjuder.
+I FA-region 23 (Stockholm) uppgår de beviljade platserna med avslut 2022-2029 till 2.341 stycken.
+Det betyder att Stockholm är underrepresenterat då nästan hälften av landets ”mjukvaru- och
+systemutvecklare” verkar i Stockholm, (40.318 i Stockholm förhållande till landets totalt 86.426
+mjukvaru- och systemutvecklare, enligt SCB Yrkesregistret).
+Dessutom har historien visat att långt ifrån det beviljade antalet utbildningsplatser motsvaras av
+faktisk kompetensförsörjning. Enligt MYH:s statistiska årsrapport för 2021 ligger examensgraden för
+Data/IT på 60%, lägst av alla branscher inom yrkeshögskolan. Det skulle innebära att det egentligen
+bara är rimligt att anta att cirka 3.612 av de 6.021 studieplatserna kommer att omsättas till
+examinerade.
+Vi behöver dock lägga till ytterligare ett steg. Det är inte heller rimligt att anta att dessa 3.612
+examinerade webbutvecklare faktiskt kommer att arbeta som just webbutvecklare. Enligt MYH:s
+ovannämnda rapport kommer endast 75% av de som tar examen inom Data/IT helt eller delvis arbeta
+i den yrkesroll som de tagit sin examen inom. I praktiken skulle det i sin tur betyda att av dessa 3.612
+examinerade webbutvecklare, kommer bara cirka 2.709 av dem, dvs knappt hälften, att arbeta som
+just webbutvecklare.
+WEBBUTVECKLARE INOM E-HANDEL – SÄLLSYNT UTBILDNING
+Den inriktning som detta program innehar mot e-handel, är ett mycket sällsynt utbildningsspår inom
+yrkeshögkolan. Endast Medieinstitutet och Grit Academy i Malmö bedriver utbildningar till
+webbutvecklare med inriktning mot e-handel. Medieinsitutets program är med andra ord det enda i sitt
+slag i Stockholm.
+De tjugofem medverkande företagen i denna ansökan indikerar ett behov på ca 500 personer med
+denna kompetens på 3-5 års sikt. Antalet företag i Stockholm med behov av denna yrkesroll
+överstiger väsentligt 25st och behovet av webbutvecklare med inriktning mot e-handel bara i
+Stockholm är därför mångdubbelt större jämfört med den efterfrågan som de medverkande företagen i
+denna ansökan indikerar. Mot bakgrund av detta kan vi konstatera att de beviljade
+utbildningsplatserna inom utbildningsinriktningen är alldeles för få.
+FÖRDEL MEDIEINSTITUTET
+Utöver att efterfrågan på webbutvecklare med inriktning mot e-handel kraftigt överstiger utbudet,
+fäster branschföretagen stor vikt vid att framtida kandidater har möjlighet att utbilda sig på just
+Medieinstitutets utbildningsprogram .
+”Branschen behöver fler utvecklare med denna kompetens. Denna utbildning är viktig för Eucaps och
+för branschen”, konstaterar Md Shelah Rakib Ahmed, CTO på Eucaps, vars företag vuxit från 2 till 27
+anställda på endast 6 månader.
+Det finns ett stort behov av utbildningen och kompetensen som programmet ger, menar Johan
+Liljeholm, Senior E-Commerce Advisor på Nordic Web Team, som också är nöjd med att företaget
+”har ett jättebra samarbete med Medieinstitutet”. Nordic Web Team planerar att anställa 10 personer
+från utbildningen.
+Siflah Talhaoui, VD på Kruso Digital AB, har stora anställningsbehov: ”Vi kommer bygga ett
+Stockholms team nu och inom 2 år anställa 25 nya utvecklare. 80% juniora och 20% seniora. Jag
+rekommenderar Medieinstitutet som skola.”
+Lagförändringar
+WEBBDIREKTIVET OM TILLGÄNGLIGHET påverkar redan webbplatser inom offentligrättsliga organ
+samt privata. Det leder till att behovet av Webbutvecklare inom e-handel som har kunskap om
+Sida 19 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+tillgänglighet ökar.
+Konjunkturen
+Medverkande företag har påverkats relativt lite av Corona i jämförelse med andra branscher. Dock har
+e-handeln gått framåt under pandemin och medfört en positiv utveckling för e-handlarna. Även om vi
+bedömer att efterfrågan på denna kompetens är relativt konjunkturokänslig är en konjunkturuppgång
+självklart av godo och leder till ökad efterfrågan. På samma sätt skapar en konjunkturnedgång
+minskad efterfrågan på dessa tjänster. E-handeln är dock integrerat i hela näringslivet vilket försvårar
+för företag att genomföra större neddragningar på området.
+Politiska beslut
+Se lagförändringar ovan. När man på EU nivå får ett gemensam lagstiftning för att hantera digital
+mobila IDn kommer det driva tillväxten i marknaden
+Klimat och miljö
+Digitaliseringen har en nyckelroll när organisationer anpassar sig för att uppfylla FNs Globala mål för
+hållbarhet där klimat och miljö är en central del. E-handlarna arbetar såväl med optimering av
+logistikkedjor som smarta lösningar för lager- och distributionsutveckling.
+Teknisk utveckling
+Blockchain kommer bli mer och mer accepterat och transformera alla områden där ett förtroende skall
+digitaliseras. Det kommer driva på behovet av utvecklare då digitaliseringsvågen rör sig in i nya
+sektorer. Etablerade programmeringsspråk ska transformeras till mer modern teknik vilket medför
+utökad kompetensbrist för att implementera denna.
+Generationsväxling
+Yrkeskåren inom sektorn i regionen är relativt ung men den speglar inte demografin i regionen. Vår
+bedömning är att en tydligare demografisk spegling i yrkesrollen också driver på efterfrågan.
+Statistiken från bland annat arbetsförmedlingen påvisar att antalet utvecklare som går i pension under
+de kommande fem åren förväntas öka.
+Andra branscher
+Ett exempel är fordonsindustrins elektrifiering som driver efterfrågan av utvecklare till fordonens
+system för föraren, laddningsstationer, appar som du kan påverka din bil samt även hur polisens nya
+bilars inbyggda kameror används för att samla bevismaterial.
+Andra trender/tendenser
+Pandemin har drivit på digitaliseringen och vår bedömning är att det kommer fortsätta när fler i
+samhället har distansarbetat och samverkat digitalt där man tidigare trodde det var omöjligt. E-
+handeln har ökat markant av pandemins effekter.
+Arbetslivsanknytning
+K25
+Översikt arbetslivets medverkan
+Organisation Ort Satt sig in i Medverkat i Antal Antal LIA- Medverkar med medfinansiering
+den sökta framtagning studerande platser genom att (flerval)
+utbildningen av som planeras
+utbildningens att anställas
+innehåll och eller nyttja en
+upplägg tjänst av
+Tryggsam Stockholm Ja Ja 3-5 6 Ledningsgruppsmedverkan/Fö
+AB reläsningar/Övrigt
+Vendre AB Stockholm Ja Nej 11-20 4 Föreläsningar/Övrigt
+Symplify Stockholm Ja Ja 3-5 5 Ledningsgruppsmedverkan/Fö
+Technologi reläsningar/Övrigt
+es AB
+Eucaps Stockholm Ja Ja 11-20 5 Ledningsgruppsmedverkan/Ma
+Holding AB terial och
+utrustning/Föreläsningar/Övrigt
+Sida 20 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Isobar Stockholm Ja Ja 3-5 8 Ledningsgruppsmedverkan/Fö
+Sweden AB reläsningar/Studiebesök/Övrigt
+United Stockholm Ja Ja 3-5 5 Föreläsningar/Övrigt
+Eyes AB
+(Safeland)
+Kruso Stockholm Ja Ja 11-20 6 Ledningsgruppsmedverkan/Fö
+Digital AB reläsningar/Övrigt
+FreeCode Stockholm Ja Ja 3-5 3 Föreläsningar/Övrigt
+AB
+Techstars Stockholm Ja Ja 150 15 Material och
+of Sweden utrustning/Föreläsningar/Övrigt
+Nestlé Stockholm Ja Nej 3-5 3 Ledningsgruppsmedverkan/Fö
+Nespresso reläsningar/Övrigt
+SA
+Amöba AB Stockholm Ja Ja 6-10 6 Ledningsgruppsmedverkan/Fö
+reläsningar/Övrigt
+The Stockholm Ja Nej 3-5 5 Material och
+Generation utrustning/Studiebesök/Övrigt
+AB
+Reeler Stockholm Ja Nej 6-10 6 Övrigt
+Tech AB
+Nordic Web Stockholm Ja Ja 6-10 12 Ledningsgruppsmedverkan/Öv
+Team rigt
+Star Stockholm Ja Ja 50 6 Ledningsgruppsmedverkan/St
+Republic udiebesök/Övrigt
+Winter Stockholm Ja Nej 3-5 5 Material och
+Agency utrustning/Föreläsningar/Övrigt
+Sopra Stockholm Ja Ja 11-20 12 Ledningsgruppsmedverkan/Fö
+Steria AB reläsningar/Studiebesök/Övrigt
+Caspeco Uppsala Ja Nej 40 6 Ledningsgruppsmedverkan/Fö
+AB reläsningar/Övrigt
+Picapen Stockholm Ja Ja 3-5 6 Ledningsgruppsmedverkan/Ma
+terial och
+utrustning/Föreläsningar
+NoA Ignite Stockholm Ja Nej 6-10 6 Material och
+utrustning/Föreläsningar/Övrigt
+Prototyp Stockholm Ja Ja 6-10 6 Ledningsgruppsmedverkan/Ma
+terial och
+utrustning/Föreläsningar/Övrigt
+Kontorsgig Stockholm Ja Ja 3-5 6 Material och
+anten AB utrustning/Föreläsningar/Övrigt
+Tankbar AB Stockholm Ja Nej 6-10 5 Material och
+Digitalbyrå och utrustning/Föreläsningar/Övrigt
+Nyköping
+Axyer Stockholm Ja Nej 3-5 5 Material och
+och utrustning/Föreläsningar/Övrigt
+Östergötlan
+d
+Vaimo Stockholm Ja Ja 11-20 6 Ledningsgruppsmedverkan/Lo
+Sweden AB kaler/Föreläsningar/Övrigt
+Arbetslivets medverkan
+Organisationsnamn: Tryggsam AB
+Sida 21 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Förnamn: Musa
+Efternamn: Jallow
+Stationeringsort: Stockholm
+Telefon: 0721910578
+E-postadress: musa.jallow@tryggsam.com
+Roll: Tech Lead
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Jag är med i ledningsgruppen för utbildningen och har tidigare
+gått utbildningen. Jag är med i ledningsgruppen för att kunna
+påverka utbildningen och hjälpa till att forma den inför
+framtiden.
+Uppskattat anställningsbehov: 3-5
+Andra rekryteringsvägar: Nej
+LIA-platser: 6
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: - Jag är med i ledningsgruppen för utbildningen.  - Jag deltar
+på event och mingel.  - Jag gästföreläser för utbildningen.
+Övriga synpunkter: Jag gillar verkligen YH som utbildningsform. Det är korta
+utbildningar som leder till en bra karriär. Jag gillar att du får
+hjälp och kunskapen du behöver men att du själv får ta tillvara
+på möjligheten du får.    Jag har själv gått utbildningen och har
+inte sökt något jobb sedan examen, rekryterare rycker i mig
+hela tiden. Det är en brist på backendutvecklare, framtiden är
+ljus.    Det ser jättebra ut för oss, vi växer varje år och tror oss
+fortsätta växa 30% i år.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Vendre AB
+Förnamn: Karl
+Efternamn: Kihlbom
+Stationeringsort: Stockholm
+Telefon: 0707212154
+E-postadress: karl@vendre.se
+Roll: VD
+Insatt: Ja
+Medverkan framtagning: Nej
+Medverkan framtagning, beskrivning: -
+Uppskattat anställningsbehov: 11-20
+Andra rekryteringsvägar: Nej
+LIA-platser: 4
+Medfinansiering: Ja: Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Vi är öppna för att hålla föreläsningar och tex projekt/case.    Vi
+är gärna LIA-företag och har varit det tidigare.
+Övriga synpunkter: MI har en hög kvalité på de studenter som kommer därifrån
+vilket vi uppskattar mycket.    Det är en otrolig tillväxttakt inom
+Sida 22 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+e-handel. Vi har en stor tillväxt på ca 40% och ser att vi
+kommer fortsätta växa.    Utvecklare är en enormt viktig roll
+som det kommer behövas hur många som helst av iom att allt
+blir digitalt och den digitala miljön blir mer och mer kreativ
+vilket kräver fler personer. Vi ser en stark efterfrågan på
+utvecklare.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Symplify Technologies AB
+Förnamn: Gustav
+Efternamn: Wicklén
+Stationeringsort: Stockholm
+Telefon: 0766778677
+E-postadress: gustav.wicklen@symplify.com
+Roll: Head of conversion
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Jag är med i utbildningens ledningsgrupp där vi arbetar med
+utbildningens innehåll.
+Uppskattat anställningsbehov: 3-5
+Andra rekryteringsvägar: Nej
+LIA-platser: 5
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Jag är med i ledningsgruppen för utbildningen. Vi är öppna för
+att föreläsa eller gästföreläsa och att vara med på mingel/event
+kopplat till utbildningen. Vi har varit LIA-företag och vill gärna
+vara det fler gånger.    Jag engagerar mig i utbildningen för att
+branschen behöver fler utvecklare men även för att ge tillbaka.
+Att vara engagerad i utbildningen ger oss som företag
+möjlighet att synas när studenterna söker LIA och jobb.
+Övriga synpunkter: Det behövs fler utvecklare och branschen skulle kunna
+examinera 4 klasser om året nu för att fylla behovet.
+Utbildningen är föränderlig och kopplad till branschen. Det
+bästa är att den har mycket LIA.     Samarbetet med
+Medieinstitutet och ledningsgruppsarbetet flyter på jättebra.
+LIA-studerandena har varit jätteduktiga och jag har fått all
+information jag behöver. Enkelt samarbete.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Eucaps Holding AB
+Förnamn: Md Shelah Rakib
+Efternamn: Ahmed
+Stationeringsort: Stockholm
+Telefon: 0707834131
+E-postadress: rsa@eucaps.com
+Roll: CTO
+Insatt: Ja
+Medverkan framtagning: Ja
+Sida 23 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Ja
+Medverkan framtagning, beskrivning: Jag har varit lärare på Medieinstitutet i 2,5år och har jobbat
+med utbildningens innehåll och upplägg tillsammans med
+utbildningsledare.
+Uppskattat anställningsbehov: 11-20
+Andra rekryteringsvägar: Nej
+LIA-platser: 5
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Material och utrustning |
+Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Vi samarbetar gärna på olika sätt, exempelvis:   - vara med i
+en ledningsgrupp  - låna ut material  - föreläsa  - är gärna med
+på arbetsmarknadsdagar  - handleda examensarbete, jag gör
+det nu för en klass
+Övriga synpunkter: Eucaps har utvecklats markant de senaste 6 månaderna och
+har växt från 2 till 27 anställda på 6 månader och vi växer
+fortfarande. Vi behöver utveckla flera features och sedan skala
+upp appar enligt kundbas. Då krävs en hel del resurser till
+plattformen. Branschen behöver fler utvecklare med denna
+kompetens. Denna utbildning är viktig för Eucaps och för
+branschen.    Allt digitaliseras mer och mer. E-handel har vuxit
+med 50% de senaste 2 åren. Det krävs resurser för att kunna
+förvalta och vidareutveckla de digitaliserade plattformarna.
+Det bästa med utbildningen är att den är uppdaterad, relevant
+och praktisk. LIA är en bra rekryteringsväg för företag och ger
+en bra ingång för studenten. Det kostar mycket att anställa så
+LIA är en bra möjlighet för både företaget och studenten.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Isobar Sweden AB
+Förnamn: Ludvig
+Efternamn: Ohlsson
+Stationeringsort: Stockholm
+Telefon: 0706767078
+E-postadress: ludvig.ohlsson@isobar.com
+Roll: t.f. Head of Development
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Delaktig i att diskutera utbildningens genomströmning, kurser,
+upplägg samt betyg och utifrån bransch- och
+arbetslivserfarenhet bidra till ett kontinuerligt utvecklande utav
+utbildningen.     Inkluderar,men ej begränsat till:   -
+Godkännande av och delaktighet i urval- och
+antagningsprocess  - Examination  - Kvalitets- och
+uppföljningsarbete  - Vilka tekniker som används/bör användas
+inom utbildningen (programmeringsspråk,
+versionshanteringssystem)   - Hur branschen ser ut (trender,
+kundbehov, anställningsbarhet)
+Uppskattat anställningsbehov: 3-5
+Andra rekryteringsvägar: Nej
+LIA-platser: 8
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Föreläsningar | Studiebesök |
+Övrigt
+Sida 24 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Medfinansiering utförlig beskrivning: Isobar är delaktiga i ledningsgruppen för utbildningen, samt
+medverkar på arbetsmarknadsdagar, studiebesök och liknande
+initiativ. Det är högt värderat av Isobar då detta ger företaget
+möjlighet att öka kännedom om branschen och företaget, samt
+inspirera och rekrytera potentiella kandidater. Utöver detta är
+Isobar högt engagerade i intag utav LIA-praktikanter, samt
+skapar upp verkliga case för både Examensarbete och andra
+arbeten.
+Övriga synpunkter: Vi har gått från 30-40 anställda till ca 60. Ökat omsättningen &
+lönsamhet, samt lanserat ett nytt varumärke på den svenska
+marknaden som heter Merkle. Vi ser en stor tillväxtpotential det
+närmaste året och förväntar oss att växa utifrån tjänster/antal
+anställda samt omsättning. Med ytterligare ett varumärke ser vi
+en naturlig tillväxt i denna typ av uppdrag. Sett till att
+kundbehov & företagsinvesteringar fortsatt ökar inom sektorn
+ser vi en stor uppsida de kommande 5 år.    Vi ser en stor
+uppsida med denna yrkesroll då vi ser att behovet kommer att
+växa kommande år. Specifika ramverk & tekniker kommer &
+går utifrån trender, men ett solitt fundament med
+programmeringsspråken är det som krävs för att kunna axla
+denna typ av roll i arbetslivet.    Dessa utbildningar är mycket
+viktiga för vårt företag, det är en stor källa till våra
+nyrekryteringar. De senaste 3 åren står Medieinstitutet för en
+merpart utav LIA-intag & nyrekryteringar inom såväl
+Utveckling, Marketing Automation & Design.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: United Eyes AB (Safeland)
+Förnamn: Moa
+Efternamn: Göransdotter
+Stationeringsort: Stockholm
+Telefon: 0760267233
+E-postadress: moa.goransdotter@safe.land
+Roll: Marknadschef
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Jag tror att kompetensen “webbutvecklare” även behöver
+innefatta viss UX/UI kompetens såväl som design. Att förstå
+målgruppen och kunden, köpresan och kunna såväl skapa
+som mäta besökarnas beteende på webben. Således tror jag
+även att vissa google analytics kunskaper är nödvändiga för
+yrkesrollen.
+Uppskattat anställningsbehov: 3-5
+Andra rekryteringsvägar: Nej
+LIA-platser: 5
+Medfinansiering: Ja: Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Vi har mycket positiv erfarenhet av LIA studenter och tar gärna
+emot praktikanter löpande. Finns det behov av annat stöd
+såsom case, intervjuer, föreläsningar eller annat ställer vi
+jättegärna upp även där i mån av tid.    LIA som koncept är en
+fantastisk möjlighet både för oss som företag och för
+studenten. Vi har rekryterat en av  våra LIA praktikanter hittills
+och jag håller det väldigt troligt att vi kommer rekrytera fler
+Sida 25 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+framgent. Det är ett  mycket bra sätt att “prova på” en student
+under en tidsbegränsad period, och det är också ett väldigt
+roligt  sätt att få in unga, entusiastiska tillskott med nya ögon i
+organisationen under en tid. Otroligt roligt och  inspirerande!
+Jag tror även det är väldigt givande för studenterna att få prova
+på sina nyvunna kunskaper i  skarpt läge och att få en inblick i
+sin yrkesroll samtidigt som de också får testa på lite olika
+branscher och typer  av organisationer.
+Övriga synpunkter: Jag tror att behovet av Webbutvecklare inom e-handel är stort.
+Mer och mer blir digitalt och konsumenten ställer också högre
+och högre krav på att själva upplevelsen vid köp online skall
+vara så enkel &11 smidig som möjligt. Konsumenten vill handla
+mer och mer digitalt.    Utbildningen fyller verkligen en funktion
+och utbildar inom en kompetens som vi behöver. De
+praktikanter vi  tidigare tagit emot har varit väldigt kunniga.
+Människor vill i stor utsträckning handla digitalt idag och då
+behöver vi som företag hänga med & kunna möta kunden där
+kunden vill vara. Det är vår uppgift att skapa en köpresa som
+passar vår målgrupp. Tycker också att det är viktigt att lyfta
+fram kompetensen för Sverige som land, att vi lever i en global
+tid där det inte bara är svenskar som handlar på svenska
+plattformar - vi behöver utbilda specialistkompetens för att våra
+svenska företag ska vara konkurrenskraftiga även utomlands.
+Köpupplevelsen är minst lika viktig som själva
+produkten/erbjudandet som säljs
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Kruso Digital AB
+Förnamn: Prince
+Efternamn: Siflah Talhaoui
+Stationeringsort: Stockholm
+Telefon: 0737702122
+E-postadress: prince@kruso.se
+Roll: Manager director
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Jag har delat mina tankar kring vad jag tycker är viktigt för
+rollen i framtiden.  Jag tycker att det är viktigt att de har koll på
+databasstruktur och APIer. Det behövs för att kunna bygga
+system.    Det är viktigt för en utvecklare att kunna anpassa sig
+efter tekniken och behovet istället för att fastna i specifika
+ramverk osv. Javascript är det centrala. Idag är React vanligt
+men det kan ändras till att tex Vue blir det i framtiden. Det
+gäller att inte fastna i specifika och färdiga ramverk som tex
+Wordpress. Vilken teknik som lärs ut är inte den viktigaste
+frågan, studenten behöver kunna sätta sig in i nya tekniker
+sedan.
+Uppskattat anställningsbehov: 11-20
+Andra rekryteringsvägar: Nej
+LIA-platser: 6
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Jag engagerar mig i Medieinstitutets utbildningar för att bidra
+till branschen. Vi kan vara med på tex event och föreläsa om
+Sida 26 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+något ämne.    Vi är gärna LIA-företag och ser gärna att LIAn
+leder till anställning. Vi börjar gärna med att ta emot färre
+studenter och i takt med att vi växer hoppas vi kunna ta emot
+fler.
+Övriga synpunkter: Jag har många vänner som studerat på Medieinstitutet.
+Studenterna lär sig snabbt, kämpar och blir bra. Jag
+rekommenderar Medieinstitutet som skola. De som kommer
+från Medieinstitutet går ut med rätt attityd vilket är viktigt.    LIA
+är superviktigt för den studerande! Det är svårt att vara junior
+utan erfarenhet och inte förstå vad rollen innebär. Det är viktigt
+att ha erfarenhet och självförtroendet inför att du söker jobb.
+LIA ger bra erfarenhet som sedan leder till jobb. På LIAn kan
+studenten visa att den är ovärderlig.    Vi kommer bygga ett
+Stockholms team nu och inom 2 år anställa 25 nya utvecklare.
+80% juniora och 20% seniora. Vi finns på flera orter och vill
+finnas på ännu fler, vi växer.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: FreeCode AB
+Förnamn: Johanna
+Efternamn: Hallenberg
+Stationeringsort: Stockholm
+Telefon: 076-3158501
+E-postadress: johanna@freecode.se
+Roll: Relationship Manager
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Det är mycket diskussion om vad som kommer bli det senaste.
+Nu pratar våra utvecklare om Svelte.     Jag tror att Vue
+kommer växa och bli större än det är nu. Just nu är React det
+vanligaste.
+Uppskattat anställningsbehov: 3-5
+Andra rekryteringsvägar: Nej
+LIA-platser: 3
+Medfinansiering: Ja: Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Vi kan tex vara med på/bjuda in till kodevent, föreläsningar och
+arbetsmarknadsdagar.    Vi har dialog med utbildningsledare
+om samarbete inom Medieinstitutets
+programmeringsutbildningar.    Vi pratar nu mycket om att vara
+LIA-företag. Det är svårt att vara nyexaminerad, vi vill gärna
+det vi kan för branschen.
+Övriga synpunkter: Vi ser en stor brist på kompetensen och de pratas om att den
+blir större! Det är svårt att rekrytera superseniora, det finns inte
+tillräckligt många. Vi hoppas kunna ta in fler juniora. Vi har en
+del seniora hos oss idag och vill ha fler juniora de seniora kan
+lära upp. Juniora utvecklare har ofta suttit med de senaste
+teknikerna vilket är bra. Seniora har ibland förvaltat gamla
+system/ramverk osv. Företag digitaliseras hela tiden,
+kompetensen kommer efterfrågas ännu mer! Det är svårare att
+rekrytera utvecklare än för andra roller.    Det bästa med YH är
+LIA-perioderna. LIAn är ett bra sätt för studenten att komma ut,
+sitta med ett team, lära sig arbetsmetodiken och få in en fot i
+branschen som kan leda till anställning. Utbildningarna är korta
+Sida 27 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+och en snabb möjlighet om du vill byta karriär. Yh är insatta i
+vad branschen efterfrågar och utbildningarna utformas efter
+det.    Vi har funnits sedan 2019 och vuxit stadigt trots att det
+är svårt att rekrytera utvecklare och Covid19. Vi växer
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Techstars of Sweden
+Förnamn: Clara
+Efternamn: Åström
+Stationeringsort: Stockholm
+Telefon: +46760395990
+E-postadress: clara@techstars.se
+Roll: Talent Manager
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Det är viktigt att de har en helhetsförståelse när de kommer ut
+som utvecklare. Att de förstår hur betallösningar fungerar,
+molnlösningar, APIer osv. Det är bra att ha koll på lite av varje.
+Uppskattat anställningsbehov: 150
+Andra rekryteringsvägar: Nej
+LIA-platser: 15
+Medfinansiering: Ja: Material och utrustning | Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Vi har föreläst för utbildningarna tidigare och gör det gärna
+igen, jag har dialog nu med utbildningsledare om datum. Vi kan
+vara med på event och pratar med utbildningsledare om andra
+samarbetsformer. Jag är med i ledningsgruppen för
+Medieinstitutets Front end developerutbildning.    Vi kan ordna
+LIA-platser hos våra kunder, ju fler vi blir desto fler platser kan
+vi fixa.
+Övriga synpunkter: Vi rekryterar till andra, inte anställer. Just nu har jag 30 case
+jag rekryterar för. Jag tror att vi kommer rekrytera ca 150
+juniora utvecklare på 3-5års sikt. Vi har funnits sedan 2020 och
+växer. Vi planerar att dubbla omsättningen nästa år.    YH-
+studenter förstår ofta lite snabbare men det går att rekrytera
+från andra utbildningsformer också. YH-studenter är ofta mer
+mogna inför arbetsuppgifterna iom att de varit ute på LIA. LIA
+är jätteviktigt för utbildningar inom IT. Utbildningarna är bra
+förankrade till branschen och är ett bra sätt att få ut personer i
+yrkesrollen snabbt. Studenterna blir attraktiva på
+arbetsmarknaden när de är färdigutbildade.    Samarbetet med
+Medieinstitutet fungerar hur bra som helst, supertrevligt!
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Nestlé Nespresso SA
+Förnamn: Katarina
+Efternamn: Johansson
+Stationeringsort: Stockholm
+Telefon: 0706771797
+E-postadress: katarina.johansson@nespresso.com
+Sida 28 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Roll: E-handelschef
+Insatt: Ja
+Medverkan framtagning: Nej
+Medverkan framtagning, beskrivning: -
+Uppskattat anställningsbehov: 3-5
+Andra rekryteringsvägar: Ja: Internutbildningar | Högskolan | Övrigt
+LIA-platser: 3
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Jag kan vara med på event, redovisningar, erbjuda case och
+liknande. Det är givande för oss och studenterna.    Vi är gärna
+LIA-företag, vi föredrar för den längre perioden då det tar lite
+tid att sätta in sig i våra system. Vi har varit LIA-företag för
+andra utbildningar innan.    Vi pratar gärna vidare om att vara
+med i ledningsgruppen för utbildningen.
+Övriga synpunkter: Som junior utvecklare är det bra att ha haft LIA. Vi rekryterar
+inte personer direkt från gymnasiet, de saknar erfarenhet. Gör
+studenter sin LIA hos oss och kan stanna kvar vet vi vad de
+kan inför en anställning. Yh-utbildningar har hög standard och
+LIAn är en viktig del av utbildningen. LIA är en bra
+rekryteringsväg men även en möjlighet för oss att hjälpa nya ut
+i arbetslivet. Vi rekryterar från olika utbildningar.    Behovet av
+utvecklare kommer att öka, vi har anställt 3 utvecklare i år.
+Många kan göra lättare arbete men det är svårt att hitta
+utvecklare som förstår helheten och kan det tekniska. Vi fick
+leta länge för att hitta personal.    E-handeln ökar hela tiden.
+Behovet av utvecklare kommer att finnas kvar och öka.
+Merparten av försäljning kommer från online handeln.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Amöba AB
+Förnamn: Julia
+Efternamn: Wallin
+Stationeringsort: Stockholm
+Telefon: +46737453485
+E-postadress: julia@amoba.com
+Roll: Co-Founder / Lead Developer
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Jag har pratat med utbildningsledare om utbildningens
+innehåll, delat mina tankar om vad jag tycker är viktigt för
+rollen och om att föreläsa för utbildningen.    Magento (e-
+handelsplattform) tar tid att lära sig och starta upp så jag tycker
+att det är bra att de lär sig Woocommerce i utbildningen. Har
+du använt Woocommerce sätter du dig sedan lättare in i andra
+e-handelsplattformar. Jag tycker att det är bra att utbildningen
+lär ut PHP, många använder det fortfarande samtidigt som
+andra alternativ blir vanligare.    Det är bra att utbildningen har
+fokus på backend men även innehåller front end och andra
+delar. Det ger en bra bredd och som utvecklare måste du
+kunna skifta till den mest aktuella tekniken.
+Uppskattat anställningsbehov: 6-10
+Sida 29 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Andra rekryteringsvägar: Nej
+LIA-platser: 6
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Jag pratar med utbildningsledare om att föreläsa för
+utbildningen och andra programmeringsutbildningar på
+Medieinstitutet.     Vi har även pratat om ledningsgruppen och
+att tex vara med på mingel och vara LIA-företag.
+Övriga synpunkter: Denna utbildning är mer dynamisk än en universitetsutbildning.
+Den är enklare att anpassa efter vad som behövs på
+marknaden idag. Det finns ingen vits att läsa, memorera och
+studera som du gör på universitetet, för att bli utvecklare. För
+yrkesrollen är learning by doing den bästa vägen, därför
+passar utbildningen bäst på YH. Det är på LIA/praktik du lär dig
+på riktigt, det behövs inte en jättelång utbildning för att få
+kompetensen som krävs om du har LIA.    Det är en stor brist
+på utvecklare, speciellt då det finns så många olika språk och
+plattformar att jobba med. Vi letar efter utvecklare som är
+anpassningsbara, det är viktigt att inte snöa in sig på ett
+ramverk bara. Att anställa direkt från gymnasiet är väldigt svårt
+då de oftast saknar erfarenheten och kompetensen som krävs.
+Om 3-5år vill vi bli ännu fler utvecklare och anställa både på
+heltid och deltid men även fortsätta erbjuda LIA-platser.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: The Generation AB
+Förnamn: Linda
+Efternamn: Magnusson Bergqvist
+Stationeringsort: Stockholm
+Telefon: 0733960026
+E-postadress: linda@thegeneration.se
+Roll: Frontendutvecklare
+Insatt: Ja
+Medverkan framtagning: Nej
+Medverkan framtagning, beskrivning: -
+Uppskattat anställningsbehov: 3-5
+Andra rekryteringsvägar: Nej
+LIA-platser: 5
+Medfinansiering: Ja: Material och utrustning | Studiebesök | Övrigt
+Medfinansiering utförlig beskrivning: Vi kan vara med på mässor, examensarbete, erbjuda
+studiebesök och vara LIA-företag.
+Övriga synpunkter: Vi har anställt 6st under pandemiperioden och vår omsättning
+ökar stadigt. Vi tror på fortsatt tillväxt och har en stabil
+rekryteringstakt.    Lagar och regler likt GDPR kan och har
+påverkat vårt behov av utvecklare tidigare. Vi reviderar alltid de
+tekniker vi använder och är inte begränsade av dessa. Tror
+även att tekniken vi utför kommer tillgänglighetsanpassas mer
+och mer.    Vi är nöjda med de praktikanter vi har fått från
+Medieinstitutet och utbildningen och kommer fortsätta att ta
+emot elever då samarbetet har fungerat bra.
+Status: Bekräftat
+Sida 30 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+............................................................... ..........................................................................................
+Organisationsnamn: Reeler Tech AB
+Förnamn: Magnus
+Efternamn: Bågenholm
+Stationeringsort: Stockholm
+Telefon: 0707361144
+E-postadress: magnus@reelertech.com
+Roll: CTO
+Insatt: Ja
+Medverkan framtagning: Nej
+Medverkan framtagning, beskrivning: -
+Uppskattat anställningsbehov: 6-10
+Andra rekryteringsvägar: Nej
+LIA-platser: 6
+Medfinansiering: Ja: Övrigt
+Medfinansiering utförlig beskrivning: Vi är gärna LIA-företag.
+Övriga synpunkter: Vi är väldigt nöjda med personen som gjort LIA hos oss från
+utbildningen. Han har stor kunskap, är ambitiös, motiverad och
+självgående. Vi är gärna LIA-företag igen. Det är svårt att
+rekrytera utvecklare och de är dyra. Vi tycker LIA är en bra
+rekryteringsväg då vi får lära känna studenten och träna upp
+den under LIAn med förhoppning att det leder till en
+anställning.    Det är bra att utbildningen innehåller React och
+Javascript.    YH är en bra utbildningsform.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Nordic Web Team
+Förnamn: Johan
+Efternamn: Liljeholm
+Stationeringsort: Stockholm
+Telefon: +46851817202
+E-postadress: johan@nordicwebteam.se
+Roll: Senior E-commerce Advisor
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Jag är med i ledningsgruppen för utbildningen och vi arbetar
+med utbildningens innehåll och upplägg.    Vi har även föreläst,
+varit LIA-företag och anställt från utbildningen vilket gör oss väl
+insatta.
+Uppskattat anställningsbehov: 6-10
+Andra rekryteringsvägar: Nej
+LIA-platser: 12
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Övrigt
+Medfinansiering utförlig beskrivning: Är med i ledningsgruppen för utbildningen och LIA-företag.
+Övriga synpunkter: Det finns ett stort behov av utbildningen och kompetensen
+Sida 31 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+utbildningen ger. Nordic Web Team vill växa stadigt, det är
+jättesvårt att rekrytera utvecklare.    De som kommer från
+gymnasiet kan inte tillräckligt mycket och universitetet lär inte
+ut rätt saker för anställning hos oss. På denna utbildning lär de
+sig relevanta saker för yrkesrollen och det som behövs hos
+oss.    Tidigare var det viktigt att kunna specifika system för att
+hitta LIA och arbete, nu är det viktigt att ha fokus på
+programmeringen. Utbildningen lär ut relevanta delar.    Vi har
+har ett jättebra samarbete med Medieinstitutet.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Star Republic
+Förnamn: Bengt
+Efternamn: Wessborg
+Stationeringsort: Stockholm
+Telefon: 076-8670203
+E-postadress: bengt.wessborg@starrepublic.com
+Roll: CBO
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Jag är med i utbildningens ledningsgrupp, vi arbetar med
+utbildningens innehåll och upplägg.    Jag har varit LIA-företag
+och anställt från utbildningen vilket ger mig en bra bild av
+utbildningen.
+Uppskattat anställningsbehov: 50
+Andra rekryteringsvägar: Nej
+LIA-platser: 6
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Studiebesök | Övrigt
+Medfinansiering utförlig beskrivning: Jag är med i ledningsgruppen och har varit det i flera år.   Jag
+kan föreläsa och vara med på mingel/träffar.  Vi är gärna LIA-
+företag.  Vi har ett långt samarbete med Medieinstitutet och
+utbildningen som fungerar väldigt bra.
+Övriga synpunkter: Denna utbildning behövs och ska finnas kvar på YH-nivå.
+Universitet är också bra men för andra typer av roller. På
+Webbutvecklare inom e-handel lär de sig programmera och
+arbetar praktiskt. När vi anställer juniora utvecklare gör vi det
+efter en genomförd LIA-period. YH-utbildningar fyller en stor
+funktion!    Det är en stor efterfrågan och brist på utvecklare
+vilket gör det svårt att rekrytera. Under Covid har vi gjort några
+ersättningsrekryteringar men det är svårt att hitta utvecklare. Vi
+vill växa under de närmsta åren.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Winter Agency
+Förnamn: Joel
+Efternamn: Bergman
+Stationeringsort: Stockholm
+Telefon: +46721738216
+E-postadress: joel@winteragency.se
+Sida 32 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Roll: Partner & Produktionsansvarig
+Insatt: Ja
+Medverkan framtagning: Nej
+Medverkan framtagning, beskrivning: -
+Uppskattat anställningsbehov: 3-5
+Andra rekryteringsvägar: Nej
+LIA-platser: 5
+Medfinansiering: Ja: Material och utrustning | Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Vi är gärna LIA-företag och investerar mycket tid i de
+studerande som är hos oss. Vi ger utbildning, handledning och
+branschkunskap.     Vi är gärna med på tex branschmingel.
+Vi är öppna för att gästföreläsa.
+Övriga synpunkter: Branschen behöver fler utvecklare, det är svårt att hitta
+personal. Det är utvecklarnas marknad och svårt för oss som
+mindre företag att konkurrera med de stora kända jättarna just
+nu. Jag föredrar att rekrytera utvecklare från YH-utbildningar,
+andra utbildningar är för teoretiska. Behovet att fler utvecklare
+kommer inte ta slut.    Vi tycker att LIA är en bra möjlighet för
+oss att förbereda studenten inför en anställning hos oss. Under
+LIAn kan vi onboarda personen, något vi annars gör under en
+provanställning.    Jag tycker att det är bra att utbildningen
+leder till att du blir light fullstackutvecklare. Att kunna PHP och
+stajling passar bra när du arbetar med mindre e-handlar. Det är
+jättebra att de lär sig både frontend och backend.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Sopra Steria AB
+Förnamn: Fanny
+Efternamn: Sundlöf
+Stationeringsort: Stockholm
+Telefon: +4670-2841092
+E-postadress: fanny.sundlof@soprasteria.com
+Roll: Utvecklare
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Jag har pratat med Medieinstitutet om vad jag tror händer för
+yrkesrollen framöver. Det är bra att utbildningen innehåller
+React. Nischen e-handel är en av utbildningens styrkor.    Jag
+har själv gått utbildningen och har koll på utbildningens
+innehåll och upplägg.
+Uppskattat anställningsbehov: 11-20
+Andra rekryteringsvägar: Nej
+LIA-platser: 12
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Föreläsningar | Studiebesök |
+Övrigt
+Medfinansiering utförlig beskrivning: Vi är gärna LIA-företag, är med på mässor och håller
+gästföreläsning. Jag är öppen för att vara med i
+ledningsgruppen för utbildningen.
+Övriga synpunkter: YH är en snabb väg ut i arbetslivet.  Min uppfattning är att de
+Sida 33 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+som gått en YH-utbildning har lättare att ta tag i saker och mer
+hands on känsla än vad studenter från universitetet har. På
+universitetet har de inte arbetat lika mycket praktiskt och är
+därför lite mer tillbakadragna.    LIA är en jätteviktig del av
+utbildningen. På LIAn får du se hur det du studerat ser ut i
+riktiga situationer. LIA är ett bra sätt att lära sig på.     Sopra
+Steria har som mål att anställa alla praktikanter. Vi är nu i en
+växtresa och tror att vi inom 5 år anställt 20-30 juniora
+utvecklare. Utbildningen innehåller både frontend och backend
+vilket matchar bra hos oss. Vi börjar jobba mer med e-handel
+nu vilket är roligt.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Caspeco AB
+Förnamn: Rojan
+Efternamn: Osman
+Stationeringsort: Uppsala
+Telefon: +4618100018
+E-postadress: rojan.osman@caspeco.se
+Roll: Talent Acquisition Manager
+Insatt: Ja
+Medverkan framtagning: Nej
+Medverkan framtagning, beskrivning: -
+Uppskattat anställningsbehov: 40
+Andra rekryteringsvägar: Nej
+LIA-platser: 6
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Vi är ex: LIA-företag, med på LIA-mingel/event,
+gästföreläsningar och med i ledningsgrupp på Medieinstitutet.
+Övriga synpunkter: Det finns ett behov av fler utvecklare. Det är inte fritt från
+utmaningar att rekrytera utvecklare, vi får headhunta.     YH-
+utbildningars styrka är att de är praktiska medan andra
+utbildningsformer har mer teoretisk tyngd. På YH-utbildningar
+får de prova på arbetslivet och får en förståelse för
+förväntningar.  LIA har fungerat bra för oss och varit en jättebra
+rekryteringsväg. LIA är en bra möjlighet för studenten att prova
+på företaget och visa vad den kan. Vi har anställt utvecklare
+från Medieinstitutet och andra YH-utbildningar.     Vi växer och
+har alltid ett behov av utvecklare.    Jag tycker att det viktigaste
+på sikt är att de inte lär sig gamla tekniker. Det är viktigt att de
+håller sig uppdaterade i den senaste tekniken.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Picapen
+Förnamn: Anders
+Efternamn: Andersson
+Stationeringsort: Stockholm
+Telefon: 0760815834
+E-postadress: anders@picapen.com
+Sida 34 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Roll: CTO
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Jag är med i ledningsgruppen för utbildningen där vi arbetar
+med utbildningens innehåll. Jag har även föreläst i flera kurser
+för utbildningen och varit LIA-handledare.
+Uppskattat anställningsbehov: 3-5
+Andra rekryteringsvägar: Nej
+LIA-platser: 6
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Material och utrustning |
+Föreläsningar
+Medfinansiering utförlig beskrivning: - Jag är med i ledningsgruppen för utbildningen.
+- Jag har föreläst i flera kurser för denna utbildning och gör det
+gärna igen.
+- Jag har varit LIA-handledare för denna utbildning flera
+gånger, på olika företag jag varit anställd på och är det gärna
+igen.
+- Vi lånar ut material/utrustning till personer som gör LIA hos
+oss.
+- Jag har handlett och utbildat  examensarbetet samt varit
+delaktig i utveckling av kursen.
+Jag tycker det är roligt samt givande att arbeta i
+ledningsgruppen, då det ger mig möjlighet att påverka och
+utveckla utbildningen så vi slutligen kan anställa från denna.
+Jag är föreläsare för att det är viktigt att ge tillbaka till
+branschen, roligt och givande.
+Övriga synpunkter: Jag har varit LIA-handledare flera gånger för studeranden från
+denna och Medieinstitutets andra utbildningar inom
+programmering. Studenterna har alltid varit jätteduktiga. Denna
+utbildning är en jättebra rekryteringsväg för alla företag som
+behöver en junior utvecklare, vi vill bli fler utvecklare inom
+några år. Behöver vi en junior utvecklare rekryterar vi gärna
+från denna utbildning.
+Utbildningens styrka är att de lär sig många olika delar,
+studenterna får en bred kompetens. Kompetensen denna
+utbildningen leder till behövs i branschen.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: NoA Ignite
+Förnamn: Marcus
+Efternamn: Berggren
+Stationeringsort: Stockholm
+Telefon: 0730792627
+E-postadress: marcus.berggren@thenorthalliance.com
+Roll: Talent partner
+Insatt: Ja
+Medverkan framtagning: Nej
+Medverkan framtagning, beskrivning: -
+Uppskattat anställningsbehov: 6-10
+Andra rekryteringsvägar: Nej
+Sida 35 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+LIA-platser: 6
+Medfinansiering: Ja: Material och utrustning | Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Vi kommer gärna på tex event, föreläser om branschen och är
+gärna LIA-företag. Vi ex har samtal med Medieinstitutet om att
+hålla en föreläsning nästa termin bla.
+Övriga synpunkter: Det finns ett fortsatt stort behov av utvecklare, överallt behövs
+det olika typer av utvecklare. De flesta vi anställer är juniora
+utvecklare, de är de juniora som är tillgängliga. Det är svårt att
+rekrytera en senior utvecklare. Vi anställer ca 3-6 juniora
+utvecklare varje år. Det är lättare att rekrytera från YH iom att
+de haft praktik, det gör det lättare att bedöma personernas
+kompetens.
+Vi har anställt utvecklare som gått på Medieinstitutet och har
+varit LIA-företag för studenter från Medieinstitutet flera ggr.
+YHs styrka är att de är praktiska iom LIAn men även att de
+jobbar skarpt under utbildningen. De lär sig hantverket de ska
+använda, det är viktigare än teorierna.
+Vi jobbar med e-handel, javascript och react, det är bra att
+utbildningen innehåller det.
+Vi är LIA-företag för att det är bra employer branding, en bra
+rekryteringsväg, våra anställda växer genom att vara
+handledare och för att ge tillbaka till branschen och
+utbildningarna.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Prototyp
+Förnamn: Linda
+Efternamn: Almqvist
+Stationeringsort: Stockholm
+Telefon: +460736-559188
+E-postadress: linda.almqvist@prototyp.se
+Roll: Tech manager
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Bra att utbildningen innehåller mer git och react nu än tidigare.
+Uppskattat anställningsbehov: 6-10
+Andra rekryteringsvägar: Nej
+LIA-platser: 6
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Material och utrustning |
+Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Jag är gärna med i ledningsgruppen för utbildningen. Vi har
+varit LIAföretag tidigare och anställt utvecklare från
+utbildningen. Jag gick själv denna utbildning för några år sedan
+och fick jobb här mina sista veckor på utbildningen. Vi kan
+hålla en föreläsning och vara med på mingel ex.
+Vi är LIAföretag för att det är en bra rekryteringsväg, kul och
+utvecklar våra anställda.
+Övriga synpunkter: Yhs styrka är:
+Sida 36 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+1. Närheten till branschen. Utbildningen ger praktisk kunskap.
+När vi har onboardat nyanställda från olika skolor märker vi att
+de som gått en YH-utbildning ofta kan hoppa in i projekt direkt
+då de arbetat i projekt tidigare. De som läst en mer teoretisk
+utbildning har lite längre startsträcka.
+2. Mångfald. Studenter i olika åldrar, bakgrund, erfarenhet och
+kön. Det ger mångfald på arbetsmarknaden.
+LIA är en jättebra rekryteringsmöjlighet för oss. Det är en
+fantastisk möjlighet för oss och studenten. Vi har aldrig
+rekryterat en utvecklare direkt från gymnasiet.
+Det behövs fler utvecklare i branschen. Jag blir kontaktad hela
+tiden. Det är svårt att hitta utvecklare.
+Utbildningen är en snabb väg till en ny bransch. Jag har på 4år
+gått från techlead till tech manager på företaget.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Kontorsgiganten AB
+Förnamn: Martin
+Efternamn: Lindqvist
+Stationeringsort: Stockholm
+Telefon: 0709515359
+E-postadress: martin@kontorsgiganten.se
+Roll: CTO
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Har i samtal med UL gett information om LIA-periodernas
+upplägg och innehåll samt gett tips om förbättringar.
+Uppskattat anställningsbehov: 3-5
+Andra rekryteringsvägar: Nej
+LIA-platser: 6
+Medfinansiering: Ja: Material och utrustning | Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Vi hjälper gärna till med Case samt skarpa projekt för våra
+studenter samt lånar ut datorer och de program de behöver. Vi
+kommer gärna på arbetsmarknadsdagar samt medverkar
+gärna olika utbildningstillfällen. Vi ser gärna skarpa
+examensarbeten där vi får hjälpa till med handledning.
+Övriga synpunkter: Det är ett stort behov och utbildningens tekniker och innehåll
+passade oss perfekt. Vi är i behov av nischade utvecklare samt
+fullstackutvecklare inom e-handel. Vi vill utveckla våra
+plattformar själva, inte köpa färdiga lösningar. Vi växer fort och
+möjlighet att finansiera vidare utveckling är avgörande för
+vidare tillväxt. Det finns en stor potential, vi öppnar även i
+Danmark och Norge. Utvecklingsavdelningen kommer att
+förläggas till Stockholm.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Tankbar AB Digitalbyrå
+Sida 37 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Förnamn: Philip
+Efternamn: Saltskog
+Stationeringsort: Stockholm och Nyköping
+Telefon: 070-6437900
+E-postadress: philip.saltskog@tankbar.com
+Roll: VD
+Insatt: Ja
+Medverkan framtagning: Nej
+Medverkan framtagning, beskrivning: -
+Uppskattat anställningsbehov: 6-10
+Andra rekryteringsvägar: Nej
+LIA-platser: 5
+Medfinansiering: Ja: Material och utrustning | Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Vi håller gärna kontakt om framtida samarbete. Exempelvis tar
+vi gärna information om ex event/mingel, är LIA-företag och
+kanske kan föreläsa framöver. Vi är gärna LIA-företag till så
+många som vi har lediga platser för på kontoret, det kan
+variera lite från gång till gång.
+Övriga synpunkter: Vi har letat utvecklare sedan i höstas och lyckats anställa
+några men skulle gärna anställa några till. Vi har under våren
+fortsatt leta personal och har fått ta hjälp av rekryteringsbyråer.
+Vi har ett omedelbart behov av utvecklare nu och det ser ut att
+hålla i sig.
+Jag ser ett stort behov av utvecklare i branschen. Vi ser ett
+ökat behov av våra tjänster bland annat pga pandemin och
+digitalisering.
+Att denna utbildning har e-handel som nisch ser jag som en
+styrka. Kan du Woocommerce kan du Wordpress,
+transaktioner, betallösning osv vilket är jättebra. Vill du arbeta
+hos oss är det jättebra att du kan Woocommerce och
+javascript. De tekniker vi arbetar med passar jättebra med
+denna utbildning.
+Senaste personen vi anställt gjorde sin LIA och examensarbete
+här.
+YHs styrka är kombinationen mellan teori och praktik. Först
+lärarlett och sedan LIA.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Axyer
+Förnamn: Robin
+Efternamn: Henriksson
+Stationeringsort: Stockholm och Östergötland
+Telefon: 0730963789
+E-postadress: robin@axyer.com
+Roll: VD och CTO
+Insatt: Ja
+Sida 38 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Medverkan framtagning: Nej
+Medverkan framtagning, beskrivning: -
+Uppskattat anställningsbehov: 3-5
+Andra rekryteringsvägar: Nej
+LIA-platser: 5
+Medfinansiering: Ja: Material och utrustning | Föreläsningar | Övrigt
+Medfinansiering utförlig beskrivning: Vi kan vara LIA-företag i framtiden och lånar ut material när vi
+är LIAföretag. Jag har varit LIAhandledare på tidigare
+arbetsplatser och tycker att det är roligt.
+Övriga synpunkter: Det är en process att hitta utvecklare, det är svårt. Lägger du
+ut en annons är det inte alltid många som svarar/söker och de
+som hör av sig har inte alltid de kompetenser vi söker. Är du
+junior utvecklare och söker jobb är det viktigt att ha något att
+visa upp, då är LIA en bra möjlighet.
+Vi jobbar främst med Vue och PHP. Det finns många stora
+företag som använder sig av PHP vilket är en trygghet för oss
+alla. PHP tävlar i hastighet med bla .net och java. React är
+fortfarande störst. Det är bra att utbildningen innehåller React
+och PHP tycker jag.
+Till hösten går vi in i en expansionsfas och vi tror oss fortsätta
+växa framöver. Vi kommer säkert kunna anställa en junior
+utvecklare per termin.
+Status: Bekräftat
+............................................................... ..........................................................................................
+Organisationsnamn: Vaimo Sweden AB
+Förnamn: Fabian
+Efternamn: Åhlin
+Stationeringsort: Stockholm
+Telefon: 073-8674502
+E-postadress: fabian.ahlin@vaimo.com
+Roll: HR-Manager
+Insatt: Ja
+Medverkan framtagning: Ja
+Medverkan framtagning, beskrivning: Sitter med i utbildningens ledningsgrupp och är således med
+utveckla utbildningens inehåll och upplägg.
+Uppskattat anställningsbehov: 11-20
+Andra rekryteringsvägar: Nej
+LIA-platser: 6
+Medfinansiering: Ja: Ledningsgruppsmedverkan | Lokaler | Föreläsningar |
+Övrigt
+Medfinansiering utförlig beskrivning: Behovet av duktiga utvecklare är fortsatt väldigt stort och
+Vaimo kommer att fortsätta vara med i Ledningsgruppen för att
+både bidra och påverka innehållet i utbildningen. Vi kommer
+också att kunna ta emot  6 LIA per år samt inspirera
+studenterna med till exempel föreläsningar mm.
+Övriga synpunkter: Vi har ett stort rekryteringsbehov och utbildningen passar oss
+perfekt utifrån de tekniker som lärs ut. De studenter som
+kommer från Medieinstitutet är duktiga och vi ser fram mot
+Sida 39 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+framtida samarbeten.
+Status: Bekräftat
+............................................................... ..........................................................................................
+K50
+Samverkan med arbetslivet
+Medieinstitutet bedriver ett kontinuerligt utvecklingsarbete med samverkan och omvärldsanalys som
+centrala processer. Utvecklingsprocessen ingår i Eleveramodellen - som är den övergripande
+arbetsprocess för kvalitetssäkring och utveckling av verksamheten som MI arbetar utifrån.
+Medieinstitutet har ett nära samarbete med samarbetsföretag, LIA-företag, ledningsgruppen för
+programmet samt tongivande branschorganisationer. Tillsammans säkerställer vi att utbildningen
+matchar branschens behov.
+LIA-FÖRETAG / ENKÄTER:
+LIA-företag / Enkäter, Medieinstitutet samtalar två gånger per år med LIA-företagen om programmets
+utformning och innehåll. Deras åsikter är väldigt viktig för arbetet framåt med utbildningen. Vi
+genomför även enkäter efter avslutad LIA-period där vi får input om utbildningen och vad de tror är
+viktigt för programmet och för rollen i framtiden. LIA-företag kommer även och pratar med klassen,
+deltar på LIA-mingel, föreläser och vissa vill/kan vara med i ledningsgruppen.
+LEDNINGSGRUPPEN:
+Ledningsgruppen arbetar aktivt för att vi ska ge branschen utvecklare med rätt kompetens.
+Programmet utvecklas kontinuerligt. Ledningsgruppen arbetar med både upplägg och innehåll. De har
+även föreläst, är LIA-företag och anställt studerande från utbildningen, vilket ger en tydlig bild av
+denna. För pågående utbildning fyller ledningsgruppen en strategisk funktion i utvecklingsarbetet och i
+uppföljningen av utbildningens effekt- och genomströmning. Ledningsgruppen har haft arbetsmöten
+för att arbeta fram nya utbildningsplaner för att matcha de nya önskemålen från arbetslivet.
+Utbildningsplanen skickas på remiss till ämnesspecialister, ledningsgruppen och de som varit
+involverade i framtagande av utbildningsprogrammet.
+FÖRELÄSARE:
+Vi har ett nära samarbete med våra föreläsare och de är delaktiga i framtagandet av kurserna och ger
+input om programmets innehåll. Föreläsarna är en viktig del i kursernas utformning.
+BESLUTSFATTARE:
+Vi har intervjuat beslutsfattare inom företag för att få deras syn på branschens behov och vad vi bör
+tänka på inför kommande starter.
+STUDERANDE:
+Studerande genomför utvärderingar 4ggr/år vilket ger info till utformningen av programmet. De skriver
+LIA-rapporter och LIA-redovisningar vilket ger insyn i vad som är viktigt för utvecklare. Djupintervjuer
+genomförs med ledande befattningshavare inom branschen. Intervjuerna genomförs för att inhämta
+ytterligare synpunkter och förslag från företag och organisationer.
+Initiativ till ansökan
+Initiativ till ansökan kommer från ledningsgruppen för pågående utbildning som uttrycker en fortsatt
+mycket stark efterfrågan på yrkesrollen Webbutvecklare inom e-handel. MI bedömer tillsammans med
+ledningsgruppen att efterfrågan på yrkesrollen och den kompetens som utbildningen ger är tillräckligt
+stor för att motivera tre starter av utbildningen. Detta överensstämmer med det anställningsbehov
+som övriga företag och branschföreträdare som MI samverkar med gett uttryck för i enkäter, intervjuer
+och workshops. Inte minst framhåller man MIs förmåga att nå en jämn könsfördelning i en annars
+mansdominerad bransch. I senaste utbildningsstart var 21 av de 39 som påbörjade programmet
+kvinnor.
+K76
+Arbetslivets medfinansiering
+Ja
+Beskrivning
+Ledningsgrupp
+LGR genomför 4 st ord. möten/år samt telefon-, teams- utvecklings- och per Capsulam-möten med
+kortare varsel. Samtliga med krav på förberedelse och inläsning. Medfinansiering utgör stående
+Sida 40 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+punkt. Workshops 1-2st/år i syfte att utveckla programmet tillkommer.  12 personer har anmält
+intresse för LGR. Insats motsvarar ca 192 tim/år.
+LIA
+LIA-företagen (70st/utb.omg) tillhandahåller LIA-handledning motsvarande 10 tim/vecka (totalt 250 tim
+per studerande). Samtliga genomför Eleveras handledarkurs. LIA-företagen bistår med relevant
+utrustning, programvara, datorer, arbetsplatser och relevanta internutbildningar under LIA. De tar
+dessutom emot LIA-besök från UL där utbildningen diskuteras samt kvalitén på LIA-platsen
+säkerhetsställs.
+Föreläsningar
+Arbetslivet medverkar i undervisningen med ansvar för längre kursmoment alt som gästföreläsare.
+Kostnadsfria föreläsningar (bl a yrkesrollen, branschen, trender och ämnesspecifikt) är inplanerade.
+Ett antal företag bidrar med kraftigt rabatterade föreläsningar. All undervisande personal utgörs av
+handplockade professionella utvecklare, varvid subventionerade arvoden är en nödvändighet.
+Skarpa case
+Många LIA-företag önskar att de studerande gör sitt examensarbete som skarpt case. Arbetslivets
+insats uppskattas till ca 30 tim/case. Medfinansiering: 100%
+Studiebesök
+Ett flertal organisationer upplåter sina lokaler för studiebesök. I utbildningen förekommer också
+digitala.
+Event och nätverkande
+MI:s studerande ges tillgång till värdefulla branschevent och nätverk via lokala MeetUps. Flera
+medverkande företag erbjuder tillgång till frukostseminarier samt mingelkvällar på företagen. MI
+genomför även branschdagar där LIA-företag medverkar.
+Lokaler
+Även om undervisningen bedrivs i MI:s lokaler, utgör företagens konferensrum värdefulla inslag vid
+examensredovisningar och workshops.
+Expertkompetens
+Arbetslivet medverkar i form av moderator, expertkompetens, åhörare vid redovisningar,
+examinationer mm, omfattande ca 100 tim/år.
+Programvara
+Relevanta program tillhandahålles för träning till rabatterad kostnad. Särdeles under LIA-perioderna
+Data
+Vissa moment i kräver tillgång till verkliga kunddata (t ex vid databashantering). Ett ovärderligt bidrag
+från samverkansföretagen.
+Arbetsmarknadsdagar
+MI:s branschdagar med ett stort antal engagerade organisationer är värdefulla både för studerande
+och företag.
+Organisation och ledning
+K73
+Personer med yrkeserfarenhet
+1 Saman Hassanpour
+Tillhandahåller ändamålsenliga lokaler och utrustning
+Ja
+K19
+Övriga utbildningsanordnare *
+Nej
+Sida 41 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+K27
+Arbete mot kränkande behandling
+På MI ska alla behandlas lika och bemötas med respekt. Diskriminering, trakasserier eller kränkande
+särbehandling accepteras inte. MI har därför utformat och tillämpar en Code of Conduct samt en
+likabehandlingsplan som stödjer de studerandes och personalens rätt till respekt, tolerans och
+integritet. Den tydliggör hur MI ser på kränkande särbehandling samt omfattar en handlingsplan för
+ansvarsfördelning och åtgärder vid anmälan/upptäckt.
+Där informeras även vad kränkande särbehandling är, om förebyggande åtgärder, om handlingsplan,
+samt beskrivning av formellt förfarande vid en eventuell situation.
+De studerande informeras skriftligt via programmets studiehandbok och muntligt genom
+utbildningsledaren vid programstart. Möjlighet till anonym anmälan finns.
+Genom tecknande av avtal samt LIA-handlingsplan förbinder sig undervisande och handledande
+personal samt LIA-handledarna att genomföra undervisningen/kursen i enlighet med de regler och
+riktlinjer som råder på MI.
+Jämställdhet vid rekrytering av studerande
+Med utgångspunkt i att mångfald ökar kvaliteten på programmet och gynnar både de studerande och
+branschen bedriver MI ett aktivt och medvetet mångfaldsarbete. MI arbetar med mångfald som mer
+än enbart jämställdhet mellan könen. Ett aktivt arbete har bidragit till jämnare representation bland de
+studerande, dock behöver vissa program ytterligare fokus på detta.
+Vid framtagandet av ett program ska namn på och beskrivning av programmet samt särskilda
+förkunskapskrav och urvalsgrunder inte utestänga underrepresenterad grupp. Aktiviteter i
+marknadsföringsprocessen ska eftersträva ett genusneutralt språk, bildval, tilltal samt
+informationskanaler som ej är målgruppsanpassade efter kön eller grupp och jämställd representation
+på mässor och öppet hus. Riktade insatser ska genomföras om målen inte nås.
+I antagnings- och urvalsprocessen ska förståelse för att kompetens kan inhämtas på många olika sätt
+uppmuntras och validering tillämpas om möjligt.
+Jämställdhet under utbildningen
+För att stödja mångfald och stötta underrepresenterat kön i deras yrkesval eftersträvas under
+programmet en jämställd och mångfacetterad samansättning av ledningsgruppen, bland handledande
+och undervisande personal, gästföreläsare och anställda på MI. Utöver det ska en kontinuerlig
+diskussion om arbetsförhållanden i branschen samt möjligheten att förena föräldraskap med
+studier/LIA/arbete föras i ledningsgruppen och av MI med andra branschrepresentanter.
+Underrepresenterad grupp stöttas av processer i Eleveramodellen genom att MI bland annat
+genomför coaching och stöttning vid LIA-platsplacering, aktivt lobbyarbete tillsammans med
+branschorganisationer samt aktiv intern dialog och kompetensutveckling.
+K29
+Lokalers tillgänglighet
+MI genomför programmen i lokaler som är anpassade efter verksamheten och som renoverades
+under 2022 (Malmö och Stockholm) och 2021 (Göteborg). För att säkerställa tillgänglighet och
+användbarhet för personer med olika typer av funktionsvariationer har MI tagit fram en
+tillgänglighetsplan som används i samband med planering, anskaffning och anpassning av lokaler,
+utrustning och hjälpmedel.
+I tillgänglighetsplanen ingår bla att:
+• Lokalerna är centralt belägna och tillgängliga med allmänna kommunikationer, ligger i bottenplan
+eller har hiss
+• Lokalerna är utformade för en allmän/generell tillgänglighet och användbarhet och anpassas vid
+behov
+• Det finns inspelningsutrustning och LMS som möjliggör att de studerande kan ta del av föreläsning
+på annan plats, i efterhand eller repetera/studera i egen takt
+MI erbjuder även webbaserade kurser så att lärare kan förbereda lektionsupplägg med "flipped
+classroom" vilket ger mer tid för laborativt lärande.
+Sida 42 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Ekonomisk planering
+Utbildningen har ansökt om annat medel från EU-program
+Nej
+K31
+Sökt schablon
+Söker enligt schablon
+Sökt schablonbelopp
+BM - 65000 kr
+Motivering
+Hög andel kurser med praktisk tillämpning utanför LIA (1)
+Programmet har en hög andel kurser där kursplanens upplägg och mål kräver praktisk tillämpning
+tillsammans med arbetslivet, utöver laborativa inslag, även i den delen som inte är förlagd till
+klassrum. Under utbildningen görs projekt med arbetsliv som kräver planering, handledning och
+coachning av såväl interna som externa resurser. Vi har budgeterat extra timmar för detta.
+Mindre grupper, ökad antal handläggar-/lärartimmar Den skolförlagda undervisningens genomförande
+kräver p g a att programmering är i många fall svårt och komplext samt att uppgifter och projekt som
+ska rättas och återkopplas tar mycket tid då det i många fall rör sig och hundratals rader kod som ska
+gås igenom:
+- Att kurser eller moment i vissa fall genomförs i mindre grupper (dock ej över hälften av kurserna)
+vilket medför högre lärartäthet
+- Ett behov av ökat antal lärar- och/eller handledartimmar pga stödlektioner, återkoppling - Att de
+lärare som anlitas är seniora och/eller experter (högt efterfrågade) och därmed ligger långt över
+genomsnittet (kostnadsmässigt) för våra program.
+- Svårighetsgraden är hög vilket medför individuella upplägg, stödundervisning och omtentamen
+Kurser översikt
+Kurs Kursen kräver Utb.spec. utr Ökade Anpassad Inv-tung Prakt.tillämp Mindre Ind.upplägg
+inga tillägg kostnader lokal grupper
+Arbets- och X X
+projektmetodik
+Databasteknik X X
+Examensarbete X
+Frontendutveckling X X
+Kompetensportfölj och X
+Entreprenörskap
+LIA 1 X
+LIA 2 X
+Systemstöd och X X
+integration med 3-
+partssystem
+Systemutveckling X X
+Systemutveckling X X
+ramverk
+Utveckling mot E- X X
+handelsplattformar
+Övrigt
+K48
+Sida 43 (44)
+Ansökan om att bedriva yrkeshögskoleutbildning
+Diarienummer: MYH 2022/4923
+Insänd: 2022-06-14
+Övrig information
+Samtliga studerande på MIs YH-program har under sin studietid fri tillgång till LinkedIn Learning med
+möjlighet till förjupad kompetensutveckling genom över 16 000 lättillgängliga onlinekurser.
+MI samverkar med arbetslivet på flera sätt. En av de viktigare samverkansformerna är de skarpa
+uppdrag som arbetslivet bidrar med i undervisningen. Skarpa uppdrag ger de studerande praktisk
+erfarenhet och insikt i arbetslivet även i den skolförlagda undervisningen och genomförs bl a som:
+- skarpa projekt utöver LIA
+- skarpa examensarbeten
+Uppdragen medverkar till att stärka programmens arbetslivsanknytning och arbetslivets
+medfinansiering.
+I syfte att bredda rekryteringsbasen erbjuder MI preparandkurser i programmering för sökande till IT-
+programmen.
+Preparandkurserna har, förutom att öka antalet behöriga sökanden, lett till väl förberedda och
+motiverade studerande. Särskilt väl har Medieinstitutet lyckats med att rekrytera studerande från
+bägge könen.
+Sida 44 (44)
