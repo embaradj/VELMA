@@ -50,6 +50,21 @@
       <version>2.11.0</version>
     </dependency>
 
+    <dependency>
+      <groupId>cc.mallet</groupId>
+      <artifactId>mallet</artifactId>
+      <version>202108</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/deps/mallet.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>cc.mallet</groupId>
+      <artifactId>mallet-deps</artifactId>
+      <version>202108</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/deps/mallet-deps.jar</systemPath>
+    </dependency>
 
   </dependencies>
 
