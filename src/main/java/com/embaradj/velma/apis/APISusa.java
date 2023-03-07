@@ -10,11 +10,19 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class APISusa {
+    private final boolean DEBUG = true;
 //    final String searchUrl = "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=1000";
-final String searchUrl = "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=3";
+//final String searchUrl = "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=5";
+    private String searchUrl;
     private SusaResult searchResult;
 
-    public APISusa() {}
+    public APISusa() {
+        if (DEBUG) { // Only look up 5 curriculums
+            searchUrl = "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=5";
+        } else {
+            searchUrl = "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=1000";
+        }
+    }
 
     private void fetchPrograms() {
         Gson gson = new Gson();

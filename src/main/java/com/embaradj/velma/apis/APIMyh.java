@@ -2,6 +2,7 @@ package com.embaradj.velma.apis;
 
 import com.embaradj.velma.FileDownloader;
 import com.embaradj.velma.PDFReader;
+import com.embaradj.velma.lda.ToTxt;
 import com.embaradj.velma.models.Hve;
 import com.embaradj.velma.results.MyhSearchRequest;
 import com.embaradj.velma.results.MyhSearchResult;
@@ -75,7 +76,8 @@ public class APIMyh {
 
                 if (!Objects.isNull(localFilePath)) {
                     PDFReader pdfReader = new PDFReader(localFilePath);
-                    Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses());
+                    Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses(), pdfReader.getFullText());
+                    new ToTxt(hve.getType(), hve.getCode(), hve.getFullText());
                     model.addHve(hve);
                 }
                 else {

@@ -7,7 +7,10 @@ import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Locale;
+import java.util.stream.Stream;
 
 import cc.mallet.types.Instance;
 import cc.mallet.types.InstanceList;
@@ -56,18 +59,31 @@ public class Controller implements ActionListener {
         if (e.getActionCommand().equals("quit")) quit();
     }
 
+    /**
+     * Processes the collected data with {@link Importer}
+     * And starts modelling the data with {@link Modeller}.
+     */
     private void analyse() {
         System.out.println("Running on EDT? " + isEventDispatchThread());
         System.out.println(Thread.currentThread().getName());
 
+        Path data = Path.of("resources/processeddata/data.mallet");
+
         // Run the importer which will read files in resources/ and create a '.mallet' file
         Importer importer = new Importer();
-        InstanceList inst = importer.readDir(new File("resources/"));
-        inst.save(new File("conf/test.mallet"));
+        InstanceList inst = importer.readDir(new File("resources/rawdata/"));
+        inst.save(new File("resources/processeddata/data.mallet"));
 
         // Run the modeller which will do the topic modelling on the '.mallet' file
-        Modeller modeller = new Modeller();
-        modeller.worker("conf/test.mallet");
+        if (Files.exists(data)) {
+            Modeller modeller = new Modeller();
+            modeller.worker("resources/processeddata/data.mallet");
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Could not find any data file to run modelling on!",
+                    "No data file found",
+                    JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     private void quit() {

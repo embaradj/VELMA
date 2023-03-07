@@ -7,40 +7,61 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Responsible for parsing the PDF-file using {@link org.apache.pdfbox}.
+ */
 public class PDFReader {
+    private boolean DEBUG = true;
     private String[] lines;
     private final HashMap<String, List<String>> courses = new HashMap<>();
+    private String fullText;
     private final String[] filter = {"Kursöversikt", "Obligatoriska kurser", "Poäng", "Summa",
             "bokstavsordning", "Sida", "Ansökan", "Diarienummer", "Insänd"};
 
     /**
-     * Initierar filen som skall läsas samt kallar på relevanta metoder för att läsa och hitta kurser.
-     * Hämtar även namnet på utbildningen, namnet på institutionen och hur många platser utbildningen har.
+     * Initiate the file to be read then calls the method for reading and extracting information.
      */
     public PDFReader(String path) {
         File file = new File(path);
         read(file);
         extractCourses();
 
-        String name = getText(getLine("Utbildningens namn") + 1);
-        System.out.println("Name: " + name);
+        if (DEBUG) {
+            String name = getText(getLine("Utbildningens namn") + 1);
+            System.out.println("Name: " + name);
 
-        String institute = getText(getLine("Ansvarig utbildningsanordnare") + 1);
-        System.out.println("Institute: " + institute);
+            String institute = getText(getLine("Ansvarig utbildningsanordnare") + 1);
+            System.out.println("Institute: " + institute);
 
-        String slots = getText(getLine("Totalt antal platser") + 1);
-        System.out.println("Slots available: " + slots);
+            String slots = getText(getLine("Totalt antal platser") + 1);
+            System.out.println("Slots available: " + slots);
 
-        System.out.println("Courses");
-        courses.forEach((key, value) -> System.out.println(key + " >> " + value));
+            System.out.println("Courses");
+            courses.forEach((key, value) -> System.out.println(key + " >> " + value));
+        }
     }
 
-    public HashMap<String, List<String>> getCourses() { return this.courses; }
+    /**
+     * Parse the PDF-file and initiate the array holding all text.
+     * @param file to be read
+     */
+    private void read(File file) {
+        try {
+            PDDocument doc = PDDocument.load(file);
+            PDFTextStripper stripper = new PDFTextStripper();
+            stripper.setSortByPosition(true);
+            fullText = stripper.getText(doc);
+            lines = fullText.split(System.getProperty("line.separator"));
+            doc.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
-     * Hämtar alla kurser genom att bara hämta text i sektionen "Kurser i bokstavsordning".
-     * Filtrerar bort onödiga termer som ligger i arrayen "filter" samt punkterna som separerar
-     * Dom olika kurserna. Lägger in kurserna samt all information kring dem i en HashMap.
+     * Fetch all courses by only looking at the sections 'Kurser i bokstavsordning'.
+     * Filters unnecessary terms and symbols separating the courses
+     * And adds all courses a map.
      */
     private void extractCourses() {
         List<String> tempList = new ArrayList<>();
@@ -62,26 +83,21 @@ public class PDFReader {
     }
 
     /**
-     * Läser PDF-filen och initierar arrayen "lines" som håller i all text.
-     * @param file filen som skall läsas
+     * Getter for courses.
+     * @return courses
      */
-    private void read(File file) {
-        try {
-            PDDocument doc = PDDocument.load(file);
-            PDFTextStripper stripper = new PDFTextStripper();
-            stripper.setSortByPosition(true);
-            String text  = stripper.getText(doc);
-            lines = text.split(System.getProperty("line.separator"));
-            doc.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    public HashMap<String, List<String>> getCourses() { return this.courses; }
 
     /**
-     * Hämtar den specifika line som en viss text finns på.
-     * @param filter filtret som ska användas
-     * @return index i arrayen där texten återfinns
+     * Getter for full text.
+     * @return full text
+     */
+    public String getFullText() { return this.fullText; }
+
+    /**
+     * Getter for the line a specific text is on.
+     * @param filter text
+     * @return index in array where text exist
      */
     private int getLine(String filter) {
         for (int i = 0; i < lines.length; i++) {
@@ -93,9 +109,9 @@ public class PDFReader {
     }
 
     /**
-     * Hämtar texten från en viss "rad", alltså index i arrayen
-     * @param line vilken "rad" som skall hämtas, alltså index
-     * @return texten på "raden"
+     * Getter for the text at a specific line, or index in array.
+     * @param line to get, or index in array
+     * @return the text on that line, or at the index of the array
      */
     private String getText(int line) {
         return lines[line];

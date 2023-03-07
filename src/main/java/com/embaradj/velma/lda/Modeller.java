@@ -17,9 +17,9 @@ import java.util.regex.Pattern;
  */
 public class Modeller {
     ArrayList<Pipe> pipeList = new ArrayList<>();
-    int numTopics = 5; // Number of topics to search for
+    int numTopics = 10; // Number of topics to search for
     int threads = 2; // Number of threads to do work on
-    int iterations = 50; // Number of iterations for the modelling
+    int iterations = 2000; // Number of iterations for the modelling
 
     public Modeller() { }
 
