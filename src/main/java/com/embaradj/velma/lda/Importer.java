@@ -35,6 +35,7 @@ public class Importer {
 
         // Remove stop words
         pipeList.add( new TokenSequenceRemoveStopwords(new File("conf/stopwords-sv.txt"), "UTF-8", false, false, false) );
+        pipeList.add( new TokenSequenceRemoveStopwords(new File("conf/stopwords-en.txt"), "UTF-8", false, false, false) );
 
         // Store the tokens as integers instead of String
         pipeList.add(new TokenSequence2FeatureSequence());

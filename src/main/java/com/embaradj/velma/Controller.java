@@ -5,14 +5,8 @@ import java.awt.event.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Locale;
-import java.util.stream.Stream;
-
-import cc.mallet.types.Instance;
 import cc.mallet.types.InstanceList;
 import com.embaradj.velma.apis.APIJobStream;
 import com.embaradj.velma.apis.APIMyh;
@@ -73,7 +67,6 @@ public class Controller implements ActionListener {
         Importer importer = new Importer();
         InstanceList inst = importer.readDir(new File("resources/rawdata/"));
         inst.save(new File("resources/processeddata/data.mallet"));
-
         // Run the modeller which will do the topic modelling on the '.mallet' file
         if (Files.exists(data)) {
             Modeller modeller = new Modeller();
