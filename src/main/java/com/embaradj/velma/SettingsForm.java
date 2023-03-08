@@ -5,6 +5,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class SettingsForm extends JFrame {
+    private Settings settings = Settings.getInstance();
     private JPanel mainPanel;
     private JPanel hveSettingsPanel;
     private JPanel analyserSettingsPanel;
@@ -17,12 +18,21 @@ public class SettingsForm extends JFrame {
         setLocationRelativeTo(null);    // Position the frame in the center of the screen
         setVisible(true);
 
-//        hveSettingsPanel.setBorder(
-//            BorderFactory.createCompoundBorder(
-//                BorderFactory.createCompoundBorder(
-//                    BorderFactory.createTitledBorder("HVE Settings"),
-//                    BorderFactory.createEmptyBorder(5, 5, 5, 5)),
-//                hveSettingsPanel.getBorder()));
+        createSsykCheckboxes();
+
+    }
+
+    private void createSsykCheckboxes() {
+        settings.getSsyk().forEach((Ssyk ssyk) -> {
+            String checkText = ssyk.getCode() + "   " + ssyk.getDescription();
+            JCheckBox jCheckBox = new JCheckBox(checkText, ssyk.isSelected());
+            jCheckBox.addItemListener(ie -> {
+                settings.selectSsyk(ssyk, (ie.getStateChange() == 1) ? true : false);
+                System.out.println();
+            });
+            jobSettingsPanel.add(jCheckBox);
+        });
+
     }
 
     {
@@ -53,26 +63,29 @@ public class SettingsForm extends JFrame {
         gbc.weightx = 10.0;
         gbc.weighty = 10.0;
         gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(5, 5, 0, 0);
         mainPanel.add(hveSettingsPanel, gbc);
         hveSettingsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "HVE Settings", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         jobSettingsPanel = new JPanel();
-        jobSettingsPanel.setLayout(new BorderLayout(0, 0));
+        jobSettingsPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weightx = 10.0;
         gbc.weighty = 10.0;
         gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(5, 5, 5, 5);
         mainPanel.add(jobSettingsPanel, gbc);
         jobSettingsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Job Ads Settings", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         analyserSettingsPanel = new JPanel();
-        analyserSettingsPanel.setLayout(new BorderLayout(0, 0));
+        analyserSettingsPanel.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.weightx = 10.0;
         gbc.weighty = 10.0;
         gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(5, 5, 0, 0);
         mainPanel.add(analyserSettingsPanel, gbc);
         analyserSettingsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Analyser Settings", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
     }
