@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+import javax.swing.*;
 import java.beans.PropertyChangeSupport;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -67,6 +68,17 @@ public class APIJobStream {
      * Query the API and save results.
      */
     private void fetchAds() {
+
+        String[] ssykCodes = settings.getSelectedSsyk();
+
+        if (ssykCodes.length < 1) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "No SSYK codes are selected!\nGo to the settings and select at least one SSYK code"
+            );
+            return;
+        }
+
         Gson gson = new Gson();
 
         processedJobs = 0;
@@ -74,7 +86,7 @@ public class APIJobStream {
         jobResults = new ArrayList<>();
 
         try {
-            for (String param : settings.getSelectedSsyk()) {
+            for (String param : ssykCodes) {
                 HttpRequest httpRequest = HttpRequest.newBuilder()
                         .uri(new URI(query + prefix + param))
                         .header("Accept", "application/json")
@@ -114,7 +126,15 @@ public class APIJobStream {
      * Updates the view's progress bar.
      * @param increase
      */
-    public void updateProgressBar(boolean increase) {
+    public void updateProgressBar(boolean increase){
+        // Check the number of SSYK codes that are selected
+        int selected = settings.getSelectedSsyk().length;
+
+        if (selected < 1) {
+            System.out.println("updateProgressBar can continue because there are no select SSYK codes");
+            return;
+        }
+
         if (increase) processedJobs++;
         int progress = ((100) * processedJobs) / settings.getSelectedSsyk().length;
         support.firePropertyChange("jobProgress", null, progress);
