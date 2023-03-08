@@ -42,6 +42,9 @@ public class Settings {
         ssyk.get(ssyk.indexOf(selection)).select(select);
     }
 
+    public String getHelpText() {
+        return "THIS IS HELPTEXT";
+    }
 
 
 

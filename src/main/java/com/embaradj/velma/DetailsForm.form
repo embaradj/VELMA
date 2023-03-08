@@ -11,7 +11,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <scrollpane id="a3b7a">
+      <scrollpane id="a3b7a" binding="scrollPane1">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag top="5" left="5" bottom="5" right="5" weightx="100.0" weighty="100.0"/>
@@ -39,6 +39,15 @@
         <properties>
           <text value="Close"/>
         </properties>
+      </component>
+      <component id="ddb55" class="javax.swing.JTextPane" binding="textPane1" default-binding="true">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
       </component>
     </children>
   </grid>

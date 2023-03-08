@@ -10,13 +10,11 @@ import com.embaradj.velma.apis.APIMyh;
 import com.embaradj.velma.lda.Importer;
 import com.embaradj.velma.lda.Modeller;
 import com.embaradj.velma.models.DataModel;
-import com.embaradj.velma.results.SearchHit;
-
 import javax.swing.*;
 import static javax.swing.SwingUtilities.isEventDispatchThread;
 
 public class Controller implements ActionListener {
-
+    private Settings settings = Settings.getInstance();
     private JFrame view;
     private final DataModel model;
     private final APIMyh apiMyh;
@@ -53,12 +51,15 @@ public class Controller implements ActionListener {
     }
 
     private void help() {
-        EventQueue.invokeLater(() -> { DetailsForm helpForm = new DetailsForm("helptext"); } );
-
+        EventQueue.invokeLater(() -> {
+            DetailsForm helpForm = new DetailsForm("Help", settings.getHelpText());
+        });
     }
 
     private void settings() {
-        EventQueue.invokeLater(() -> { SettingsForm settingsForm = new SettingsForm(); } );
+        EventQueue.invokeLater(() -> {
+            SettingsForm settingsForm = new SettingsForm();
+        } );
     }
 
     /**
