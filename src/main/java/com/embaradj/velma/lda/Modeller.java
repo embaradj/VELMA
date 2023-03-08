@@ -4,6 +4,7 @@ import cc.mallet.pipe.*;
 import cc.mallet.pipe.iterator.FileIterator;
 import cc.mallet.topics.ParallelTopicModel;
 import cc.mallet.types.*;
+import cc.mallet.util.FeatureCountTool;
 
 import java.io.*;
 import java.util.*;
@@ -15,15 +16,16 @@ import java.util.regex.Pattern;
  */
 public class Modeller {
     ArrayList<Pipe> pipeList = new ArrayList<>();
+    ParallelTopicModel model;
     // High alpha = Each document will contain a mixture of most topics
     // And not one single topic.
     // Low alpha = Each document might contain only a few or just one topic.
-    double alpha = 0.01; // Set the alpha value
+    double alpha = 0.5; // Set the alpha value
     // High beta = Each topic is likely to contain a mixture of words
     // Low beta = Each topic may contain a mixture of only a few words.
     double beta = 0.01; // Set the beta value
     int numTopics = 10; // Number of topics to search for
-    int threads = 8; // Number of threads to do work on
+    int threads = 2; // Number of threads to do work on
     int iterations = 2000; // Number of iterations for the modelling
 
     public Modeller() { }
@@ -43,8 +45,7 @@ public class Modeller {
         // Create the model and set number of topics and alpha, beta value
         // High Alpha = mixture of topics in each file
         // High Beta = mixture of words in each topic
-        ParallelTopicModel model =
-                new ParallelTopicModel(numTopics, alpha, beta);
+        model = new ParallelTopicModel(numTopics, alpha, beta);
 
         // Add the instances to the model
         model.addInstances(instances);
@@ -53,12 +54,23 @@ public class Modeller {
         // Set the number of iteration to train the model on
         // 50 for testing, 1000-2000 for production mode
         model.setNumIterations(iterations);
+
         // Build the LDA model
         try {
             model.estimate();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        // Used for looking at words and number of occurrences
+//        FeatureCountTool countTool = new FeatureCountTool(instances);
+//        countTool.count();
+//        System.out.println(Arrays.toString(countTool.getFeatureCounts()));
+//        System.out.println(Arrays.toString(countTool.getDocumentFrequencies()));
+//        countTool.printCounts();
+//        Alphabet prunedAlphabhet = countTool.getPrunedAlphabet(0, 500000, 300, 400);
+//        prunedAlphabhet.iterator().forEachRemaining(System.out::println);
+//        System.out.println(out);
     }
 
     /**
@@ -71,7 +83,7 @@ public class Modeller {
         pipeList.add(new CharSequenceLowercase());
 
         // Specifies the tokens with regex, includes Unicode letters for non-English text
-        Pattern tokenPattern = Pattern.compile("[\\p{L}\\p{M}]+");
+        Pattern tokenPattern = Pattern.compile("[\\p{L}\\p{M}_-]+");
 
         // Tokenize the raw strings
         pipeList.add(new CharSequence2TokenSequence(tokenPattern));
@@ -79,6 +91,7 @@ public class Modeller {
         // Remove stop words
         pipeList.add( new TokenSequenceRemoveStopwords(new File("conf/stopwords-sv.txt"), "UTF-8", false, false, false) );
         pipeList.add( new TokenSequenceRemoveStopwords(new File("conf/stopwords-en.txt"), "UTF-8", false, false, false) );
+        pipeList.add( new TokenSequenceRemoveStopwords(new File("conf/stopwords-noise.txt"), "UTF-8", false, false, false) );
 
         // Store the tokens as integers instead of String
         pipeList.add(new TokenSequence2FeatureSequence());
@@ -86,6 +99,35 @@ public class Modeller {
         // Store the label as Label object (integer index of alphabet)
         pipeList.add(new Target2Label());
         return new SerialPipes(pipeList);
+    }
+
+    /**
+     * Responsible for saving the trained model to file.
+     */
+    public void saveModel() {
+        ObjectOutputStream oos = null;
+        try {
+            oos = new ObjectOutputStream(
+                    new FileOutputStream(new File("resources/processeddata/data"+".model")));
+            oos.writeObject(model);
+            oos.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Responsible for loading a trained model.
+     */
+    public void loadModel() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(
+                    new FileInputStream (new File("resources/processeddata/data"+".model")));
+            ParallelTopicModel model = (ParallelTopicModel) ois.readObject();
+            ois.close();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

@@ -40,3 +40,4 @@ out/
 *.pdf
 *.txt
 *.mallet
+*.model

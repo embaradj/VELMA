@@ -76,8 +76,8 @@ public class APIMyh {
 
                 if (!Objects.isNull(localFilePath)) {
                     PDFReader pdfReader = new PDFReader(localFilePath);
-                    Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses(), pdfReader.getFullText());
-                    new ToTxt(hve.getType(), hve.getCode(), hve.getFullText());
+                    Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses(), pdfReader.getFullText(), pdfReader.getPartText());
+                    new ToTxt(hve.getType(), hve.getCode(), hve.getPartText());
                     model.addHve(hve);
                 }
                 else {
