@@ -5,9 +5,6 @@ import java.awt.event.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import cc.mallet.types.InstanceList;
 import com.embaradj.velma.apis.APIJobStream;
 import com.embaradj.velma.apis.APIMyh;
 import com.embaradj.velma.lda.Importer;
@@ -32,6 +29,7 @@ public class Controller implements ActionListener {
         // Initiate APIs
         apiMyh = new APIMyh(model, support);
         apiJobStream = new APIJobStream(model, support);
+
     }
 
     protected void setView(JFrame viewFrame) {
@@ -48,9 +46,13 @@ public class Controller implements ActionListener {
         if (e.getActionCommand().equals("srcHve")) searchHve();
         if (e.getActionCommand().equals("srcJobs")) searchJobs();
         if (e.getActionCommand().equals("analyse")) analyse();
-        if (e.getActionCommand().equals("settings")) analyse();     // todo
+        if (e.getActionCommand().equals("settings")) settings();     // todo
         if (e.getActionCommand().equals("help")) analyse();         // todo
         if (e.getActionCommand().equals("quit")) quit();
+    }
+
+    private void settings() {
+        EventQueue.invokeLater(() -> { SettingsForm settingsForm = new SettingsForm(); } );
     }
 
     /**
@@ -66,22 +68,6 @@ public class Controller implements ActionListener {
         Modeller modeller = new Modeller();
 
         modeller.worker(file);
-
-
-        // Run the importer which will read files in resources/ and create a '.mallet' file
-//        Importer importer = new Importer();
-//        InstanceList inst = importer.readDir(new File("resources/rawdata/"));
-//        inst.save(new File("resources/processeddata/data.mallet"));
-        // Run the modeller which will do the topic modelling on the '.mallet' file
-//        if (Files.exists(data)) {
-//            Modeller modeller = new Modeller();
-//            modeller.worker("resources/processeddata/data.mallet");
-//        } else {
-//            JOptionPane.showMessageDialog(null,
-//                    "Could not find any data file to run modelling on!",
-//                    "No data file found",
-//                    JOptionPane.WARNING_MESSAGE);
-//        }
     }
 
     private void quit() {
