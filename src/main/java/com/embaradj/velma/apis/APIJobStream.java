@@ -92,6 +92,8 @@ public class APIJobStream {
                         .header("Accept", "application/json")
                         .build();
 
+                if (settings.debug()) System.out.println("URI: " + query + prefix + param);
+
                 HttpClient httpClient = HttpClient.newHttpClient();
                 HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
                 updateProgressBar(true);

@@ -10,6 +10,8 @@ import com.embaradj.velma.apis.APIMyh;
 import com.embaradj.velma.lda.Importer;
 import com.embaradj.velma.lda.Modeller;
 import com.embaradj.velma.models.DataModel;
+import com.embaradj.velma.results.SearchHit;
+
 import javax.swing.*;
 import static javax.swing.SwingUtilities.isEventDispatchThread;
 
@@ -46,8 +48,13 @@ public class Controller implements ActionListener {
         if (e.getActionCommand().equals("srcJobs")) searchJobs();
         if (e.getActionCommand().equals("analyse")) analyse();
         if (e.getActionCommand().equals("settings")) settings();
-        if (e.getActionCommand().equals("help")) analyse();          // todo
+        if (e.getActionCommand().equals("help")) help();
         if (e.getActionCommand().equals("quit")) quit();
+    }
+
+    private void help() {
+        EventQueue.invokeLater(() -> { DetailsForm helpForm = new DetailsForm("helptext"); } );
+
     }
 
     private void settings() {

@@ -1,5 +1,6 @@
 package com.embaradj.velma;
 
+import com.embaradj.velma.models.Job;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -9,20 +10,30 @@ import java.awt.*;
  * Menu to show details about a HVE or a Job
  */
 public class DetailsForm extends JFrame {
+    private Settings settings = Settings.getInstance();
     private JTextField detailsTextField;
     private JPanel mainPanel;
     private JTextArea textArea;
     private JButton closeBtn;
 
-    public DetailsForm(SearchHit searchHit) {
+    public DetailsForm() {
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
         setLocationRelativeTo(null);    // Position the frame in the center of the screen
         setVisible(true);
-        showText(searchHit);
 
         closeBtn.addActionListener(e -> { dispose(); });
+    }
+
+    public DetailsForm(SearchHit searchHit) {
+        this();
+        if (searchHit != null) showText(searchHit);
+    }
+
+    public DetailsForm(String contents) {
+        this();
+        textArea.setText(contents);
     }
 
     private void showText(SearchHit searchHit) {
@@ -31,6 +42,12 @@ public class DetailsForm extends JFrame {
         setTitle((isHve ? "HVE: " : "Job: ") + searchHit.getTitle());
 
         textArea.setText(searchHit.getDescription());
+
+        // For some troubleshooting..
+        if (settings.debug() && !isHve) {
+            Job job = (Job) searchHit;
+            System.out.println(job.getId());
+        }
 
     }
 
