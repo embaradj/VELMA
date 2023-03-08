@@ -19,7 +19,6 @@ public class SettingsForm extends JFrame {
         setVisible(true);
 
         createSsykCheckboxes();
-
     }
 
     private void createSsykCheckboxes() {
@@ -28,8 +27,8 @@ public class SettingsForm extends JFrame {
             JCheckBox jCheckBox = new JCheckBox(checkText, ssyk.isSelected());
             jCheckBox.addItemListener(ie -> {
                 settings.selectSsyk(ssyk, (ie.getStateChange() == 1) ? true : false);
-                System.out.println();
             });
+
             jobSettingsPanel.add(jCheckBox);
         });
 

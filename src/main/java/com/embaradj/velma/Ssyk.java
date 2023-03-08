@@ -1,5 +1,8 @@
 package com.embaradj.velma;
 
+/**
+ * Class to hold a SSYK code and whether it is selected or not
+ */
 public class Ssyk {
 
     private String code, description;

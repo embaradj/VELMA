@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Settings {
 
     private static Settings settings = new Settings();
-    public boolean DEBUG = true;
+    private boolean DEBUG = true;
     private ArrayList<Ssyk> ssyk = new ArrayList<>();
 
     private Settings() {
@@ -24,6 +24,19 @@ public class Settings {
     public static Settings getInstance() { return settings; }
 
     public ArrayList<Ssyk> getSsyk() { return ssyk; }
+
+    public String[] getSelectedSsyk() {
+
+        ArrayList<String> selected = new ArrayList<>();
+        ssyk.forEach((code) -> {
+            if (code.isSelected()) selected.add(code.getCode());
+        });
+
+        return selected.toArray(new String[0]);
+
+    }
+
+    public boolean debug() { return this.DEBUG; }
 
     public void selectSsyk(Ssyk selection, boolean select) {
         ssyk.get(ssyk.indexOf(selection)).select(select);

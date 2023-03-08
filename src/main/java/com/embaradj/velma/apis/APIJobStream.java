@@ -1,5 +1,6 @@
 package com.embaradj.velma.apis;
 
+import com.embaradj.velma.Settings;
 import com.embaradj.velma.lda.ToTxt;
 import com.embaradj.velma.models.DataModel;
 import com.embaradj.velma.models.Job;
@@ -21,13 +22,12 @@ import java.util.List;
  * Responsible for querying the JobStream API for job ads.
  */
 public class APIJobStream {
-    private boolean DEBUG = true;
+    private Settings settings = Settings.getInstance();
     private DataModel model;
     private PropertyChangeSupport support;
     private List<JobResults> jobResults;
     private final String query = "https://jobstream.api.jobtechdev.se/stream?date=2022-01-01T00:01:00";
     private final String prefix = "&occupation-concept-id=";
-    private final String[] ssykCodes = {"UXKZ_3zZ_ipB", "DJh5_yyF_hEM", "Q5DF_juj_8do", "D9SL_mtn_vGM", "cBBa_ngH_fCx", "BAeH_eg8_T2d", "UxT1_tPF_Kbg"};
     private int processedJobs = 0;
     private boolean searched = false;
 
@@ -54,13 +54,13 @@ public class APIJobStream {
         });
 
         jobOBs
-                .subscribeOn(Schedulers.io())
-                .map(ad -> new Job(ad.getId(), ad.getTitle(), ad.getText()))
-                .doOnNext(ad -> {
-                    model.addJob(ad);
-                    new ToTxt(ad.getType(), ad.getId(), ad.getDescription());
-                })
-                .subscribe();
+            .subscribeOn(Schedulers.io())
+            .map(ad -> new Job(ad.getId(), ad.getTitle(), ad.getText()))
+            .doOnNext(ad -> {
+                model.addJob(ad);
+                new ToTxt(ad.getType(), ad.getId(), ad.getDescription());
+            })
+            .subscribe();
     }
 
     /**
@@ -74,19 +74,11 @@ public class APIJobStream {
         jobResults = new ArrayList<>();
 
         try {
-            for (String param : ssykCodes) {
-                HttpRequest httpRequest;
-                if (DEBUG) { // Only fetch a handful of ads
-                    httpRequest = HttpRequest.newBuilder()
-                            .uri(new URI(query + prefix + "Q5DF_juj_8do"))
-                            .header("Accept", "application/json")
-                            .build();
-                } else {
-                    httpRequest = HttpRequest.newBuilder()
-                            .uri(new URI(query + prefix + param))
-                            .header("Accept", "application/json")
-                            .build();
-                }
+            for (String param : settings.getSelectedSsyk()) {
+                HttpRequest httpRequest = HttpRequest.newBuilder()
+                        .uri(new URI(query + prefix + param))
+                        .header("Accept", "application/json")
+                        .build();
 
                 HttpClient httpClient = HttpClient.newHttpClient();
                 HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
@@ -94,7 +86,6 @@ public class APIJobStream {
 
                 jobResults.addAll(gson.fromJson(response.body(), new TypeToken<List<JobResults>>() {}.getType()));
             }
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -125,7 +116,7 @@ public class APIJobStream {
      */
     public void updateProgressBar(boolean increase) {
         if (increase) processedJobs++;
-        int progress = ((100) * processedJobs) / ssykCodes.length;
+        int progress = ((100) * processedJobs) / settings.getSelectedSsyk().length;
         support.firePropertyChange("jobProgress", null, progress);
     }
 }

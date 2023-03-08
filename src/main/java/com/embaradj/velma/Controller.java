@@ -29,7 +29,6 @@ public class Controller implements ActionListener {
         // Initiate APIs
         apiMyh = new APIMyh(model, support);
         apiJobStream = new APIJobStream(model, support);
-
     }
 
     protected void setView(JFrame viewFrame) {
@@ -46,8 +45,8 @@ public class Controller implements ActionListener {
         if (e.getActionCommand().equals("srcHve")) searchHve();
         if (e.getActionCommand().equals("srcJobs")) searchJobs();
         if (e.getActionCommand().equals("analyse")) analyse();
-        if (e.getActionCommand().equals("settings")) settings();     // todo
-        if (e.getActionCommand().equals("help")) analyse();         // todo
+        if (e.getActionCommand().equals("settings")) settings();
+        if (e.getActionCommand().equals("help")) analyse();          // todo
         if (e.getActionCommand().equals("quit")) quit();
     }
 
