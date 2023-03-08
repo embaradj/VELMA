@@ -19,19 +19,17 @@ public class Importer {
     }
 
     public Pipe buildPipe() {
-        ArrayList pipeList = new ArrayList();
+        ArrayList<Pipe> pipeList = new ArrayList<>();
 
-        // Reads the data from File
+        // Reads the data from File and convert to lower case
         pipeList.add(new Input2CharSequence("UTF-8"));
+        pipeList.add(new CharSequenceLowercase());
 
         // Specifies the tokens with regex, includes Unicode letters for non-English text
         Pattern tokenPattern = Pattern.compile("[\\p{L}\\p{M}]+");
 
         // Tokenize the raw strings
         pipeList.add(new CharSequence2TokenSequence(tokenPattern));
-
-        // Set all tokens to lowercase
-        pipeList.add(new TokenSequenceLowercase());
 
         // Remove stop words
         pipeList.add( new TokenSequenceRemoveStopwords(new File("conf/stopwords-sv.txt"), "UTF-8", false, false, false) );
@@ -43,11 +41,14 @@ public class Importer {
         // Store the label as Label object (integer index of alphabet)
         pipeList.add(new Target2Label());
 
+        // Set all tokens to lowercase
+//        pipeList.add(new TokenSequenceLowercase());
+
         // Convert sequence of features to vector
-        pipeList.add(new FeatureSequence2FeatureVector());
+//        pipeList.add(new FeatureSequence2FeatureVector());
 
         // Print out features and label
-        pipeList.add(new PrintInput());
+//        pipeList.add(new PrintInputAndTarget());
 
         return new SerialPipes(pipeList);
     }
@@ -69,7 +70,9 @@ public class Importer {
      */
     public InstanceList readDirs(File[] dirs) {
         FileIterator iterator =
-                new FileIterator(dirs, new TxtFilter(), FileIterator.LAST_DIRECTORY);
+                new FileIterator(dirs,
+                new TxtFilter(),
+                FileIterator.LAST_DIRECTORY);
 
         InstanceList inst = new InstanceList(pipe);
         inst.addThruPipe(iterator);

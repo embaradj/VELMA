@@ -60,23 +60,28 @@ public class Controller implements ActionListener {
     private void analyse() {
         System.out.println("Running on EDT? " + isEventDispatchThread());
         System.out.println(Thread.currentThread().getName());
+        File file = new File("resources/rawdata/");
+//        Path data = Path.of("resources/processeddata/data.mallet");
 
-        Path data = Path.of("resources/processeddata/data.mallet");
+        Modeller modeller = new Modeller();
+
+        modeller.worker(file);
+
 
         // Run the importer which will read files in resources/ and create a '.mallet' file
-        Importer importer = new Importer();
-        InstanceList inst = importer.readDir(new File("resources/rawdata/"));
-        inst.save(new File("resources/processeddata/data.mallet"));
+//        Importer importer = new Importer();
+//        InstanceList inst = importer.readDir(new File("resources/rawdata/"));
+//        inst.save(new File("resources/processeddata/data.mallet"));
         // Run the modeller which will do the topic modelling on the '.mallet' file
-        if (Files.exists(data)) {
-            Modeller modeller = new Modeller();
-            modeller.worker("resources/processeddata/data.mallet");
-        } else {
-            JOptionPane.showMessageDialog(null,
-                    "Could not find any data file to run modelling on!",
-                    "No data file found",
-                    JOptionPane.WARNING_MESSAGE);
-        }
+//        if (Files.exists(data)) {
+//            Modeller modeller = new Modeller();
+//            modeller.worker("resources/processeddata/data.mallet");
+//        } else {
+//            JOptionPane.showMessageDialog(null,
+//                    "Could not find any data file to run modelling on!",
+//                    "No data file found",
+//                    JOptionPane.WARNING_MESSAGE);
+//        }
     }
 
     private void quit() {

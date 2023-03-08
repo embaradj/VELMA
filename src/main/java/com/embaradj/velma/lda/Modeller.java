@@ -1,9 +1,8 @@
 package com.embaradj.velma.lda;
 
 import cc.mallet.pipe.*;
-import cc.mallet.pipe.iterator.CsvIterator;
+import cc.mallet.pipe.iterator.FileIterator;
 import cc.mallet.topics.ParallelTopicModel;
-import cc.mallet.topics.TopicInferencer;
 import cc.mallet.types.*;
 
 import java.io.*;
@@ -12,13 +11,19 @@ import java.util.regex.Pattern;
 
 /**
  * Responsible for topic modelling using {@link cc.mallet}.
- * Will import data from the '.mallet' file, train the model
- * And analyse the topic assignments.
+ * Will import '.txt' files, process and train the model.
  */
 public class Modeller {
     ArrayList<Pipe> pipeList = new ArrayList<>();
+    // High alpha = Each document will contain a mixture of most topics
+    // And not one single topic.
+    // Low alpha = Each document might contain only a few or just one topic.
+    double alpha = 0.01; // Set the alpha value
+    // High beta = Each topic is likely to contain a mixture of words
+    // Low beta = Each topic may contain a mixture of only a few words.
+    double beta = 0.01; // Set the beta value
     int numTopics = 10; // Number of topics to search for
-    int threads = 2; // Number of threads to do work on
+    int threads = 8; // Number of threads to do work on
     int iterations = 2000; // Number of iterations for the modelling
 
     public Modeller() { }
@@ -29,89 +34,78 @@ public class Modeller {
      * Finishes by inferring a topic distribution
      * @param file '.mallet'
      */
-    public void worker(String file) {
-        // Apply lowercase, tokenize, remove stop words and map features
-        pipeList.add( new CharSequenceLowercase() );
-        pipeList.add( new CharSequence2TokenSequence(Pattern.compile("\\p{L}[\\p{L}\\p{P}]+\\p{L}")) );
-        pipeList.add( new TokenSequenceRemoveStopwords(new File("conf/stopwords-sv.txt"), "UTF-8", false, false, false) );
-        pipeList.add( new TokenSequence2FeatureSequence() );
+    public void worker(File file) {
+        // Create instance list with the pipeline
+        InstanceList instances = new InstanceList (buildPipe());
+        // Process each instance provided by the iterator
+        instances.addThruPipe(readDir(file));
 
-        InstanceList instances = new InstanceList (new SerialPipes(pipeList));
+        // Create the model and set number of topics and alpha, beta value
+        // High Alpha = mixture of topics in each file
+        // High Beta = mixture of words in each topic
+        ParallelTopicModel model =
+                new ParallelTopicModel(numTopics, alpha, beta);
 
-        // Read the passed file
-        Reader reader = null;
-        try {
-            reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
-        } catch (UnsupportedEncodingException | FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        // Creates the layout of the model i.e., data, label, name
-        instances.addThruPipe(new CsvIterator(reader, Pattern.compile("^(\\S*)[\\s,]*(\\S*)[\\s,]*(.*)$"),
-                3, 2, 1));
-
-
-        // Creates a model with set amount of topics
-        ParallelTopicModel model = new ParallelTopicModel(numTopics, 1.0, 0.01);
+        // Add the instances to the model
         model.addInstances(instances);
-        model.setNumThreads(threads); // Set working threads
-        model.setNumIterations(iterations); // Set iterations
+        // Set number of thread to do work on
+        model.setNumThreads(threads);
+        // Set the number of iteration to train the model on
+        // 50 for testing, 1000-2000 for production mode
+        model.setNumIterations(iterations);
+        // Build the LDA model
         try {
             model.estimate();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
-        // Map and show the word of the first instance run
-        Alphabet dataAlphabet = instances.getDataAlphabet();
-        FeatureSequence tokens = (FeatureSequence) model.getData().get(0).instance.getData();
-        LabelSequence topics = model.getData().get(0).topicSequence;
-        Formatter out = new Formatter(new StringBuilder(), Locale.US);
+    /**
+     * Build the default pipeline which will process the raw data files.
+     * @return Pipe
+     */
+    private Pipe buildPipe() {
+        // Reads the data from File and convert to lower case
+        pipeList.add(new Input2CharSequence("UTF-8"));
+        pipeList.add(new CharSequenceLowercase());
 
-        for (int i = 0; i < tokens.getLength(); i++) {
-            out.format("%s-%d\n", dataAlphabet.lookupObject(tokens.getIndexAtPosition(i)), topics.getIndexAtPosition(i));
-        }
-        System.out.println(out);
+        // Specifies the tokens with regex, includes Unicode letters for non-English text
+        Pattern tokenPattern = Pattern.compile("[\\p{L}\\p{M}]+");
 
-        // Estimate the topic distribution during first instance run
-        double[] topicDistr = model.getTopicProbabilities(0);
+        // Tokenize the raw strings
+        pipeList.add(new CharSequence2TokenSequence(tokenPattern));
 
-        // Array of sorted sets of word ID and count
-        ArrayList<TreeSet< IDSorter>> topicSortedWords = model.getSortedWords();
+        // Remove stop words
+        pipeList.add( new TokenSequenceRemoveStopwords(new File("conf/stopwords-sv.txt"), "UTF-8", false, false, false) );
+        pipeList.add( new TokenSequenceRemoveStopwords(new File("conf/stopwords-en.txt"), "UTF-8", false, false, false) );
 
-        // Top 5 words in the topics with proportions for first document
-        for (int topic = 0; topic < numTopics; topic++) {
-            Iterator<IDSorter> iterator = topicSortedWords.get(topic).iterator();
+        // Store the tokens as integers instead of String
+        pipeList.add(new TokenSequence2FeatureSequence());
 
-            out = new Formatter(new StringBuilder(), Locale.US);
-            out.format("%d\t%.3f\t", topic, topicDistr[topic]);
-            int rank = 0;
+        // Store the label as Label object (integer index of alphabet)
+        pipeList.add(new Target2Label());
+        return new SerialPipes(pipeList);
+    }
 
-            while (iterator.hasNext() && rank < 5) {
-                IDSorter idCountPair = iterator.next();
-                out.format("%s (%.0f)", dataAlphabet.lookupObject(idCountPair.getID()), idCountPair.getWeight());
-                rank++;
-            }
-            System.out.println(out);
-        }
+    /**
+     * Start the recursive reading of directories
+     * @param dir to read
+     * @return FileIterator
+     */
+    private FileIterator readDir(File dir) {
+        return readDirs(new File[] {dir});
+    }
 
-        // Create a new instance with high probability of first topic
-        StringBuilder builder = new StringBuilder();
-        Iterator<IDSorter> iterator = topicSortedWords.get(0).iterator();
-
-        int rank = 0;
-        while (iterator.hasNext() && rank < 5) {
-            IDSorter idCountPair = iterator.next();
-            builder.append(dataAlphabet.lookupObject(idCountPair.getID()) + " ");
-            rank++;
-        }
-
-        // New test instance with empty target and source fields
-        InstanceList testing = new InstanceList(instances.getPipe());
-        testing.addThruPipe(new Instance(builder.toString(), null, "test instance", null));
-
-        TopicInferencer inferencer = model.getInferencer();
-        double[] testProb = inferencer.getSampledDistribution(testing.get(0), 10, 1, 5);
-        System.out.println("0\t" + testProb[0]);
+    /**
+     * Recursively look through subdirectories
+     * And only look for '.txt' files.
+     * @param dirs directories
+     * @return FileIterator
+     */
+    private FileIterator readDirs(File[] dirs) {
+        return new FileIterator(dirs,
+                new TxtFilter(),
+                FileIterator.LAST_DIRECTORY);
     }
 }
