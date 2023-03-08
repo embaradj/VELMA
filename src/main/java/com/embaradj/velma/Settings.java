@@ -43,6 +43,8 @@ public class Settings {
     }
 
     public String getHelpText() {
+
+        // todo: Load from RTF document
         return "THIS IS HELPTEXT";
     }
 
