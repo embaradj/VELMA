@@ -4,7 +4,6 @@ import com.embaradj.velma.models.DataModel;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 /**
  * Represents the view of the MVC pattern
@@ -84,7 +83,6 @@ public class MainForm extends JFrame {
                             listModel1.clear();
                         }
                         if (e.getPropertyName().equals("job")) {
-                            System.out.println("clearing listmodel2");
                             listModel2.clear();
                         }
                     }
@@ -99,7 +97,6 @@ public class MainForm extends JFrame {
                 public void run() {
 
                     int progress = (int) e.getNewValue();
-                    System.out.println("Updating progressbar.." + progress);
                     String progressText = (progress >= 100) ? "Download complete" : "Downloading " + progress + "%";
 
                     if (e.getPropertyName().equals("hveProgress")) {

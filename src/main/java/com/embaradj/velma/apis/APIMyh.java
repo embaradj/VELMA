@@ -2,6 +2,7 @@ package com.embaradj.velma.apis;
 
 import com.embaradj.velma.FileDownloader;
 import com.embaradj.velma.PDFReader;
+import com.embaradj.velma.Settings;
 import com.embaradj.velma.lda.ToTxt;
 import com.embaradj.velma.models.Hve;
 import com.embaradj.velma.results.MyhSearchRequest;
@@ -20,7 +21,7 @@ import com.embaradj.velma.models.DataModel;
 import static java.lang.System.out;
 
 public class APIMyh {
-    public boolean DEBUG = true;
+    private Settings settings = Settings.getInstance();
     private int processedHves = 0;
     private int totalHves = 0;
     private DataModel model;
@@ -137,12 +138,10 @@ public class APIMyh {
         MyhSearchRequest myhSearch = new MyhSearchRequest(title);
         Gson gson = new Gson();
         String jsonRequest = gson.toJson(myhSearch);
-        out.println("Searching for " + title);
 
         List<MyhSearchResult.Hit> results = new LinkedList<MyhSearchResult.Hit>();
 
         try {
-
             HttpRequest httpRequest = HttpRequest.newBuilder()
                     .uri(new URI("https://w3d3-integration-service.myh.se/1.0/search"))
                     .header("Content-Type", "application/json")
@@ -155,13 +154,11 @@ public class APIMyh {
             MyhSearchResult searchResult = gson.fromJson(response.body(), MyhSearchResult.class);
             results = searchResult.getResult();
 
-            if (DEBUG) {
+            if (settings.debug()) {
                 int approved = 0;
                 int count = 1;
-
                 for (MyhSearchResult.Hit hit : results) {
                     if (hit.isApproved()) approved++;
-
                     System.out.println(count + ":  " + hit.getId() + "\t" + hit.getSyllabusUrl()
                             + "\t year: " + hit.getYear() + "\t" + ((hit.isApproved()) ? "approved" : "declined"));
                     count++;

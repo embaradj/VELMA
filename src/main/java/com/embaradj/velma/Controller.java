@@ -41,7 +41,7 @@ public class Controller implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Clicked: " + e.getActionCommand());
+        //System.out.println("Clicked: " + e.getActionCommand());
         if (e.getActionCommand().equals("srcHve")) searchHve();
         if (e.getActionCommand().equals("srcJobs")) searchJobs();
         if (e.getActionCommand().equals("analyse")) analyse();
