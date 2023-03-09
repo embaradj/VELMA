@@ -9,14 +9,17 @@ import java.util.HashMap;
 public class Settings {
 
     private static Settings settings = new Settings();
-    private boolean DEBUG = true;
+    private final boolean DEBUG = true;
     private ArrayList<Ssyk> ssyk = new ArrayList<>();
     private HashMap<String, Boolean> languages = new HashMap<>();
+    private double alpha, beta;
+    private int numTopics, threads, iterations;
 
+    // Constructor, initiates all default values
     private Settings() {
-
         setDefaultSsyk();
         setDefaultLang();
+        setDefaultAnalyser();
     }
 
     public static Settings getInstance() { return settings; }
@@ -63,6 +66,23 @@ public class Settings {
     public HashMap<String, Boolean> getLang() { return this.languages; }
 
     // ANALYSER SETTINGS
+    private void setDefaultAnalyser() {
+        alpha = 0.01;
+        beta = 0.01;
+        numTopics = 10;
+        threads = 8;
+        iterations = 2000;
+    }
+    public double getAlpha() { return alpha; }
+    public void setAlpha(double alpha) { this.alpha = alpha; }
+    public double getBeta() { return beta; }
+    public void setBeta(double beta) { this.beta = beta; }
+    public int getNumTopics() { return numTopics;}
+    public void setNumTopics(int numTopics) { this.numTopics = numTopics; }
+    public int getThreads() { return threads; }
+    public void setThreads(int threads) { this.threads = threads; }
+    public int getIterations() { return iterations; }
+    public void setIterations(int iterations) { this.iterations = iterations; }
 
 
     public String getHelpText() {

@@ -20,6 +20,7 @@ public class SettingsForm extends JFrame {
 
         createSsykCheckboxes();
         createLangCheckboxes();
+        createAnalyserOptions();
     }
 
     private void createSsykCheckboxes() {
@@ -49,6 +50,58 @@ public class SettingsForm extends JFrame {
 
             jobLangPanel.add(checkbox);
         });
+    }
+
+    private void createAnalyserOptions() {
+
+        // Alpha
+        SpinnerNumberModel alphaSpinnerModel = new SpinnerNumberModel(settings.getAlpha(), 0.01, 100, 0.01);
+        JSpinner alphaSpinner = new JSpinner(alphaSpinnerModel);
+        alphaSpinner.setEditor(new JSpinner.NumberEditor(alphaSpinner, "0.00"));
+        JLabel alphaLabel = new JLabel("alpha");
+        alphaLabel.setLabelFor(alphaSpinner);
+
+        // Beta
+        SpinnerNumberModel betaSpinnerModel = new SpinnerNumberModel(settings.getBeta(), 0.01, 100, 0.01);
+        JSpinner betaSpinner = new JSpinner(betaSpinnerModel);
+        betaSpinner.setEditor(new JSpinner.NumberEditor(betaSpinner, "0.00"));
+        JLabel betaLabel = new JLabel("beta");
+        betaLabel.setLabelFor(betaSpinner);
+
+        // Number of topics
+        SpinnerNumberModel topicsSpinnerModel = new SpinnerNumberModel(settings.getNumTopics(), 1, 10000, 1);
+        JSpinner topicsSpinner = new JSpinner(topicsSpinnerModel);
+        JLabel topicsLabel = new JLabel("Number of topics");
+        topicsLabel.setLabelFor(topicsSpinner);
+
+        // Number of threads
+        SpinnerNumberModel threadsSpinnerModel = new SpinnerNumberModel(settings.getThreads(), 1, 256, 1);
+        JSpinner threadsSpinner = new JSpinner(threadsSpinnerModel);
+        JLabel threadsLabel = new JLabel("Number of threads");
+        threadsLabel.setLabelFor(threadsSpinner);
+
+        // Number of iterations
+        SpinnerNumberModel iterationsSpinnerModel = new SpinnerNumberModel(settings.getIterations(), 1, 1000000, 100);
+        JSpinner iterationsSpinner = new JSpinner(iterationsSpinnerModel);
+        JLabel iterationsLabel = new JLabel("Number of iterations");
+        iterationsLabel.setLabelFor(iterationsSpinner);
+
+
+        // Add everything to the container
+        analyserSettingsPanel.add(alphaSpinner);
+        analyserSettingsPanel.add(alphaLabel);
+
+        analyserSettingsPanel.add(betaSpinner);
+        analyserSettingsPanel.add(betaLabel);
+
+        analyserSettingsPanel.add(topicsSpinner);
+        analyserSettingsPanel.add(topicsLabel);
+
+        analyserSettingsPanel.add(threadsSpinner);
+        analyserSettingsPanel.add(threadsLabel);
+
+        analyserSettingsPanel.add(iterationsSpinner);
+        analyserSettingsPanel.add(iterationsLabel);
     }
 
     private void showWarning(String warning) {
@@ -97,7 +150,7 @@ public class SettingsForm extends JFrame {
         mainPanel.add(jobSsykPanel, gbc);
         jobSsykPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Job Ads SSYK codes", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         analyserSettingsPanel = new JPanel();
-        analyserSettingsPanel.setLayout(new GridBagLayout());
+        analyserSettingsPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
