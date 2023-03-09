@@ -7,9 +7,9 @@ import java.awt.*;
 public class SettingsForm extends JFrame {
     private Settings settings = Settings.getInstance();
     private JPanel mainPanel;
-    private JPanel hveSettingsPanel;
+    private JPanel jobLangPanel;
     private JPanel analyserSettingsPanel;
-    private JPanel jobSettingsPanel;
+    private JPanel jobSsykPanel;
 
     public SettingsForm() {
         setContentPane(mainPanel);
@@ -19,19 +19,31 @@ public class SettingsForm extends JFrame {
         setVisible(true);
 
         createSsykCheckboxes();
+        createLangCheckboxes();
     }
 
     private void createSsykCheckboxes() {
         settings.getSsyk().forEach((Ssyk ssyk) -> {
             String checkText = ssyk.getCode() + "   " + ssyk.getDescription();
-            JCheckBox jCheckBox = new JCheckBox(checkText, ssyk.isSelected());
-            jCheckBox.addItemListener(ie -> {
+            JCheckBox checkBox = new JCheckBox(checkText, ssyk.isSelected());
+            checkBox.addItemListener(ie -> {
                 settings.selectSsyk(ssyk, (ie.getStateChange() == 1) ? true : false);
             });
 
-            jobSettingsPanel.add(jCheckBox);
+            jobSsykPanel.add(checkBox);
         });
+    }
 
+    private void createLangCheckboxes() {
+        settings.getLang().forEach((lang, sel) -> {
+            System.out.println(lang);
+            JCheckBox checkbox = new JCheckBox(lang, sel);
+            checkbox.addItemListener(ie -> {
+                settings.selectLang(lang, (ie.getStateChange() == 1) ? true : false);
+            });
+
+            jobLangPanel.add(checkbox);
+        });
     }
 
     {
@@ -53,38 +65,37 @@ public class SettingsForm extends JFrame {
         mainPanel.setLayout(new GridBagLayout());
         mainPanel.setPreferredSize(new Dimension(500, 500));
         mainPanel.setRequestFocusEnabled(true);
-        hveSettingsPanel = new JPanel();
-        hveSettingsPanel.setLayout(new GridBagLayout());
+        jobLangPanel = new JPanel();
+        jobLangPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 10.0;
-        gbc.weighty = 10.0;
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(5, 5, 0, 0);
-        mainPanel.add(hveSettingsPanel, gbc);
-        hveSettingsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "HVE Settings", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
-        jobSettingsPanel = new JPanel();
-        jobSettingsPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        gbc.insets = new Insets(5, 5, 5, 5);
+        mainPanel.add(jobLangPanel, gbc);
+        jobLangPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Job Ads languages", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        jobSsykPanel = new JPanel();
+        jobSsykPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weightx = 10.0;
-        gbc.weighty = 10.0;
+        gbc.weighty = 5.0;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(5, 5, 5, 5);
-        mainPanel.add(jobSettingsPanel, gbc);
-        jobSettingsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Job Ads Settings", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        mainPanel.add(jobSsykPanel, gbc);
+        jobSsykPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Job Ads SSYK codes", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         analyserSettingsPanel = new JPanel();
         analyserSettingsPanel.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.weightx = 10.0;
-        gbc.weighty = 10.0;
+        gbc.weighty = 5.0;
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(5, 5, 0, 0);
+        gbc.insets = new Insets(5, 5, 5, 5);
         mainPanel.add(analyserSettingsPanel, gbc);
         analyserSettingsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Analyser Settings", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
     }

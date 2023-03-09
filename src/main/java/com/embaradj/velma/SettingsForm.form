@@ -10,28 +10,28 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="8a16b" binding="hveSettingsPanel" layout-manager="GridBagLayout">
+      <grid id="8a16b" binding="jobLangPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="0" right="0" weightx="10.0" weighty="10.0"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="10.0" weighty="0.0"/>
         </constraints>
         <properties/>
-        <border type="line" title="HVE Settings"/>
+        <border type="line" title="Job Ads languages"/>
         <children/>
       </grid>
-      <grid id="4d0f9" binding="jobSettingsPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+      <grid id="4d0f9" binding="jobSsykPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="10.0" weighty="10.0"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="10.0" weighty="5.0"/>
         </constraints>
         <properties/>
-        <border type="line" title="Job Ads Settings"/>
+        <border type="line" title="Job Ads SSYK codes"/>
         <children/>
       </grid>
       <grid id="7c817" binding="analyserSettingsPanel" layout-manager="GridBagLayout">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="0" right="0" weightx="10.0" weighty="10.0"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="10.0" weighty="5.0"/>
         </constraints>
         <properties/>
         <border type="line" title="Analyser Settings"/>
