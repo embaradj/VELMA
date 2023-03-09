@@ -14,6 +14,16 @@ public class Settings {
     private HashMap<String, Boolean> languages = new HashMap<>();
 
     private Settings() {
+
+        setDefaultSsyk();
+        setDefaultLang();
+    }
+
+    public static Settings getInstance() { return settings; }
+    public boolean debug() { return this.DEBUG; }
+
+    // SSYK Settings
+    private void setDefaultSsyk() {
         ssyk.add(new Ssyk("UXKZ_3zZ_ipB", "Systemanalytiker och IT-arkitekter m.fl.", true));
         ssyk.add(new Ssyk("DJh5_yyF_hEM", "Mjukvaru- och systemutvecklare m.fl.", true));
         ssyk.add(new Ssyk("Q5DF_juj_8do", "Utvecklare inom spel och digitala media", true));
@@ -21,15 +31,8 @@ public class Settings {
         ssyk.add(new Ssyk("cBBa_ngH_fCx", "Systemförvaltare m.fl.", true));
         ssyk.add(new Ssyk("BAeH_eg8_T2d", "IT-säkerhetsspecialister", true));
         ssyk.add(new Ssyk("UxT1_tPF_Kbg", "Övriga IT-specialister", true));
-
-        languages.put("English", true);
-        languages.put("Swedish", true);
     }
-
-    public static Settings getInstance() { return settings; }
-
     public ArrayList<Ssyk> getSsyk() { return ssyk; }
-
     public String[] getSelectedSsyk() {
 
         ArrayList<String> selected = new ArrayList<>();
@@ -40,34 +43,31 @@ public class Settings {
         return selected.toArray(new String[0]);
 
     }
-
-    public boolean debug() { return this.DEBUG; }
-
     public void selectSsyk(Ssyk selection, boolean select) {
         ssyk.get(ssyk.indexOf(selection)).select(select);
     }
 
+    // LANGUAGE SETTINGS
+    private void setDefaultLang() {
+        languages.put("English", true);
+        languages.put("Swedish", true);
+    }
     public void selectLang(String lang, boolean select) {
         languages.replace(lang, select);
     }
-
     public String[] getSelectedLang() {
         ArrayList<String> selected = new ArrayList<>();
         languages.forEach((lang, select) -> { if (select) selected.add(lang); });
         return selected.toArray(new String[0]);
     }
-
     public HashMap<String, Boolean> getLang() { return this.languages; }
 
-    public String getHelpText() {
+    // ANALYSER SETTINGS
 
+
+    public String getHelpText() {
         // todo: Load from RTF document
         return "THIS IS HELPTEXT";
     }
-
-
-
-
-
 
 }

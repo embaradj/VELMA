@@ -28,6 +28,9 @@ public class SettingsForm extends JFrame {
             JCheckBox checkBox = new JCheckBox(checkText, ssyk.isSelected());
             checkBox.addItemListener(ie -> {
                 settings.selectSsyk(ssyk, (ie.getStateChange() == 1) ? true : false);
+                if (settings.getSelectedSsyk().length == 0) {
+                    showWarning("You must select at least one SSYK code!");
+                }
             });
 
             jobSsykPanel.add(checkBox);
@@ -36,14 +39,20 @@ public class SettingsForm extends JFrame {
 
     private void createLangCheckboxes() {
         settings.getLang().forEach((lang, sel) -> {
-            System.out.println(lang);
             JCheckBox checkbox = new JCheckBox(lang, sel);
             checkbox.addItemListener(ie -> {
                 settings.selectLang(lang, (ie.getStateChange() == 1) ? true : false);
+                if (settings.getSelectedLang().length == 0) {
+                    showWarning("You must select at least one language!");
+                }
             });
 
             jobLangPanel.add(checkbox);
         });
+    }
+
+    private void showWarning(String warning) {
+        JOptionPane.showMessageDialog(null, warning);
     }
 
     {
