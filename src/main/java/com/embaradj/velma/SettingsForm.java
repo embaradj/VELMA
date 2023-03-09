@@ -3,6 +3,8 @@ package com.embaradj.velma;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SettingsForm extends JFrame {
     private Settings settings = Settings.getInstance();
@@ -10,6 +12,10 @@ public class SettingsForm extends JFrame {
     private JPanel jobLangPanel;
     private JPanel analyserSettingsPanel;
     private JPanel jobSsykPanel;
+    private JPanel buttonPanel;
+    private JSpinner alphaSpinner, betaSpinner, iterationsSpinner, threadsSpinner, topicsSpinner;
+    private HashMap<String, JCheckBox> langCheckBoxes = new HashMap<>();
+    private HashMap<Ssyk, JCheckBox> ssykCheckBoxes = new HashMap<>();
 
     public SettingsForm() {
         $$$setupUI$$$();
@@ -22,19 +28,22 @@ public class SettingsForm extends JFrame {
         createSsykCheckboxes();
         createLangCheckboxes();
         createAnalyserOptions();
+        createButtons();
     }
 
     private void createSsykCheckboxes() {
         settings.getSsyk().forEach((Ssyk ssyk) -> {
             String checkText = ssyk.getCode() + "   " + ssyk.getDescription();
             JCheckBox checkBox = new JCheckBox(checkText, ssyk.isSelected());
-            checkBox.addItemListener(ie -> {
-                settings.selectSsyk(ssyk, (ie.getStateChange() == 1) ? true : false);
-                if (settings.getSelectedSsyk().length == 0) {
-                    showWarning("You must select at least one SSYK code!");
-                }
-            });
+//            checkBox.addItemListener(ie -> {
+//                settings.selectSsyk(ssyk, (ie.getStateChange() == 1) ? true : false);
+//                if (settings.getSelectedSsyk().length == 0) {
+//                    showWarning("You must select at least one SSYK code!");
+//                }
+//            });
 
+//            ssykCheckBoxes.add(checkBox);
+            ssykCheckBoxes.put(ssyk, checkBox); // Save these we later can check wheter they are checked
             jobSsykPanel.add(checkBox);
         });
     }
@@ -42,13 +51,15 @@ public class SettingsForm extends JFrame {
     private void createLangCheckboxes() {
         settings.getLang().forEach((lang, sel) -> {
             JCheckBox checkbox = new JCheckBox(lang, sel);
-            checkbox.addItemListener(ie -> {
-                settings.selectLang(lang, (ie.getStateChange() == 1) ? true : false);
-                if (settings.getSelectedLang().length == 0) {
-                    showWarning("You must select at least one language!");
-                }
-            });
+//            checkbox.addItemListener(ie -> {
+//                settings.selectLang(lang, (ie.getStateChange() == 1) ? true : false);
+//                if (settings.getSelectedLang().length == 0) {
+//                    showWarning("You must select at least one language!");
+//                }
+//            });
 
+//            langCheckBoxes.add(checkbox);  // Save these we later can check wheter they are checked
+            langCheckBoxes.put(lang, checkbox);
             jobLangPanel.add(checkbox);
         });
     }
@@ -59,7 +70,7 @@ public class SettingsForm extends JFrame {
 
         // Alpha
         SpinnerNumberModel alphaSpinnerModel = new SpinnerNumberModel(settings.getAlpha(), 0.01, 100, 0.01);
-        JSpinner alphaSpinner = new JSpinner(alphaSpinnerModel);
+        alphaSpinner = new JSpinner(alphaSpinnerModel);
         alphaSpinner.setEditor(new JSpinner.NumberEditor(alphaSpinner, "0.00"));
 
         JLabel alphaLabel = new JLabel("alpha");
@@ -67,30 +78,30 @@ public class SettingsForm extends JFrame {
 
         // Beta
         SpinnerNumberModel betaSpinnerModel = new SpinnerNumberModel(settings.getBeta(), 0.01, 100, 0.01);
-        JSpinner betaSpinner = new JSpinner(betaSpinnerModel);
+        betaSpinner = new JSpinner(betaSpinnerModel);
         betaSpinner.setEditor(new JSpinner.NumberEditor(betaSpinner, "0.00"));
         String betaToolTipText = "High beta = Each topic is more likely to contain " +
                 "a mixture of words\nLow beta = Each topic may contain a mixture of only a few words";
         betaSpinner.setToolTipText(betaToolTipText);
         JLabel betaLabel = new JLabel("beta");
-//        betaLabel.setLabelFor(betaSpinner);
+        betaLabel.setLabelFor(betaSpinner);
         betaLabel.setToolTipText(betaToolTipText);
 
         // Number of topics
         SpinnerNumberModel topicsSpinnerModel = new SpinnerNumberModel(settings.getNumTopics(), 1, 10000, 1);
-        JSpinner topicsSpinner = new JSpinner(topicsSpinnerModel);
+        topicsSpinner = new JSpinner(topicsSpinnerModel);
         JLabel topicsLabel = new JLabel("Number of topics");
         topicsLabel.setLabelFor(topicsSpinner);
 
         // Number of threads
         SpinnerNumberModel threadsSpinnerModel = new SpinnerNumberModel(settings.getThreads(), 1, 256, 1);
-        JSpinner threadsSpinner = new JSpinner(threadsSpinnerModel);
+        threadsSpinner = new JSpinner(threadsSpinnerModel);
         JLabel threadsLabel = new JLabel("Number of threads");
         threadsLabel.setLabelFor(threadsSpinner);
 
         // Number of iterations
         SpinnerNumberModel iterationsSpinnerModel = new SpinnerNumberModel(settings.getIterations(), 1, 1000000, 100);
-        JSpinner iterationsSpinner = new JSpinner(iterationsSpinnerModel);
+        iterationsSpinner = new JSpinner(iterationsSpinnerModel);
         iterationsSpinner.setEditor(new JSpinner.NumberEditor(iterationsSpinner, "#"));
         JLabel iterationsLabel = new JLabel("Number of iterations");
         iterationsLabel.setLabelFor(iterationsSpinner);
@@ -153,6 +164,71 @@ public class SettingsForm extends JFrame {
         analyserSettingsPanel.add(iterationsLabel, c);
     }
 
+    private void createButtons() {
+        JButton okBtn = new JButton("OK");
+        okBtn.addActionListener((l) -> { if (checkSettings()) saveSettings(); });
+
+        JButton cancelBtn = new JButton("Cancel");
+        cancelBtn.addActionListener((l) -> dispose());
+
+        buttonPanel.add(okBtn);
+        buttonPanel.add(cancelBtn);
+    }
+
+    /**
+     * Check if input is legal
+     * @return Whether input legal
+     */
+    private boolean checkSettings() {
+        System.out.println("Checking settings..");
+
+        // Check that at least one language is selected
+        int checked = 0;
+
+        for (JCheckBox checkbox : langCheckBoxes.values()) {
+            if (checkbox.getModel().isSelected()) checked++;
+        }
+        if (checked == 0) {
+            showWarning("You must select at least one language!");
+            return false;
+        }
+
+        // Check that at least one SSYK code is selected
+        checked = 0;
+        for (JCheckBox checkbox : ssykCheckBoxes.values()) {
+            if (checkbox.getModel().isSelected()) checked++;
+        }
+        if (checked == 0) {
+            showWarning("You must select at least one SSYK code!");
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Saves the settings and disposes the frame
+     */
+    private void saveSettings() {
+        System.out.println("Saving settings..");
+
+        langCheckBoxes.forEach((lang, checkbox) -> {
+            settings.selectLang(lang, checkbox.getModel().isSelected());
+        });
+
+        ssykCheckBoxes.forEach((ssyk, checkbox) -> {
+            settings.selectSsyk(ssyk, checkbox.getModel().isSelected());
+        });
+
+        settings.setAlpha((Double) alphaSpinner.getValue());
+        settings.setBeta((Double) betaSpinner.getValue());
+        settings.setIterations(Integer.parseInt(iterationsSpinner.getValue().toString()));
+        settings.setThreads(Integer.parseInt(threadsSpinner.getValue().toString()));
+        settings.setNumTopics(Integer.parseInt(topicsSpinner.getValue().toString()));
+
+        dispose();
+    }
+
     private void showWarning(String warning) {
         JOptionPane.showMessageDialog(null, warning);
     }
@@ -202,6 +278,14 @@ public class SettingsForm extends JFrame {
         gbc.insets = new Insets(5, 5, 5, 5);
         mainPanel.add(analyserSettingsPanel, gbc);
         analyserSettingsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Analyser Settings", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        mainPanel.add(buttonPanel, gbc);
     }
 
     /**
