@@ -33,7 +33,7 @@
           <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="355" height="30"/>
           </grid>
-          <gridbag weightx="1.0" weighty="0.0"/>
+          <gridbag top="0" left="2" bottom="2" right="1" weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
           <actionCommand value="srcHve"/>
@@ -45,7 +45,7 @@
           <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="355" height="4"/>
           </grid>
-          <gridbag weightx="1.0" weighty="0.0"/>
+          <gridbag top="0" left="2" bottom="0" right="1" weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
           <string value=""/>
@@ -54,7 +54,7 @@
       <component id="a71fd" class="javax.swing.JProgressBar" binding="progressBar2" default-binding="true">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.0"/>
+          <gridbag top="0" left="1" bottom="0" right="2" weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
           <string value=""/>
@@ -79,7 +79,7 @@
       <component id="954b1" class="javax.swing.JButton" binding="srcJobsBtn">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.0"/>
+          <gridbag top="0" left="1" bottom="2" right="2" weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
           <actionCommand value="srcJobs"/>
@@ -91,7 +91,7 @@
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="151" height="30"/>
           </grid>
-          <gridbag weightx="1.0" weighty="0.0"/>
+          <gridbag top="0" left="1" bottom="2" right="1" weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
           <actionCommand value="analyse"/>
@@ -103,7 +103,7 @@
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="93" height="30"/>
           </grid>
-          <gridbag weightx="1.0" weighty="0.0"/>
+          <gridbag top="0" left="1" bottom="2" right="1" weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
           <actionCommand value="settings"/>
@@ -113,7 +113,7 @@
       <component id="b7f6f" class="javax.swing.JButton" binding="helpBtn">
         <constraints>
           <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.0"/>
+          <gridbag top="0" left="1" bottom="2" right="1" weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
           <actionCommand value="help"/>
@@ -123,7 +123,7 @@
       <component id="91c3e" class="javax.swing.JButton" binding="quitBtn">
         <constraints>
           <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.0"/>
+          <gridbag top="0" left="1" bottom="2" right="2" weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
           <actionCommand value="quit"/>
