@@ -31,6 +31,7 @@ public class SettingsForm extends JFrame {
         $$$setupUI$$$();
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setTitle("Settings");
         pack();
         setLocationRelativeTo(null);    // Position the frame in the center of the screen
         setVisible(true);
@@ -108,11 +109,12 @@ public class SettingsForm extends JFrame {
         checkBoxRows.add(new CustomWrapper(iterationsSpinner, iterationsLabel));
 
         addRowsToPanel(checkBoxRows, analyserSettingsPanel);
-   }
+    }
 
     /**
      * Adds a list of components with labels to a panel, then fills the rest with empty space in order
      * to push the contents to the top
+     *
      * @param boxes List of "boxes", which is a wrapper for a control component and a label
      * @param panel The panel to which the components are being added.
      */
@@ -142,7 +144,7 @@ public class SettingsForm extends JFrame {
         c.weighty = 1;
         c.gridy = row;
         panel.add(new JLabel(), c);
-
+//        panel.revalidate();
     }
 
     private void createButtons() {
@@ -234,33 +236,11 @@ public class SettingsForm extends JFrame {
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.weightx = 10.0;
+        gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(5, 5, 5, 5);
         mainPanel.add(jobLangPanel, gbc);
         jobLangPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Job Ads languages", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
-        jobSsykPanel = new JPanel();
-        jobSsykPanel.setLayout(new GridBagLayout());
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.weightx = 10.0;
-        gbc.weighty = 5.0;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(5, 5, 5, 5);
-        mainPanel.add(jobSsykPanel, gbc);
-        jobSsykPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Job Ads SSYK codes", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
-        analyserSettingsPanel = new JPanel();
-        analyserSettingsPanel.setLayout(new GridBagLayout());
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.weightx = 10.0;
-        gbc.weighty = 5.0;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(5, 5, 5, 5);
-        mainPanel.add(analyserSettingsPanel, gbc);
-        analyserSettingsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Analyser Settings", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         gbc = new GridBagConstraints();
@@ -269,6 +249,32 @@ public class SettingsForm extends JFrame {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(5, 5, 5, 5);
         mainPanel.add(buttonPanel, gbc);
+        final JScrollPane scrollPane1 = new JScrollPane();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        mainPanel.add(scrollPane1, gbc);
+        scrollPane1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        jobSsykPanel = new JPanel();
+        jobSsykPanel.setLayout(new GridBagLayout());
+        scrollPane1.setViewportView(jobSsykPanel);
+        jobSsykPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Job Ads SSYK codes", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        final JScrollPane scrollPane2 = new JScrollPane();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        mainPanel.add(scrollPane2, gbc);
+        scrollPane2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        analyserSettingsPanel = new JPanel();
+        analyserSettingsPanel.setLayout(new GridBagLayout());
+        scrollPane2.setViewportView(analyserSettingsPanel);
+        analyserSettingsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Analyser Settings", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
     }
 
     /**
