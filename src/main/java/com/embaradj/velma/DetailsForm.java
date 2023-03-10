@@ -4,7 +4,6 @@ import com.embaradj.velma.models.Job;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
 import javax.swing.text.Document;
-import javax.swing.text.rtf.RTFEditorKit;
 import java.awt.*;
 
 /**
@@ -92,7 +91,7 @@ public class DetailsForm extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(0, 5, 5, 5);
+        gbc.insets = new Insets(5, 5, 5, 5);
         mainPanel.add(closeBtn, gbc);
     }
 

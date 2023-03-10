@@ -11,16 +11,18 @@ import java.util.HashMap;
  */
 public class Settings {
 
-    private String helpFilePath = "resources/help.rtf";
-
-    private static Settings settings = new Settings();
+    protected final double VERSION = 1.0D;
+    private final String HELP_FILE_PATH = "resources/help.rtf";
+    private final static Settings settings = new Settings();
     private final boolean DEBUG = true;
-    private ArrayList<Ssyk> ssyk = new ArrayList<>();
-    private HashMap<String, Boolean> languages = new HashMap<>();
+    private final ArrayList<Ssyk> ssyk = new ArrayList<>();
+    private final HashMap<String, Boolean> languages = new HashMap<>();
     private double alpha, beta;
     private int numTopics, threads, iterations;
 
-    // Constructor, initiates all default values
+    /**
+     * Constructor, initiates all default values
+     */
     private Settings() {
         setDefaultSsyk();
         setDefaultLang();
@@ -121,13 +123,10 @@ public class Settings {
     public Document getHelpDocument() {
 
         try {
-            FileInputStream stream = new FileInputStream(helpFilePath);
+            FileInputStream stream = new FileInputStream(HELP_FILE_PATH);
             RTFEditorKit kit = new RTFEditorKit();
             Document doc = kit.createDefaultDocument();
             kit.read(stream, doc, 0);
-            String plainText = doc.getText(0, doc.getLength());
-            System.out.println(plainText.split("\\n").length);
-
             return doc;
 
         } catch (Exception e) {

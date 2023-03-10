@@ -27,11 +27,12 @@ public class MainForm extends JFrame {
     private JList list1;
     private JList list2;
     private Controller controller;
+    private Settings settings = Settings.getInstance();
 
     public MainForm(Controller controller, DataModel model) {
         this.controller = controller;
         this.model = model;
-        setTitle("HVE Matcher alpha");
+        setTitle("HVE Matcher " + settings.VERSION);
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
