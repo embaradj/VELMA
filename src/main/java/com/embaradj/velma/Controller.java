@@ -7,7 +7,6 @@ import java.beans.PropertyChangeSupport;
 import java.io.File;
 import com.embaradj.velma.apis.APIJobStream;
 import com.embaradj.velma.apis.APIMyh;
-import com.embaradj.velma.lda.Importer;
 import com.embaradj.velma.lda.Modeller;
 import com.embaradj.velma.models.DataModel;
 import javax.swing.*;
@@ -63,8 +62,8 @@ public class Controller implements ActionListener {
     }
 
     /**
-     * Processes the collected data with {@link Importer}
-     * And starts modelling the data with {@link Modeller}.
+     * Processes the collected data
+     * And starts topic modelling with {@link Modeller}.
      */
     private void analyse() {
         System.out.println("Running on EDT? " + isEventDispatchThread());
@@ -75,6 +74,7 @@ public class Controller implements ActionListener {
         Modeller modeller = new Modeller();
 
         modeller.worker(file);
+        modeller.saveModel();
     }
 
     private void quit() {

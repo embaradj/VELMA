@@ -15,6 +15,7 @@ public class PDFReader {
     private String[] lines;
     private final HashMap<String, List<String>> courses = new HashMap<>();
     private String fullText;
+    StringBuilder builder = new StringBuilder();
     private final String[] filter = {"Kursöversikt", "Obligatoriska kurser", "Poäng", "Summa",
             "bokstavsordning", "Sida", "Ansökan", "Diarienummer", "Insänd"};
 
@@ -25,6 +26,7 @@ public class PDFReader {
         File file = new File(path);
         read(file);
         extractCourses();
+        setPartText();
 
         if (DEBUG) {
             String name = getText(getLine("Utbildningens namn") + 1);
@@ -59,6 +61,27 @@ public class PDFReader {
     }
 
     /**
+     * Fetches knowledge the graduates' should have after completed programme.
+     */
+    private void setPartText() {
+        int start = getLine("Mål och krav för examen");
+        int stop = getLine("Kursöversikt");
+        for (int i = start; i < stop; i++) {
+            if (Arrays.stream(filter).noneMatch(lines[i]::contains)) {
+                builder.append(lines[i]);
+            }
+        }
+    }
+
+    /**
+     * Getter for the courses + graduates' knowledge
+     * @return String
+     */
+    public String getPartText() {
+        return builder.toString();
+    }
+
+    /**
      * Fetch all courses by only looking at the sections 'Kurser i bokstavsordning'.
      * Filters unnecessary terms and symbols separating the courses
      * And adds all courses a map.
@@ -76,6 +99,7 @@ public class PDFReader {
                     int pos = tempList.get(0).indexOf(separator);
                     String temp = tempList.get(0).substring(pos + separator.length()).trim();
                     courses.put(temp, tempList.stream().toList());
+                    builder.append(tempList.stream().toList());
                     tempList.clear();
                 }
             }

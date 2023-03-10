@@ -14,12 +14,14 @@ public class Hve implements SearchHit {
     private String title;
     HashMap<String, List<String>> courses;
     private String fullText;
+    private String partText;
 
-    public Hve(String code, String title, HashMap<String, List<String>> courses, String fullText) {
+    public Hve(String code, String title, HashMap<String, List<String>> courses, String fullText, String partText) {
         this.code = code;
         this.title = title;
         this.courses = courses;
         this.fullText = fullText;
+        this.partText = partText;
     }
 
     public String getType() { return this.type; }
@@ -28,6 +30,8 @@ public class Hve implements SearchHit {
     public String getTitle() { return this.title; }
     public HashMap<String, List<String>> getCourses() { return this.courses; }
     public String getFullText() { return this.fullText; }
+    public String getPartText() { return this.partText; }
+
     public String getDescription() {
         StringBuilder sb = new StringBuilder();
 
