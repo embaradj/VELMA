@@ -4,6 +4,7 @@ import cc.mallet.pipe.*;
 import cc.mallet.pipe.iterator.FileIterator;
 import cc.mallet.topics.ParallelTopicModel;
 import cc.mallet.types.*;
+import com.embaradj.velma.Settings;
 
 import java.io.*;
 import java.util.*;
@@ -14,17 +15,18 @@ import java.util.regex.Pattern;
  * Will import '.txt' files, process and train the model.
  */
 public class Modeller {
+    Settings settings = Settings.getInstance();
     ArrayList<Pipe> pipeList = new ArrayList<>();
     // High alpha = Each document will contain a mixture of most topics
     // And not one single topic.
     // Low alpha = Each document might contain only a few or just one topic.
-    double alpha = 0.01; // Set the alpha value
+    double alpha = settings.getAlpha(); // Set the alpha value
     // High beta = Each topic is likely to contain a mixture of words
     // Low beta = Each topic may contain a mixture of only a few words.
-    double beta = 0.01; // Set the beta value
-    int numTopics = 10; // Number of topics to search for
-    int threads = 8; // Number of threads to do work on
-    int iterations = 2000; // Number of iterations for the modelling
+    double beta = settings.getBeta(); // Set the beta value
+    int numTopics = settings.getNumTopics(); // Number of topics to search for
+    int threads = settings.getThreads(); // Number of threads to do work on
+    int iterations = settings.getIterations(); // Number of iterations for the modelling
 
     public Modeller() { }
 

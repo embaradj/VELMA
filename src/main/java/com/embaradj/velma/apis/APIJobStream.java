@@ -17,7 +17,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Responsible for querying the JobStream API for job ads.
@@ -55,13 +57,13 @@ public class APIJobStream {
         });
 
         jobOBs
-            .subscribeOn(Schedulers.io())
-            .map(ad -> new Job(ad.getId(), ad.getTitle(), ad.getText()))
-            .doOnNext(ad -> {
-                model.addJob(ad);
-                new ToTxt(ad.getType(), ad.getId(), ad.getDescription());
-            })
-            .subscribe();
+                .subscribeOn(Schedulers.io())
+                .map(ad -> new Job(ad.getId(), ad.getTitle(), ad.getText()))
+                .doOnNext(ad -> {
+                    model.addJob(ad);
+                    new ToTxt(ad.getType(), ad.getId(), ad.getDescription());
+                })
+                .subscribe();
     }
 
     /**
@@ -118,10 +120,32 @@ public class APIJobStream {
     }
 
     /**
-     * Removes inactive ads which lacks any job description.
+     * Removes inactive ads which lacks any job description
+     * And filter ads based on the chosen language.
      */
     private void filter() {
-        jobResults = jobResults.stream().filter(JobResults::isRemoved).toList();
+        String lang = Arrays.toString(settings.getSelectedLang()).replaceAll("[\\[\\]]", "");
+        jobResults = jobResults
+                .stream()
+                .filter(JobResults::isRemoved)
+                .filter(ad -> {
+                    long counter = Pattern
+                            .compile("\\w*[åäöÅÄÖ]\\w*\\b")
+                            .matcher(ad.getText())
+                            .results()
+                            .count();
+
+                    int wordCount = ad.getText().split("[?!^.*A-Za-zåäöÅÄÖ/]+").length;
+
+                    if (lang.matches("Swedish")) {
+                        return ((double) counter * 100 / wordCount) > 1.0;
+                    } if (lang.matches("English")) {
+                        return ((double) counter * 100 / wordCount) < 1.0;
+                    } else {
+                        return true;
+                    }
+                })
+                .toList();
     }
 
     /**
