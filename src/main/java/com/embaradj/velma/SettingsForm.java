@@ -56,6 +56,14 @@ public class SettingsForm extends JFrame {
             ssykCheckBoxes.put(ssyk, checkbox); // Save these for later so we can check whether they are checked
             row++;
         }
+
+        // Fill up next row in order to push everything above to the top of the container
+        GridBagConstraints c = new GridBagConstraints();
+        c.anchor = GridBagConstraints.PAGE_END;
+        c.weighty = 1;
+        c.gridx = 0;
+        c.gridy = row;
+        jobSsykPanel.add(new JLabel(), c);
     }
 
     private void createLangCheckboxes() {
@@ -121,6 +129,13 @@ public class SettingsForm extends JFrame {
         putRowInGrid(3, analyserSettingsPanel, threadsSpinner, threadsLabel);
         putRowInGrid(4, analyserSettingsPanel, iterationsSpinner, iterationsLabel);
 
+        // Fill up next row in order to push everything above to the top of the container
+        GridBagConstraints c = new GridBagConstraints();
+        c.anchor = GridBagConstraints.PAGE_END;
+        c.weighty = 1;
+        c.gridx = 0;
+        c.gridy = 5;
+        analyserSettingsPanel.add(new JLabel(), c);
     }
 
     /**
@@ -131,9 +146,13 @@ public class SettingsForm extends JFrame {
      * @param label
      */
     private void putRowInGrid(int row, Container container, Component component, JLabel label) {
-        GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(2, 2, 2, 2);
 
+        GridBagConstraints c = new GridBagConstraints();
+
+//        c.anchor = GridBagConstraints.FIRST_LINE_START;
+        c.weighty = 0;
+
+        c.insets = new Insets(2, 2, 2, 2);
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.1;
         c.gridx = 0;
