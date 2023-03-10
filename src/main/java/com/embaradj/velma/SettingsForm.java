@@ -32,20 +32,30 @@ public class SettingsForm extends JFrame {
     }
 
     private void createSsykCheckboxes() {
-        settings.getSsyk().forEach((Ssyk ssyk) -> {
-            String checkText = ssyk.getCode() + "   " + ssyk.getDescription();
-            JCheckBox checkBox = new JCheckBox(checkText, ssyk.isSelected());
+
+//        settings.getSsyk().forEach((Ssyk ssyk) -> {
+//            String checkText = ssyk.getCode() + "   " + ssyk.getDescription();
+//            JCheckBox checkBox = new JCheckBox(checkText, ssyk.isSelected());
 //            checkBox.addItemListener(ie -> {
 //                settings.selectSsyk(ssyk, (ie.getStateChange() == 1) ? true : false);
 //                if (settings.getSelectedSsyk().length == 0) {
 //                    showWarning("You must select at least one SSYK code!");
 //                }
 //            });
+//
+//            ssykCheckBoxes.put(ssyk, checkBox); // Save these we later can check wheter they are checked
+//            jobSsykPanel.add(checkBox);
+//
+//        });
 
-//            ssykCheckBoxes.add(checkBox);
-            ssykCheckBoxes.put(ssyk, checkBox); // Save these we later can check wheter they are checked
-            jobSsykPanel.add(checkBox);
-        });
+        int row = 0;
+        for (Ssyk ssyk : settings.getSsyk()) {
+            JCheckBox checkbox = new JCheckBox(ssyk.getCode(), ssyk.isSelected());
+            JLabel label = new JLabel(ssyk.getDescription());
+            putRowInGrid(row, jobSsykPanel, checkbox, label);
+            ssykCheckBoxes.put(ssyk, checkbox); // Save these for later so we can check whether they are checked
+            row++;
+        }
     }
 
     private void createLangCheckboxes() {
@@ -66,8 +76,6 @@ public class SettingsForm extends JFrame {
 
     private void createAnalyserOptions() {
 
-        GridBagConstraints c = new GridBagConstraints();
-
         // Alpha
         SpinnerNumberModel alphaSpinnerModel = new SpinnerNumberModel(settings.getAlpha(), 0.01, 100, 0.01);
         alphaSpinner = new JSpinner(alphaSpinnerModel);
@@ -83,7 +91,7 @@ public class SettingsForm extends JFrame {
         String betaToolTipText = "High beta = Each topic is more likely to contain " +
                 "a mixture of words\nLow beta = Each topic may contain a mixture of only a few words";
         betaSpinner.setToolTipText(betaToolTipText);
-        JLabel betaLabel = new JLabel("beta");
+        JLabel betaLabel = new JLabel(betaToolTipText);
         betaLabel.setLabelFor(betaSpinner);
         betaLabel.setToolTipText(betaToolTipText);
 
@@ -106,67 +114,44 @@ public class SettingsForm extends JFrame {
         JLabel iterationsLabel = new JLabel("Number of iterations");
         iterationsLabel.setLabelFor(iterationsSpinner);
 
+        // Put everything on the Panel
+        putRowInGrid(0, analyserSettingsPanel, alphaSpinner, alphaLabel);
+        putRowInGrid(1, analyserSettingsPanel, betaSpinner, betaLabel);
+        putRowInGrid(2, analyserSettingsPanel, topicsSpinner, topicsLabel);
+        putRowInGrid(3, analyserSettingsPanel, threadsSpinner, threadsLabel);
+        putRowInGrid(4, analyserSettingsPanel, iterationsSpinner, iterationsLabel);
+
+    }
+
+    /**
+     * Puts a component followed by a label in a GridBagLayout pane
+     * @param row
+     * @param container
+     * @param component
+     * @param label
+     */
+    private void putRowInGrid(int row, Container container, Component component, JLabel label) {
+        GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(2, 2, 2, 2);
 
-        // Add everything to the container
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.1;
         c.gridx = 0;
-        c.gridy = 0;
-        analyserSettingsPanel.add(alphaSpinner, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 1;
-        c.gridx = 1;
-        c.gridy = 0;
-        analyserSettingsPanel.add(alphaLabel, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.1;
-        c.gridx = 0;
-        c.gridy = 1;
-        analyserSettingsPanel.add(betaSpinner, c);
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 1;
-        c.gridx = 1;
-        c.gridy = 1;
-        analyserSettingsPanel.add(betaLabel, c);
-
-        c.weightx = 0.1;
-        c.gridx = 0;
-        c.gridy = 2;
-        analyserSettingsPanel.add(topicsSpinner, c);
+        c.gridy = row;
+        container.add(component, c);
 
         c.weightx = 1;
         c.gridx = 1;
-        c.gridy = 2;
-        analyserSettingsPanel.add(topicsLabel, c);
+        container.add(label, c);
 
-        c.weightx = 0.1;
-        c.gridx = 0;
-        c.gridy = 3;
-        analyserSettingsPanel.add(threadsSpinner, c);
-
-        c.weightx = 1;
-        c.gridx = 1;
-        c.gridy = 3;
-        analyserSettingsPanel.add(threadsLabel, c);
-
-        c.weightx = 0.1;
-        c.gridx = 0;
-        c.gridy = 4;
-        analyserSettingsPanel.add(iterationsSpinner, c);
-
-        c.weightx = 1;
-        c.gridx = 1;
-        c.gridy = 4;
-        analyserSettingsPanel.add(iterationsLabel, c);
+        label.setLabelFor(component);
     }
 
     private void createButtons() {
         JButton okBtn = new JButton("OK");
-        okBtn.addActionListener((l) -> { if (checkSettings()) saveSettings(); });
+        okBtn.addActionListener((l) -> {
+            if (checkSettings()) saveSettings();
+        });
 
         JButton cancelBtn = new JButton("Cancel");
         cancelBtn.addActionListener((l) -> dispose());
@@ -177,14 +162,14 @@ public class SettingsForm extends JFrame {
 
     /**
      * Check if input is legal
+     *
      * @return Whether input legal
      */
     private boolean checkSettings() {
-        System.out.println("Checking settings..");
 
-        // Check that at least one language is selected
         int checked = 0;
 
+        // Check that at least one language is selected
         for (JCheckBox checkbox : langCheckBoxes.values()) {
             if (checkbox.getModel().isSelected()) checked++;
         }
@@ -257,7 +242,7 @@ public class SettingsForm extends JFrame {
         mainPanel.add(jobLangPanel, gbc);
         jobLangPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Job Ads languages", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         jobSsykPanel = new JPanel();
-        jobSsykPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        jobSsykPanel.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -295,8 +280,4 @@ public class SettingsForm extends JFrame {
         return mainPanel;
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-        analyserSettingsPanel = new JPanel(new GridBagLayout());
-    }
 }
