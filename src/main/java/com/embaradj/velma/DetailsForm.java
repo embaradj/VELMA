@@ -79,7 +79,7 @@ public class DetailsForm extends JFrame {
                 throw new RuntimeException(e);
             }
         }
-        this.setSize(textPane.getWidth() + 100, textPane.getHeight());
+        this.setSize(textPane.getWidth() + 50, textPane.getHeight());
         textPane.setCaretPosition(0);
     }
 
