@@ -32,7 +32,7 @@ public class MainForm extends JFrame {
     public MainForm(Controller controller, DataModel model) {
         this.controller = controller;
         this.model = model;
-        setTitle("HVE Matcher " + settings.VERSION);
+        setTitle("VELMA " + settings.VERSION);
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
