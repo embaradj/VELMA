@@ -10,7 +10,6 @@ import com.embaradj.velma.apis.APIMyh;
 import com.embaradj.velma.lda.Modeller;
 import com.embaradj.velma.models.DataModel;
 import javax.swing.*;
-import static javax.swing.SwingUtilities.isEventDispatchThread;
 
 public class Controller implements ActionListener {
     private Settings settings = Settings.getInstance();
@@ -66,15 +65,33 @@ public class Controller implements ActionListener {
      * And starts topic modelling with {@link Modeller}.
      */
     private void analyse() {
-        System.out.println("Running on EDT? " + isEventDispatchThread());
-        System.out.println(Thread.currentThread().getName());
+        ImageIcon icon = new ImageIcon("resources/conf/load.gif");
+        JLabel iconLabel = new JLabel(icon);
+        JPanel iconPanel = new JPanel();
+        iconPanel.setLayout(new BorderLayout());
+        iconPanel.add(iconLabel, BorderLayout.CENTER);
+        JOptionPane pane = new JOptionPane();
+        pane.setMessage(iconPanel);
+        pane.setOptionType(JOptionPane.DEFAULT_OPTION);
+        pane.setMessageType(JOptionPane.PLAIN_MESSAGE);
+        pane.setOptions(new Object[] { });
         File file = new File("resources/rawdata/");
-//        Path data = Path.of("resources/processeddata/data.mallet");
+        Dialog dia = pane.createDialog(null ,"Please wait");
+        Modeller modeller = new Modeller(model);
 
-        Modeller modeller = new Modeller();
+        new Thread(() -> {
+            SwingUtilities.invokeLater(() -> {
+                dia.setVisible(true);
+            });
 
-        modeller.worker(file);
-        modeller.saveModel();
+            modeller.worker(file);
+            modeller.saveModel();
+
+            SwingUtilities.invokeLater(() -> {
+                dia.setVisible(false);
+                new DetailsForm(model.getLDATopics());
+            });
+        }).start();
     }
 
     private void quit() {

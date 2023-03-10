@@ -10,7 +10,7 @@
 
   <name>VELMA</name>
   <description>Vocational Education and Labour Market Analyser</description>
-  <url>${project.artifactId}</url>
+  <url>https://github.com/emil-backstrand/VELMA</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -55,7 +55,7 @@
       <artifactId>mallet</artifactId>
       <version>202108</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/deps/mallet.jar</systemPath>
+      <systemPath>${project.basedir}/resources/deps/mallet.jar</systemPath>
     </dependency>
 
     <dependency>
@@ -63,7 +63,7 @@
       <artifactId>mallet-deps</artifactId>
       <version>202108</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/deps/mallet-deps.jar</systemPath>
+      <systemPath>${project.basedir}/resources/deps/mallet-deps.jar</systemPath>
     </dependency>
 
   </dependencies>

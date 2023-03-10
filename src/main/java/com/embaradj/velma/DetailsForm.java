@@ -3,8 +3,13 @@ package com.embaradj.velma;
 import com.embaradj.velma.models.Job;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
+import javax.swing.text.StyledDocument;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Menu to show details about a HVE or a Job, or Help text
@@ -58,6 +63,24 @@ public class DetailsForm extends JFrame {
         }
 
         textPane.setCaretPosition(0);   // Scroll to the top
+    }
+
+    public DetailsForm(HashMap<String, String> topics) {
+        this();
+        setTitle("LDA Results");
+        StyledDocument doc = textPane.getStyledDocument();
+        for (Map.Entry<String, String> entry : topics.entrySet()) {
+            String topic = entry.getKey();
+            String words = entry.getValue().replaceAll("[\\[\\]]", "");
+            String formatted = "TOPIC " + topic + ":\t" + words + "\n";
+            try {
+                doc.insertString(doc.getLength(), formatted, null);
+            } catch (BadLocationException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        this.setSize(textPane.getWidth() + 100, textPane.getHeight());
+        textPane.setCaretPosition(0);
     }
 
     /**

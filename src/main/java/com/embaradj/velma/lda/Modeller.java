@@ -5,6 +5,7 @@ import cc.mallet.pipe.iterator.FileIterator;
 import cc.mallet.topics.ParallelTopicModel;
 import cc.mallet.types.*;
 import com.embaradj.velma.Settings;
+import com.embaradj.velma.models.DataModel;
 
 import java.io.*;
 import java.util.*;
@@ -15,6 +16,7 @@ import java.util.regex.Pattern;
  * Will import '.txt' files, process and train the model.
  */
 public class Modeller {
+    DataModel dataModel;
     Settings settings = Settings.getInstance();
     ArrayList<Pipe> pipeList = new ArrayList<>();
     ParallelTopicModel model;
@@ -29,7 +31,9 @@ public class Modeller {
     int threads = settings.getThreads(); // Number of threads to do work on
     int iterations = settings.getIterations(); // Number of iterations for the modelling
 
-    public Modeller() { }
+    public Modeller(DataModel dataModel) {
+        this.dataModel = dataModel;
+    }
 
     /**
      * Receives a prepared '.mallet' file to import data from
@@ -63,6 +67,14 @@ public class Modeller {
             throw new RuntimeException(e);
         }
 
+        // Find topics and top words
+        List<Object[]> topicWords = Arrays.stream(model.getTopWords(7)).toList();
+
+        // Add topics and related words to datamodel
+        for (int i = 0; i < topicWords.size(); i++) {
+            dataModel.addLDATopics(String.valueOf(i), Arrays.toString(topicWords.get(i)));
+        }
+
         // Used for looking at words and number of occurrences
 //        FeatureCountTool countTool = new FeatureCountTool(instances);
 //        countTool.count();
@@ -90,9 +102,9 @@ public class Modeller {
         pipeList.add(new CharSequence2TokenSequence(tokenPattern));
 
         // Remove stop words
-        pipeList.add( new TokenSequenceRemoveStopwords(new File("conf/stopwords-sv.txt"), "UTF-8", false, false, false) );
-        pipeList.add( new TokenSequenceRemoveStopwords(new File("conf/stopwords-en.txt"), "UTF-8", false, false, false) );
-        pipeList.add( new TokenSequenceRemoveStopwords(new File("conf/stopwords-noise.txt"), "UTF-8", false, false, false) );
+        pipeList.add( new TokenSequenceRemoveStopwords(new File("resources/conf/stopwords-sv.txt"), "UTF-8", false, false, false) );
+        pipeList.add( new TokenSequenceRemoveStopwords(new File("resources/conf/stopwords-en.txt"), "UTF-8", false, false, false) );
+        pipeList.add( new TokenSequenceRemoveStopwords(new File("resources/conf/stopwords-noise.txt"), "UTF-8", false, false, false) );
 
         // Store the tokens as integers instead of String
         pipeList.add(new TokenSequence2FeatureSequence());

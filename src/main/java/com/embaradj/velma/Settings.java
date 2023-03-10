@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class Settings {
 
     protected final double VERSION = 1.0D;
-    private final String HELP_FILE_PATH = "resources/help.rtf";
+    private final String HELP_FILE_PATH = "resources/conf/help.rtf";
     private final static Settings settings = new Settings();
     private final boolean DEBUG = true;
     private final ArrayList<Ssyk> ssyk = new ArrayList<>();

@@ -2,6 +2,7 @@ package com.embaradj.velma.models;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import static javax.swing.SwingUtilities.isEventDispatchThread;
@@ -14,6 +15,7 @@ public class DataModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     private final LinkedList<Hve> hves = new LinkedList<>();
     private final LinkedList<Job> jobs = new LinkedList<>();
+    private final HashMap<String, String> LDATopics = new HashMap<>();
 
     // Used by the View to listen for changes in the Model
     public void addListener(final PropertyChangeListener listener) {
@@ -42,5 +44,13 @@ public class DataModel {
         this.jobs.add(job);
         // Notice the View about change in the model
         support.firePropertyChange("job", oldJob, job);
+    }
+
+    public void addLDATopics(String topic, String words) {
+        LDATopics.put(topic, words);
+    }
+
+    public HashMap<String, String> getLDATopics() {
+        return LDATopics;
     }
 }
