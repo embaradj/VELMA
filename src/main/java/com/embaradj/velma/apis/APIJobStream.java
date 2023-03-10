@@ -138,9 +138,9 @@ public class APIJobStream {
                     int wordCount = ad.getText().split("[?!^.*A-Za-zåäöÅÄÖ/]+").length;
 
                     if (lang.matches("Swedish")) {
-                        return ((double) counter * 100 / wordCount) > 1.0;
+                        return ((double) counter * 100 / wordCount) > 5.0;
                     } if (lang.matches("English")) {
-                        return ((double) counter * 100 / wordCount) < 1.0;
+                        return ((double) counter * 100 / wordCount) < 5.0;
                     } else {
                         return true;
                     }

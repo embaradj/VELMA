@@ -101,8 +101,8 @@ public class Settings {
         alpha = 0.01;
         beta = 0.01;
         numTopics = 10;
-        threads = 8;
-        iterations = 2000;
+        threads = 4;
+        iterations = 1000;
     }
     public double getAlpha() { return alpha; }
     public void setAlpha(double alpha) { this.alpha = alpha; }
