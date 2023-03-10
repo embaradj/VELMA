@@ -3,6 +3,7 @@ package com.embaradj.velma;
 import com.embaradj.velma.models.DataModel;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -48,6 +49,7 @@ public class MainForm extends JFrame {
 
         progressBar1.setStringPainted(true);
         progressBar2.setStringPainted(true);
+
     }
 
     /**
@@ -159,6 +161,7 @@ public class MainForm extends JFrame {
         gbc.gridwidth = 2;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(0, 2, 2, 1);
         panel1.add(srcHveBtn, gbc);
         progressBar1 = new JProgressBar();
         progressBar1.setString("");
@@ -168,6 +171,7 @@ public class MainForm extends JFrame {
         gbc.gridwidth = 2;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(0, 2, 0, 1);
         panel1.add(progressBar1, gbc);
         progressBar2 = new JProgressBar();
         progressBar2.setString("");
@@ -177,6 +181,7 @@ public class MainForm extends JFrame {
         gbc.gridwidth = 2;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(0, 1, 0, 2);
         panel1.add(progressBar2, gbc);
         scrollPaneRight = new JScrollPane();
         gbc = new GridBagConstraints();
@@ -199,6 +204,7 @@ public class MainForm extends JFrame {
         gbc.gridwidth = 2;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(0, 1, 2, 2);
         panel1.add(srcJobsBtn, gbc);
         analyseBtn = new JButton();
         analyseBtn.setActionCommand("analyse");
@@ -208,6 +214,7 @@ public class MainForm extends JFrame {
         gbc.gridy = 3;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(0, 1, 2, 1);
         panel1.add(analyseBtn, gbc);
         settingsBtn = new JButton();
         settingsBtn.setActionCommand("settings");
@@ -217,6 +224,7 @@ public class MainForm extends JFrame {
         gbc.gridy = 3;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(0, 1, 2, 1);
         panel1.add(settingsBtn, gbc);
         helpBtn = new JButton();
         helpBtn.setActionCommand("help");
@@ -226,6 +234,7 @@ public class MainForm extends JFrame {
         gbc.gridy = 3;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(0, 1, 2, 1);
         panel1.add(helpBtn, gbc);
         quitBtn = new JButton();
         quitBtn.setActionCommand("quit");
@@ -235,6 +244,7 @@ public class MainForm extends JFrame {
         gbc.gridy = 3;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(0, 1, 2, 2);
         panel1.add(quitBtn, gbc);
     }
 
