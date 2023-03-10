@@ -42,7 +42,6 @@ public class SettingsForm extends JFrame {
     }
 
     private void createSsykCheckboxes() {
-
         ArrayList<CustomWrapper> checkBoxRows = new ArrayList<>();
 
         for (Ssyk ssyk : settings.getSsyk()) {
@@ -59,14 +58,6 @@ public class SettingsForm extends JFrame {
     private void createLangCheckboxes() {
         settings.getLang().forEach((lang, sel) -> {
             JCheckBox checkbox = new JCheckBox(lang, sel);
-//            checkbox.addItemListener(ie -> {
-//                settings.selectLang(lang, (ie.getStateChange() == 1) ? true : false);
-//                if (settings.getSelectedLang().length == 0) {
-//                    showWarning("You must select at least one language!");
-//                }
-//            });
-
-//            langCheckBoxes.add(checkbox);  // Save these we later can check wheter they are checked
             langCheckBoxes.put(lang, checkbox);
             jobLangPanel.add(checkbox);
         });

@@ -3,6 +3,8 @@ package com.embaradj.velma;
 import com.embaradj.velma.models.Job;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
+import javax.swing.text.Document;
+import javax.swing.text.rtf.RTFEditorKit;
 import java.awt.*;
 
 /**
@@ -44,10 +46,18 @@ public class DetailsForm extends JFrame {
         }
     }
 
-    public DetailsForm(String title, String contents) {
-        this();     // Overloaded constructor
+    public DetailsForm(String title, Document document) {
+        this(); // Overloaded constructor
         setTitle(title);
-        textPane.setText(contents);
+
+        try {
+            textPane.setDocument(document);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "There was an issue opening the Help file");
+            dispose();
+        }
+
         textPane.setCaretPosition(0);   // Scroll to the top
     }
 

@@ -52,7 +52,7 @@ public class Controller implements ActionListener {
 
     private void help() {
         EventQueue.invokeLater(() -> {
-            DetailsForm helpForm = new DetailsForm("Help", settings.getHelpText());
+            DetailsForm helpForm = new DetailsForm("Help", settings.getHelpDocument());
         });
     }
 

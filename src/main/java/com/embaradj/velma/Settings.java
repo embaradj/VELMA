@@ -1,5 +1,8 @@
 package com.embaradj.velma;
 
+import javax.swing.text.Document;
+import javax.swing.text.rtf.RTFEditorKit;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,6 +10,8 @@ import java.util.HashMap;
  * Eager init Singleton to keep settings and global variables
  */
 public class Settings {
+
+    private String helpFilePath = "resources/help.rtf";
 
     private static Settings settings = new Settings();
     private final boolean DEBUG = true;
@@ -25,7 +30,9 @@ public class Settings {
     public static Settings getInstance() { return settings; }
     public boolean debug() { return this.DEBUG; }
 
-    // SSYK Settings
+    /**
+     * Initiate the default SSYK codes and their selections
+     */
     private void setDefaultSsyk() {
         ssyk.add(new Ssyk("UXKZ_3zZ_ipB", "Systemanalytiker och IT-arkitekter m.fl.", true));
         ssyk.add(new Ssyk("DJh5_yyF_hEM", "Mjukvaru- och systemutvecklare m.fl.", true));
@@ -35,7 +42,13 @@ public class Settings {
         ssyk.add(new Ssyk("BAeH_eg8_T2d", "IT-säkerhetsspecialister", true));
         ssyk.add(new Ssyk("UxT1_tPF_Kbg", "Övriga IT-specialister", true));
     }
+
     public ArrayList<Ssyk> getSsyk() { return ssyk; }
+
+    /**
+     * Get selected SSYK codes
+     * @return An array of SSYK codes
+     */
     public String[] getSelectedSsyk() {
 
         ArrayList<String> selected = new ArrayList<>();
@@ -44,28 +57,44 @@ public class Settings {
         });
 
         return selected.toArray(new String[0]);
-
     }
+
+    /**
+     * Select or unselect a CSYK code
+     * @param selection The SSYK code
+     * @param select True = select, false = unselect
+     */
     public void selectSsyk(Ssyk selection, boolean select) {
         ssyk.get(ssyk.indexOf(selection)).select(select);
     }
 
-    // LANGUAGE SETTINGS
+    /**
+     * Set the default languages
+     */
     private void setDefaultLang() {
         languages.put("English", true);
         languages.put("Swedish", true);
     }
+
     public void selectLang(String lang, boolean select) {
         languages.replace(lang, select);
     }
+
+    /**
+     * Get selected Languages
+     * @return A lits of selected languages
+     */
     public String[] getSelectedLang() {
         ArrayList<String> selected = new ArrayList<>();
         languages.forEach((lang, select) -> { if (select) selected.add(lang); });
         return selected.toArray(new String[0]);
     }
+
     public HashMap<String, Boolean> getLang() { return this.languages; }
 
-    // ANALYSER SETTINGS
+    /**
+     * Set the default Analyser settings
+     */
     private void setDefaultAnalyser() {
         alpha = 0.01;
         beta = 0.01;
@@ -85,9 +114,27 @@ public class Settings {
     public void setIterations(int iterations) { this.iterations = iterations; }
 
 
-    public String getHelpText() {
-        // todo: Load from RTF document
-        return "THIS IS HELPTEXT";
+    /**
+     * Read the help file and return it as a Document
+     * @return The help file as a Document
+     */
+    public Document getHelpDocument() {
+
+        try {
+            FileInputStream stream = new FileInputStream(helpFilePath);
+            RTFEditorKit kit = new RTFEditorKit();
+            Document doc = kit.createDefaultDocument();
+            kit.read(stream, doc, 0);
+            String plainText = doc.getText(0, doc.getLength());
+            System.out.println(plainText.split("\\n").length);
+
+            return doc;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }
