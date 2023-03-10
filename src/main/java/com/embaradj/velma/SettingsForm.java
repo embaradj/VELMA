@@ -17,6 +17,16 @@ public class SettingsForm extends JFrame {
     private HashMap<String, JCheckBox> langCheckBoxes = new HashMap<>();
     private HashMap<Ssyk, JCheckBox> ssykCheckBoxes = new HashMap<>();
 
+    private class CustomWrapper {
+        public CustomWrapper(JComponent component, JLabel label) {
+            this.component = component;
+            this.label = label;
+        }
+
+        protected JComponent component;
+        protected JLabel label;
+    }
+
     public SettingsForm() {
         $$$setupUI$$$();
         setContentPane(mainPanel);
@@ -33,37 +43,17 @@ public class SettingsForm extends JFrame {
 
     private void createSsykCheckboxes() {
 
-//        settings.getSsyk().forEach((Ssyk ssyk) -> {
-//            String checkText = ssyk.getCode() + "   " + ssyk.getDescription();
-//            JCheckBox checkBox = new JCheckBox(checkText, ssyk.isSelected());
-//            checkBox.addItemListener(ie -> {
-//                settings.selectSsyk(ssyk, (ie.getStateChange() == 1) ? true : false);
-//                if (settings.getSelectedSsyk().length == 0) {
-//                    showWarning("You must select at least one SSYK code!");
-//                }
-//            });
-//
-//            ssykCheckBoxes.put(ssyk, checkBox); // Save these we later can check wheter they are checked
-//            jobSsykPanel.add(checkBox);
-//
-//        });
+        ArrayList<CustomWrapper> checkBoxRows = new ArrayList<>();
 
-        int row = 0;
         for (Ssyk ssyk : settings.getSsyk()) {
-            JCheckBox checkbox = new JCheckBox(ssyk.getCode(), ssyk.isSelected());
+            JCheckBox checkBox = new JCheckBox(ssyk.getCode(), ssyk.isSelected());
             JLabel label = new JLabel(ssyk.getDescription());
-            putRowInGrid(row, jobSsykPanel, checkbox, label);
-            ssykCheckBoxes.put(ssyk, checkbox); // Save these for later so we can check whether they are checked
-            row++;
+            checkBoxRows.add(new CustomWrapper(checkBox, label));
+            ssykCheckBoxes.put(ssyk, checkBox); // Save these for later so we can check whether they are checked
         }
 
-        // Fill up next row in order to push everything above to the top of the container
-        GridBagConstraints c = new GridBagConstraints();
-        c.anchor = GridBagConstraints.PAGE_END;
-        c.weighty = 1;
-        c.gridx = 0;
-        c.gridy = row;
-        jobSsykPanel.add(new JLabel(), c);
+        // Add all these checkboxes with labels to the panel
+        addRowsToPanel(checkBoxRows, jobSsykPanel);
     }
 
     private void createLangCheckboxes() {
@@ -88,82 +78,80 @@ public class SettingsForm extends JFrame {
         SpinnerNumberModel alphaSpinnerModel = new SpinnerNumberModel(settings.getAlpha(), 0.01, 100, 0.01);
         alphaSpinner = new JSpinner(alphaSpinnerModel);
         alphaSpinner.setEditor(new JSpinner.NumberEditor(alphaSpinner, "0.00"));
-
-        JLabel alphaLabel = new JLabel("alpha");
-        alphaLabel.setLabelFor(alphaSpinner);
+        String alphaText = "Controls the number of topics a document can contain";
+        alphaSpinner.setToolTipText(alphaText);
+        JLabel alphaLabel = new JLabel(alphaText);
+        alphaLabel.setToolTipText(alphaText);
 
         // Beta
         SpinnerNumberModel betaSpinnerModel = new SpinnerNumberModel(settings.getBeta(), 0.01, 100, 0.01);
         betaSpinner = new JSpinner(betaSpinnerModel);
         betaSpinner.setEditor(new JSpinner.NumberEditor(betaSpinner, "0.00"));
-        String betaToolTipText = "High beta = Each topic is more likely to contain " +
-                "a mixture of words\nLow beta = Each topic may contain a mixture of only a few words";
-        betaSpinner.setToolTipText(betaToolTipText);
-        JLabel betaLabel = new JLabel(betaToolTipText);
-        betaLabel.setLabelFor(betaSpinner);
-        betaLabel.setToolTipText(betaToolTipText);
+        String betaText = "Controls the number of words a topic can contain";
+        betaSpinner.setToolTipText(betaText);
+        JLabel betaLabel = new JLabel(betaText);
+        betaLabel.setToolTipText(betaText);
 
         // Number of topics
         SpinnerNumberModel topicsSpinnerModel = new SpinnerNumberModel(settings.getNumTopics(), 1, 10000, 1);
         topicsSpinner = new JSpinner(topicsSpinnerModel);
         JLabel topicsLabel = new JLabel("Number of topics");
-        topicsLabel.setLabelFor(topicsSpinner);
 
         // Number of threads
         SpinnerNumberModel threadsSpinnerModel = new SpinnerNumberModel(settings.getThreads(), 1, 256, 1);
         threadsSpinner = new JSpinner(threadsSpinnerModel);
         JLabel threadsLabel = new JLabel("Number of threads");
-        threadsLabel.setLabelFor(threadsSpinner);
 
         // Number of iterations
         SpinnerNumberModel iterationsSpinnerModel = new SpinnerNumberModel(settings.getIterations(), 1, 1000000, 100);
         iterationsSpinner = new JSpinner(iterationsSpinnerModel);
         iterationsSpinner.setEditor(new JSpinner.NumberEditor(iterationsSpinner, "#"));
         JLabel iterationsLabel = new JLabel("Number of iterations");
-        iterationsLabel.setLabelFor(iterationsSpinner);
 
         // Put everything on the Panel
-        putRowInGrid(0, analyserSettingsPanel, alphaSpinner, alphaLabel);
-        putRowInGrid(1, analyserSettingsPanel, betaSpinner, betaLabel);
-        putRowInGrid(2, analyserSettingsPanel, topicsSpinner, topicsLabel);
-        putRowInGrid(3, analyserSettingsPanel, threadsSpinner, threadsLabel);
-        putRowInGrid(4, analyserSettingsPanel, iterationsSpinner, iterationsLabel);
+        ArrayList<CustomWrapper> checkBoxRows = new ArrayList<>();
+        checkBoxRows.add(new CustomWrapper(alphaSpinner, alphaLabel));
+        checkBoxRows.add(new CustomWrapper(betaSpinner, betaLabel));
+        checkBoxRows.add(new CustomWrapper(topicsSpinner, topicsLabel));
+        checkBoxRows.add(new CustomWrapper(threadsSpinner, threadsLabel));
+        checkBoxRows.add(new CustomWrapper(iterationsSpinner, iterationsLabel));
 
-        // Fill up next row in order to push everything above to the top of the container
-        GridBagConstraints c = new GridBagConstraints();
-        c.anchor = GridBagConstraints.PAGE_END;
-        c.weighty = 1;
-        c.gridx = 0;
-        c.gridy = 5;
-        analyserSettingsPanel.add(new JLabel(), c);
-    }
+        addRowsToPanel(checkBoxRows, analyserSettingsPanel);
+   }
 
     /**
-     * Puts a component followed by a label in a GridBagLayout pane
-     * @param row
-     * @param container
-     * @param component
-     * @param label
+     * Adds a list of components with labels to a panel, then fills the rest with empty space in order
+     * to push the contents to the top
+     * @param boxes List of "boxes", which is a wrapper for a control component and a label
+     * @param panel The panel to which the components are being added.
      */
-    private void putRowInGrid(int row, Container container, Component component, JLabel label) {
-
+    private void addRowsToPanel(ArrayList<CustomWrapper> boxes, Container panel) {
         GridBagConstraints c = new GridBagConstraints();
-
-//        c.anchor = GridBagConstraints.FIRST_LINE_START;
-        c.weighty = 0;
-
         c.insets = new Insets(2, 2, 2, 2);
+        c.weighty = 0;
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.1;
-        c.gridx = 0;
+
+        int row = 0;
+        for (CustomWrapper box : boxes) {
+            c.gridx = 0;
+            c.gridy = row;
+            c.weightx = 0.1;
+            panel.add(box.component, c);
+
+            c.weightx = 1;
+            c.gridx = 1;
+            panel.add(box.label, c);
+
+            box.label.setLabelFor(box.component);
+            row++;
+        }
+
+        // Fill up remaining vertical space
+        c.anchor = GridBagConstraints.PAGE_END;
+        c.weighty = 1;
         c.gridy = row;
-        container.add(component, c);
+        panel.add(new JLabel(), c);
 
-        c.weightx = 1;
-        c.gridx = 1;
-        container.add(label, c);
-
-        label.setLabelFor(component);
     }
 
     private void createButtons() {
