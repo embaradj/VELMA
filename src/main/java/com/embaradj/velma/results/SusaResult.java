@@ -22,13 +22,11 @@ public class SusaResult {
     public class SusaHit {
         private Content content;
         private String pdfUrl = "";
-
         public String getCode() { return content.getCode(); }
         public String getTitle() { return content.getTitle(); }
         public String toString() { return this.getCode() + " : " + this.getTitle(); }
         public String getPdfUrl() { return pdfUrl; }
         public void setPdfUrl(String pdfUrl) { this.pdfUrl = pdfUrl; }
-
     }
 
     public class Content {

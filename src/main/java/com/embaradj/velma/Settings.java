@@ -11,18 +11,22 @@ import java.util.HashMap;
  */
 public class Settings {
 
+    private static final Settings settings = new Settings();
+
     protected static final double VERSION = 1.0D;
     private static final String HELP_FILE_PATH = "resources/help.rtf";
-    private static final Settings settings = new Settings();
     private static final boolean DEBUG = true;
-    private final ArrayList<Ssyk> ssyk = new ArrayList<>();
-    private final HashMap<String, Boolean> languages = new HashMap<>();
-    private static double alpha, beta;
-    private static int numTopics, threads, iterations;
-    private static final String susaAPI_BaseURI =
+    private static final String SUSA_API_BASE_URI =
             "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=";
+    private static final String MYH_URI = "https://w3d3-integration-service.myh.se/1.0/search";
     private static final int SUSA_MAX_HITS = 1000;
     private static final int SUSA_DEBUG_MAX_HITS = 5;
+
+    private static double alpha, beta;
+    private static int numTopics, threads, iterations;
+
+    private final ArrayList<Ssyk> ssyk = new ArrayList<>();
+    private final HashMap<String, Boolean> languages = new HashMap<>();
 
     /**
      * Constructor, initiates all default values
@@ -34,7 +38,7 @@ public class Settings {
     }
 
     public static Settings getInstance() { return settings; }
-    public boolean debug() { return this.DEBUG; }
+    public static boolean debug() { return DEBUG; }
 
     /**
      * Initiate the default SSYK codes and their selections
@@ -110,8 +114,12 @@ public class Settings {
         iterations = 1000;
     }
 
-    public String getSusaApiUri() {
-        return susaAPI_BaseURI + (debug()? SUSA_DEBUG_MAX_HITS : SUSA_MAX_HITS);
+    public static String getSusaApiUri() {
+        return SUSA_API_BASE_URI + (debug()? SUSA_DEBUG_MAX_HITS : SUSA_MAX_HITS);
+    }
+
+    public static String getMyhUri() {
+        return MYH_URI;
     }
 
     public double getAlpha() { return alpha; }

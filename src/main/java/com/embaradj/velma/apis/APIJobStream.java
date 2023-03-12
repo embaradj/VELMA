@@ -83,8 +83,12 @@ public class APIJobStream {
 
         Gson gson = new Gson();
 
-        processedJobs = 0;
-        updateProgressBar(false);
+//        processedJobs = 0;
+//        updateProgressBar(false);
+        // Check the number of SSYK codes that are selected
+        model.setTotalJobs(settings.getSelectedSsyk().length);
+        model.updateProgressBarJob(false);
+
         jobResults = new ArrayList<>();
 
         try {
@@ -98,7 +102,8 @@ public class APIJobStream {
 
                 HttpClient httpClient = HttpClient.newHttpClient();
                 HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-                updateProgressBar(true);
+
+                model.updateProgressBarJob(true);
 
                 jobResults.addAll(gson.fromJson(response.body(), new TypeToken<List<JobResults>>() {}.getType()));
             }
@@ -148,21 +153,4 @@ public class APIJobStream {
                 .toList();
     }
 
-    /**
-     * Updates the view's progress bar.
-     * @param increase
-     */
-    public void updateProgressBar(boolean increase){
-        // Check the number of SSYK codes that are selected
-        int selected = settings.getSelectedSsyk().length;
-
-        if (selected < 1) {
-            System.out.println("updateProgressBar can continue because there are no select SSYK codes");
-            return;
-        }
-
-        if (increase) processedJobs++;
-        int progress = ((100) * processedJobs) / settings.getSelectedSsyk().length;
-        support.firePropertyChange("jobProgress", null, progress);
-    }
 }

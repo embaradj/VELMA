@@ -1,40 +1,22 @@
 package com.embaradj.velma.apis;
 
-import com.embaradj.velma.FileDownloader;
-import com.embaradj.velma.PDFReader;
 import com.embaradj.velma.Settings;
-import com.embaradj.velma.lda.ToTxt;
-import com.embaradj.velma.models.Hve;
 import com.embaradj.velma.results.MyhSearchRequest;
 import com.embaradj.velma.results.MyhSearchResult;
-import com.embaradj.velma.results.SusaResult;
 import com.google.gson.Gson;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
-import java.beans.PropertyChangeSupport;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.*;
-import com.embaradj.velma.models.DataModel;
-import static java.lang.System.out;
 
 public class APIMyh {
     private Settings settings = Settings.getInstance();
     private int processedHves = 0;
     private int totalHves = 0;
-    private DataModel model;
-    private PropertyChangeSupport support;
-    private boolean searched = false;
 
-    public APIMyh(DataModel model, PropertyChangeSupport support) {
-        this.model = model;
-        this.support = support;
-    }
 
-    public boolean searched() { return this.searched; }
-
+    /*
     public void doSearch() {
         this.model.clearHve();
         this.searched = true;
@@ -78,19 +60,20 @@ public class APIMyh {
                 error.printStackTrace();
             });
 
-
     }
+     */
+
 
     /**
      * Get the URL to the syllabus of a HVE program
      * @param
      * @return A string containing the URL
      */
-    public String getPdfUrl(String query) {
+    public static String getPdfUrl(String query) {
         List<MyhSearchResult.Hit> hits = search(query);
 
         if (hits.isEmpty()) {
-            System.out.println("Could not get a PDF Url for query " + query);
+            System.out.println("Could not get a PDF Url for query" + query);
             return null;
         }
 
@@ -120,7 +103,7 @@ public class APIMyh {
      * @param title Any String, but recommended the YHxxxx code
      * @return Results..
      */
-    protected List<MyhSearchResult.Hit> search(String title) {
+    public static List<MyhSearchResult.Hit> search(String title) {
         MyhSearchRequest myhSearch = new MyhSearchRequest(title);
         Gson gson = new Gson();
         String jsonRequest = gson.toJson(myhSearch);
@@ -129,7 +112,7 @@ public class APIMyh {
 
         try {
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(new URI("https://w3d3-integration-service.myh.se/1.0/search"))
+                    .uri(new URI(Settings.getMyhUri()))
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(jsonRequest))
                     .build();
@@ -140,7 +123,7 @@ public class APIMyh {
             MyhSearchResult searchResult = gson.fromJson(response.body(), MyhSearchResult.class);
             results = searchResult.getResult();
 
-            if (settings.debug()) {
+            if (Settings.debug()) {
                 int approved = 0;
                 int count = 1;
                 for (MyhSearchResult.Hit hit : results) {
@@ -162,14 +145,5 @@ public class APIMyh {
 
     }
 
-    /**
-     * Ask the GUI to update a progressbar
-     * @param increase Whether the number of processed elements should be increased (false to reset)
-     */
-    public void updateProgressBar(boolean increase) {
-        int progress = 0;
-        if (increase) processedHves++;
-        if (totalHves > 0) progress = ((100) * processedHves) / totalHves;
-        support.firePropertyChange("hveProgress", null, progress);
-    }
+
 }

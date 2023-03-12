@@ -14,6 +14,9 @@ public class DataModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     private final LinkedList<Hve> hves = new LinkedList<>();
     private final LinkedList<Job> jobs = new LinkedList<>();
+    private int totalHves, totalJobs;
+    private int processedHves = 0;
+    private int processedjobs = 0;
 
     // Used by the View to listen for changes in the Model
     public void addListener(final PropertyChangeListener listener) {
@@ -43,4 +46,27 @@ public class DataModel {
         // Notice the View about change in the model
         support.firePropertyChange("job", oldJob, job);
     }
+
+    public void setTotalHves(int total) { totalHves = total; }
+    public void setTotalJobs(int total) { totalJobs = total; }
+
+
+    /**
+     * Ask the GUI to update a progressbar
+     * @param increase whether the number of processed elements should be increased
+     */
+    public void updateProgressBarHve(boolean increase) {
+        int progress = 0;
+        if (increase) processedHves++;
+        if (totalHves > 0) progress = ((100) * processedHves) / totalHves;
+        support.firePropertyChange("hveProgress", null, progress);
+    }
+
+    public void updateProgressBarJob(boolean increase) {
+        int progress = 0;
+        if (increase) processedjobs++;
+        if (totalJobs > 0) progress = ((100) * processedjobs) / totalJobs;
+        support.firePropertyChange("jobProgress", null, progress);
+    }
+
 }
