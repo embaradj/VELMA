@@ -11,14 +11,18 @@ import java.util.HashMap;
  */
 public class Settings {
 
-    protected final double VERSION = 1.0D;
-    private final String HELP_FILE_PATH = "resources/help.rtf";
-    private final static Settings settings = new Settings();
-    private final boolean DEBUG = true;
+    protected static final double VERSION = 1.0D;
+    private static final String HELP_FILE_PATH = "resources/help.rtf";
+    private static final Settings settings = new Settings();
+    private static final boolean DEBUG = true;
     private final ArrayList<Ssyk> ssyk = new ArrayList<>();
     private final HashMap<String, Boolean> languages = new HashMap<>();
-    private double alpha, beta;
-    private int numTopics, threads, iterations;
+    private static double alpha, beta;
+    private static int numTopics, threads, iterations;
+    private static final String susaAPI_BaseURI =
+            "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=";
+    private static final int SUSA_MAX_HITS = 1000;
+    private static final int SUSA_DEBUG_MAX_HITS = 5;
 
     /**
      * Constructor, initiates all default values
@@ -34,15 +38,16 @@ public class Settings {
 
     /**
      * Initiate the default SSYK codes and their selections
+     * If program is run in debug mode, only set the first SSYK code as chosen by default
      */
     private void setDefaultSsyk() {
         ssyk.add(new Ssyk("UXKZ_3zZ_ipB", "Systemanalytiker och IT-arkitekter m.fl.", true));
-        ssyk.add(new Ssyk("DJh5_yyF_hEM", "Mjukvaru- och systemutvecklare m.fl.", true));
-        ssyk.add(new Ssyk("Q5DF_juj_8do", "Utvecklare inom spel och digitala media", true));
-        ssyk.add(new Ssyk("D9SL_mtn_vGM", "Systemtestare och testledare", true));
-        ssyk.add(new Ssyk("cBBa_ngH_fCx", "Systemförvaltare m.fl.", true));
-        ssyk.add(new Ssyk("BAeH_eg8_T2d", "IT-säkerhetsspecialister", true));
-        ssyk.add(new Ssyk("UxT1_tPF_Kbg", "Övriga IT-specialister", true));
+        ssyk.add(new Ssyk("DJh5_yyF_hEM", "Mjukvaru- och systemutvecklare m.fl.", !debug()));
+        ssyk.add(new Ssyk("Q5DF_juj_8do", "Utvecklare inom spel och digitala media", !debug()));
+        ssyk.add(new Ssyk("D9SL_mtn_vGM", "Systemtestare och testledare", !debug()));
+        ssyk.add(new Ssyk("cBBa_ngH_fCx", "Systemförvaltare m.fl.", !debug()));
+        ssyk.add(new Ssyk("BAeH_eg8_T2d", "IT-säkerhetsspecialister", !debug()));
+        ssyk.add(new Ssyk("UxT1_tPF_Kbg", "Övriga IT-specialister", !debug()));
     }
 
     public ArrayList<Ssyk> getSsyk() { return ssyk; }
@@ -104,6 +109,11 @@ public class Settings {
         threads = 4;
         iterations = 1000;
     }
+
+    public String getSusaApiUri() {
+        return susaAPI_BaseURI + (debug()? SUSA_DEBUG_MAX_HITS : SUSA_MAX_HITS);
+    }
+
     public double getAlpha() { return alpha; }
     public void setAlpha(double alpha) { this.alpha = alpha; }
     public double getBeta() { return beta; }

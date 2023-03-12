@@ -55,20 +55,6 @@ public class APIMyh {
             susaResults.forEach(hit -> emitter.onNext(hit));
         });
 
-//        susaObs
-//                .subscribeOn(Schedulers.io())
-//                .doOnNext(susaHit -> {
-//                    String localFilePath = FileDownloader.download(getPdfUrl(susaHit.getCode()));
-//                    if (Objects.isNull(localFilePath)) System.out.println("Could not download pdf " + susaHit);
-//                    else {
-//                        PDFReader pdfReader = new PDFReader(localFilePath);
-//                        Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses());
-//                        model.addHve(hve);
-//                    }
-//                    updateProgressBar();
-//                })
-//                .subscribe(susaHit -> System.out.println("Could not download pdf " + susaHit)
-//                        , err -> {err.printStackTrace(); });
         susaObs
             .subscribeOn(Schedulers.io())
             .subscribe(susaHit -> {

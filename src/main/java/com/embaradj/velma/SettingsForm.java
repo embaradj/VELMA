@@ -139,7 +139,7 @@ public class SettingsForm extends JFrame {
             row++;
         }
 
-        // Fill up remaining vertical space
+        // Fill up remaining vertical space in order to push the above stuff towards the top
         c.anchor = GridBagConstraints.PAGE_END;
         c.weighty = 1;
         c.gridy = row;

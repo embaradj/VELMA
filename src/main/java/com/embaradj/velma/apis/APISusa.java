@@ -12,23 +12,14 @@ import java.net.http.HttpResponse;
 
 public class APISusa {
     private Settings settings = Settings.getInstance();
-    private String searchUrl;
     private SusaResult searchResult;
-
-    public APISusa() {
-        if (settings.debug()) { // Only look up 5 curriculums
-            searchUrl = "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=5";
-        } else {
-            searchUrl = "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=1000";
-        }
-    }
 
     private void fetchPrograms() {
         Gson gson = new Gson();
 
         try {
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(new URI(this.searchUrl))
+                    .uri(new URI(settings.getSusaApiUri()))
                     .header("Content-Type", "application/json")
                     .build();
 
