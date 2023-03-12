@@ -2,7 +2,6 @@ package com.embaradj.velma;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.util.Objects;
@@ -23,19 +22,14 @@ public class Controller implements ActionListener {
     private Settings settings = Settings.getInstance();
     private JFrame view;
     private final DataModel model;
-    private final APIJobStream apiJobStream;
-    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     private int totalHves = 0;
     private int processedHves = 0;
     private boolean searchedHve = false;
+    private boolean searchedJobs = false;
 
     public Controller(DataModel model) {
         this.model = model;
-
-        // Initiate APIs
-//        apiSusa = new APISusa();
-//        apiMyh = new APIMyh(model, support);
-        apiJobStream = new APIJobStream(model, support);
+//        apiJobStream = new APIJobStream(model);
     }
 
     protected void setView(JFrame viewFrame) {
@@ -92,9 +86,13 @@ public class Controller implements ActionListener {
     }
 
     public void searchJobs() {
-        if (apiJobStream.searched()) {
-            if (confirmYesNo("Search again?","Are you sure you want to download Job ads again?")) apiJobStream.doSearch();
-        } else apiJobStream.doSearch();
+        if (searchedJobs) {
+            if (!confirmYesNo("Search again?","Are you sure you want to download Job ads again?")) return;
+        }
+
+        searchedJobs = true;
+        model.clearJob();
+        APIJobStream.doSearch(model);
     }
 
     public void searchHve() {

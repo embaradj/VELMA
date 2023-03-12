@@ -25,35 +25,19 @@ import java.util.regex.Pattern;
  * Responsible for querying the JobStream API for job ads.
  */
 public class APIJobStream {
-    private Settings settings = Settings.getInstance();
-    private DataModel model;
-    private PropertyChangeSupport support;
-    private List<JobResults> jobResults;
-    private final String query = "https://jobstream.api.jobtechdev.se/stream?date=2022-01-01T00:01:00";
-    private final String prefix = "&occupation-concept-id=";
-    private int processedJobs = 0;
-    private boolean searched = false;
+//    private Settings settings = Settings.getInstance();
+    private static List<JobResults> jobResults;
 
-    public APIJobStream(DataModel model, PropertyChangeSupport support) {
-        this.model = model;
-        this.support = support;
-    }
-
-    /**
-     * Whether a search has been done already
-     * @return true if searched
-     */
-    public boolean searched() { return this.searched; }
 
     /**
      * Execute the search and create a new {@link Job} for each ad
      * And add the job to the {@link DataModel} and save to file {@link ToTxt}.
      */
-    public void doSearch() {
-        this.model.clearJob();
-        searched = true;
+    public static void doSearch(DataModel model) {
+        model.clearJob();
+
         Observable<JobResults> jobOBs = Observable.create(emitter -> {
-            getResults().forEach(emitter::onNext);
+            getResults(model).forEach(emitter::onNext);
         });
 
         jobOBs
@@ -69,9 +53,9 @@ public class APIJobStream {
     /**
      * Query the API and save results.
      */
-    private void fetchAds() {
+    private static void fetchAds(DataModel model) {
 
-        String[] ssykCodes = settings.getSelectedSsyk();
+        String[] ssykCodes = Settings.getSelectedSsyk();
 
         if (ssykCodes.length < 1) {
             JOptionPane.showMessageDialog(
@@ -83,10 +67,8 @@ public class APIJobStream {
 
         Gson gson = new Gson();
 
-//        processedJobs = 0;
-//        updateProgressBar(false);
         // Check the number of SSYK codes that are selected
-        model.setTotalJobs(settings.getSelectedSsyk().length);
+        model.setTotalJobs(Settings.getSelectedSsyk().length);
         model.updateProgressBarJob(false);
 
         jobResults = new ArrayList<>();
@@ -94,18 +76,17 @@ public class APIJobStream {
         try {
             for (String param : ssykCodes) {
                 HttpRequest httpRequest = HttpRequest.newBuilder()
-                        .uri(new URI(query + prefix + param))
+                        .uri(new URI(Settings.getJobStreamUri() + param))
                         .header("Accept", "application/json")
                         .build();
 
-                if (settings.debug()) System.out.println("URI: " + query + prefix + param);
+                if (Settings.debug()) System.out.println("URI: " + Settings.getJobStreamUri() + param);
 
                 HttpClient httpClient = HttpClient.newHttpClient();
                 HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
-                model.updateProgressBarJob(true);
-
                 jobResults.addAll(gson.fromJson(response.body(), new TypeToken<List<JobResults>>() {}.getType()));
+                model.updateProgressBarJob(true);
             }
 
         } catch (Exception e) {
@@ -118,8 +99,8 @@ public class APIJobStream {
      * And {@link #filter()} which will remove inactive ads.
      * @return results
      */
-    public List<JobResults> getResults() {
-        fetchAds();
+    public static List<JobResults> getResults(DataModel model) {
+        fetchAds(model);
         filter();
         return jobResults;
     }
@@ -128,8 +109,8 @@ public class APIJobStream {
      * Removes inactive ads which lacks any job description
      * And filter ads based on the chosen language.
      */
-    private void filter() {
-        String lang = Arrays.toString(settings.getSelectedLang()).replaceAll("[\\[\\]]", "");
+    private static void filter() {
+        String lang = Arrays.toString(Settings.getSelectedLang()).replaceAll("[\\[\\]]", "");
         jobResults = jobResults
                 .stream()
                 .filter(JobResults::isRemoved)

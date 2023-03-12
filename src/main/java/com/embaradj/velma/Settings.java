@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Eager init Singleton to keep settings and global variables
+ * Eager init Singleton
+ * Contains settings and global variables, helpers
  */
 public class Settings {
 
@@ -19,14 +20,17 @@ public class Settings {
     private static final String SUSA_API_BASE_URI =
             "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=";
     private static final String MYH_URI = "https://w3d3-integration-service.myh.se/1.0/search";
+    private static final String JOBSTREAM_URI = "https://jobstream.api.jobtechdev.se/stream?date=2022-01-01T00:01:00&occupation-concept-id=";
     private static final int SUSA_MAX_HITS = 1000;
     private static final int SUSA_DEBUG_MAX_HITS = 5;
 
     private static double alpha, beta;
     private static int numTopics, threads, iterations;
 
-    private final ArrayList<Ssyk> ssyk = new ArrayList<>();
-    private final HashMap<String, Boolean> languages = new HashMap<>();
+//    private static final ArrayList<Ssyk> ssyk = new ArrayList<>();
+    private static ArrayList<Ssyk> ssyk;
+//    private static final HashMap<String, Boolean> languages = new HashMap<>();
+    private static HashMap<String, Boolean> languages;
 
     /**
      * Constructor, initiates all default values
@@ -44,7 +48,8 @@ public class Settings {
      * Initiate the default SSYK codes and their selections
      * If program is run in debug mode, only set the first SSYK code as chosen by default
      */
-    private void setDefaultSsyk() {
+    private static void setDefaultSsyk() {
+        ssyk = new ArrayList<>();
         ssyk.add(new Ssyk("UXKZ_3zZ_ipB", "Systemanalytiker och IT-arkitekter m.fl.", true));
         ssyk.add(new Ssyk("DJh5_yyF_hEM", "Mjukvaru- och systemutvecklare m.fl.", !debug()));
         ssyk.add(new Ssyk("Q5DF_juj_8do", "Utvecklare inom spel och digitala media", !debug()));
@@ -60,7 +65,7 @@ public class Settings {
      * Get selected SSYK codes
      * @return An array of SSYK codes
      */
-    public String[] getSelectedSsyk() {
+    public static String[] getSelectedSsyk() {
 
         ArrayList<String> selected = new ArrayList<>();
         ssyk.forEach((code) -> {
@@ -71,7 +76,7 @@ public class Settings {
     }
 
     /**
-     * Select or unselect a CSYK code
+     * Select or unselect a SSYK code
      * @param selection The SSYK code
      * @param select True = select, false = unselect
      */
@@ -83,6 +88,7 @@ public class Settings {
      * Set the default languages
      */
     private void setDefaultLang() {
+        languages = new HashMap<>();
         languages.put("English", true);
         languages.put("Swedish", true);
     }
@@ -95,7 +101,7 @@ public class Settings {
      * Get selected Languages
      * @return A lits of selected languages
      */
-    public String[] getSelectedLang() {
+    public static String[] getSelectedLang() {
         ArrayList<String> selected = new ArrayList<>();
         languages.forEach((lang, select) -> { if (select) selected.add(lang); });
         return selected.toArray(new String[0]);
@@ -122,6 +128,9 @@ public class Settings {
         return MYH_URI;
     }
 
+    public static String getJobStreamUri() { return JOBSTREAM_URI; }
+
+    // Analyser settings setters & getters
     public double getAlpha() { return alpha; }
     public void setAlpha(double alpha) { this.alpha = alpha; }
     public double getBeta() { return beta; }
