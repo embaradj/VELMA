@@ -11,58 +11,6 @@ import java.net.http.HttpResponse;
 import java.util.*;
 
 public class APIMyh {
-    private Settings settings = Settings.getInstance();
-    private int processedHves = 0;
-    private int totalHves = 0;
-
-
-    /*
-    public void doSearch() {
-        this.model.clearHve();
-        this.searched = true;
-
-        // Create instance of Susa API parser in order to get list of HVEs (codes)
-        APISusa susa = new APISusa();
-
-        // Everything in here will be run on other thread (subscribeOn)
-        Observable<SusaResult.SusaHit> susaObs = Observable.create(emitter -> {
-            List<SusaResult.SusaHit> susaResults = susa.getResult().getResults();
-
-            // Progressbar
-            processedHves = 0;
-            totalHves = susaResults.size();
-            updateProgressBar(false);
-
-            // Generate an emission for each HVE found in Susa
-            susaResults.forEach(hit -> emitter.onNext(hit));
-        });
-
-        susaObs
-            .subscribeOn(Schedulers.io())
-            .subscribe(susaHit -> {
-                String pdfUrl = getPdfUrl(susaHit.getCode());
-                String localFilePath = FileDownloader.download(pdfUrl);
-
-                if (!Objects.isNull(localFilePath)) {
-                    PDFReader pdfReader = new PDFReader(localFilePath);
-                    Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses(), pdfReader.getFullText(), pdfReader.getPartText());
-                    new ToTxt(hve.getType(), hve.getCode(), hve.getPartText());
-                    model.addHve(hve);
-                }
-                else {
-                    System.out.println("Could not download pdf " + susaHit);
-                }
-
-                updateProgressBar(true);
-
-                System.out.println(susaHit + "\n" + pdfUrl + "\n----------------");
-            }, error -> {
-                error.printStackTrace();
-            });
-
-    }
-     */
-
 
     /**
      * Get the URL to the syllabus of a HVE program

@@ -32,7 +32,7 @@ public class MainForm extends JFrame {
     public MainForm(Controller controller, DataModel model) {
         this.controller = controller;
         this.model = model;
-        setTitle("VELMA " + settings.VERSION);
+        setTitle("VELMA " + Settings.VERSION);
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();

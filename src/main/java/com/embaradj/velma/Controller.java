@@ -2,7 +2,6 @@ package com.embaradj.velma;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.util.Objects;
 
@@ -19,17 +18,14 @@ import javax.swing.*;
 import static javax.swing.SwingUtilities.isEventDispatchThread;
 
 public class Controller implements ActionListener {
-    private Settings settings = Settings.getInstance();
+    private final Settings settings = Settings.getInstance();
     private JFrame view;
     private final DataModel model;
-    private int totalHves = 0;
-    private int processedHves = 0;
     private boolean searchedHve = false;
     private boolean searchedJobs = false;
 
     public Controller(DataModel model) {
         this.model = model;
-//        apiJobStream = new APIJobStream(model);
     }
 
     protected void setView(JFrame viewFrame) {
@@ -53,13 +49,13 @@ public class Controller implements ActionListener {
 
     private void help() {
         EventQueue.invokeLater(() -> {
-            DetailsForm helpForm = new DetailsForm("Help", settings.getHelpDocument());
+            new DetailsForm("Help", settings.getHelpDocument());
         });
     }
 
     private void settings() {
         EventQueue.invokeLater(() -> {
-            SettingsForm settingsForm = new SettingsForm();
+            new SettingsForm();
         } );
     }
 
@@ -96,7 +92,6 @@ public class Controller implements ActionListener {
     }
 
     public void searchHve() {
-
         if (searchedHve) {
             if (!confirmYesNo("Search again?", "Are you sure you want to download HVEs again?")) return;
         }
@@ -144,9 +139,8 @@ public class Controller implements ActionListener {
                 null
         );
 
-        if (userInput == 0) return true;   // YES
+        return (userInput == 0);   // YES
 
-        return false;
     }
 
 }

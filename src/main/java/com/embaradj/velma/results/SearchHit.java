@@ -6,11 +6,11 @@ package com.embaradj.velma.results;
 
 public interface SearchHit {
 
-    public String getTitle();
-    public String toString();
+    String getTitle();
+    String toString();
 
-    public String getType();
+    String getType();
 
-    public String getDescription();
+    String getDescription();
 
 }

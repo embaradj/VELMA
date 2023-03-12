@@ -95,7 +95,7 @@ public class APIJobStream {
     }
 
     /**
-     * Getter for results, will call {@link #fetchAds()}
+     * Getter for results, will call {@link #fetchAds(DataModel model)}
      * And {@link #filter()} which will remove inactive ads.
      * @return results
      */

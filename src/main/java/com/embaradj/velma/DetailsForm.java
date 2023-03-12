@@ -39,7 +39,7 @@ public class DetailsForm extends JFrame {
         textPane.setCaretPosition(0);   // Scroll to the top
 
         // Just for some troubleshooting..
-        if (settings.debug() && !isHve) {
+        if (Settings.debug() && !isHve) {
             Job job = (Job) searchHit;
             System.out.println(job.getId());
         }
