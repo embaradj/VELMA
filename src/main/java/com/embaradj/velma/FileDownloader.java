@@ -24,7 +24,9 @@ public class FileDownloader {
             String filename = url.getFile().split("/")[url.getFile().split("/").length - 1];
             localPath = "resources/pdfs/" + filename + ".pdf";
 
-            System.out.println("Downloading " + url.toString() + " to " + localPath + "...");
+            if (Settings.debug()) {
+                System.out.println("Downloading " + url.toString() + " to " + localPath + "...");
+            }
 
             FileUtils.copyURLToFile(
                     url,

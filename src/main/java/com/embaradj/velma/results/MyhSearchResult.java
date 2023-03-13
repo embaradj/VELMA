@@ -70,8 +70,7 @@ public class MyhSearchResult {
         public Boolean isApproved() {
             for (Handling handling : handlingar) {
                 if (handling.isDecision()) {
-                    if (handling.isApproved()) return true;
-                    else return false;
+                    return (handling.isApproved());
                 }
             }
 //            System.out.println("Could not determine whether approved or not: \n" + getId());

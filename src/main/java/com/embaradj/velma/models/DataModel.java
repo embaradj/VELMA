@@ -5,8 +5,6 @@ import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import static javax.swing.SwingUtilities.isEventDispatchThread;
-
 /**
  * Represents the model of the MVC pattern
  * The View subscribes to the members of this object
@@ -16,6 +14,9 @@ public class DataModel {
     private final LinkedList<Hve> hves = new LinkedList<>();
     private final LinkedList<Job> jobs = new LinkedList<>();
     private final HashMap<String, String> LDATopics = new HashMap<>();
+    private int totalHves, totalJobs;
+    private int processedHves = 0;
+    private int processedjobs = 0;
 
     // Used by the View to listen for changes in the Model
     public void addListener(final PropertyChangeListener listener) {
@@ -52,5 +53,31 @@ public class DataModel {
 
     public HashMap<String, String> getLDATopics() {
         return LDATopics;
+    }
+
+    public void clearLDATopics() {
+        LDATopics.clear();
+    }
+
+    public void setTotalHves(int total) { totalHves = total; }
+    public void setTotalJobs(int total) { totalJobs = total; }
+
+
+    /**
+     * Ask the GUI to update a progressbar
+     * @param increase whether the number of processed elements should be increased
+     */
+    public void updateProgressBarHve(boolean increase) {
+        int progress = 0;
+        if (increase) processedHves++;
+        if (totalHves > 0) progress = ((100) * processedHves) / totalHves;
+        support.firePropertyChange("hveProgress", null, progress);
+    }
+
+    public void updateProgressBarJob(boolean increase) {
+        int progress = 0;
+        if (increase) processedjobs++;
+        if (totalJobs > 0) progress = ((100) * processedjobs) / totalJobs;
+        support.firePropertyChange("jobProgress", null, progress);
     }
 }

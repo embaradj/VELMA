@@ -11,7 +11,6 @@ import java.util.*;
  * Responsible for parsing the PDF-file using {@link org.apache.pdfbox}.
  */
 public class PDFReader {
-    private boolean DEBUG = true;
     private String[] lines;
     private final HashMap<String, List<String>> courses = new HashMap<>();
     private String fullText;
@@ -28,7 +27,7 @@ public class PDFReader {
         extractCourses();
         setPartText();
 
-        if (DEBUG) {
+        if (Settings.debug()) {
             String name = getText(getLine("Utbildningens namn") + 1);
             System.out.println("Name: " + name);
 

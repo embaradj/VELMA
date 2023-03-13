@@ -22,6 +22,6 @@ class CustomMouseAdapter extends MouseAdapter {
         int index = list.locationToIndex(e.getPoint());
         Object hit = list.getModel().getElementAt(index);
         SearchHit sh = (SearchHit)  hit;
-        DetailsForm detailsForm = new DetailsForm(sh);
+        new DetailsForm(sh);
     }
 }

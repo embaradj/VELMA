@@ -3,7 +3,6 @@ package com.embaradj.velma;
 import com.embaradj.velma.models.DataModel;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -33,7 +32,7 @@ public class MainForm extends JFrame {
     public MainForm(Controller controller, DataModel model) {
         this.controller = controller;
         this.model = model;
-        setTitle("VELMA " + settings.VERSION);
+        setTitle("VELMA " + Settings.VERSION);
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -68,53 +67,52 @@ public class MainForm extends JFrame {
     }
 
     /**
-     * Listen to changes in the Model and the Controller and update GUI accordingly..
+     * Listen to changes in the Model and update GUI accordingly..
      */
     private void setListeners() {
         model.addListener(e -> {
 
-            // Update the JList on the EDT thread
+            // Update the GUI on the EDT thread
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    if (e.getNewValue() != null) {
-                        SearchHit searchHit = (SearchHit) e.getNewValue();
-                        if (e.getPropertyName().equals("hve")) listModel1.addElement(searchHit);
-                        if (e.getPropertyName().equals("job")) listModel2.addElement(searchHit);
-                    } else {
+
+                    if (e.getNewValue() == null) {
                         if (e.getPropertyName().equals("hve")) {
                             listModel1.clear();
                         }
                         if (e.getPropertyName().equals("job")) {
                             listModel2.clear();
                         }
+                        return;
                     }
+
+                    if (e.getNewValue() instanceof SearchHit) {
+                        SearchHit searchHit = (SearchHit) e.getNewValue();
+                        if (e.getPropertyName().equals("hve")) listModel1.addElement(searchHit);
+                        if (e.getPropertyName().equals("job")) listModel2.addElement(searchHit);
+                        return;
+                    }
+
+                    if (e.getNewValue() instanceof Integer) {
+                        int progress = (int) e.getNewValue();
+                        String progressText = (progress >= 100) ? "Download complete" : "Downloading " + progress + "%";
+
+                        if (e.getPropertyName().equals("hveProgress")) {
+                            progressBar1.setValue(progress);
+                            progressBar1.setString(progressText);
+                        }
+
+                        if (e.getPropertyName().equals("jobProgress")) {
+                            progressBar2.setValue(progress);
+                            progressBar2.setString(progressText);
+                        }
+                    }
+
                 }
             });
         });
 
-        controller.addListener(e -> {
-            // Update the progressbars on the EDT thread
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-
-                    int progress = (int) e.getNewValue();
-                    String progressText = (progress >= 100) ? "Download complete" : "Downloading " + progress + "%";
-
-                    if (e.getPropertyName().equals("hveProgress")) {
-                        progressBar1.setValue(progress);
-                        progressBar1.setString(progressText);
-                    }
-
-                    if (e.getPropertyName().equals("jobProgress")) {
-                        progressBar2.setValue(progress);
-                        progressBar2.setString(progressText);
-                    }
-                }
-            });
-
-        });
 
     }
 

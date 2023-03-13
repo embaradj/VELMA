@@ -3,7 +3,6 @@ package com.embaradj.velma.models;
 import com.embaradj.velma.results.SearchHit;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Represents one HVE
