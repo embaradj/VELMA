@@ -20,8 +20,6 @@ public class Controller implements ActionListener {
     private final Settings settings = Settings.getInstance();
     private JFrame view;
     private final DataModel model;
-    private boolean searchedHve = false;
-    private boolean searchedJobs = false;
 
     public Controller(DataModel model) {
         this.model = model;
@@ -63,6 +61,10 @@ public class Controller implements ActionListener {
      * And starts topic modelling with {@link Modeller}.
      */
     private void analyse() {
+        if (!model.searchedHve() || !model.searchedJobs()) {
+            JOptionPane.showMessageDialog(null, "You must run a HVE- and a Jobs search first!");
+            return;
+        }
         model.clearLDATopics();
         ImageIcon icon = new ImageIcon("resources/conf/load.gif");
         JLabel iconLabel = new JLabel(icon);
@@ -100,21 +102,19 @@ public class Controller implements ActionListener {
     }
 
     public void searchJobs() {
-        if (searchedJobs) {
+        if (model.searchedJobs()) {
             if (!confirmYesNo("Search again?","Are you sure you want to download Job ads again?")) return;
         }
 
-        searchedJobs = true;
         model.clearJob();
         APIJobStream.doSearch(model);
     }
 
     public void searchHve() {
-        if (searchedHve) {
+        if (model.searchedHve()) {
             if (!confirmYesNo("Search again?", "Are you sure you want to download HVEs again?")) return;
         }
 
-        searchedHve = true;
         model.clearHve();
 
         // The dataModel instance is needed for the Susa Nav to report back total number of hits

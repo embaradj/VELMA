@@ -17,11 +17,16 @@ public class DataModel {
     private int totalHves, totalJobs;
     private int processedHves = 0;
     private int processedjobs = 0;
+    private boolean searchedHve = false;
+    private boolean searchedJobs = false;
 
     // Used by the View to listen for changes in the Model
     public void addListener(final PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
+
+    public boolean searchedHve() { return searchedHve; }
+    public boolean searchedJobs() { return searchedJobs; }
 
     public void clearHve() {
         hves.clear();
@@ -72,6 +77,7 @@ public class DataModel {
         if (increase) processedHves++;
         if (totalHves > 0) progress = ((100) * processedHves) / totalHves;
         support.firePropertyChange("hveProgress", null, progress);
+        if (progress > 99) searchedHve = true;
     }
 
     public void updateProgressBarJob(boolean increase) {
@@ -79,5 +85,6 @@ public class DataModel {
         if (increase) processedjobs++;
         if (totalJobs > 0) progress = ((100) * processedjobs) / totalJobs;
         support.firePropertyChange("jobProgress", null, progress);
+        if (progress > 99) searchedJobs = true;
     }
 }
