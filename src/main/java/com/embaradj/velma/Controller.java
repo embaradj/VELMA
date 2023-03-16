@@ -106,14 +106,14 @@ public class Controller implements ActionListener {
     }
 
     private void quit() {
-        if (confirmYesNo("Quit application?","Are you sure you want to quit?")) {
+        if (Settings.confirmYesNo("Quit application?","Are you sure you want to quit?")) {
             for (Frame frame : view.getFrames()) frame.dispose();
         }
     }
 
     public void searchJobs() {
         if (model.searchedJobs()) {
-            if (!confirmYesNo("Search again?","Are you sure you want to download Job ads again?")) return;
+            if (!Settings.confirmYesNo("Search again?","Are you sure you want to download Job ads again?")) return;
         }
 
         model.clearJob();
@@ -122,7 +122,7 @@ public class Controller implements ActionListener {
 
     public void searchHve() {
         if (model.searchedHve()) {
-            if (!confirmYesNo("Search again?", "Are you sure you want to download HVEs again?")) return;
+            if (!Settings.confirmYesNo("Search again?", "Are you sure you want to download HVEs again?")) return;
         }
 
         model.clearHve();
@@ -156,19 +156,4 @@ public class Controller implements ActionListener {
 
 
     }
-
-    private boolean confirmYesNo(String title, String question) {
-        int userInput = JOptionPane.showConfirmDialog(
-                null,
-                question,
-                title,
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null
-        );
-
-        return (userInput == 0);   // YES
-
-    }
-
 }
