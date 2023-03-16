@@ -77,12 +77,17 @@ public class MainForm extends JFrame {
                 @Override
                 public void run() {
 
+                    // Resets a search
                     if (e.getNewValue() == null) {
                         if (e.getPropertyName().equals("hve")) {
                             listModel1.clear();
+                            progressBar1.setValue(0);
+                            progressBar1.setString("");
                         }
                         if (e.getPropertyName().equals("job")) {
                             listModel2.clear();
+                            progressBar2.setValue(0);
+                            progressBar2.setString("");
                         }
                         return;
                     }
@@ -96,16 +101,25 @@ public class MainForm extends JFrame {
 
                     if (e.getNewValue() instanceof Integer) {
                         int progress = (int) e.getNewValue();
-                        String progressText = (progress >= 100) ? "Download complete" : "Downloading " + progress + "%";
+//                        String progressText = (progress >= 100) ? "Download complete" : "Downloading " + progress + "%";
+                        String progressText;
+                        boolean finished = false;
+
+                        if (progress >= 100) {
+                            progressText = "Download complete";
+                            finished = true;
+                        } else { progressText = "Downloading " + progress + "%"; }
 
                         if (e.getPropertyName().equals("hveProgress")) {
                             progressBar1.setValue(progress);
                             progressBar1.setString(progressText);
+                            srcHveBtn.setEnabled(finished);
                         }
 
                         if (e.getPropertyName().equals("jobProgress")) {
                             progressBar2.setValue(progress);
                             progressBar2.setString(progressText);
+                            srcJobsBtn.setEnabled(finished);
                         }
                     }
 

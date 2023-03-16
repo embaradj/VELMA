@@ -30,12 +30,14 @@ public class DataModel {
 
     public void clearHve() {
         hves.clear();
-        support.firePropertyChange("hve", null, null);
+        processedHves = 0;
+        support.firePropertyChange("hve", 1, null);
     }
 
     public void clearJob() {
         jobs.clear();
-        support.firePropertyChange("job", null, null);
+        processedjobs = 0;
+        support.firePropertyChange("job", 1, null);
     }
 
     public void addHve(Hve hve) {

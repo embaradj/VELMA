@@ -1,5 +1,6 @@
 package com.embaradj.velma;
 
+import javax.swing.*;
 import javax.swing.text.Document;
 import javax.swing.text.rtf.RTFEditorKit;
 import java.io.FileInputStream;
@@ -155,6 +156,20 @@ public class Settings {
         }
 
         return null;
+    }
+
+    public boolean confirmYesNo(String title, String question) {
+        int userInput = JOptionPane.showConfirmDialog(
+                null,
+                question,
+                title,
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null
+        );
+
+        return (userInput == 0);   // YES
+
     }
 
 }

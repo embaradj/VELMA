@@ -7,15 +7,19 @@ import com.embaradj.velma.models.Job;
 import com.embaradj.velma.results.JobResults;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.sun.net.httpserver.HttpsParameters;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import javax.swing.*;
 import java.beans.PropertyChangeSupport;
+import java.net.ConnectException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.channels.UnresolvedAddressException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +37,6 @@ public class APIJobStream {
      * And add the job to the {@link DataModel} and save to file {@link ToTxt}.
      */
     public static void doSearch(DataModel model) {
-        model.clearJob();
 
         Observable<JobResults> jobOBs = Observable.create(emitter -> {
             getResults(model).forEach(emitter::onNext);
@@ -75,20 +78,40 @@ public class APIJobStream {
         try {
             for (String param : ssykCodes) {
                 HttpRequest httpRequest = HttpRequest.newBuilder()
+                        .timeout(Duration.ofSeconds(10))
                         .uri(new URI(Settings.getJobStreamUri() + param))
                         .header("Accept", "application/json")
                         .build();
 
                 if (Settings.debug()) System.out.println("URI: " + Settings.getJobStreamUri() + param);
 
-                HttpClient httpClient = HttpClient.newHttpClient();
+//                HttpClient httpClient = HttpClient.newHttpClient();
+                HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
                 HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+
+                if (response.statusCode() < 200 || response.statusCode() > 299) {
+//                    JOptionPane.showMessageDialog(null, "There was a problem with the JobStream API.\nHTTP error " + response.statusCode());
+
+                    if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the JobStream API.\n" + response.statusCode() + "Try again?")) {
+                        jobResults.clear();
+                        fetchAds(model);
+                    }
+
+                    return;
+                }
 
                 jobResults.addAll(gson.fromJson(response.body(), new TypeToken<List<JobResults>>() {}.getType()));
                 model.updateProgressBarJob(true);
             }
 
         } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "There was a problem with the JobStream API.\nSee the console for details.");
+
+            if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the JobStream API.\nTry again?")) {
+                jobResults.clear();
+                fetchAds(model);
+            }
+
             e.printStackTrace();
         }
     }

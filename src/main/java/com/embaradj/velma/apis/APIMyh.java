@@ -4,10 +4,13 @@ import com.embaradj.velma.Settings;
 import com.embaradj.velma.results.MyhSearchRequest;
 import com.embaradj.velma.results.MyhSearchResult;
 import com.google.gson.Gson;
+
+import javax.swing.*;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.*;
 
 public class APIMyh {
@@ -68,8 +71,18 @@ public class APIMyh {
                     .POST(HttpRequest.BodyPublishers.ofString(jsonRequest))
                     .build();
 
-            HttpClient httpClient = HttpClient.newHttpClient();
+            //HttpClient httpClient = HttpClient.newHttpClient();
+            HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
             HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() < 200 || response.statusCode() > 299) {
+//                JOptionPane.showMessageDialog(null, "There was a problem with the JobStream API.\nHTTP error " + response.statusCode());
+                if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the MYH API.\n" + response.statusCode() + "Try again?")) {
+                    //model.clearHve();
+                    return search(title);
+                }
+                return null;
+            }
 
             MyhSearchResult searchResult = gson.fromJson(response.body(), MyhSearchResult.class);
             results = searchResult.getResult();
@@ -93,6 +106,10 @@ public class APIMyh {
 
 
         } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "There was a problem with the MYH API.\nSee the console for details.");
+            if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the MYH API.\nTry again?")) {
+                return search(title);
+            }
             e.printStackTrace();
         }
 
