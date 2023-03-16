@@ -95,13 +95,13 @@ public class Controller implements ActionListener {
                 dia.setVisible(true);
             });
 
-//            modeller.worker(file);
-//            modeller.saveModel();
+            modeller.worker(file);
+            modeller.saveModel();
 
-//            SwingUtilities.invokeLater(() -> {
-//                dia.setVisible(false);
-//                new DetailsForm(model.getLDATopics());
-//            });
+            SwingUtilities.invokeLater(() -> {
+                dia.setVisible(false);
+                new DetailsForm(model.getLDATopics());
+            });
         }).start();
     }
 

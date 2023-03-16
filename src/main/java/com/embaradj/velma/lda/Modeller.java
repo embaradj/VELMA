@@ -6,6 +6,7 @@ import cc.mallet.topics.ParallelTopicModel;
 import cc.mallet.types.*;
 import com.embaradj.velma.Settings;
 import com.embaradj.velma.models.DataModel;
+import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.util.*;
@@ -101,11 +102,27 @@ public class Modeller {
         // Tokenize the raw strings
         pipeList.add(new CharSequence2TokenSequence(tokenPattern));
 
-        // Remove stop words
-        pipeList.add( new TokenSequenceRemoveStopwords(new File("resources/conf/stopwords-sv.txt"), "UTF-8", false, false, false) );
-        pipeList.add( new TokenSequenceRemoveStopwords(new File("resources/conf/stopwords-en.txt"), "UTF-8", false, false, false) );
-        // Custom stopwords filter for identified noise words
-        pipeList.add( new TokenSequenceRemoveStopwords(new File("resources/conf/stopwords-noise.txt"), "UTF-8", false, false, false) );
+        // Load stopword files from jar
+        InputStream stopWordsEnInput = getClass().getResourceAsStream("/stopwords-en.txt");
+        InputStream stopWordsSvInput = getClass().getResourceAsStream("/stopwords-sv.txt");
+        InputStream stopWordsNoiseInput = getClass().getResourceAsStream("/stopwords-noise.txt");
+
+        try { // Create readable files to add to pipe list
+            File stopWordsEn = File.createTempFile(String.valueOf(stopWordsEnInput.hashCode()), ".tmp");
+            File stopWordsSv = File.createTempFile(String.valueOf(stopWordsSvInput.hashCode()), ".tmp");
+            File stopWordsNoise = File.createTempFile(String.valueOf(stopWordsNoiseInput.hashCode()), ".tmp");
+            FileUtils.copyInputStreamToFile(stopWordsEnInput, stopWordsEn);
+            FileUtils.copyInputStreamToFile(stopWordsSvInput, stopWordsSv);
+            FileUtils.copyInputStreamToFile(stopWordsNoiseInput, stopWordsNoise);
+
+            // Remove stop words
+            pipeList.add( new TokenSequenceRemoveStopwords(stopWordsEn, "UTF-8", false, false, false) );
+            pipeList.add( new TokenSequenceRemoveStopwords(stopWordsSv, "UTF-8", false, false, false) );
+            // Custom stopwords filter for identified noise
+            pipeList.add( new TokenSequenceRemoveStopwords(stopWordsNoise, "UTF-8", false, false, false) );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         // Store the tokens as integers instead of String
         pipeList.add(new TokenSequence2FeatureSequence());
