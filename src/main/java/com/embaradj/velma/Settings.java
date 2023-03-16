@@ -1,8 +1,12 @@
 package com.embaradj.velma;
 
+import org.apache.commons.io.FileUtils;
+
 import javax.swing.text.Document;
 import javax.swing.text.rtf.RTFEditorKit;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,7 +17,7 @@ import java.util.HashMap;
 public class Settings {
     private static final Settings settings = new Settings();
     protected static final double VERSION = 1.0D;
-    private final String HELP_FILE_PATH = "resources/conf/help.rtf";
+    private final InputStream HELP_FILE_PATH = getClass().getResourceAsStream("/help.rtf");
     private static final boolean DEBUG = true;
     private static final String SUSA_API_BASE_URI =
             "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=";
@@ -143,7 +147,9 @@ public class Settings {
      */
     public Document getHelpDocument() {
         try {
-            FileInputStream stream = new FileInputStream(HELP_FILE_PATH);
+            File helpFile = File.createTempFile(String.valueOf(HELP_FILE_PATH.hashCode()), ".tmp");
+            FileUtils.copyInputStreamToFile(HELP_FILE_PATH, helpFile);
+            FileInputStream stream = new FileInputStream(helpFile);
             RTFEditorKit kit = new RTFEditorKit();
             Document doc = kit.createDefaultDocument();
             kit.read(stream, doc, 0);
