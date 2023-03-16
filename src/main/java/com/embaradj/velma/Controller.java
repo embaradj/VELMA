@@ -3,6 +3,8 @@ package com.embaradj.velma;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Objects;
 
 import com.embaradj.velma.apis.APIJobStream;
@@ -13,7 +15,7 @@ import com.embaradj.velma.lda.ToTxt;
 import com.embaradj.velma.models.DataModel;
 import com.embaradj.velma.models.Hve;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
+import org.apache.commons.io.IOUtils;
 import javax.swing.*;
 
 public class Controller implements ActionListener {
@@ -62,11 +64,19 @@ public class Controller implements ActionListener {
      */
     private void analyse() {
         if (!model.searchedHve() || !model.searchedJobs()) {
-            JOptionPane.showMessageDialog(null, "You must run a HVE- and a Jobs search first!");
+            JOptionPane.showMessageDialog(null, "You must run a curriculum- and job ads search first!");
             return;
         }
         model.clearLDATopics();
-        ImageIcon icon = new ImageIcon("resources/conf/load.gif");
+//        ImageIcon icon = new ImageIcon("resources/conf/load.gif"); // old
+        ImageIcon icon = null;
+        try {
+            InputStream is = this.getClass().getResourceAsStream("/load.gif");
+            Image image = Toolkit.getDefaultToolkit().createImage(IOUtils.toByteArray(is));
+            icon = new ImageIcon(image);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         JLabel iconLabel = new JLabel(icon);
         JPanel iconPanel = new JPanel();
         iconPanel.setLayout(new BorderLayout());

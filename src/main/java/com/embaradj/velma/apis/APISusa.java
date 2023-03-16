@@ -31,7 +31,7 @@ public class APISusa {
 
             if (response.statusCode() < 200 || response.statusCode() > 299) {
                 //JOptionPane.showMessageDialog(null, "There was a problem with the SusaNav API.\nHTTP error " + response.statusCode());
-                if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the SusaNav API.\n" + response.statusCode() + "Try again?")) {
+                if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the Susanav API." + "\nResponse code: " + response.statusCode() + "\nTry again?")) {
 //                    model.clearHve();
                     return getResult(model);
                 }

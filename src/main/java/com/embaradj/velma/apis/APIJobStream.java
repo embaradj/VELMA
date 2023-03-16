@@ -92,7 +92,7 @@ public class APIJobStream {
                 if (response.statusCode() < 200 || response.statusCode() > 299) {
 //                    JOptionPane.showMessageDialog(null, "There was a problem with the JobStream API.\nHTTP error " + response.statusCode());
 
-                    if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the JobStream API.\n" + response.statusCode() + "Try again?")) {
+                    if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the JobStream API." + "\nResponse code: " + response.statusCode() + "\nTry again?")) {
                         jobResults.clear();
                         fetchAds(model);
                     }

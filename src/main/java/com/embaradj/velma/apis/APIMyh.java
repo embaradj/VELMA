@@ -77,7 +77,7 @@ public class APIMyh {
 
             if (response.statusCode() < 200 || response.statusCode() > 299) {
 //                JOptionPane.showMessageDialog(null, "There was a problem with the JobStream API.\nHTTP error " + response.statusCode());
-                if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the MYH API.\n" + response.statusCode() + "Try again?")) {
+                if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the MYH API." + "\nResponse code: " + response.statusCode() + "\nTry again?")) {
                     //model.clearHve();
                     return search(title);
                 }
