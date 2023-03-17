@@ -48,7 +48,6 @@ public class MainForm extends JFrame {
 
         progressBar1.setStringPainted(true);
         progressBar2.setStringPainted(true);
-
     }
 
     /**
