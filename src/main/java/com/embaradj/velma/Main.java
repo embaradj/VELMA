@@ -2,7 +2,6 @@ package com.embaradj.velma;
 
 import com.embaradj.velma.models.DataModel;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class Main {
