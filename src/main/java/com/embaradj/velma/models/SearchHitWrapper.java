@@ -35,23 +35,12 @@ public class SearchHitWrapper {
         return searchHit;
     }
 
-    public void setSearchHit(SearchHit searchHit) {
-        this.searchHit = searchHit;
-    }
-
     public int getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
-    public int getProcessed() {
+     public int getProcessed() {
         return processed;
     }
 
-    public void setProcessed(int processed) {
-        this.processed = processed;
-    }
 }

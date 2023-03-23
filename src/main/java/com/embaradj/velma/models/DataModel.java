@@ -60,7 +60,7 @@ public class DataModel {
      * @param hits Number of hits
      */
     public void setTotalHits(String type, int hits) {
-        total.putIfAbsent(type, hits);
+        total.put(type, hits);
     }
 
     /**
