@@ -63,7 +63,7 @@ public class Controller implements ActionListener {
      * And starts topic modelling with {@link Modeller}.
      */
     private void analyse() {
-        if (!model.searchedHve() || !model.searchedJobs()) {
+        if (!model.isSearched("hve") || !model.isSearched("jobs")) {
             JOptionPane.showMessageDialog(null, "You must run a curriculum- and job ads search first!");
             return;
         }
@@ -112,7 +112,7 @@ public class Controller implements ActionListener {
     }
 
     public void searchJobs() {
-        if (model.searchedJobs()) {
+        if (model.isSearched("job")) {
             if (!Settings.confirmYesNo("Search again?","Are you sure you want to download Job ads again?")) return;
         }
 
@@ -121,7 +121,7 @@ public class Controller implements ActionListener {
     }
 
     public void searchHve() {
-        if (model.searchedHve()) {
+        if (model.isSearched("hve")) {
             if (!Settings.confirmYesNo("Search again?", "Are you sure you want to download HVEs again?")) return;
         }
 

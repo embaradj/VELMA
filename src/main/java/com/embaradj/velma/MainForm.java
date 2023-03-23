@@ -77,23 +77,6 @@ public class MainForm extends JFrame {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-/*
-                    // Resets a search
-                    if (e.getNewValue() == null) {
-                        if (e.getPropertyName().equals("hve")) {
-                            listModel1.clear();
-                            progressBar1.setValue(0);
-                            progressBar1.setString("");
-                        }
-                        if (e.getPropertyName().equals("job")) {
-                            listModel2.clear();
-                            progressBar2.setValue(0);
-                            progressBar2.setString("");
-                        }
-                        return;
-                    }
-
- */
 
 
                     if (e.getNewValue() instanceof SearchHitWrapper) {
@@ -106,21 +89,16 @@ public class MainForm extends JFrame {
                                 listModel1.clear();
                                 progressBar1.setValue(0);
                                 progressBar1.setString("Searching..");
+                                srcHveBtn.setEnabled(false);
                             }
                             else if (searchHitWrapper.getType().equals("job")) {
                                 listModel2.clear();
                                 progressBar2.setValue(0);
                                 progressBar2.setString("Searching..");
+                                srcJobsBtn.setEnabled(false);
                             }
                             return;
                         }
-
-                        // Just started a search
-//                        if (searchHitWrapper.isJustStarted()) {
-//                            if (searchHitWrapper.getType().equals("hve")) progressBar1.setString("Searching..");
-//                            if (searchHitWrapper.getType().equals("job")) progressBar2.setString("Searching..");
-//                            return;
-//                        }
 
                         SearchHit searchHit = searchHitWrapper.getSearchHit();
 
@@ -150,42 +128,6 @@ public class MainForm extends JFrame {
 
                     }
 
-                    /*
-                    if (e.getNewValue() instanceof SearchHit) {
-                        SearchHit searchHit = (SearchHit) e.getNewValue();
-                        if (e.getPropertyName().equals("hve")) listModel1.addElement(searchHit);
-                        if (e.getPropertyName().equals("job")) listModel2.addElement(searchHit);
-                        return;
-                    }
-
-                    if (e.getNewValue() instanceof Integer) {
-                        int progress = (int) e.getNewValue();
-//                        String progressText = (progress >= 100) ? "Download complete" : "Downloading " + progress + "%";
-                        String progressText = "Downloading " + progress + "%";
-                        boolean finished = false;
-
-                        if (progress >= 100) {
-                            //progressText = "Download complete";
-                            finished = true;
-                        } else { progressText = "Downloading " + progress + "%"; }
-
-                        if (e.getPropertyName().equals("hveProgress")) {
-                            if (finished) progressText = "Finished downloading " + listModel1.size() + " HVEs";
-                            progressBar1.setValue(progress);
-                            progressBar1.setString(progressText);
-                            srcHveBtn.setEnabled(finished);
-                        }
-
-                        if (e.getPropertyName().equals("jobProgress")) {
-                            if (finished)  progressText = "Finished downloading " + listModel2.size() + " Jobs ads";
-                            progressBar2.setValue(progress);
-                            progressBar2.setString(progressText);
-                            srcJobsBtn.setEnabled(finished);
-                        }
-                    }
-
-
-                     */
                 }
             });
         });

@@ -17,18 +17,18 @@ public class DataModel {
     private final LinkedList<Hve> hves = new LinkedList<>();
     private final LinkedList<Job> jobs = new LinkedList<>();
     private final HashMap<String, String> LDATopics = new HashMap<>();
-    private boolean searchedHve = false;
-    private boolean searchedJobs = false;
     private HashMap<String, Integer> processed = new HashMap<>();
     private HashMap<String, Integer> total = new HashMap<>();
+    private HashMap<String, Boolean> isSearched = new HashMap<>();
 
     // Used by the View to listen for changes in the Model
     public void addListener(final PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
 
-    public boolean searchedHve() { return searchedHve; }
-    public boolean searchedJobs() { return searchedJobs; }
+    public boolean isSearched(String type) {
+        return isSearched.getOrDefault(type, false);
+    }
 
     public void clearHve() {
         hves.clear();
@@ -71,8 +71,8 @@ public class DataModel {
         String type = hit.getType();
         processed.putIfAbsent(type, 0);
         processed.compute(type, (k,v) -> ++v);
+        if (processed.get(type) >= total.get(type)) isSearched.put(type, true);
         support.firePropertyChange("progress", null, new SearchHitWrapper(hit, total.get(type), processed.get(type)));
-
     }
 
 
