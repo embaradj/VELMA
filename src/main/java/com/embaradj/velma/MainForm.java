@@ -102,21 +102,23 @@ public class MainForm extends JFrame {
                     if (e.getNewValue() instanceof Integer) {
                         int progress = (int) e.getNewValue();
 //                        String progressText = (progress >= 100) ? "Download complete" : "Downloading " + progress + "%";
-                        String progressText;
+                        String progressText = "Downloading " + progress + "%";
                         boolean finished = false;
 
                         if (progress >= 100) {
-                            progressText = "Download complete";
+                            //progressText = "Download complete";
                             finished = true;
                         } else { progressText = "Downloading " + progress + "%"; }
 
                         if (e.getPropertyName().equals("hveProgress")) {
+                            if (finished) progressText = "Finished downloading " + listModel1.size() + " HVEs";
                             progressBar1.setValue(progress);
                             progressBar1.setString(progressText);
                             srcHveBtn.setEnabled(finished);
                         }
 
                         if (e.getPropertyName().equals("jobProgress")) {
+                            if (finished)  progressText = "Finished downloading " + listModel2.size() + " Jobs ads";
                             progressBar2.setValue(progress);
                             progressBar2.setString(progressText);
                             srcJobsBtn.setEnabled(finished);
