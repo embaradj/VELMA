@@ -2,6 +2,9 @@ package com.embaradj.velma.models;
 
 import com.embaradj.velma.results.SearchHit;
 
+/**
+ * Class for wrapping info from the model to the view
+ */
 public class SearchHitWrapper {
 
     private SearchHit searchHit;
