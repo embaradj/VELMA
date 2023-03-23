@@ -41,8 +41,11 @@ public class APISusa {
             SusaResult susaResult = gson.fromJson(response.body(), SusaResult.class);
 
             // Notify the model about total number of HVE's found, in order to calculate the progressbar
-            model.setTotalHves(susaResult.getResults().size());
-            model.updateProgressBarHve(false);
+            //model.setTotalHves(susaResult.getResults().size());
+            model.setTotalHits("hve", susaResult.getResults().size());
+            // todo: fixa så baren uppdateras vid sökning nr 2
+            //model.updateProgressBarHve(false);
+
             return susaResult;
 
         } catch (Exception e) {

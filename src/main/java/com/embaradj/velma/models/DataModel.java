@@ -1,7 +1,10 @@
 package com.embaradj.velma.models;
 
+import com.embaradj.velma.results.SearchHit;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -14,11 +17,10 @@ public class DataModel {
     private final LinkedList<Hve> hves = new LinkedList<>();
     private final LinkedList<Job> jobs = new LinkedList<>();
     private final HashMap<String, String> LDATopics = new HashMap<>();
-    private int totalHves, totalJobs;
-    private int processedHves = 0;
-    private int processedjobs = 0;
     private boolean searchedHve = false;
     private boolean searchedJobs = false;
+    private HashMap<String, Integer> processed = new HashMap<>();
+    private HashMap<String, Integer> total = new HashMap<>();
 
     // Used by the View to listen for changes in the Model
     public void addListener(final PropertyChangeListener listener) {
@@ -30,28 +32,14 @@ public class DataModel {
 
     public void clearHve() {
         hves.clear();
-        processedHves = 0;
-        support.firePropertyChange("hve", 1, null);
+        processed.replace("hve", 0);
+        support.firePropertyChange("reset", null, new SearchHitWrapper("hve", true));
     }
 
     public void clearJob() {
         jobs.clear();
-        processedjobs = 0;
-        support.firePropertyChange("job", 1, null);
-    }
-
-    public void addHve(Hve hve) {
-        Hve oldHve = (hves.isEmpty()) ? null : hves.getLast();
-        this.hves.add(hve);
-        // Notice the View about change in the model
-        support.firePropertyChange("hve", oldHve, hve);
-    }
-
-    public void addJob(Job job) {
-        Job oldJob = (jobs.isEmpty()) ? null : jobs.getLast();
-        this.jobs.add(job);
-        // Notice the View about change in the model
-        support.firePropertyChange("job", oldJob, job);
+        processed.replace("job", 0);
+        support.firePropertyChange("reset", null, new SearchHitWrapper("job", true));
     }
 
     public void addLDATopics(String topic, String words) {
@@ -66,27 +54,26 @@ public class DataModel {
         LDATopics.clear();
     }
 
-    public void setTotalHves(int total) { totalHves = total; }
-    public void setTotalJobs(int total) { totalJobs = total; }
-
+    /**
+     * Sets the total number of hits for a certain type
+     * @param type Type such as "job" or "hve"
+     * @param hits Number of hits
+     */
+    public void setTotalHits(String type, int hits) {
+        total.putIfAbsent(type, hits);
+    }
 
     /**
-     * Ask the GUI to update a progressbar
-     * @param increase whether the number of processed elements should be increased
+     * Signals to the View that a search hit has been added
+     * @param hit The search hit
      */
-    public void updateProgressBarHve(boolean increase) {
-        int progress = 0;
-        if (increase) processedHves++;
-        if (totalHves > 0) progress = ((100) * processedHves) / totalHves;
-        support.firePropertyChange("hveProgress", null, progress);
-        if (progress > 99) searchedHve = true;
+    public void addAndUpdate(SearchHit hit) {
+        String type = hit.getType();
+        processed.putIfAbsent(type, 0);
+        processed.compute(type, (k,v) -> ++v);
+        support.firePropertyChange("progress", null, new SearchHitWrapper(hit, total.get(type), processed.get(type)));
+
     }
 
-    public void updateProgressBarJob(boolean increase) {
-        int progress = 0;
-        if (increase) processedjobs++;
-        if (totalJobs > 0) progress = ((100) * processedjobs) / totalJobs;
-        support.firePropertyChange("jobProgress", null, progress);
-        if (progress > 99) searchedJobs = true;
-    }
+
 }

@@ -46,7 +46,8 @@ public class APIJobStream {
                 .subscribeOn(Schedulers.io())
                 .map(ad -> new Job(ad.getId(), ad.getTitle(), ad.getText()))
                 .doOnNext(ad -> {
-                    model.addJob(ad);
+                    //model.addJob(ad);
+                    model.addAndUpdate(ad);
                     new ToTxt(ad.getType(), ad.getId(), ad.getDescription());
                 })
                 .subscribe();
@@ -70,8 +71,10 @@ public class APIJobStream {
         Gson gson = new Gson();
 
         // Check the number of SSYK codes that are selected
-        model.setTotalJobs(Settings.getSelectedSsyk().length);
-        model.updateProgressBarJob(false);
+        //model.setTotalHits("job", Settings.getSelectedSsyk().length);
+
+        //model.updateProgressBarJob(false);
+        //todo: fixa
 
         jobResults = new ArrayList<>();
 
@@ -85,12 +88,10 @@ public class APIJobStream {
 
                 if (Settings.debug()) System.out.println("URI: " + Settings.getJobStreamUri() + param);
 
-//                HttpClient httpClient = HttpClient.newHttpClient();
                 HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
                 HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
                 if (response.statusCode() < 200 || response.statusCode() > 299) {
-//                    JOptionPane.showMessageDialog(null, "There was a problem with the JobStream API.\nHTTP error " + response.statusCode());
 
                     if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the JobStream API." + "\nResponse code: " + response.statusCode() + "\nTry again?")) {
                         jobResults.clear();
@@ -101,7 +102,7 @@ public class APIJobStream {
                 }
 
                 jobResults.addAll(gson.fromJson(response.body(), new TypeToken<List<JobResults>>() {}.getType()));
-                model.updateProgressBarJob(true);
+                //model.updateProgressBarJob(true);
             }
 
         } catch (Exception e) {
@@ -124,6 +125,7 @@ public class APIJobStream {
     public static List<JobResults> getResults(DataModel model) {
         fetchAds(model);
         filter();
+        model.setTotalHits("job", jobResults.size());
         return jobResults;
     }
 
@@ -154,6 +156,7 @@ public class APIJobStream {
                     }
                 })
                 .toList();
+
     }
 
 }

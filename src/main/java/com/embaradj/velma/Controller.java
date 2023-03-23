@@ -141,13 +141,14 @@ public class Controller implements ActionListener {
                     PDFReader pdfReader = new PDFReader(localFilePath);
                     Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses(), pdfReader.getFullText(), pdfReader.getPartText());
                     new ToTxt(hve.getType(), hve.getCode(), hve.getPartText());
-                    model.addHve(hve);
+                    //model.addHve(hve);
+                    model.addAndUpdate(hve);
                 }
                 else {
                     System.out.println("Could not download pdf " + susaHit);
                 }
 
-                model.updateProgressBarHve(true);
+                //model.updateProgressBarHve(true);
 
                 if (Settings.debug()) {
                     System.out.println(susaHit + "\n" + pdfUrl + "\n----------------");

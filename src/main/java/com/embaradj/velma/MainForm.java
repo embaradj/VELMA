@@ -1,6 +1,7 @@
 package com.embaradj.velma;
 
 import com.embaradj.velma.models.DataModel;
+import com.embaradj.velma.models.SearchHitWrapper;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
 import java.awt.*;
@@ -76,7 +77,7 @@ public class MainForm extends JFrame {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-
+/*
                     // Resets a search
                     if (e.getNewValue() == null) {
                         if (e.getPropertyName().equals("hve")) {
@@ -92,6 +93,64 @@ public class MainForm extends JFrame {
                         return;
                     }
 
+ */
+
+
+                    if (e.getNewValue() instanceof SearchHitWrapper) {
+
+                        SearchHitWrapper searchHitWrapper = ((SearchHitWrapper) e.getNewValue());
+
+                        // Check for reset
+                        if (searchHitWrapper.isReset()) {
+                            if (searchHitWrapper.getType().equals("hve")) {
+                                listModel1.clear();
+                                progressBar1.setValue(0);
+                                progressBar1.setString("Searching..");
+                            }
+                            else if (searchHitWrapper.getType().equals("job")) {
+                                listModel2.clear();
+                                progressBar2.setValue(0);
+                                progressBar2.setString("Searching..");
+                            }
+                            return;
+                        }
+
+                        // Just started a search
+//                        if (searchHitWrapper.isJustStarted()) {
+//                            if (searchHitWrapper.getType().equals("hve")) progressBar1.setString("Searching..");
+//                            if (searchHitWrapper.getType().equals("job")) progressBar2.setString("Searching..");
+//                            return;
+//                        }
+
+                        SearchHit searchHit = searchHitWrapper.getSearchHit();
+
+                        int progress = 0;
+                        if (searchHitWrapper.getTotal() > 0) progress = 100 * (searchHitWrapper.getProcessed()) / searchHitWrapper.getTotal();
+                        boolean finished = (progress == 100);
+                        String progressText = "";
+                        if (!finished) progressText = "Downloading " + progress + "%";
+
+                        if (searchHit.getType().equals("hve")) {
+                            listModel1.addElement(searchHit);
+                            if (finished) progressText = "Finished downloading " + searchHitWrapper.getTotal() + " HVEs";
+                            progressBar1.setValue(progress);
+                            progressBar1.setString(progressText);
+                            srcHveBtn.setEnabled(finished);
+                            return;
+                        }
+
+                        if (searchHit.getType().equals("job")) {
+                            listModel2.addElement(searchHit);
+                            if (finished) progressText = "Finished downloading " + searchHitWrapper.getTotal() + " job ads";
+                            progressBar2.setValue(progress);
+                            progressBar2.setString(progressText);
+                            srcJobsBtn.setEnabled(finished);
+                            return;
+                        }
+
+                    }
+
+                    /*
                     if (e.getNewValue() instanceof SearchHit) {
                         SearchHit searchHit = (SearchHit) e.getNewValue();
                         if (e.getPropertyName().equals("hve")) listModel1.addElement(searchHit);
@@ -125,6 +184,8 @@ public class MainForm extends JFrame {
                         }
                     }
 
+
+                     */
                 }
             });
         });
