@@ -5,12 +5,9 @@ package com.embaradj.velma.results;
  */
 
 public interface SearchHit {
-
-    String getTitle();
+    String title();
     String toString();
-
     String getType();
-
     String getDescription();
 
 }

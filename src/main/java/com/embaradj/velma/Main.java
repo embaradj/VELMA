@@ -2,7 +2,6 @@ package com.embaradj.velma;
 
 import com.embaradj.velma.models.DataModel;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class Main {
@@ -14,7 +13,12 @@ public class Main {
         dirCheck.checkDir("resources/processeddata");
         dirCheck.checkDir("resources/rawdata/");
         dirCheck.checkDir("resources/rawdata/hve");
+        dirCheck.checkDir("resources/rawdata/hve/full");
+        dirCheck.checkDir("resources/rawdata/hve/aim");
+        dirCheck.checkDir("resources/rawdata/hve/courses");
         dirCheck.checkDir("resources/rawdata/job");
+        dirCheck.checkDir("resources/rawdata/job/swe");
+        dirCheck.checkDir("resources/rawdata/job/eng");
 
         EventQueue.invokeLater(() -> {
             DataModel model = new DataModel();

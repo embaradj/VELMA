@@ -7,21 +7,16 @@ import com.embaradj.velma.models.Job;
 import com.embaradj.velma.results.JobResults;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.sun.net.httpserver.HttpsParameters;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import javax.swing.*;
-import java.beans.PropertyChangeSupport;
-import java.net.ConnectException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.channels.UnresolvedAddressException;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -31,24 +26,30 @@ import java.util.regex.Pattern;
 public class APIJobStream {
     private static List<JobResults> jobResults;
 
-
     /**
-     * Execute the search and create a new {@link Job} for each ad
-     * And add the job to the {@link DataModel} and save to file {@link ToTxt}.
+     * Execute the search and create a new {@link Job} for each ad.
+     * Checks the language of each ad and add the job to the {@link DataModel}
+     * And save to file {@link ToTxt}.
      */
     public static void doSearch(DataModel model) {
-
         Observable<JobResults> jobOBs = Observable.create(emitter -> {
             getResults(model).forEach(emitter::onNext);
         });
 
         jobOBs
                 .subscribeOn(Schedulers.io())
-                .map(ad -> new Job(ad.getId(), ad.getTitle(), ad.getText()))
+                .map(ad -> {
+                    String lang = checkLang(ad) ? "sv" : "en";
+                    return new Job(ad.getId(), ad.getTitle(), ad.getText(), lang);
+                })
                 .doOnNext(ad -> {
-                    //model.addJob(ad);
+//                    if (checkLang(ad)) {
+//                        ad.setLang("sv");
+//                    } else {
+//                        ad.setLang("en");
+//                    }
                     model.addAndUpdate(ad);
-                    new ToTxt(ad.getType(), ad.getId(), ad.getDescription());
+                    new ToTxt(ad);
                 })
                 .subscribe();
     }
@@ -56,7 +57,7 @@ public class APIJobStream {
     /**
      * Query the API and save results.
      */
-    private static void fetchAds(DataModel model) {
+    private static void fetchAds() {
 
         String[] ssykCodes = Settings.getSelectedSsyk();
 
@@ -95,7 +96,7 @@ public class APIJobStream {
 
                     if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the JobStream API." + "\nResponse code: " + response.statusCode() + "\nTry again?")) {
                         jobResults.clear();
-                        fetchAds(model);
+                        fetchAds();
                     }
 
                     return;
@@ -110,7 +111,7 @@ public class APIJobStream {
 
             if (Settings.getInstance().confirmYesNo("Connection issue", "There was a problem with the JobStream API.\nTry again?")) {
                 jobResults.clear();
-                fetchAds(model);
+                fetchAds();
             }
 
             e.printStackTrace();
@@ -118,12 +119,12 @@ public class APIJobStream {
     }
 
     /**
-     * Getter for results, will call {@link #fetchAds(DataModel model)}
+     * Getter for results, will call {@link #fetchAds()}
      * And {@link #filter()} which will remove inactive ads.
      * @return results
      */
     public static List<JobResults> getResults(DataModel model) {
-        fetchAds(model);
+        fetchAds();
         filter();
         model.setTotalHits("job", jobResults.size());
         return jobResults;
@@ -131,32 +132,29 @@ public class APIJobStream {
 
     /**
      * Removes inactive ads which lacks any job description
-     * And filter ads based on the chosen language.
      */
     private static void filter() {
-        String lang = Arrays.toString(Settings.getSelectedLang()).replaceAll("[\\[\\]]", "");
         jobResults = jobResults
                 .stream()
                 .filter(JobResults::isRemoved)
-                .filter(ad -> {
-                    long counter = Pattern
-                            .compile("\\w*[åäöÅÄÖ]\\w*\\b")
-                            .matcher(ad.getText())
-                            .results()
-                            .count();
-
-                    int wordCount = ad.getText().split("[?!^.*A-Za-zåäöÅÄÖ/]+").length;
-
-                    if (lang.matches("Swedish")) {
-                        return ((double) counter * 100 / wordCount) > 5.0;
-                    } if (lang.matches("English")) {
-                        return ((double) counter * 100 / wordCount) < 5.0;
-                    } else {
-                        return true;
-                    }
-                })
                 .toList();
 
     }
 
+    /**
+     * Checks if the language of the ad is Swedish
+     * @param job description to check
+     * @return true if Swedish
+     */
+    private static boolean checkLang(JobResults job) {
+        long counter = Pattern
+                .compile("\\w*[åäöÅÄÖ]\\w*\\b")
+                .matcher(job.getText())
+                .results()
+                .count();
+
+        int wordCount = job.getText().split("[?!^.*A-zåäöÅÄÖ/]+").length;
+
+        return ((double) counter * 100 / wordCount) > 5.0;
+    }
 }

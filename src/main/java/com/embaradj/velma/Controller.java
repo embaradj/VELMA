@@ -1,12 +1,5 @@
 package com.embaradj.velma;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
-
 import com.embaradj.velma.apis.APIJobStream;
 import com.embaradj.velma.apis.APIMyh;
 import com.embaradj.velma.apis.APISusa;
@@ -16,8 +9,21 @@ import com.embaradj.velma.models.DataModel;
 import com.embaradj.velma.models.Hve;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import org.apache.commons.io.IOUtils;
-import javax.swing.*;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
+
+/**
+ * Represents the controller which binds the logic to each button.
+ */
 public class Controller implements ActionListener {
     private final Settings settings = Settings.getInstance();
     private JFrame view;
@@ -29,6 +35,13 @@ public class Controller implements ActionListener {
 
     protected void setView(JFrame viewFrame) {
         this.view = viewFrame;
+        // Add a listener for the 'X' button to confirm yes or no on exit
+        view.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                exit();
+            }
+        });
     }
 
     /**
@@ -37,25 +50,26 @@ public class Controller implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        //System.out.println("Clicked: " + e.getActionCommand());
         if (e.getActionCommand().equals("srcHve")) searchHve();
         if (e.getActionCommand().equals("srcJobs")) searchJobs();
         if (e.getActionCommand().equals("analyse")) analyse();
         if (e.getActionCommand().equals("settings")) settings();
         if (e.getActionCommand().equals("help")) help();
-        if (e.getActionCommand().equals("quit")) quit();
+        if (e.getActionCommand().equals("quit")) exit();
     }
 
+    /**
+     * Creates the help window.
+     */
     private void help() {
-        EventQueue.invokeLater(() -> {
-            new DetailsForm("Help", settings.getHelpDocument());
-        });
+        EventQueue.invokeLater(() -> new DetailsForm("Help", settings.getHelpDocument()));
     }
 
+    /**
+     * Creates the settings window.
+     */
     private void settings() {
-        EventQueue.invokeLater(() -> {
-            new SettingsForm();
-        } );
+        EventQueue.invokeLater(SettingsForm::new);
     }
 
     /**
@@ -69,7 +83,6 @@ public class Controller implements ActionListener {
             return;
         }
         model.clearLDATopics();
-//        ImageIcon icon = new ImageIcon("resources/conf/load.gif"); // old
         ImageIcon icon = null;
         try {
             InputStream is = this.getClass().getResourceAsStream("/load.gif");
@@ -91,6 +104,7 @@ public class Controller implements ActionListener {
         Dialog dia = pane.createDialog(null ,"Please wait");
         Modeller modeller = new Modeller(model);
 
+        // Begin the analyzing off the EDT
         new Thread(() -> {
             SwingUtilities.invokeLater(() -> {
                 dia.setVisible(true);
@@ -106,56 +120,67 @@ public class Controller implements ActionListener {
         }).start();
     }
 
-    private void quit() {
-        if (Settings.confirmYesNo("Quit application?","Are you sure you want to quit?")) {
-            for (Frame frame : view.getFrames()) frame.dispose();
+    /**
+     * Spawn the dialog if the user wants to quit
+     * @return true if quitting
+     */
+    private boolean quit() {
+        return Settings.confirmYesNo("Quit application?","Are you sure you want to quit?");
+    }
+
+    /**
+     * Exit the program
+     */
+    private void exit() {
+        if (quit()) {
+            for (Frame frame : Frame.getFrames()) frame.dispose();
+        } else {
+            view.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         }
     }
 
+    /**
+     * Begin querying the {@link APIJobStream}.
+     */
     public void searchJobs() {
         if (model.isSearched("job")) {
             if (!Settings.confirmYesNo("Search again?","Are you sure you want to download Job ads again?")) return;
         }
-
         model.clearJob();
         APIJobStream.doSearch(model);
     }
 
+    /**
+     * Begin querying the {@link APISusa} & {@link APIMyh}.
+     */
     public void searchHve() {
         if (model.isSearched("hve")) {
             if (!Settings.confirmYesNo("Search again?", "Are you sure you want to download HVEs again?")) return;
         }
-
         model.clearHve();
 
         // The dataModel instance is needed for the Susa Nav to report back total number of hits
         APISusa.getObservableResult(model)
-            .subscribeOn(Schedulers.io())
-            .subscribe(susaHit -> {
+                .subscribeOn(Schedulers.io())
+                .subscribe(susaHit -> {
 
-                // Use the HVE code retrieved from Susa API to search in MYH API
-                String pdfUrl = APIMyh.getPdfUrl(susaHit.getCode());
-                String localFilePath = FileDownloader.download(pdfUrl);
+                    // Use the HVE code retrieved from Susa API to search in MYH API
+                    String pdfUrl = APIMyh.getPdfUrl(susaHit.getCode());
+                    String localFilePath = FileDownloader.download(pdfUrl);
 
-                // If localFilePath is not null means successful download
-                if (!Objects.isNull(localFilePath)) {
-                    PDFReader pdfReader = new PDFReader(localFilePath);
-                    Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses(), pdfReader.getFullText(), pdfReader.getPartText());
-                    new ToTxt(hve.getType(), hve.getCode(), hve.getPartText());
-                    //model.addHve(hve);
-                    model.addAndUpdate(hve);
-                }
-                else {
-                    System.out.println("Could not download pdf " + susaHit);
-                }
+                    // If localFilePath is not null means successful download
+                    if (!Objects.isNull(localFilePath)) {
+                        PDFReader pdfReader = new PDFReader(localFilePath);
+                        Hve hve = new Hve(susaHit.getCode(), susaHit.getTitle(), pdfReader.getCourses(), pdfReader.getFullText(), pdfReader.getAimText());
+                        model.addAndUpdate(hve);
+                        new ToTxt(hve);
+                    } else {
+                        System.out.println("Could not download pdf " + susaHit);
+                    }
 
-                //model.updateProgressBarHve(true);
-
-                if (Settings.debug()) {
-                    System.out.println(susaHit + "\n" + pdfUrl + "\n----------------");
-                }
-            }, Throwable::printStackTrace);
-
-
+                    if (Settings.debug()) {
+                        System.out.println(susaHit + "\n" + pdfUrl + "\n----------------");
+                    }
+                }, Throwable::printStackTrace);
     }
 }
