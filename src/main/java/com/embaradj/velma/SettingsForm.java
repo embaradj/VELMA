@@ -251,6 +251,17 @@ public class SettingsForm extends JFrame {
             return false;
         }
 
+        // Check that one HVE-suboption is checked if main option is cheked
+        if (hveCheck.getModel().isSelected()) {
+            if (!fullHveCheck.getModel().isSelected() &&
+                    !goalsHveCheck.getModel().isSelected() &&
+                    !courseHveCheck.getModel().isSelected()) {
+
+                showWarning("You must select at least one sub-option to HVE, or unselect HVE");
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -258,7 +269,6 @@ public class SettingsForm extends JFrame {
      * Saves the settings and disposes the frame
      */
     private void saveSettings() {
-        System.out.println("Saving settings..");
 
         langCheckBoxes.forEach((lang, checkbox) -> {
             settings.selectLang(lang, checkbox.getModel().isSelected());
