@@ -151,9 +151,9 @@ public class Settings {
         String lang = Arrays.toString(getSelectedLang()).replaceAll("[\\[\\]]", "");
         List<String> preFixes = new ArrayList<>();
 
-        if (lang.matches("Swedish")) {
+        if (lang.matches(".*Swedish.*")) {
             preFixes.add("se_");
-        } if (lang.matches("English")) {
+        } if (lang.matches(".*English.*")) {
             preFixes.add("en_");
         } if (getAnalyserSelection()[2]) {
             preFixes.add("full_");

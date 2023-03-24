@@ -52,10 +52,16 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("srcHve")) searchHve();
         if (e.getActionCommand().equals("srcJobs")) searchJobs();
-        if (e.getActionCommand().equals("analyse")) analyse();
+//        if (e.getActionCommand().equals("analyse")) analyse();
+        if (e.getActionCommand().equals("analyse")) tempTest();
         if (e.getActionCommand().equals("settings")) settings();
         if (e.getActionCommand().equals("help")) help();
         if (e.getActionCommand().equals("quit")) exit();
+    }
+
+    private void tempTest() {
+        Settings.getCorporapreFixes().forEach(x -> System.out.println(x));
+        System.out.println("____");
     }
 
     /**
