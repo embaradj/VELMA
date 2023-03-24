@@ -63,7 +63,8 @@ public class Controller implements ActionListener {
      * And starts topic modelling with {@link Modeller}.
      */
     private void analyse() {
-        if (!model.isSearched("hve") || !model.isSearched("job")) {
+        if (!Settings.debug() && (!model.isSearched("hve") || !model.isSearched("job"))) {
+//        if (!model.isSearched("hve") || !model.isSearched("job")) {
             JOptionPane.showMessageDialog(null, "You must run a curriculum- and job ads search first!");
             return;
         }
