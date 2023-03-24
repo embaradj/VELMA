@@ -18,6 +18,7 @@ public class SettingsForm extends JFrame {
     private JSpinner alphaSpinner, betaSpinner, iterationsSpinner, threadsSpinner, topicsSpinner;
     private HashMap<String, JCheckBox> langCheckBoxes = new HashMap<>();
     private HashMap<Ssyk, JCheckBox> ssykCheckBoxes = new HashMap<>();
+    private JCheckBox jobCheck, hveCheck, fullHveCheck, goalsHveCheck, courseHveCheck;
 
     private class CustomWrapper {
         public CustomWrapper(JComponent component, JLabel label) {
@@ -119,13 +120,15 @@ public class SettingsForm extends JFrame {
 
     private void createAnalyserSelection() {
 
+        // Get the selected options
         boolean[] selection = settings.getAnalyserSelection();
 
-        JCheckBox jobCheck = new JCheckBox("Job ads", selection[0]);
-        JCheckBox hveCheck = new JCheckBox("HVE", selection[1]);
-        JCheckBox fullHveCheck = new JCheckBox("Full HVE text", selection[2]);
-        JCheckBox goalsHveCheck = new JCheckBox("Goals", selection[3]);
-        JCheckBox courseHveCheck = new JCheckBox("Courses", selection[4]);
+        // Create checkboxes
+        jobCheck = new JCheckBox("Job ads", selection[0]);
+        hveCheck = new JCheckBox("HVE", selection[1]);
+        fullHveCheck = new JCheckBox("Full HVE text (including goals and courses)", selection[2]);
+        goalsHveCheck = new JCheckBox("Goals", selection[3]);
+        courseHveCheck = new JCheckBox("Courses", selection[4]);
 
         // Visually group these checkboxes by adding an extra left-margin to them
         Insets extraMargin = new Insets(0, 15, 0, 0);
@@ -133,16 +136,35 @@ public class SettingsForm extends JFrame {
         goalsHveCheck.setMargin(extraMargin);
         courseHveCheck.setMargin(extraMargin);
 
+        // Add the checkboxes to the container
         ArrayList<CustomWrapper> checkBoxRows = new ArrayList<>();
         checkBoxRows.add(new CustomWrapper(jobCheck, null));
         checkBoxRows.add(new CustomWrapper(hveCheck, null));
         checkBoxRows.add(new CustomWrapper(fullHveCheck, null));
         checkBoxRows.add(new CustomWrapper(goalsHveCheck, null));
         checkBoxRows.add(new CustomWrapper(courseHveCheck, null));
-
         addRowsToPanel(checkBoxRows, analyserSelectionPanel);
-    }
 
+        // Logics for checkbox behaviour
+        hveCheck.addActionListener((e) -> {
+            // Enable / Disable HVE related checkboxes depending on whether HVE is checked
+            boolean checked = hveCheck.getModel().isSelected();
+            fullHveCheck.setEnabled(checked);
+            goalsHveCheck.setEnabled(checked);
+            courseHveCheck.setEnabled(checked);
+        });
+
+        // Uncheck full alternative if goals or courses are checked
+        goalsHveCheck.addActionListener((e) -> fullHveCheck.getModel().setSelected(false));
+        courseHveCheck.addActionListener((e) -> fullHveCheck.getModel().setSelected(false));
+
+        // Uncheck goals and courses if "full" is checked
+        fullHveCheck.addActionListener((e) -> {
+            goalsHveCheck.getModel().setSelected(false);
+            courseHveCheck.getModel().setSelected(false);
+        });
+
+    }
 
     /**
      * Adds a list of components with labels to a panel, then fills the rest with empty space in order
@@ -223,6 +245,12 @@ public class SettingsForm extends JFrame {
             return false;
         }
 
+        // Check that at least one option for the Analyser selection is checked
+        if (!jobCheck.getModel().isSelected() && !hveCheck.getModel().isSelected()) {
+            showWarning("You must select at least one input option for the Analyser!");
+            return false;
+        }
+
         return true;
     }
 
@@ -245,6 +273,15 @@ public class SettingsForm extends JFrame {
         settings.setIterations(Integer.parseInt(iterationsSpinner.getValue().toString()));
         settings.setThreads(Integer.parseInt(threadsSpinner.getValue().toString()));
         settings.setNumTopics(Integer.parseInt(topicsSpinner.getValue().toString()));
+
+        settings.setAnalyserSelection(
+                new boolean[]{
+                        jobCheck.getModel().isSelected(),
+                        hveCheck.getModel().isSelected(),
+                        fullHveCheck.getModel().isSelected(),
+                        goalsHveCheck.getModel().isSelected(),
+                        courseHveCheck.getModel().isSelected()
+                });
 
         dispose();
     }
