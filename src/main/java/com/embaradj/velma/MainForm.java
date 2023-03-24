@@ -5,6 +5,8 @@ import com.embaradj.velma.models.SearchHitWrapper;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * Represents the view of the MVC pattern
@@ -35,7 +37,17 @@ public class MainForm extends JFrame {
         this.model = model;
         setTitle("VELMA " + Settings.VERSION);
         setContentPane(panel1);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Allow for a warning before closing the program
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                controller.quit();
+            }
+        });
+
         pack();
         setLocationRelativeTo(null);    // Position the frame in the center of the screen
         setVisible(true);

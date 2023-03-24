@@ -106,7 +106,7 @@ public class Controller implements ActionListener {
         }).start();
     }
 
-    private void quit() {
+    public void quit() {
         if (Settings.confirmYesNo("Quit application?","Are you sure you want to quit?")) {
             for (Frame frame : view.getFrames()) frame.dispose();
         }
