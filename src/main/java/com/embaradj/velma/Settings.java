@@ -112,7 +112,7 @@ public class Settings {
     /**
      * Set the default Analyser settings
      */
-    private void setDefaultAnalyser() {
+    private static void setDefaultAnalyser() {
         alpha = 0.01;
         beta = 0.01;
         numTopics = 10;
