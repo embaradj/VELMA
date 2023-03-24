@@ -9,7 +9,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Eager init Singleton
@@ -142,8 +144,26 @@ public class Settings {
     public void setThreads(int threads) { Settings.threads = threads; }
     public int getIterations() { return iterations; }
     public void setIterations(int iterations) { Settings.iterations = iterations; }
-    public boolean[] getAnalyserSelection() { return analyserSelection; }
+    public static boolean[] getAnalyserSelection() { return analyserSelection; }
     public void setAnalyserSelection(boolean[] selection) { analyserSelection = selection; }
+
+    public static List<String> getCorporapreFixes() {
+        String lang = Arrays.toString(getSelectedLang()).replaceAll("[\\[\\]]", "");
+        List<String> preFixes = new ArrayList<>();
+
+        if (lang.matches("Swedish")) {
+            preFixes.add("se_");
+        } if (lang.matches("English")) {
+            preFixes.add("en_");
+        } if (getAnalyserSelection()[2]) {
+            preFixes.add("full_");
+        } if (getAnalyserSelection()[3]) {
+            preFixes.add("aim_");
+        } if (getAnalyserSelection()[4]) {
+            preFixes.add("courses_");
+        }
+        return preFixes;
+    }
 
 
     /**
