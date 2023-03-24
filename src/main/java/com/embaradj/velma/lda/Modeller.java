@@ -4,6 +4,7 @@ import cc.mallet.pipe.*;
 import cc.mallet.pipe.iterator.FileIterator;
 import cc.mallet.topics.ParallelTopicModel;
 import cc.mallet.types.*;
+import cc.mallet.util.FeatureCountTool;
 import com.embaradj.velma.Settings;
 import com.embaradj.velma.models.DataModel;
 import org.apache.commons.io.FileUtils;
@@ -77,11 +78,11 @@ public class Modeller {
         }
 
         // Used for looking at words and number of occurrences
-//        FeatureCountTool countTool = new FeatureCountTool(instances);
-//        countTool.count();
+        FeatureCountTool countTool = new FeatureCountTool(instances);
+        countTool.count();
 //        System.out.println(Arrays.toString(countTool.getFeatureCounts()));
 //        System.out.println(Arrays.toString(countTool.getDocumentFrequencies()));
-//        countTool.printCounts();
+        countTool.printCounts();
 //        Alphabet prunedAlphabhet = countTool.getPrunedAlphabet(0, 500000, 300, 400);
 //        prunedAlphabhet.iterator().forEachRemaining(System.out::println);
 //        System.out.println(out);
@@ -119,7 +120,7 @@ public class Modeller {
             pipeList.add( new TokenSequenceRemoveStopwords(stopWordsEn, "UTF-8", false, false, false) );
             pipeList.add( new TokenSequenceRemoveStopwords(stopWordsSv, "UTF-8", false, false, false) );
             // Custom stopwords filter for identified noise
-            pipeList.add( new TokenSequenceRemoveStopwords(stopWordsNoise, "UTF-8", false, false, false) );
+//            pipeList.add( new TokenSequenceRemoveStopwords(stopWordsNoise, "UTF-8", false, false, false) );
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

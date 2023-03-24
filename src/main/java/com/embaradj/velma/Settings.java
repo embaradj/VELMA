@@ -30,6 +30,7 @@ public class Settings {
     private static int numTopics, threads, iterations;
     private static ArrayList<Ssyk> ssyk;
     private static HashMap<String, Boolean> languages;
+    private static boolean[] analyserSelection;
 
     /**
      * Constructor, initiates all default values
@@ -117,6 +118,7 @@ public class Settings {
         numTopics = 10;
         threads = 4;
         iterations = 1000;
+        analyserSelection = new boolean[]{true, true, true, false, false};
     }
 
     public static String getSusaApiUri() {
@@ -140,6 +142,8 @@ public class Settings {
     public void setThreads(int threads) { Settings.threads = threads; }
     public int getIterations() { return iterations; }
     public void setIterations(int iterations) { Settings.iterations = iterations; }
+    public boolean[] getAnalyserSelection() { return analyserSelection; }
+    public void setAnalyserSelection(boolean[] selection) { analyserSelection = selection; }
 
 
     /**

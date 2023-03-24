@@ -1,6 +1,7 @@
 package com.embaradj.velma;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.ArrayList;
@@ -9,10 +10,11 @@ import java.util.HashMap;
 public class SettingsForm extends JFrame {
     private Settings settings = Settings.getInstance();
     private JPanel mainPanel;
-    private JPanel jobLangPanel;
+    private JPanel langPanel;
     private JPanel analyserSettingsPanel;
     private JPanel jobSsykPanel;
     private JPanel buttonPanel;
+    private JPanel analyserSelectionPanel;
     private JSpinner alphaSpinner, betaSpinner, iterationsSpinner, threadsSpinner, topicsSpinner;
     private HashMap<String, JCheckBox> langCheckBoxes = new HashMap<>();
     private HashMap<Ssyk, JCheckBox> ssykCheckBoxes = new HashMap<>();
@@ -32,14 +34,18 @@ public class SettingsForm extends JFrame {
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Settings");
-        pack();
-        setLocationRelativeTo(null);    // Position the frame in the center of the screen
-        setVisible(true);
 
         createSsykCheckboxes();
         createLangCheckboxes();
         createAnalyserOptions();
+        createAnalyserSelection();
         createButtons();
+
+
+        setSize(600, 700);
+        setLocationRelativeTo(null);    // Position the frame in the center of the screen
+        setVisible(true);
+//        pack();
     }
 
     private void createSsykCheckboxes() {
@@ -60,7 +66,7 @@ public class SettingsForm extends JFrame {
         settings.getLang().forEach((lang, sel) -> {
             JCheckBox checkbox = new JCheckBox(lang, sel);
             langCheckBoxes.put(lang, checkbox);
-            jobLangPanel.add(checkbox);
+            langPanel.add(checkbox);
         });
     }
 
@@ -111,6 +117,33 @@ public class SettingsForm extends JFrame {
         addRowsToPanel(checkBoxRows, analyserSettingsPanel);
     }
 
+    private void createAnalyserSelection() {
+
+        boolean[] selection = settings.getAnalyserSelection();
+
+        JCheckBox jobCheck = new JCheckBox("Job ads", selection[0]);
+        JCheckBox hveCheck = new JCheckBox("HVE", selection[1]);
+        JCheckBox fullHveCheck = new JCheckBox("Full HVE text", selection[2]);
+        JCheckBox goalsHveCheck = new JCheckBox("Goals", selection[3]);
+        JCheckBox courseHveCheck = new JCheckBox("Courses", selection[4]);
+
+        // Visually group these checkboxes by adding an extra left-margin to them
+        Insets extraMargin = new Insets(0, 15, 0, 0);
+        fullHveCheck.setMargin(extraMargin);
+        goalsHveCheck.setMargin(extraMargin);
+        courseHveCheck.setMargin(extraMargin);
+
+        ArrayList<CustomWrapper> checkBoxRows = new ArrayList<>();
+        checkBoxRows.add(new CustomWrapper(jobCheck, null));
+        checkBoxRows.add(new CustomWrapper(hveCheck, null));
+        checkBoxRows.add(new CustomWrapper(fullHveCheck, null));
+        checkBoxRows.add(new CustomWrapper(goalsHveCheck, null));
+        checkBoxRows.add(new CustomWrapper(courseHveCheck, null));
+
+        addRowsToPanel(checkBoxRows, analyserSelectionPanel);
+    }
+
+
     /**
      * Adds a list of components with labels to a panel, then fills the rest with empty space in order
      * to push the contents to the top
@@ -131,11 +164,13 @@ public class SettingsForm extends JFrame {
             c.weightx = 0.1;
             panel.add(box.component, c);
 
-            c.weightx = 1;
-            c.gridx = 1;
-            panel.add(box.label, c);
+            if (box.label != null) {
+                c.weightx = 1;
+                c.gridx = 1;
+                panel.add(box.label, c);
+                box.label.setLabelFor(box.component);
+            }
 
-            box.label.setLabelFor(box.component);
             row++;
         }
 
@@ -230,8 +265,8 @@ public class SettingsForm extends JFrame {
         mainPanel.setLayout(new GridBagLayout());
         mainPanel.setPreferredSize(new Dimension(500, 500));
         mainPanel.setRequestFocusEnabled(true);
-        jobLangPanel = new JPanel();
-        jobLangPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        langPanel = new JPanel();
+        langPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -239,13 +274,13 @@ public class SettingsForm extends JFrame {
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(5, 5, 5, 5);
-        mainPanel.add(jobLangPanel, gbc);
-        jobLangPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Job Ads languages", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        mainPanel.add(langPanel, gbc);
+        langPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Languages", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(5, 5, 5, 5);
         mainPanel.add(buttonPanel, gbc);
@@ -275,6 +310,19 @@ public class SettingsForm extends JFrame {
         analyserSettingsPanel.setLayout(new GridBagLayout());
         scrollPane2.setViewportView(analyserSettingsPanel);
         analyserSettingsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Analyser Settings", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        final JScrollPane scrollPane3 = new JScrollPane();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        mainPanel.add(scrollPane3, gbc);
+        scrollPane3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        analyserSelectionPanel = new JPanel();
+        analyserSelectionPanel.setLayout(new GridBagLayout());
+        scrollPane3.setViewportView(analyserSelectionPanel);
+        analyserSelectionPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Analyser input selection", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
     }
 
     /**
