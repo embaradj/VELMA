@@ -17,4 +17,11 @@ With the HVE curriculums downloaded and job ads collected the topic modelling ca
   
 During the analysis a progress window will appear, and when the process is complete a window will appear with the found topics and included words.  
   
-Future work of the tool includes implementing a keyword analyser which will produce statistical results.
+Future work of the tool includes implementing a keyword analyser which will produce statistical results.  
+  
+#### Credit  
+###### Stopwords (sv/en)  
+https://countwordsfree.com/stopwords  
+http://alir3z4.github.io/stop-words/  
+###### Mallet
+https://github.com/mimno/Mallet  
