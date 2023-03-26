@@ -151,16 +151,16 @@ public class Settings {
         String lang = Arrays.toString(getSelectedLang()).replaceAll("[\\[\\]]", "");
         List<String> preFixes = new ArrayList<>();
 
-        if (lang.matches(".*Swedish.*")) {
-            preFixes.add("se_");
-        } if (lang.matches(".*English.*")) {
-            preFixes.add("en_");
-        } if (getAnalyserSelection()[2]) {
-            preFixes.add("full_");
-        } if (getAnalyserSelection()[3]) {
-            preFixes.add("aim_");
-        } if (getAnalyserSelection()[4]) {
-            preFixes.add("courses_");
+        if (lang.matches(".*Swedish.*") && getAnalyserSelection()[0]) {
+            preFixes.add("se");
+        } if (lang.matches(".*English.*") && getAnalyserSelection()[0]) {
+            preFixes.add("en");
+        } if (getAnalyserSelection()[2] && getAnalyserSelection()[1]) {
+            preFixes.add("full");
+        } if (getAnalyserSelection()[3] && getAnalyserSelection()[1]) {
+            preFixes.add("aim");
+        } if (getAnalyserSelection()[4] && getAnalyserSelection()[1]) {
+            preFixes.add("courses");
         }
         return preFixes;
     }

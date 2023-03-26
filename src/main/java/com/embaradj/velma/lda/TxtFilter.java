@@ -14,9 +14,6 @@ public class TxtFilter implements FileFilter {
     @Override
     public boolean accept(File file) {
         List<String> pre = Settings.getCorporapreFixes();
-        String lang = Arrays.toString(Settings.getSelectedLang()).replaceAll("[\\[\\]]", "");
-
-        System.out.println(pre.stream().anyMatch(s -> file.toString().startsWith(s) && file.toString().endsWith(".txt")));
-        return pre.stream().anyMatch(s -> file.toString().startsWith(s) && file.toString().endsWith(".txt"));
+        return pre.stream().anyMatch(s -> file.getName().startsWith(s) && file.getName().endsWith(".txt"));
     }
 }

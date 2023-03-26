@@ -43,11 +43,6 @@ public class APIJobStream {
                     return new Job(ad.getId(), ad.getTitle(), ad.getText(), lang);
                 })
                 .doOnNext(ad -> {
-//                    if (checkLang(ad)) {
-//                        ad.setLang("sv");
-//                    } else {
-//                        ad.setLang("en");
-//                    }
                     model.addAndUpdate(ad);
                     new ToTxt(ad);
                 })
