@@ -3,7 +3,6 @@ package com.embaradj.velma;
 import com.embaradj.velma.models.Job;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
-import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.StyledDocument;
@@ -12,10 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Menu to show details about a HVE or a Job, or Help text
+ * Window displaying information regarding HVE, a Job
+ * The help text or the topic modelling results.
  */
 public class DetailsForm extends JFrame {
-    private Settings settings = Settings.getInstance();
     private JPanel mainPanel;
     private JButton closeBtn;
     private JTextPane textPane;
@@ -35,21 +34,29 @@ public class DetailsForm extends JFrame {
         });
     }
 
+    /**
+     * Display search hits
+     * @param searchHit hits
+     */
     public DetailsForm(SearchHit searchHit) {
-
         this();     // Overloaded constructor
         boolean isHve = (searchHit.getType() == "hve");
-        setTitle((isHve ? "HVE: " : "Job: ") + searchHit.getTitle());
+        setTitle((isHve ? "HVE: " : "Job: ") + searchHit.title());
         textPane.setText(searchHit.getDescription());
         textPane.setCaretPosition(0);   // Scroll to the top
 
         // Just for some troubleshooting..
         if (Settings.debug() && !isHve) {
             Job job = (Job) searchHit;
-            System.out.println(job.getId());
+            System.out.println(job.id());
         }
     }
 
+    /**
+     * Display the help file
+     * @param title of the window
+     * @param document to display
+     */
     public DetailsForm(String title, Document document) {
         this(); // Overloaded constructor
         setTitle(title);
@@ -65,6 +72,10 @@ public class DetailsForm extends JFrame {
         textPane.setCaretPosition(0);   // Scroll to the top
     }
 
+    /**
+     * Display the topic modelling results
+     * @param topics found
+     */
     public DetailsForm(HashMap<String, String> topics) {
         this();
         setTitle("LDA Results");

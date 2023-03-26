@@ -9,7 +9,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Eager init Singleton
@@ -30,6 +32,7 @@ public class Settings {
     private static int numTopics, threads, iterations;
     private static ArrayList<Ssyk> ssyk;
     private static HashMap<String, Boolean> languages;
+    private static boolean[] analyserSelection;
 
     /**
      * Constructor, initiates all default values
@@ -111,12 +114,13 @@ public class Settings {
     /**
      * Set the default Analyser settings
      */
-    private void setDefaultAnalyser() {
+    private static void setDefaultAnalyser() {
         alpha = 0.01;
         beta = 0.01;
         numTopics = 10;
         threads = 4;
         iterations = 1000;
+        analyserSelection = new boolean[]{true, true, true, false, false};
     }
 
     public static String getSusaApiUri() {
@@ -140,6 +144,26 @@ public class Settings {
     public void setThreads(int threads) { Settings.threads = threads; }
     public int getIterations() { return iterations; }
     public void setIterations(int iterations) { Settings.iterations = iterations; }
+    public static boolean[] getAnalyserSelection() { return analyserSelection; }
+    public void setAnalyserSelection(boolean[] selection) { analyserSelection = selection; }
+
+    public static List<String> getCorporapreFixes() {
+        String lang = Arrays.toString(getSelectedLang()).replaceAll("[\\[\\]]", "");
+        List<String> preFixes = new ArrayList<>();
+
+        if (lang.matches(".*Swedish.*") && getAnalyserSelection()[0]) {
+            preFixes.add("se");
+        } if (lang.matches(".*English.*") && getAnalyserSelection()[0]) {
+            preFixes.add("en");
+        } if (getAnalyserSelection()[2] && getAnalyserSelection()[1]) {
+            preFixes.add("full");
+        } if (getAnalyserSelection()[3] && getAnalyserSelection()[1]) {
+            preFixes.add("aim");
+        } if (getAnalyserSelection()[4] && getAnalyserSelection()[1]) {
+            preFixes.add("courses");
+        }
+        return preFixes;
+    }
 
 
     /**

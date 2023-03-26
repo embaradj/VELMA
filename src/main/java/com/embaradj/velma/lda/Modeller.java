@@ -4,6 +4,7 @@ import cc.mallet.pipe.*;
 import cc.mallet.pipe.iterator.FileIterator;
 import cc.mallet.topics.ParallelTopicModel;
 import cc.mallet.types.*;
+import cc.mallet.util.FeatureCountTool;
 import com.embaradj.velma.Settings;
 import com.embaradj.velma.models.DataModel;
 import org.apache.commons.io.FileUtils;

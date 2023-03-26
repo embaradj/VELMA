@@ -12,9 +12,9 @@ import java.util.*;
  */
 public class PDFReader {
     private String[] lines;
-    private final HashMap<String, List<String>> courses = new HashMap<>();
     private String fullText;
-    StringBuilder builder = new StringBuilder();
+    StringBuilder aim = new StringBuilder();
+    StringBuilder courses = new StringBuilder();
     private final String[] filter = {"Kursöversikt", "Obligatoriska kurser", "Poäng", "Summa",
             "bokstavsordning", "Sida", "Ansökan", "Diarienummer", "Insänd"};
 
@@ -25,7 +25,7 @@ public class PDFReader {
         File file = new File(path);
         read(file);
         extractCourses();
-        setPartText();
+        setAimText();
 
         if (Settings.debug()) {
             String name = getText(getLine("Utbildningens namn") + 1);
@@ -38,7 +38,7 @@ public class PDFReader {
             System.out.println("Slots available: " + slots);
 
             System.out.println("Courses");
-            courses.forEach((key, value) -> System.out.println(key + " >> " + value));
+            System.out.println(courses);
         }
     }
 
@@ -62,12 +62,13 @@ public class PDFReader {
     /**
      * Fetches knowledge the graduates' should have after completed programme.
      */
-    private void setPartText() {
+    private void setAimText() {
         int start = getLine("Mål och krav för examen");
         int stop = getLine("Kursöversikt");
         for (int i = start; i < stop; i++) {
             if (Arrays.stream(filter).noneMatch(lines[i]::contains)) {
-                builder.append(lines[i]);
+                aim.append(lines[i]);
+                aim.append("\n");
             }
         }
     }
@@ -76,8 +77,8 @@ public class PDFReader {
      * Getter for the courses + graduates' knowledge
      * @return String
      */
-    public String getPartText() {
-        return builder.toString();
+    public String getAimText() {
+        return aim.toString();
     }
 
     /**
@@ -86,20 +87,13 @@ public class PDFReader {
      * And adds all courses a map.
      */
     private void extractCourses() {
-        List<String> tempList = new ArrayList<>();
         int start = getLine("Kurser i bokstavsordning");
         int stop = getLine("Yrkesroller");
-        String separator = ":";
         for (int i = start; i < stop; i++) {
             if (Arrays.stream(filter).noneMatch(lines[i]::contains)) {
-                tempList.add(lines[i]);
-                if (lines[i].contains(".....")) {
-                    tempList.removeIf(s -> s.contains("....."));
-                    int pos = tempList.get(0).indexOf(separator);
-                    String temp = tempList.get(0).substring(pos + separator.length()).trim();
-                    courses.put(temp, tempList.stream().toList());
-                    builder.append(tempList.stream().toList());
-                    tempList.clear();
+                if (!lines[i].contains(".....")) {
+                    courses.append(lines[i]);
+                    courses.append("\n");
                 }
             }
         }
@@ -109,7 +103,7 @@ public class PDFReader {
      * Getter for courses.
      * @return courses
      */
-    public HashMap<String, List<String>> getCourses() { return this.courses; }
+    public String getCourses() { return courses.toString(); }
 
     /**
      * Getter for full text.
