@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Represents the controller which binds the logic to each button.
@@ -77,11 +78,11 @@ public class Controller implements ActionListener {
      * And starts topic modelling with {@link Modeller}.
      */
     private void analyse() {
-        if (!Settings.debug() && (!model.isSearched("hve") || !model.isSearched("job"))) {
-//        if (!model.isSearched("hve") || !model.isSearched("job")) {
-            JOptionPane.showMessageDialog(null, "You must run a curriculum- and job ads search first!");
-            return;
-        }
+//        if (!Settings.debug() && (!model.isSearched("hve") || !model.isSearched("job"))) {
+////        if (!model.isSearched("hve") || !model.isSearched("job")) {
+//            JOptionPane.showMessageDialog(null, "You must run a curriculum- and job ads search first!");
+//            return;
+//        }
         model.clearLDATopics();
         ImageIcon icon = null;
         try {
@@ -116,6 +117,11 @@ public class Controller implements ActionListener {
             SwingUtilities.invokeLater(() -> {
                 dia.setVisible(false);
                 new DetailsForm(model.getLDATopics());
+
+                // Used for printing out the found words in a copy-paste friendly manner
+                String out = String.join("", model.getLDATopics().values()).replaceAll("\\[", "");
+                String out2 = out.replaceAll("\\]", ", ");
+                System.out.println(out2.replaceAll(", ", "\n"));
             });
         }).start();
     }

@@ -10,6 +10,10 @@ import com.embaradj.velma.models.DataModel;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.text.NumberFormat;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -62,6 +66,12 @@ public class Modeller {
         // 50 for testing, 1000-2000 for production mode
         model.setNumIterations(iterations);
 
+        // Hyperparameter optimization
+        // Will change alpha and beta to allow for some topics to be more pronounced
+        // Needs further testing before use
+//        model.setOptimizeInterval(10);
+
+
         // Build the LDA model
         try {
             model.estimate();
@@ -80,10 +90,36 @@ public class Modeller {
         // Used for looking at words and number of occurrences
 //        FeatureCountTool countTool = new FeatureCountTool(instances);
 //        countTool.count();
+//        double[] featureCounts = countTool.getFeatureCounts();
+//        int[] documentFrequencies = countTool.getDocumentFrequencies();
+//        Alphabet alphabet = instances.getDataAlphabet();
+//        NumberFormat nf = NumberFormat.getInstance();
+//        nf.setMinimumFractionDigits(0);
+//        nf.setMaximumFractionDigits(6);
+//        nf.setGroupingUsed(false);
+//
+//        Formatter hitsDocsText = new Formatter(new StringBuilder(), Locale.US);
+//        Formatter hitsText = new Formatter(new StringBuilder(), Locale.US);
+//        for(int feature = 0; feature < instances.getDataAlphabet().size(); ++feature) {
+//            hitsDocsText.format("%s\t%d\t%s\n", nf.format(featureCounts[feature]), documentFrequencies[feature], alphabet.lookupObject(feature).toString());
+//            hitsText.format("%s %s\n", nf.format(featureCounts[feature]), alphabet.lookupObject(feature).toString());
+//        }
+//        try {
+//            Files.writeString(Path.of("resources/noise_hits_docs.txt"), hitsDocsText.toString(), StandardCharsets.UTF_8);
+//            Files.writeString(Path.of("resources/noise_hits.txt"), hitsText.toString(), StandardCharsets.UTF_8);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+
+//        for(int feature = 0; feature < instances.getDataAlphabet().size(); ++feature) {
+//            Formatter formatter = new Formatter(new StringBuilder(), Locale.US);
+//            formatter.format("%s\t%s\t%d", alphabet.lookupObject(feature).toString(), nf.format(featureCounts[feature]), documentFrequencies[feature]);
+//            System.out.println(formatter);
+//            System.setOut(o);
+//        }
 //        System.out.println(Arrays.toString(countTool.getFeatureCounts()));
 //        System.out.println(Arrays.toString(countTool.getDocumentFrequencies()));
-//        countTool.printCounts();
-//        Alphabet prunedAlphabhet = countTool.getPrunedAlphabet(0, 500000, 300, 400);
+//        Alphabet prunedAlphabhet = countTool.getPrunedAlphabet(0, 10000, 500, 10000);
 //        prunedAlphabhet.iterator().forEachRemaining(System.out::println);
 //        System.out.println(out);
     }
@@ -98,7 +134,7 @@ public class Modeller {
         pipeList.add(new CharSequenceLowercase());
 
         // Specifies the tokens with regex, includes Unicode letters for non-English text
-        Pattern tokenPattern = Pattern.compile("[\\p{L}\\p{M}_-]+");
+        Pattern tokenPattern = Pattern.compile("[\\p{L}\\p{M}]+");
 
         // Tokenize the raw strings
         pipeList.add(new CharSequence2TokenSequence(tokenPattern));

@@ -117,9 +117,9 @@ public class Settings {
     private static void setDefaultAnalyser() {
         alpha = 0.01;
         beta = 0.01;
-        numTopics = 10;
-        threads = 4;
-        iterations = 1000;
+        numTopics = 5;
+        threads = 16; // 16 threads used for testing
+        iterations = 2000; // 2000 iterations used for testing
         analyserSelection = new boolean[]{true, true, true, false, false};
     }
 
