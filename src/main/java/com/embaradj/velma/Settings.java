@@ -20,7 +20,8 @@ import java.util.List;
 public class Settings {
     private static final Settings settings = new Settings();
     protected static final double VERSION = 1.0D;
-    private final InputStream HELP_FILE_PATH = getClass().getResourceAsStream("/help.rtf");
+//    private final InputStream HELP_FILE_STREAM = getClass().getResourceAsStream("/help.rtf");
+    private final String HELPFILE = "/help.rtf";
     private static final boolean DEBUG = true;
     private static final String SUSA_API_BASE_URI =
             "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=";
@@ -179,8 +180,9 @@ public class Settings {
      */
     public Document getHelpDocument() {
         try {
-            File helpFile = File.createTempFile(String.valueOf(HELP_FILE_PATH.hashCode()), ".tmp");
-            FileUtils.copyInputStreamToFile(HELP_FILE_PATH, helpFile);
+            InputStream helpFileStream = getClass().getResourceAsStream(HELPFILE);
+            File helpFile = File.createTempFile(String.valueOf(helpFileStream.hashCode()), ".tmp");
+            FileUtils.copyInputStreamToFile(helpFileStream, helpFile);
             FileInputStream stream = new FileInputStream(helpFile);
             RTFEditorKit kit = new RTFEditorKit();
             Document doc = kit.createDefaultDocument();
