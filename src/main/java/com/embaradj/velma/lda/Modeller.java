@@ -80,7 +80,7 @@ public class Modeller {
         }
 
         // Find topics and top words
-        List<Object[]> topicWords = Arrays.stream(model.getTopWords(7)).toList();
+        List<Object[]> topicWords = Arrays.stream(model.getTopWords(settings.getWords())).toList();
 
         // Add topics and related words to datamodel
         for (int i = 0; i < topicWords.size(); i++) {

@@ -19,7 +19,7 @@ public class SettingsForm extends JFrame {
     private JPanel jobSsykPanel;
     private JPanel buttonPanel;
     private JPanel analyserSelectionPanel;
-    private JSpinner alphaSpinner, betaSpinner, iterationsSpinner, threadsSpinner, topicsSpinner;
+    private JSpinner alphaSpinner, betaSpinner, iterationsSpinner, threadsSpinner, topicsSpinner, wordsSpinner;
     private HashMap<String, JCheckBox> langCheckBoxes = new HashMap<>();
     private HashMap<Ssyk, JCheckBox> ssykCheckBoxes = new HashMap<>();
     private JCheckBox jobCheck, hveCheck, fullHveCheck, goalsHveCheck, courseHveCheck;
@@ -160,6 +160,11 @@ public class SettingsForm extends JFrame {
         iterationsSpinner.setEditor(new JSpinner.NumberEditor(iterationsSpinner, "#"));
         JLabel iterationsLabel = new JLabel("Number of iterations");
 
+        // Number of words per topic
+        SpinnerNumberModel wordsSpinnerModel = new SpinnerNumberModel(settings.getWords(), 1, 100, 1);
+        wordsSpinner = new JSpinner(wordsSpinnerModel);
+        JLabel wordsLabel = new JLabel("Number of words per topic");
+
         // Put everything on the Panel
         ArrayList<CustomWrapper> checkBoxRows = new ArrayList<>();
         checkBoxRows.add(new CustomWrapper(alphaSpinner, alphaLabel));
@@ -167,6 +172,7 @@ public class SettingsForm extends JFrame {
         checkBoxRows.add(new CustomWrapper(topicsSpinner, topicsLabel));
         checkBoxRows.add(new CustomWrapper(threadsSpinner, threadsLabel));
         checkBoxRows.add(new CustomWrapper(iterationsSpinner, iterationsLabel));
+        checkBoxRows.add(new CustomWrapper(wordsSpinner, wordsLabel));
 
         addRowsToPanel(checkBoxRows, analyserSettingsPanel);
     }
@@ -322,6 +328,7 @@ public class SettingsForm extends JFrame {
         settings.setIterations(Integer.parseInt(iterationsSpinner.getValue().toString()));
         settings.setThreads(Integer.parseInt(threadsSpinner.getValue().toString()));
         settings.setNumTopics(Integer.parseInt(topicsSpinner.getValue().toString()));
+        settings.setWords((int) wordsSpinner.getValue());
 
         settings.setAnalyserSelection(
                 new boolean[]{

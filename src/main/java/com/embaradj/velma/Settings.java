@@ -29,7 +29,7 @@ public class Settings {
     private static final int SUSA_MAX_HITS = 1000;
     private static final int SUSA_DEBUG_MAX_HITS = 5;
     private static double alpha, beta;
-    private static int numTopics, threads, iterations;
+    private static int numTopics, threads, iterations, words;
     private static ArrayList<Ssyk> ssyk;
     private static HashMap<String, Boolean> languages;
     private static boolean[] analyserSelection;
@@ -121,6 +121,7 @@ public class Settings {
         threads = 16; // 16 threads used for testing
         iterations = 2000; // 2000 iterations used for testing
         analyserSelection = new boolean[]{true, true, true, false, false};
+        words = 7;
     }
 
     public static String getSusaApiUri() {
@@ -134,18 +135,24 @@ public class Settings {
     public static String getJobStreamUri() { return JOBSTREAM_URI; }
 
     // Analyser settings setters & getters
-    public double getAlpha() { return alpha; }
-    public void setAlpha(double alpha) { Settings.alpha = alpha; }
-    public double getBeta() { return beta; }
-    public void setBeta(double beta) { Settings.beta = beta; }
-    public int getNumTopics() { return numTopics;}
-    public void setNumTopics(int numTopics) { Settings.numTopics = numTopics; }
-    public int getThreads() { return threads; }
-    public void setThreads(int threads) { Settings.threads = threads; }
-    public int getIterations() { return iterations; }
-    public void setIterations(int iterations) { Settings.iterations = iterations; }
+    public static double getAlpha() { return alpha; }
+    public static void setAlpha(double alpha) { Settings.alpha = alpha; }
+    public static double getBeta() { return beta; }
+    public static void setBeta(double beta) { Settings.beta = beta; }
+    public static int getNumTopics() { return numTopics;}
+    public static void setNumTopics(int numTopics) { Settings.numTopics = numTopics; }
+    public static int getThreads() { return threads; }
+    public static void setThreads(int threads) { Settings.threads = threads; }
+    public static int getIterations() { return iterations; }
+    public static void setIterations(int iterations) { Settings.iterations = iterations; }
     public static boolean[] getAnalyserSelection() { return analyserSelection; }
-    public void setAnalyserSelection(boolean[] selection) { analyserSelection = selection; }
+    public static void setAnalyserSelection(boolean[] selection) { analyserSelection = selection; }
+    public static int getWords() {
+        return words;
+    }
+    public static void setWords(int words) {
+        Settings.words = words;
+    }
 
     public static List<String> getCorporapreFixes() {
         String lang = Arrays.toString(getSelectedLang()).replaceAll("[\\[\\]]", "");
