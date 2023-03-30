@@ -130,14 +130,14 @@ public class Controller implements ActionListener {
      * Spawn the dialog if the user wants to quit
      * @return true if quitting
      */
-    private boolean quit() {
+    public boolean quit() {
         return Settings.confirmYesNo("Quit application?","Are you sure you want to quit?");
     }
 
     /**
      * Exit the program
      */
-    private void exit() {
+    public void exit() {
         if (quit()) {
             for (Frame frame : Frame.getFrames()) frame.dispose();
         } else {

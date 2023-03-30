@@ -4,6 +4,10 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,6 +32,55 @@ public class SettingsForm extends JFrame {
 
         protected JComponent component;
         protected JLabel label;
+    }
+
+    /**
+     * Logics for checkbox behaviour
+     */
+    private class checkBoxLogic implements ActionListener {
+        private String checkbox;
+
+        public checkBoxLogic(String checkbox) {
+            this.checkbox = checkbox;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            switch (checkbox) {
+
+                case "hve":
+                    // Unchecks HVE related checkboxes if HVE is unchecked
+                    if (!hveCheck.getModel().isSelected()) {
+                        fullHveCheck.getModel().setSelected(false);
+                        goalsHveCheck.getModel().setSelected(false);
+                        courseHveCheck.getModel().setSelected(false);
+                        // Check default option if HVE is checked
+                    } else fullHveCheck.getModel().setSelected(true);
+                    break;
+
+                case "full":
+                    // Uncheck goals and courses if "full" is checked
+                    goalsHveCheck.getModel().setSelected(false);
+                    courseHveCheck.getModel().setSelected(false);
+                    noHveCheck();
+                    break;
+
+                case "goal", "courses":
+                    // Uncheck "full HVE text"  if goals or courses are checked
+                    fullHveCheck.getModel().setSelected(false);
+                    noHveCheck();
+                    break;
+            }
+        }
+
+        // Selects or unselects HVE depending on its sub-options
+        private void noHveCheck() {
+            if (!fullHveCheck.getModel().isSelected() &&
+                    !goalsHveCheck.getModel().isSelected() &&
+                    !courseHveCheck.getModel().isSelected())
+                hveCheck.getModel().setSelected(false);
+            else hveCheck.getModel().setSelected(true);
+        }
     }
 
     public SettingsForm() {
@@ -145,25 +198,11 @@ public class SettingsForm extends JFrame {
         checkBoxRows.add(new CustomWrapper(courseHveCheck, null));
         addRowsToPanel(checkBoxRows, analyserSelectionPanel);
 
-        // Logics for checkbox behaviour
-        hveCheck.addActionListener((e) -> {
-            // Enable / Disable HVE related checkboxes depending on whether HVE is checked
-            boolean checked = hveCheck.getModel().isSelected();
-            fullHveCheck.setEnabled(checked);
-            goalsHveCheck.setEnabled(checked);
-            courseHveCheck.setEnabled(checked);
-        });
-
-        // Uncheck full alternative if goals or courses are checked
-        goalsHveCheck.addActionListener((e) -> fullHveCheck.getModel().setSelected(false));
-        courseHveCheck.addActionListener((e) -> fullHveCheck.getModel().setSelected(false));
-
-        // Uncheck goals and courses if "full" is checked
-        fullHveCheck.addActionListener((e) -> {
-            goalsHveCheck.getModel().setSelected(false);
-            courseHveCheck.getModel().setSelected(false);
-        });
-
+        // Set logic behaviour for the checkboxes
+        hveCheck.addActionListener(new checkBoxLogic("hve"));
+        fullHveCheck.addActionListener(new checkBoxLogic("full"));
+        goalsHveCheck.addActionListener(new checkBoxLogic("goal"));
+        courseHveCheck.addActionListener(new checkBoxLogic("courses"));
     }
 
     /**
