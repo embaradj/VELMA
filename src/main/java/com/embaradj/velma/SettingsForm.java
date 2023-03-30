@@ -14,15 +14,13 @@ import java.util.HashMap;
 public class SettingsForm extends JFrame {
     private Settings settings = Settings.getInstance();
     private JPanel mainPanel;
-    private JPanel langPanel;
     private JPanel analyserSettingsPanel;
     private JPanel jobSsykPanel;
     private JPanel buttonPanel;
     private JPanel analyserSelectionPanel;
     private JSpinner alphaSpinner, betaSpinner, iterationsSpinner, threadsSpinner, topicsSpinner, wordsSpinner;
-    private HashMap<String, JCheckBox> langCheckBoxes = new HashMap<>();
     private HashMap<Ssyk, JCheckBox> ssykCheckBoxes = new HashMap<>();
-    private JCheckBox jobCheck, hveCheck, fullHveCheck, goalsHveCheck, courseHveCheck;
+    private JCheckBox jobCheck, hveCheck, fullHveCheck, goalsHveCheck, courseHveCheck, sweJobCheck, engJobCheck;
 
     private class CustomWrapper {
         public CustomWrapper(JComponent component, JLabel label) {
@@ -37,10 +35,10 @@ public class SettingsForm extends JFrame {
     /**
      * Logics for checkbox behaviour
      */
-    private class checkBoxLogic implements ActionListener {
+    private class CheckBoxLogic implements ActionListener {
         private String checkbox;
 
-        public checkBoxLogic(String checkbox) {
+        public CheckBoxLogic(String checkbox) {
             this.checkbox = checkbox;
         }
 
@@ -70,6 +68,17 @@ public class SettingsForm extends JFrame {
                     fullHveCheck.getModel().setSelected(false);
                     noHveCheck();
                     break;
+
+                case "job":
+                    // Select / Unselect Swedish and English depending on job checkbox
+                    sweJobCheck.getModel().setSelected(jobCheck.getModel().isSelected());
+                    engJobCheck.getModel().setSelected(jobCheck.getModel().isSelected());
+                    break;
+
+                case "job_swe", "job_eng":
+                    // Select / Unselect jobs depending on Swe / Eng selection
+                    jobCheck.getModel().setSelected(sweJobCheck.getModel().isSelected() || engJobCheck.getModel().isSelected());
+                    break;
             }
         }
 
@@ -90,7 +99,6 @@ public class SettingsForm extends JFrame {
         setTitle("Settings");
 
         createSsykCheckboxes();
-        createLangCheckboxes();
         createAnalyserOptions();
         createAnalyserSelection();
         createButtons();
@@ -114,14 +122,6 @@ public class SettingsForm extends JFrame {
 
         // Add all these checkboxes with labels to the panel
         addRowsToPanel(checkBoxRows, jobSsykPanel);
-    }
-
-    private void createLangCheckboxes() {
-        settings.getLang().forEach((lang, sel) -> {
-            JCheckBox checkbox = new JCheckBox(lang, sel);
-            langCheckBoxes.put(lang, checkbox);
-            langPanel.add(checkbox);
-        });
     }
 
     private void createAnalyserOptions() {
@@ -183,14 +183,20 @@ public class SettingsForm extends JFrame {
         boolean[] selection = settings.getAnalyserSelection();
 
         // Create checkboxes
-        jobCheck = new JCheckBox("Job ads", selection[0]);
-        hveCheck = new JCheckBox("HVE", selection[1]);
+
+        jobCheck = new JCheckBox("Job ads", (selection[0] || selection[1]));
+        sweJobCheck = new JCheckBox("Swedish", selection[0]);
+        engJobCheck = new JCheckBox("English", selection[1]);
+
+        hveCheck = new JCheckBox("HVE", (selection[2] || selection[3]) || selection[4]);
         fullHveCheck = new JCheckBox("Full HVE text (including goals and courses)", selection[2]);
         goalsHveCheck = new JCheckBox("Goals", selection[3]);
         courseHveCheck = new JCheckBox("Courses", selection[4]);
 
         // Visually group these checkboxes by adding an extra left-margin to them
         Insets extraMargin = new Insets(0, 15, 0, 0);
+        sweJobCheck.setMargin(extraMargin);
+        engJobCheck.setMargin(extraMargin);
         fullHveCheck.setMargin(extraMargin);
         goalsHveCheck.setMargin(extraMargin);
         courseHveCheck.setMargin(extraMargin);
@@ -198,6 +204,8 @@ public class SettingsForm extends JFrame {
         // Add the checkboxes to the container
         ArrayList<CustomWrapper> checkBoxRows = new ArrayList<>();
         checkBoxRows.add(new CustomWrapper(jobCheck, null));
+        checkBoxRows.add(new CustomWrapper(sweJobCheck, null));
+        checkBoxRows.add(new CustomWrapper(engJobCheck, null));
         checkBoxRows.add(new CustomWrapper(hveCheck, null));
         checkBoxRows.add(new CustomWrapper(fullHveCheck, null));
         checkBoxRows.add(new CustomWrapper(goalsHveCheck, null));
@@ -205,10 +213,14 @@ public class SettingsForm extends JFrame {
         addRowsToPanel(checkBoxRows, analyserSelectionPanel);
 
         // Set logic behaviour for the checkboxes
-        hveCheck.addActionListener(new checkBoxLogic("hve"));
-        fullHveCheck.addActionListener(new checkBoxLogic("full"));
-        goalsHveCheck.addActionListener(new checkBoxLogic("goal"));
-        courseHveCheck.addActionListener(new checkBoxLogic("courses"));
+        jobCheck.addActionListener(new CheckBoxLogic("job"));
+        sweJobCheck.addActionListener(new CheckBoxLogic("job_swe"));
+        engJobCheck.addActionListener(new CheckBoxLogic("job_eng"));
+
+        hveCheck.addActionListener(new CheckBoxLogic("hve"));
+        fullHveCheck.addActionListener(new CheckBoxLogic("full"));
+        goalsHveCheck.addActionListener(new CheckBoxLogic("goal"));
+        courseHveCheck.addActionListener(new CheckBoxLogic("courses"));
     }
 
     /**
@@ -250,7 +262,7 @@ public class SettingsForm extends JFrame {
     }
 
     private void createButtons() {
-        JButton okBtn = new JButton("OK");
+        JButton okBtn = new JButton("Save");
         okBtn.addActionListener((l) -> {
             if (checkSettings()) saveSettings();
         });
@@ -271,17 +283,7 @@ public class SettingsForm extends JFrame {
 
         int checked = 0;
 
-        // Check that at least one language is selected
-        for (JCheckBox checkbox : langCheckBoxes.values()) {
-            if (checkbox.getModel().isSelected()) checked++;
-        }
-        if (checked == 0) {
-            showWarning("You must select at least one language!");
-            return false;
-        }
-
         // Check that at least one SSYK code is selected
-        checked = 0;
         for (JCheckBox checkbox : ssykCheckBoxes.values()) {
             if (checkbox.getModel().isSelected()) checked++;
         }
@@ -296,6 +298,7 @@ public class SettingsForm extends JFrame {
             return false;
         }
 
+        // todo unnecessary check..?
         // Check that one HVE-suboption is checked if main option is cheked
         if (hveCheck.getModel().isSelected()) {
             if (!fullHveCheck.getModel().isSelected() &&
@@ -315,10 +318,6 @@ public class SettingsForm extends JFrame {
      */
     private void saveSettings() {
 
-        langCheckBoxes.forEach((lang, checkbox) -> {
-            settings.selectLang(lang, checkbox.getModel().isSelected());
-        });
-
         ssykCheckBoxes.forEach((ssyk, checkbox) -> {
             settings.selectSsyk(ssyk, checkbox.getModel().isSelected());
         });
@@ -332,8 +331,8 @@ public class SettingsForm extends JFrame {
 
         settings.setAnalyserSelection(
                 new boolean[]{
-                        jobCheck.getModel().isSelected(),
-                        hveCheck.getModel().isSelected(),
+                        sweJobCheck.getModel().isSelected(),
+                        engJobCheck.getModel().isSelected(),
                         fullHveCheck.getModel().isSelected(),
                         goalsHveCheck.getModel().isSelected(),
                         courseHveCheck.getModel().isSelected()
@@ -358,29 +357,21 @@ public class SettingsForm extends JFrame {
         mainPanel.setLayout(new GridBagLayout());
         mainPanel.setPreferredSize(new Dimension(500, 500));
         mainPanel.setRequestFocusEnabled(true);
-        langPanel = new JPanel();
-        langPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = 3;
         gbc.weightx = 1.0;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(5, 5, 5, 5);
-        mainPanel.add(langPanel, gbc);
-        langPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Languages", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
-        buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 4;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(5, 5, 5, 5);
         mainPanel.add(buttonPanel, gbc);
         final JScrollPane scrollPane1 = new JScrollPane();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -393,7 +384,8 @@ public class SettingsForm extends JFrame {
         final JScrollPane scrollPane2 = new JScrollPane();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -406,7 +398,8 @@ public class SettingsForm extends JFrame {
         final JScrollPane scrollPane3 = new JScrollPane();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 2;
+        gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(5, 5, 5, 5);

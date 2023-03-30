@@ -20,7 +20,6 @@ import java.util.List;
 public class Settings {
     private static final Settings settings = new Settings();
     protected static final double VERSION = 1.0D;
-//    private final InputStream HELP_FILE_STREAM = getClass().getResourceAsStream("/help.rtf");
     private final String HELPFILE = "/help.rtf";
     private static final boolean DEBUG = true;
     private static final String SUSA_API_BASE_URI =
@@ -32,7 +31,6 @@ public class Settings {
     private static double alpha, beta;
     private static int numTopics, threads, iterations, words;
     private static ArrayList<Ssyk> ssyk;
-    private static HashMap<String, Boolean> languages;
     private static boolean[] analyserSelection;
 
     /**
@@ -40,7 +38,6 @@ public class Settings {
      */
     private Settings() {
         setDefaultSsyk();
-        setDefaultLang();
         setDefaultAnalyser();
     }
 
@@ -88,31 +85,6 @@ public class Settings {
     }
 
     /**
-     * Set the default languages
-     */
-    private void setDefaultLang() {
-        languages = new HashMap<>();
-        languages.put("English", true);
-        languages.put("Swedish", true);
-    }
-
-    public void selectLang(String lang, boolean select) {
-        languages.replace(lang, select);
-    }
-
-    /**
-     * Get selected Languages
-     * @return A lits of selected languages
-     */
-    public static String[] getSelectedLang() {
-        ArrayList<String> selected = new ArrayList<>();
-        languages.forEach((lang, select) -> { if (select) selected.add(lang); });
-        return selected.toArray(new String[0]);
-    }
-
-    public HashMap<String, Boolean> getLang() { return languages; }
-
-    /**
      * Set the default Analyser settings
      */
     private static void setDefaultAnalyser() {
@@ -121,6 +93,7 @@ public class Settings {
         numTopics = 5;
         threads = 16; // 16 threads used for testing
         iterations = 2000; // 2000 iterations used for testing
+        // Analyser: Jobs Swe, Jobs Eng, HVE Full, HVE goals, HVE Courses
         analyserSelection = new boolean[]{true, true, true, false, false};
         words = 7;
     }
@@ -146,8 +119,23 @@ public class Settings {
     public static void setThreads(int threads) { Settings.threads = threads; }
     public static int getIterations() { return iterations; }
     public static void setIterations(int iterations) { Settings.iterations = iterations; }
+
+    /**
+     * Get analyser selections
+     * @return index 0: Job ads Swe, 1: Job ads Eng, 2: HVE full, 3: HVE Goals, 4: HVE Courses
+     */
     public static boolean[] getAnalyserSelection() { return analyserSelection; }
+
+    /**
+     * Set analyser selections
+     * @param selection index 0: Job ads Swe, 1: Job ads Eng, 2: HVE full, 3: HVE Goals, 4: HVE Courses
+     */
     public static void setAnalyserSelection(boolean[] selection) { analyserSelection = selection; }
+
+    /**
+     * Number of words a topic can contain
+     * @return Number of words
+     */
     public static int getWords() {
         return words;
     }
@@ -156,14 +144,19 @@ public class Settings {
     }
 
     public static List<String> getCorporapreFixes() {
-        String lang = Arrays.toString(getSelectedLang()).replaceAll("[\\[\\]]", "");
+        //String lang = Arrays.toString(getSelectedLang()).replaceAll("[\\[\\]]", "");
         List<String> preFixes = new ArrayList<>();
 
-        if (lang.matches(".*Swedish.*") && getAnalyserSelection()[0]) {
-            preFixes.add("se");
-        } if (lang.matches(".*English.*") && getAnalyserSelection()[0]) {
-            preFixes.add("en");
-        } if (getAnalyserSelection()[2] && getAnalyserSelection()[1]) {
+//        if (lang.matches(".*Swedish.*") && getAnalyserSelection()[0]) {
+//            preFixes.add("se");
+//        } if (lang.matches(".*English.*") && getAnalyserSelection()[0]) {
+//            preFixes.add("en");
+//        }
+
+        if (getAnalyserSelection()[0]) preFixes.add("se");
+        if (getAnalyserSelection()[1]) preFixes.add("en");
+
+        if (getAnalyserSelection()[2] && getAnalyserSelection()[1]) {
             preFixes.add("full");
         } if (getAnalyserSelection()[3] && getAnalyserSelection()[1]) {
             preFixes.add("aim");
