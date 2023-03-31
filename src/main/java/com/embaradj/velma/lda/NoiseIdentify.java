@@ -13,10 +13,9 @@ import java.util.Formatter;
 import java.util.Locale;
 
 /**
- * Generates two files for noise identification.
- * One file consists of the number of hits, in how many documents
- * The word was found, and the word.
- * The second file created consists of the number of hits and the word.
+ * Generate file for noise identification.
+ * The file consists of the number of hits, in how many documents
+ * The word was found, including the word.
  */
 public class NoiseIdentify {
     public NoiseIdentify(InstanceList instances) {
@@ -31,14 +30,11 @@ public class NoiseIdentify {
         nf.setGroupingUsed(false);
 
         Formatter hitsDocsText = new Formatter(new StringBuilder(), Locale.US);
-        Formatter hitsText = new Formatter(new StringBuilder(), Locale.US);
         for(int feature = 0; feature < instances.getDataAlphabet().size(); ++feature) {
             hitsDocsText.format("%s\t%d\t%s\n", nf.format(featureCounts[feature]), documentFrequencies[feature], alphabet.lookupObject(feature).toString());
-            hitsText.format("%s %s\n", nf.format(featureCounts[feature]), alphabet.lookupObject(feature).toString());
         }
         try {
-            Files.writeString(Path.of("resources/2_noise_hits_docs.txt"), hitsDocsText.toString(), StandardCharsets.UTF_8);
-            Files.writeString(Path.of("resources/2_noise_hits.txt"), hitsText.toString(), StandardCharsets.UTF_8);
+            Files.writeString(Path.of("resources/corporaWords.txt"), hitsDocsText.toString(), StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
