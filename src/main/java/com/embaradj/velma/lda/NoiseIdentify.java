@@ -3,6 +3,7 @@ package com.embaradj.velma.lda;
 import cc.mallet.types.Alphabet;
 import cc.mallet.types.InstanceList;
 import cc.mallet.util.FeatureCountTool;
+import com.embaradj.velma.Settings;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -19,6 +20,12 @@ import java.util.Locale;
  */
 public class NoiseIdentify {
     public NoiseIdentify(InstanceList instances) {
+        StringBuilder preFix = new StringBuilder();
+        for (String selCorp : Settings.getCorporapreFixes()) {
+            preFix.append(selCorp).append("_");
+        }
+        Path path = Path.of("resources/" + preFix + "corporaWords.txt");
+
         FeatureCountTool countTool = new FeatureCountTool(instances);
         countTool.count();
         double[] featureCounts = countTool.getFeatureCounts();
@@ -32,9 +39,10 @@ public class NoiseIdentify {
         Formatter hitsDocsText = new Formatter(new StringBuilder(), Locale.US);
         for(int feature = 0; feature < instances.getDataAlphabet().size(); ++feature) {
             hitsDocsText.format("%s\t%d\t%s\n", nf.format(featureCounts[feature]), documentFrequencies[feature], alphabet.lookupObject(feature).toString());
+
         }
         try {
-            Files.writeString(Path.of("resources/corporaWords.txt"), hitsDocsText.toString(), StandardCharsets.UTF_8);
+            Files.writeString(path, hitsDocsText.toString(), StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
