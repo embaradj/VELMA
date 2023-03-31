@@ -156,11 +156,11 @@ public class Settings {
         if (getAnalyserSelection()[0]) preFixes.add("se");
         if (getAnalyserSelection()[1]) preFixes.add("en");
 
-        if (getAnalyserSelection()[2] && getAnalyserSelection()[1]) {
+        if (getAnalyserSelection()[2]) {
             preFixes.add("full");
-        } if (getAnalyserSelection()[3] && getAnalyserSelection()[1]) {
+        } if (getAnalyserSelection()[3]) {
             preFixes.add("aim");
-        } if (getAnalyserSelection()[4] && getAnalyserSelection()[1]) {
+        } if (getAnalyserSelection()[4]) {
             preFixes.add("courses");
         }
         return preFixes;
