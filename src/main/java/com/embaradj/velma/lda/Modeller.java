@@ -4,16 +4,11 @@ import cc.mallet.pipe.*;
 import cc.mallet.pipe.iterator.FileIterator;
 import cc.mallet.topics.ParallelTopicModel;
 import cc.mallet.types.*;
-import cc.mallet.util.FeatureCountTool;
 import com.embaradj.velma.Settings;
 import com.embaradj.velma.models.DataModel;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.text.NumberFormat;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -23,19 +18,18 @@ import java.util.regex.Pattern;
  */
 public class Modeller {
     DataModel dataModel;
-    Settings settings = Settings.getInstance();
     ArrayList<Pipe> pipeList = new ArrayList<>();
     ParallelTopicModel model;
     // High alpha = Each document will contain a mixture of most topics
     // And not one single topic.
     // Low alpha = Each document might contain only a few or just one topic.
-    double alpha = settings.getAlpha(); // Set the alpha value
+    double alpha = Settings.getAlpha(); // Set the alpha value
     // High beta = Each topic is likely to contain a mixture of words
     // Low beta = Each topic may contain a mixture of only a few words.
-    double beta = settings.getBeta(); // Set the beta value
-    int numTopics = settings.getNumTopics(); // Number of topics to search for
-    int threads = settings.getThreads(); // Number of threads to do work on
-    int iterations = settings.getIterations(); // Number of iterations for the modelling
+    double beta = Settings.getBeta(); // Set the beta value
+    int numTopics = Settings.getNumTopics(); // Number of topics to search for
+    int threads = Settings.getThreads(); // Number of threads to do work on
+    int iterations = Settings.getIterations(); // Number of iterations for the modelling
 
     public Modeller(DataModel dataModel) {
         this.dataModel = dataModel;
@@ -80,48 +74,15 @@ public class Modeller {
         }
 
         // Find topics and top words
-        List<Object[]> topicWords = Arrays.stream(model.getTopWords(settings.getWords())).toList();
+        List<Object[]> topicWords = Arrays.stream(model.getTopWords(Settings.getWords())).toList();
 
         // Add topics and related words to datamodel
         for (int i = 0; i < topicWords.size(); i++) {
             dataModel.addLDATopics(String.valueOf(i), Arrays.toString(topicWords.get(i)));
         }
 
-        // Used for looking at words and number of occurrences
-//        FeatureCountTool countTool = new FeatureCountTool(instances);
-//        countTool.count();
-//        double[] featureCounts = countTool.getFeatureCounts();
-//        int[] documentFrequencies = countTool.getDocumentFrequencies();
-//        Alphabet alphabet = instances.getDataAlphabet();
-//        NumberFormat nf = NumberFormat.getInstance();
-//        nf.setMinimumFractionDigits(0);
-//        nf.setMaximumFractionDigits(6);
-//        nf.setGroupingUsed(false);
-//
-//        Formatter hitsDocsText = new Formatter(new StringBuilder(), Locale.US);
-//        Formatter hitsText = new Formatter(new StringBuilder(), Locale.US);
-//        for(int feature = 0; feature < instances.getDataAlphabet().size(); ++feature) {
-//            hitsDocsText.format("%s\t%d\t%s\n", nf.format(featureCounts[feature]), documentFrequencies[feature], alphabet.lookupObject(feature).toString());
-//            hitsText.format("%s %s\n", nf.format(featureCounts[feature]), alphabet.lookupObject(feature).toString());
-//        }
-//        try {
-//            Files.writeString(Path.of("resources/noise_hits_docs.txt"), hitsDocsText.toString(), StandardCharsets.UTF_8);
-//            Files.writeString(Path.of("resources/noise_hits.txt"), hitsText.toString(), StandardCharsets.UTF_8);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-
-//        for(int feature = 0; feature < instances.getDataAlphabet().size(); ++feature) {
-//            Formatter formatter = new Formatter(new StringBuilder(), Locale.US);
-//            formatter.format("%s\t%s\t%d", alphabet.lookupObject(feature).toString(), nf.format(featureCounts[feature]), documentFrequencies[feature]);
-//            System.out.println(formatter);
-//            System.setOut(o);
-//        }
-//        System.out.println(Arrays.toString(countTool.getFeatureCounts()));
-//        System.out.println(Arrays.toString(countTool.getDocumentFrequencies()));
-//        Alphabet prunedAlphabhet = countTool.getPrunedAlphabet(0, 10000, 500, 10000);
-//        prunedAlphabhet.iterator().forEachRemaining(System.out::println);
-//        System.out.println(out);
+        // Used for creating the noise identification files
+//        new NoiseIdentify(instances);
     }
 
     /**

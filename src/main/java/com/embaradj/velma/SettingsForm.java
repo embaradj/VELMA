@@ -1,28 +1,25 @@
 package com.embaradj.velma;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SettingsForm extends JFrame {
-    private Settings settings = Settings.getInstance();
+    private final Settings settings = Settings.getInstance();
     private JPanel mainPanel;
     private JPanel analyserSettingsPanel;
     private JPanel jobSsykPanel;
     private JPanel buttonPanel;
     private JPanel analyserSelectionPanel;
     private JSpinner alphaSpinner, betaSpinner, iterationsSpinner, threadsSpinner, topicsSpinner, wordsSpinner;
-    private HashMap<Ssyk, JCheckBox> ssykCheckBoxes = new HashMap<>();
+    private final HashMap<Ssyk, JCheckBox> ssykCheckBoxes = new HashMap<>();
     private JCheckBox jobCheck, hveCheck, fullHveCheck, goalsHveCheck, courseHveCheck, sweJobCheck, engJobCheck;
 
-    private class CustomWrapper {
+    private static class CustomWrapper {
         public CustomWrapper(JComponent component, JLabel label) {
             this.component = component;
             this.label = label;
@@ -36,7 +33,7 @@ public class SettingsForm extends JFrame {
      * Logics for checkbox behaviour
      */
     private class CheckBoxLogic implements ActionListener {
-        private String checkbox;
+        private final String checkbox;
 
         public CheckBoxLogic(String checkbox) {
             this.checkbox = checkbox;
@@ -45,8 +42,7 @@ public class SettingsForm extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             switch (checkbox) {
-
-                case "hve":
+                case "hve" -> {
                     // Unchecks HVE related checkboxes if HVE is unchecked
                     if (!hveCheck.getModel().isSelected()) {
                         fullHveCheck.getModel().setSelected(false);
@@ -54,41 +50,34 @@ public class SettingsForm extends JFrame {
                         courseHveCheck.getModel().setSelected(false);
                         // Check default option if HVE is checked
                     } else fullHveCheck.getModel().setSelected(true);
-                    break;
-
-                case "full":
+                }
+                case "full" -> {
                     // Uncheck goals and courses if "full" is checked
                     goalsHveCheck.getModel().setSelected(false);
                     courseHveCheck.getModel().setSelected(false);
                     noHveCheck();
-                    break;
-
-                case "goal", "courses":
+                }
+                case "goal", "courses" -> {
                     // Uncheck "full HVE text"  if goals or courses are checked
                     fullHveCheck.getModel().setSelected(false);
                     noHveCheck();
-                    break;
-
-                case "job":
+                }
+                case "job" -> {
                     // Select / Unselect Swedish and English depending on job checkbox
                     sweJobCheck.getModel().setSelected(jobCheck.getModel().isSelected());
                     engJobCheck.getModel().setSelected(jobCheck.getModel().isSelected());
-                    break;
-
-                case "job_swe", "job_eng":
+                }
+                case "job_swe", "job_eng" ->
                     // Select / Unselect jobs depending on Swe / Eng selection
-                    jobCheck.getModel().setSelected(sweJobCheck.getModel().isSelected() || engJobCheck.getModel().isSelected());
-                    break;
+                        jobCheck.getModel().setSelected(sweJobCheck.getModel().isSelected() || engJobCheck.getModel().isSelected());
             }
         }
 
         // Selects or unselects HVE depending on its sub-options
         private void noHveCheck() {
-            if (!fullHveCheck.getModel().isSelected() &&
-                    !goalsHveCheck.getModel().isSelected() &&
-                    !courseHveCheck.getModel().isSelected())
-                hveCheck.getModel().setSelected(false);
-            else hveCheck.getModel().setSelected(true);
+            hveCheck.getModel().setSelected(fullHveCheck.getModel().isSelected() ||
+                    goalsHveCheck.getModel().isSelected() ||
+                    courseHveCheck.getModel().isSelected());
         }
     }
 
@@ -127,7 +116,7 @@ public class SettingsForm extends JFrame {
     private void createAnalyserOptions() {
 
         // Alpha
-        SpinnerNumberModel alphaSpinnerModel = new SpinnerNumberModel(settings.getAlpha(), 0.01, 100, 0.01);
+        SpinnerNumberModel alphaSpinnerModel = new SpinnerNumberModel(Settings.getAlpha(), 0.01, 100, 0.01);
         alphaSpinner = new JSpinner(alphaSpinnerModel);
         alphaSpinner.setEditor(new JSpinner.NumberEditor(alphaSpinner, "0.00"));
         String alphaText = "Controls the number of topics a document can contain";
@@ -136,7 +125,7 @@ public class SettingsForm extends JFrame {
         alphaLabel.setToolTipText(alphaText);
 
         // Beta
-        SpinnerNumberModel betaSpinnerModel = new SpinnerNumberModel(settings.getBeta(), 0.01, 100, 0.01);
+        SpinnerNumberModel betaSpinnerModel = new SpinnerNumberModel(Settings.getBeta(), 0.01, 100, 0.01);
         betaSpinner = new JSpinner(betaSpinnerModel);
         betaSpinner.setEditor(new JSpinner.NumberEditor(betaSpinner, "0.00"));
         String betaText = "Controls the number of words a topic can contain";
@@ -145,23 +134,23 @@ public class SettingsForm extends JFrame {
         betaLabel.setToolTipText(betaText);
 
         // Number of topics
-        SpinnerNumberModel topicsSpinnerModel = new SpinnerNumberModel(settings.getNumTopics(), 1, 10000, 1);
+        SpinnerNumberModel topicsSpinnerModel = new SpinnerNumberModel(Settings.getNumTopics(), 1, 10000, 1);
         topicsSpinner = new JSpinner(topicsSpinnerModel);
         JLabel topicsLabel = new JLabel("Number of topics");
 
         // Number of threads
-        SpinnerNumberModel threadsSpinnerModel = new SpinnerNumberModel(settings.getThreads(), 1, 256, 1);
+        SpinnerNumberModel threadsSpinnerModel = new SpinnerNumberModel(Settings.getThreads(), 1, 256, 1);
         threadsSpinner = new JSpinner(threadsSpinnerModel);
         JLabel threadsLabel = new JLabel("Number of threads");
 
         // Number of iterations
-        SpinnerNumberModel iterationsSpinnerModel = new SpinnerNumberModel(settings.getIterations(), 1, 1000000, 100);
+        SpinnerNumberModel iterationsSpinnerModel = new SpinnerNumberModel(Settings.getIterations(), 1, 1000000, 100);
         iterationsSpinner = new JSpinner(iterationsSpinnerModel);
         iterationsSpinner.setEditor(new JSpinner.NumberEditor(iterationsSpinner, "#"));
         JLabel iterationsLabel = new JLabel("Number of iterations");
 
         // Number of words per topic
-        SpinnerNumberModel wordsSpinnerModel = new SpinnerNumberModel(settings.getWords(), 1, 100, 1);
+        SpinnerNumberModel wordsSpinnerModel = new SpinnerNumberModel(Settings.getWords(), 1, 100, 1);
         wordsSpinner = new JSpinner(wordsSpinnerModel);
         JLabel wordsLabel = new JLabel("Number of words per topic");
 
@@ -180,7 +169,7 @@ public class SettingsForm extends JFrame {
     private void createAnalyserSelection() {
 
         // Get the selected options
-        boolean[] selection = settings.getAnalyserSelection();
+        boolean[] selection = Settings.getAnalyserSelection();
 
         // Create checkboxes
 
@@ -190,7 +179,7 @@ public class SettingsForm extends JFrame {
 
         hveCheck = new JCheckBox("HVE", (selection[2] || selection[3]) || selection[4]);
         fullHveCheck = new JCheckBox("Full HVE text (including goals and courses)", selection[2]);
-        goalsHveCheck = new JCheckBox("Goals", selection[3]);
+        goalsHveCheck = new JCheckBox("Aim", selection[3]);
         courseHveCheck = new JCheckBox("Courses", selection[4]);
 
         // Visually group these checkboxes by adding an extra left-margin to them
@@ -322,14 +311,14 @@ public class SettingsForm extends JFrame {
             settings.selectSsyk(ssyk, checkbox.getModel().isSelected());
         });
 
-        settings.setAlpha((Double) alphaSpinner.getValue());
-        settings.setBeta((Double) betaSpinner.getValue());
-        settings.setIterations(Integer.parseInt(iterationsSpinner.getValue().toString()));
-        settings.setThreads(Integer.parseInt(threadsSpinner.getValue().toString()));
-        settings.setNumTopics(Integer.parseInt(topicsSpinner.getValue().toString()));
-        settings.setWords((int) wordsSpinner.getValue());
+        Settings.setAlpha((Double) alphaSpinner.getValue());
+        Settings.setBeta((Double) betaSpinner.getValue());
+        Settings.setIterations(Integer.parseInt(iterationsSpinner.getValue().toString()));
+        Settings.setThreads(Integer.parseInt(threadsSpinner.getValue().toString()));
+        Settings.setNumTopics(Integer.parseInt(topicsSpinner.getValue().toString()));
+        Settings.setWords((int) wordsSpinner.getValue());
 
-        settings.setAnalyserSelection(
+        Settings.setAnalyserSelection(
                 new boolean[]{
                         sweJobCheck.getModel().isSelected(),
                         engJobCheck.getModel().isSelected(),
