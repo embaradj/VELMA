@@ -2,8 +2,10 @@ package com.embaradj.velma.lda;
 
 import cc.mallet.pipe.*;
 import cc.mallet.pipe.iterator.FileIterator;
+import cc.mallet.topics.MarginalProbEstimator;
 import cc.mallet.topics.ParallelTopicModel;
 import cc.mallet.types.*;
+import cc.mallet.util.Randoms;
 import com.embaradj.velma.Settings;
 import com.embaradj.velma.models.DataModel;
 import org.apache.commons.io.FileUtils;
@@ -63,15 +65,15 @@ public class Modeller {
         // Hyperparameter optimization
         // Will change alpha and beta to allow for some topics to be more pronounced
         // Needs further testing before use
-//        model.setOptimizeInterval(10);
+//        model.setOptimizeInterval(50);
 
 
         // Build the LDA model
-        try {
-            model.estimate();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            model.estimate();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
         // Find topics and top words
         List<Object[]> topicWords = Arrays.stream(model.getTopWords(Settings.getWords())).toList();
@@ -83,6 +85,9 @@ public class Modeller {
 
         // Used for creating the noise identification files
 //        new NoiseIdentify(instances);
+
+        // Used for evaluating the modeller
+        new Evaluator(instances);
     }
 
     /**
@@ -117,7 +122,7 @@ public class Modeller {
             pipeList.add( new TokenSequenceRemoveStopwords(stopWordsEn, "UTF-8", false, false, false) );
             pipeList.add( new TokenSequenceRemoveStopwords(stopWordsSv, "UTF-8", false, false, false) );
             // Custom stopwords filter for identified noise
-//            pipeList.add( new TokenSequenceRemoveStopwords(stopWordsNoise, "UTF-8", false, false, false) );
+            pipeList.add( new TokenSequenceRemoveStopwords(stopWordsNoise, "UTF-8", false, false, false) );
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
