@@ -19,11 +19,12 @@ public class Evaluator {
     Path path = Path.of("resources/" + "eval.txt");
     InstanceList[] trainingInstance;
     ParallelTopicModel model;
-    final int numTopics = 5;
-    final int iterations = 2000;
+    final int iterations = 100;
     final int threads = 16;
-    final Double[] alpha = {0.05, 0.1, 0.5, 1.0, 5.0, 10.0};
-    final Double[] beta = {0.05, 0.1, 0.5, 1.0, 5.0, 10.0};
+
+    final Integer[] topics = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    final Double[] alpha = {0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+    final Double[] beta = {0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
 
     /**
      * Receives the instance from {@link Modeller} which
@@ -31,7 +32,7 @@ public class Evaluator {
      * @param instances InstanceList
      */
     public Evaluator(InstanceList instances) {
-        // Split dataset into 80% for training and 10% for testing:
+        // Split dataset into 80% for training and 20% for testing:
         trainingInstance = instances.split(new Randoms(), new
                 double[] {0.8, 0.2, 0.0});
 
@@ -55,30 +56,34 @@ public class Evaluator {
     private void evaluate(Pair pair) {
         double a = pair.a;
         double b= pair.b;
-        model = new ParallelTopicModel(numTopics, a, b);
 
-        // Use the first 90% for training
-        model.addInstances(trainingInstance[0]);
-        model.setNumThreads(threads);
-        model.setNumIterations(iterations);
+        for (Integer topic : topics) {
 
-        // Set random seed to reduce randomness
-        model.setRandomSeed(42);
+            model = new ParallelTopicModel(topic, a, b);
 
-        // Build the LDA model
-        try {
-            model.estimate();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            // Use the first 80% for training
+            model.addInstances(trainingInstance[0]);
+            model.setNumThreads(threads);
+            model.setNumIterations(iterations);
+
+            // Set random seed to reduce randomness
+            model.setRandomSeed(42);
+
+            // Build the LDA model
+            try {
+                model.estimate();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Estimate the models perplexity
+            MarginalProbEstimator estimator = model.getProbEstimator();
+            double logLike = estimator.evaluateLeftToRight(
+                    trainingInstance[1], 10, false, null);
+
+            // Build output string
+            builder.append(logLike).append(" >> log likelihood with alpha: ").append(a).append(", beta: ").append(b).append(", topics: ").append(topic).append(System.lineSeparator());
         }
-
-        // Estimator
-        MarginalProbEstimator estimator = model.getProbEstimator();
-        double logLike = estimator.evaluateLeftToRight(
-                trainingInstance[1], 10, false, null);
-
-        // Build output string
-        builder.append(logLike).append(" >> log likelihood with alpha: ").append(a).append(", beta: ").append(b).append(System.lineSeparator());
     }
 
     /**

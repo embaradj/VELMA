@@ -2,10 +2,8 @@ package com.embaradj.velma.lda;
 
 import cc.mallet.pipe.*;
 import cc.mallet.pipe.iterator.FileIterator;
-import cc.mallet.topics.MarginalProbEstimator;
 import cc.mallet.topics.ParallelTopicModel;
 import cc.mallet.types.*;
-import cc.mallet.util.Randoms;
 import com.embaradj.velma.Settings;
 import com.embaradj.velma.models.DataModel;
 import org.apache.commons.io.FileUtils;
@@ -68,7 +66,7 @@ public class Modeller {
 //        model.setOptimizeInterval(50);
 
 
-        // Build the LDA model
+//         Build the LDA model
 //        try {
 //            model.estimate();
 //        } catch (IOException e) {
