@@ -87,10 +87,6 @@ public class Analyser {
         System.out.println("Analyser running..\nProgress 0 %");
 
         // Number of hits [0] jobs, [1] HVEs
-        HashMap<String, Integer[]> results = new HashMap<>();
-
-        // topic, HashMap<word, occurrences>
-//        HashMap<String, HashMap<String, Integer[]>> topicResults = new HashMap<>();
         HashMap<String, Integer[]> wordsNum = new HashMap<>();
 
         int counter = 0;
@@ -99,32 +95,22 @@ public class Analyser {
 
         for (String topic : topics.values()) {              // Each topic
 
-//            int jobHits = 0;
-//            int hveHits = 0;
-
             String[] words = topic.split(", ");
 
             for (int i = 0; i < words.length; i++) {        // Each word
                 // Count number of occurrences of each word
-
                 int jh = count(words[i], jobs);
                 int hh = count(words[i], hves);
 
+                // If word already exists it has already been counted. No purpose of counting it again.
                 wordsNum.putIfAbsent(words[i], new Integer[]{jh, hh});
-
-
-//                jobHits += count(words[i], jobs);
-//                hveHits += count(words[i], hves);
 
                 counter++;
                 System.out.println("Progress " + 100 * counter / (totalTopics * topicSize) + " %");
             }
-
-//            results.put(topic, new Integer[]{jobHits, hveHits});
         }
 
-//        printResults(results);
-        printResults2(wordsNum);
+        printResults(wordsNum);
     }
 
     /**
@@ -152,10 +138,13 @@ public class Analyser {
         return counter;
     }
 
-    private void printResults2(HashMap<String, Integer[]> wordsNum) {
+    private void printResults(HashMap<String, Integer[]> wordsNum) {
 
         int topicSize = getTopicSize();
         final int margin = 30;
+
+        System.out.println("\n\nTotal number of jobs: " + jobs.size());
+        System.out.println("Total number of HVEs: " + hves.size());
 
         // HEADER
         printSpaces(margin);
@@ -186,11 +175,9 @@ public class Analyser {
                 System.out.print(jobString);
                 printSpaces(15 - jobString.length());
                 System.out.println(hveString);
-
             }
 
         });
-
     }
 
     private int[] sum(String[] words, HashMap<String, Integer[]> map) {
@@ -204,32 +191,6 @@ public class Analyser {
         }
 
         return new int[]{j,h};
-    }
-
-    private void printResults(HashMap<String, Integer[]> results) {
-        int topicSize = getTopicSize();
-
-        System.out.println("\n\nTotal number of jobs: " + jobs.size());
-        System.out.println("Total number of HVEs: " + hves.size());
-
-        int margin = 80;
-        int distance = 15;
-        System.out.print("\nTopic containing");
-        printSpaces(margin - 16);
-        System.out.println("Jobs           HVEs");
-        results.forEach((topic, hits) -> {
-
-            String jobResult = hits[0] + " (" + 100 * hits[0] / (jobs.size() * topicSize) + "%)";
-            String hveResult = hits[1] + " (" + 100 * hits[1] / (hves.size() * topicSize) + "%)";
-
-            System.out.print(topic);
-            printSpaces(margin-topic.length());
-
-            System.out.print(jobResult);
-            printSpaces(distance - jobResult.length());
-
-            System.out.println(hveResult);
-        });
     }
 
     private void printSpaces(int spaces){
