@@ -78,7 +78,7 @@ public class Modeller {
 
         // Add topics and related words to datamodel
         for (int i = 0; i < topicWords.size(); i++) {
-            dataModel.addLDATopics(String.valueOf(i), Arrays.toString(topicWords.get(i)));
+            dataModel.addLDATopics(String.valueOf(i), Arrays.toString(topicWords.get(i)).replaceAll("[\\[\\]]+", ""));
         }
 
         // Used for creating the noise identification files

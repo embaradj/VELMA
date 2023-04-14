@@ -20,7 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * Represents the controller which binds the logic to each button.
@@ -116,7 +115,8 @@ public class Controller implements ActionListener {
 
             SwingUtilities.invokeLater(() -> {
                 dia.setVisible(false);
-                new DetailsForm(model.getLDATopics());
+//                new DetailsForm(model.getLDATopics());
+                new TopicSelectorForm(model.getLDATopics());
 
                 // Used for printing out the found words in a copy-paste friendly manner
 //                String out = String.join("", model.getLDATopics().values()).replaceAll("\\[", "");
