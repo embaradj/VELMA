@@ -154,6 +154,7 @@ public class Analyser {
 
         topics.forEach((topicName, topic) -> {            // Each topic
             String[] words = topic.split(", ");
+            // Get the total number of occurrences of all words in this topic
             int[] total = sum(words, wordsNum);
             System.out.print(topicName);
             printSpaces(margin - topicName.length());
@@ -180,6 +181,12 @@ public class Analyser {
         });
     }
 
+    /**
+     * Get the total number of occurrences of words
+     * @param words Words to sum
+     * @param map Dataset to look in
+     * @return total number of occurrences
+     */
     private int[] sum(String[] words, HashMap<String, Integer[]> map) {
 
         int j = 0;
