@@ -118,6 +118,8 @@ public class Controller implements ActionListener {
                 dia.setVisible(false);
                 new DetailsForm(model.getLDATopics());
 
+                new Thread(() -> new Analyser(model.getLDATopics())).start();
+
                 // Used for printing out the found words in a copy-paste friendly manner
 //                String out = String.join("", model.getLDATopics().values()).replaceAll("\\[", "");
 //                String out2 = out.replaceAll("\\]", ", ");

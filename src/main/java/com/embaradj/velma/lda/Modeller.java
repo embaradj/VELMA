@@ -63,9 +63,9 @@ public class Modeller {
         // Hyperparameter optimization
         // Will change alpha and beta to allow for some topics to be more pronounced
         // Needs further testing before use
-        model.setOptimizeInterval(20);
+//        model.setOptimizeInterval(20);
 
-        model.setRandomSeed(42);
+//        model.setRandomSeed(42);
 
 //         Build the LDA model
         try {
@@ -79,7 +79,8 @@ public class Modeller {
 
         // Add topics and related words to datamodel
         for (int i = 0; i < topicWords.size(); i++) {
-            dataModel.addLDATopics(String.valueOf(i), Arrays.toString(topicWords.get(i)));
+            dataModel.addLDATopics(String.valueOf(i), Arrays.toString(topicWords.get(i))
+                    .replaceAll("[\\[\\]]+", ""));
         }
 
         // Used for creating the noise identification files
