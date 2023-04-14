@@ -63,15 +63,16 @@ public class Modeller {
         // Hyperparameter optimization
         // Will change alpha and beta to allow for some topics to be more pronounced
         // Needs further testing before use
-//        model.setOptimizeInterval(50);
+        model.setOptimizeInterval(20);
 
+        model.setRandomSeed(42);
 
 //         Build the LDA model
-//        try {
-//            model.estimate();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            model.estimate();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         // Find topics and top words
         List<Object[]> topicWords = Arrays.stream(model.getTopWords(Settings.getWords())).toList();
@@ -85,7 +86,7 @@ public class Modeller {
 //        new NoiseIdentify(instances);
 
         // Used for evaluating the modeller
-        new Evaluator(instances);
+//        new Evaluator(instances);
     }
 
     /**

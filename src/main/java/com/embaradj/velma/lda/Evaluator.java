@@ -4,12 +4,15 @@ import cc.mallet.topics.MarginalProbEstimator;
 import cc.mallet.topics.ParallelTopicModel;
 import cc.mallet.types.InstanceList;
 import cc.mallet.util.Randoms;
+import com.embaradj.velma.Settings;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Responsible for evaluating the hyperparameters.
@@ -19,12 +22,14 @@ public class Evaluator {
     Path path = Path.of("resources/" + "eval.txt");
     InstanceList[] trainingInstance;
     ParallelTopicModel model;
-    final int iterations = 100;
+    final int iterations = 1000;
     final int threads = 16;
-
-    final Integer[] topics = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    final Double[] alpha = {0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
-    final Double[] beta = {0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+    final Integer[] hpo = {10, 20, 30, 40, 50, 60};
+//    final Integer[] topics = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    final Double[] alpha = {0.75, 1.0, 2.0, 3.0, 4.0};
+    final Double[] beta = {0.01, 0.05, 0.1, 0.25, 0.5};
+//    final Double[] alpha = {0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+//    final Double[] beta = {0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
 
     /**
      * Receives the instance from {@link Modeller} which
@@ -37,9 +42,14 @@ public class Evaluator {
                 double[] {0.8, 0.2, 0.0});
 
         // Create all combinations of alpha, beta arrays and run evaluate
-        Arrays.stream(alpha)
-                .flatMap(a -> Arrays.stream(beta).map(b -> new Pair(a, b)))
-                .forEach(this::evaluate);
+//        Arrays.stream(alpha)
+//                .flatMap(a -> Arrays.stream(beta).map(b -> new Pair(a, b)))
+//                .forEach(this::evaluate);
+
+        // Evaluate the arrays as is
+        for (int i = 0; i < 5; i++) {
+            evaluate(new Pair(alpha[i], beta[i]));
+        }
 
         try { // Write results to file
             Files.writeString(path, builder.toString(), StandardCharsets.UTF_8);
@@ -57,14 +67,15 @@ public class Evaluator {
         double a = pair.a;
         double b= pair.b;
 
-        for (Integer topic : topics) {
+        for (Integer hp : hpo) {
 
-            model = new ParallelTopicModel(topic, a, b);
+            model = new ParallelTopicModel(20, a, b);
 
             // Use the first 80% for training
             model.addInstances(trainingInstance[0]);
             model.setNumThreads(threads);
             model.setNumIterations(iterations);
+            model.setOptimizeInterval(hp);
 
             // Set random seed to reduce randomness
             model.setRandomSeed(42);
@@ -81,8 +92,26 @@ public class Evaluator {
             double logLike = estimator.evaluateLeftToRight(
                     trainingInstance[1], 10, false, null);
 
+            // Find topics and top words
+            List<Object[]> topicWords = Arrays.stream(model.getTopWords(4)).toList();
+            HashMap<String, String> tops = new HashMap<>();
+
+            // Add topics and related words to datamodel
+            for (int i = 0; i < topicWords.size(); i++) {
+                tops.put(String.valueOf(i), Arrays.toString(topicWords.get(i)));
+            }
+
             // Build output string
-            builder.append(logLike).append(" >> log likelihood with alpha: ").append(a).append(", beta: ").append(b).append(", topics: ").append(topic).append(System.lineSeparator());
+            builder.append(logLike)
+                    .append(" >> log likelihood with alpha: ")
+                    .append(a)
+                    .append(", beta: ")
+                    .append(b)
+                    .append(", Optimization interval: ")
+                    .append(hp)
+                    .append(", topics: ")
+                    .append(tops.entrySet())
+                    .append(System.lineSeparator());
         }
     }
 
