@@ -165,8 +165,8 @@ public class Analyser {
             for (int i = 0; i < words.length; i++) {    // Each word in the topic
 
                 Integer sum[] = wordsNum.get(words[i]);
-                String jobString = sum[0] + " (" + 100 * sum[0] / total[0] + "%)";
-                String hveString = sum[1] + " (" + 100 * sum[1] / total[1] + "%)";
+                String jobString = sum[0] + " (" + 100 * sum[0] / jobs.size() + "%)";
+                String hveString = sum[1] + " (" + 100 * sum[1] / hves.size() + "%)";
 
                 printSpaces(3);
                 System.out.print(words[i]);
