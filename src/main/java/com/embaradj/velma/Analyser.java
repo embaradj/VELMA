@@ -5,21 +5,27 @@ import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Keyword analyser for topics extracted with LDA.
+ */
 public class Analyser {
 
-    private final static boolean DEBUG = true;
     private final String hvePath = "resources/rawdata/hve";
     private final String jobsPath = "resources/rawdata/job";
     private HashMap<String, String> jobs = new HashMap<>();
     private HashMap<String, String> hves = new HashMap<>();
     private HashMap<String, String> topics = new HashMap<>();
 
+    /**
+     * If class is run by itself it will use some fake topics
+     * @param args
+     */
     public static void main(String[] args) {
-        new Analyser();
+        new Analyser(createTestTopics());
     }
 
-    public Analyser() {
-        // index 0: Job ads Swe, 1: Job ads Eng, 2: HVE full, 3: HVE Goals, 4: HVE Courses
+    public Analyser(HashMap<String, String> topics) {
+        this.topics = topics;
         boolean[] settings = Settings.getAnalyserSelection();
 
         if (settings[0]) readFiles(jobs, jobsPath + "/swe");     // Job ads Swe
@@ -27,8 +33,6 @@ public class Analyser {
         if (settings[2]) readFiles(hves, hvePath + "/full");     // HVE full
         if (settings[3]) readFiles(hves, hvePath + "/aim");      // HVE aims
         if (settings[4]) readFiles(hves, hvePath + "/courses");  // HVE courses
-
-        if (DEBUG) createTestTopics();
 
         doAnalyse();
     }
@@ -45,7 +49,7 @@ public class Analyser {
 
             for (File file : files) {
                 if (!file.isFile()) continue;
-                System.out.println("Reading file " + file.getName());
+//                System.out.println("Reading file " + file.getName());
                 map.put(file.getName(), Files.readString(file.toPath()));
             }
 
@@ -55,36 +59,46 @@ public class Analyser {
         }
     }
 
-    private void createTestTopics() {
-        topics.put("TOPIC 0", "utveckling, hos, kunder, erfarenhet, arbeta, projekt, se");
-        topics.put("TOPIC 1", "experience, team, work, development, working, software, skills");
-        topics.put("TOPIC 2", "personalexpressen, konsulter, uppdrag, kunder, offentliga, gentemot, tid");
-        topics.put("TOPIC 3", "erfarenhet, ansökan, arbeta, arbete, arbetar, se, utveckling");
-        topics.put("TOPIC 4", "erfarenhet, arbeta, hos, kunder, söker, team, tjänsten");
+    /**
+     * Creates some dummy topics for testing
+     * @return topics
+     */
+    private static HashMap<String, String> createTestTopics() {
+        HashMap<String, String> testTopics = new HashMap<>();
+        testTopics.put("TOPIC 0", "utveckling, hos, kunder, erfarenhet, arbeta, projekt, se");
+        testTopics.put("TOPIC 1", "experience, team, work, development, working, software, skills");
+        testTopics.put("TOPIC 2", "personalexpressen, konsulter, uppdrag, kunder, offentliga, gentemot, tid");
+        testTopics.put("TOPIC 3", "erfarenhet, ansökan, arbeta, arbete, arbetar, se, utveckling");
+        testTopics.put("TOPIC 4", "erfarenhet, arbeta, hos, kunder, söker, team, tjänsten");
+        return testTopics;
     }
 
     private void doAnalyse() {
+        System.out.println("Analyser running..\nProgress 0 %");
+
+        // Number of hits [0] jobs, [1] HVEs
         HashMap<String, Integer[]> results = new HashMap<>();
 
-        for (String topic : topics.values()) {
-            // Each topic
+        int counter = 0;
+        int totalTopics = topics.values().size();
+        int topicSize = getTopicSize();
+
+        for (String topic : topics.values()) {              // Each topic
 
             int jobHits = 0;
             int hveHits = 0;
 
             String[] words = topic.split(", ");
 
-            for (int i = 0; i < words.length; i++) {
-                // Each word
-
+            for (int i = 0; i < words.length; i++) {        // Each word
                 // Count number of occurrences of each word
                 jobHits += count(words[i], jobs);
                 hveHits += count(words[i], hves);
+
+                counter++;
+                System.out.println("Progress " + 100 * counter / (totalTopics * topicSize) + " %");
             }
 
-            if (results.containsKey(topic)) {
-                System.out.printf("warning overwriting");
-            }
             results.put(topic, new Integer[]{jobHits, hveHits});
         }
 
@@ -92,25 +106,30 @@ public class Analyser {
 
     }
 
+    /**
+     * Counts the number of files (HashMap values) in which the supplied word is found
+     * @param keyword The word to look for
+     * @param dataset The HashMap
+     * @return Number of files the keyword exists in
+     */
     private int count(String keyword, HashMap<String, String> dataset) {
         int counter = 0;
 
         for (Map.Entry<String, String> set : dataset.entrySet()) {      // Each file
-            String file = set.getKey();
+            String file = set.getKey();                                 // Variable only for debugging
             //String[] value = set.getValue().split("[^A-ö]+");
             String[] words = set.getValue().split("[\s\n\\.\\,\\!]+");
 
             for (int i = 0; i < words.length; i++) {                    // Each word
                 if (keyword.toLowerCase().equals(words[i].toLowerCase())) {
                     counter++;
-                    break;  // If the word is found jump to next file
+                    break;  // If the word is found jump to the next file
                 }
             }
         }
 
         return counter;
     }
-
 
     private void printResults(HashMap<String, Integer[]> results) {
         int topicSize = getTopicSize();
@@ -120,12 +139,13 @@ public class Analyser {
 
         int margin = 80;
         int distance = 15;
-        printSpaces(margin);
+        System.out.print("\nTopic containing");
+        printSpaces(margin - 16);
         System.out.println("Jobs           HVEs");
         results.forEach((topic, hits) -> {
 
-            String jobResult = hits[0] + " (" + hits[0] / (jobs.size() * topicSize) + "%)";
-            String hveResult = hits[1] + " (" + hits[1] / (hves.size() * topicSize) + "%)";
+            String jobResult = hits[0] + " (" + 100 * hits[0] / (jobs.size() * topicSize) + "%)";
+            String hveResult = hits[1] + " (" + 100 * hits[1] / (hves.size() * topicSize) + "%)";
 
             System.out.print(topic);
             printSpaces(margin-topic.length());
