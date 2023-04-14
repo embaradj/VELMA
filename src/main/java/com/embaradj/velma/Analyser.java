@@ -16,7 +16,7 @@ public class Analyser {
     private final String jobsPath = "resources/rawdata/job";
     private HashMap<String, String> jobs = new HashMap<>();
     private HashMap<String, String> hves = new HashMap<>();
-    private HashMap<String, String> topics = new HashMap<>();
+    private HashMap<String, String> topics;
 
     /**
      * If class is run by itself it will use some fake topics
@@ -89,31 +89,42 @@ public class Analyser {
         // Number of hits [0] jobs, [1] HVEs
         HashMap<String, Integer[]> results = new HashMap<>();
 
+        // topic, HashMap<word, occurrences>
+//        HashMap<String, HashMap<String, Integer[]>> topicResults = new HashMap<>();
+        HashMap<String, Integer[]> wordsNum = new HashMap<>();
+
         int counter = 0;
         int totalTopics = topics.values().size();
         int topicSize = getTopicSize();
 
         for (String topic : topics.values()) {              // Each topic
 
-            int jobHits = 0;
-            int hveHits = 0;
+//            int jobHits = 0;
+//            int hveHits = 0;
 
             String[] words = topic.split(", ");
 
             for (int i = 0; i < words.length; i++) {        // Each word
                 // Count number of occurrences of each word
-                jobHits += count(words[i], jobs);
-                hveHits += count(words[i], hves);
+
+                int jh = count(words[i], jobs);
+                int hh = count(words[i], hves);
+
+                wordsNum.putIfAbsent(words[i], new Integer[]{jh, hh});
+
+
+//                jobHits += count(words[i], jobs);
+//                hveHits += count(words[i], hves);
 
                 counter++;
                 System.out.println("Progress " + 100 * counter / (totalTopics * topicSize) + " %");
             }
 
-            results.put(topic, new Integer[]{jobHits, hveHits});
+//            results.put(topic, new Integer[]{jobHits, hveHits});
         }
 
-        printResults(results);
-
+//        printResults(results);
+        printResults2(wordsNum);
     }
 
     /**
@@ -139,6 +150,60 @@ public class Analyser {
         }
 
         return counter;
+    }
+
+    private void printResults2(HashMap<String, Integer[]> wordsNum) {
+
+        int topicSize = getTopicSize();
+        final int margin = 30;
+
+        // HEADER
+        printSpaces(margin);
+        System.out.print("Jobs");
+        printSpaces(11);
+        System.out.println("HVEs");
+
+        topics.forEach((topicName, topic) -> {            // Each topic
+            String[] words = topic.split(", ");
+            int[] total = sum(words, wordsNum);
+            System.out.print(topicName);
+            printSpaces(margin - topicName.length());
+            String jSumString = total[0] + " (" + 100 * total[0] / (jobs.size() * topicSize) + "%)";
+            System.out.print(jSumString);
+            printSpaces(15 - jSumString.length());
+            System.out.println(total[1] + " (" + 100 * total[1] / (hves.size() * topicSize) + "%)");
+
+            for (int i = 0; i < words.length; i++) {    // Each word in the topic
+
+                Integer sum[] = wordsNum.get(words[i]);
+                String jobString = sum[0] + " (" + 100 * sum[0] / total[0] + "%)";
+                String hveString = sum[1] + " (" + 100 * sum[1] / total[1] + "%)";
+
+                printSpaces(3);
+                System.out.print(words[i]);
+                printSpaces(30-(3 + words[i].length()));
+
+                System.out.print(jobString);
+                printSpaces(15 - jobString.length());
+                System.out.println(hveString);
+
+            }
+
+        });
+
+    }
+
+    private int[] sum(String[] words, HashMap<String, Integer[]> map) {
+
+        int j = 0;
+        int h = 0;
+
+        for (int i = 0; i < words.length; i++) {
+            j += map.get(words[i])[0];
+            h += map.get(words[i])[1];
+        }
+
+        return new int[]{j,h};
     }
 
     private void printResults(HashMap<String, Integer[]> results) {
