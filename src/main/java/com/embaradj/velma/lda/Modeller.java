@@ -63,10 +63,11 @@ public class Modeller {
         // Hyperparameter optimization
         // Will change alpha and beta to allow for some topics to be more pronounced
         // Needs further testing before use
-//        model.setOptimizeInterval(10);
+        model.setOptimizeInterval(20);
 
+        model.setRandomSeed(42);
 
-        // Build the LDA model
+//         Build the LDA model
         try {
             model.estimate();
         } catch (IOException e) {
@@ -83,6 +84,9 @@ public class Modeller {
 
         // Used for creating the noise identification files
 //        new NoiseIdentify(instances);
+
+        // Used for evaluating the modeller
+//        new Evaluator(instances);
     }
 
     /**
@@ -117,7 +121,7 @@ public class Modeller {
             pipeList.add( new TokenSequenceRemoveStopwords(stopWordsEn, "UTF-8", false, false, false) );
             pipeList.add( new TokenSequenceRemoveStopwords(stopWordsSv, "UTF-8", false, false, false) );
             // Custom stopwords filter for identified noise
-//            pipeList.add( new TokenSequenceRemoveStopwords(stopWordsNoise, "UTF-8", false, false, false) );
+            pipeList.add( new TokenSequenceRemoveStopwords(stopWordsNoise, "UTF-8", false, false, false) );
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
