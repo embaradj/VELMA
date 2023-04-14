@@ -7,6 +7,8 @@ import java.util.Map;
 
 /**
  * Keyword analyser for topics extracted with LDA.
+ * The percentages calculated for each topic in regard to possible max outcome, which is when;
+ * all words of a topic is found at least once in every document of the dataset, which gives 100%
  */
 public class Analyser {
 
@@ -24,6 +26,10 @@ public class Analyser {
         new Analyser(createTestTopics());
     }
 
+    /**
+     * Constructor, parses the global settings and starts the analysing
+     * @param topics Topics to analyse
+     */
     public Analyser(HashMap<String, String> topics) {
         this.topics = topics;
         boolean[] settings = Settings.getAnalyserSelection();
@@ -37,10 +43,11 @@ public class Analyser {
         doAnalyse();
     }
 
-    public void setTopics(HashMap<String, String> topics) {
-        this.topics = topics;
-    }
-
+    /**
+     * Read all files located in the supplied path, and put the content of each file as a value in the HashMap
+     * @param map HashMap to populate with file input
+     * @param path Path pointing to the folder with the files to read
+     */
     private void readFiles(HashMap<String, String> map, String path) {
 
         try {
@@ -73,6 +80,9 @@ public class Analyser {
         return testTopics;
     }
 
+    /**
+     * Runs the analysing process
+     */
     private void doAnalyse() {
         System.out.println("Analyser running..\nProgress 0 %");
 
@@ -171,6 +181,10 @@ public class Analyser {
         }
 
         return size;
+    }
+
+    public void setTopics(HashMap<String, String> topics) {
+        this.topics = topics;
     }
 
 }
