@@ -95,6 +95,7 @@ public class Settings {
         iterations = 2000; // 2000 iterations used for testing
         // Analyser: Jobs Swe, Jobs Eng, HVE Full, HVE goals, HVE Courses
         analyserSelection = new boolean[]{true, true, true, false, false};
+//        analyserSelection = new boolean[]{true, true, false, true, true};
         words = 7;
     }
 
