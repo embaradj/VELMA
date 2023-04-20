@@ -137,7 +137,19 @@ public class Controller implements ActionListener {
     private void setupModelListener() {
         model.addListener(e -> {
             if (e.getPropertyName().equals("topicsready")) {
-                Analyser analyser = new Analyser(model.getLDATopics());
+                Runnable runnable = () -> {
+                    new Analyser(model, model.getLDATopics());
+                };
+
+                Thread analyserThread = new Thread(runnable);
+                analyserThread.start();
+            }
+
+            else if (e.getPropertyName().equals("analyserready")) {
+                SwingUtilities.invokeLater(() -> {
+                    new DetailsForm("LDA Results", model.getAnalyserResults());
+                });
+
             }
         });
     }

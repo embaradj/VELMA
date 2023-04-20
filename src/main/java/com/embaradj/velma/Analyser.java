@@ -1,5 +1,7 @@
 package com.embaradj.velma;
 
+import com.embaradj.velma.models.DataModel;
+
 import java.io.File;
 import java.nio.file.Files;
 import java.util.HashMap;
@@ -18,21 +20,22 @@ public class Analyser {
     private HashMap<String, String> hveCourses = new HashMap<>();
     private HashMap<String, String> topics;
     private final boolean[] settings;
-    private String results = "";
+    private DataModel model;
 
     /**
      * If class is run by itself it will use some fake topics
      * @param args
      */
     public static void main(String[] args) {
-        new Analyser(createTestTopics());
+        new Analyser(new DataModel(), createTestTopics());
     }
 
     /**
      * Constructor, parses the global settings and starts the analysing
      * @param topics Topics to analyse
      */
-    public Analyser(HashMap<String, String> topics) {
+    public Analyser(DataModel model, HashMap<String, String> topics) {
+        this.model = model;
         this.topics = topics;
         settings = Settings.getAnalyserSelection();
         String jobsPath = Settings.rawdataPath + "/job";
@@ -44,7 +47,7 @@ public class Analyser {
         if (settings[3]) readFiles(hveAim, hvePath + "/aim");          // HVE aims
         if (settings[4]) readFiles(hveCourses, hvePath + "/courses");  // HVE courses
 
-//        doAnalyse();
+        doAnalyse();
     }
 
     /**
@@ -87,7 +90,7 @@ public class Analyser {
     /**
      * Runs the analysing process
      */
-    protected void doAnalyse() {
+    protected String doAnalyse() {
         System.out.println("Analyser running..\nProgress 0 %");
 
         // Contains number of hits [0] jobs, [1] HVEs
@@ -123,7 +126,7 @@ public class Analyser {
             }
         }
 
-        printResults(wordsNum);
+        return generateResults(wordsNum);
     }
 
     /**
@@ -184,7 +187,7 @@ public class Analyser {
         return false;
     }
 
-    private void printResults(HashMap<String, Integer[]> wordsNum) {
+    private String generateResults(HashMap<String, Integer[]> wordsNum) {
 
         StringBuilder sb = new StringBuilder();
 
@@ -235,13 +238,11 @@ public class Analyser {
 
         });
 
-
-        results = sb.toString();
+        String results = sb.toString();
         System.out.println(results);
-    }
+        model.setAnalyserResults(results);
 
-    protected String getResults() {
-        return this.results;
+        return results;
     }
 
     /**

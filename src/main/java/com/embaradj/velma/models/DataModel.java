@@ -19,6 +19,7 @@ public class DataModel {
     private HashMap<String, Integer> processed = new HashMap<>();
     private HashMap<String, Integer> total = new HashMap<>();
     private HashMap<String, Boolean> isSearched = new HashMap<>();
+    private String analyserResults = "";
 
     // Used by the View to listen for changes in the Model
     public void addListener(final PropertyChangeListener listener) {
@@ -59,6 +60,13 @@ public class DataModel {
         support.firePropertyChange("topicsready",0,1);
 
     }
+
+    public void setAnalyserResults(String results) {
+        this.analyserResults = results;
+        support.firePropertyChange("analyserready", 0, 1);
+    }
+
+    public String getAnalyserResults() { return this.analyserResults; }
 
     /**
      * Sets the total number of hits for a certain type
