@@ -58,7 +58,6 @@ public class DataModel {
         System.out.println("LDA topics updated in model");
         LDATopics = newTopics;
         support.firePropertyChange("topicsready",0,1);
-
     }
 
     public void setAnalyserResults(String results) {

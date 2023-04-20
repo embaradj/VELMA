@@ -120,10 +120,7 @@ public class Controller implements ActionListener {
 
             SwingUtilities.invokeLater(() -> {
                 dia.setVisible(false);
-//                new DetailsForm(model.getLDATopics());
-                new TopicSelectorForm2(model, model.getLDATopics());
-
-//                new Thread(() -> new Analyser(model.getLDATopics())).start();
+                new TopicSelectorForm(model, model.getLDATopics());
 
                 // Used for printing out the found words in a copy-paste friendly manner
 //                String out = String.join("", model.getLDATopics().values()).replaceAll("\\[", "");
