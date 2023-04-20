@@ -38,10 +38,10 @@ public class Analyser {
         this.topics = topics;
         settings = Settings.getAnalyserSelection();
 
-        if (settings[0]) readFiles(jobs, jobsPath + "/swe");     // Job ads Swe
-        if (settings[1]) readFiles(jobs, jobsPath + "/eng");     // Job ads Eng
-        if (settings[2]) readFiles(hves, hvePath + "/full");     // HVE full
-        if (settings[3]) readFiles(hveAim, hvePath + "/aim");      // HVE aims
+        if (settings[0]) readFiles(jobs, jobsPath + "/swe");           // Job ads Swe
+        if (settings[1]) readFiles(jobs, jobsPath + "/eng");           // Job ads Eng
+        if (settings[2]) readFiles(hves, hvePath + "/full");           // HVE full
+        if (settings[3]) readFiles(hveAim, hvePath + "/aim");          // HVE aims
         if (settings[4]) readFiles(hveCourses, hvePath + "/courses");  // HVE courses
 
         //totalJobs = jobs.size();
@@ -97,7 +97,7 @@ public class Analyser {
         // Number of hits [0] jobs, [1] HVEs
         HashMap<String, Integer[]> wordsNum = new HashMap<>();
 
-        int counter = 0;
+        int progress = 0;
         int totalTopics = topics.values().size();
         int topicSize = getTopicSize();
 
@@ -105,22 +105,25 @@ public class Analyser {
 
             String[] words = topic.split(", ");
 
-            for (int i = 0; i < words.length; i++) {        // Each word
-
-                // Count number of occurrences of each word
-                int jh = count(words[i], jobs);
-                int hh = 0;
-
-                if (settings[2]) hh = count(words[i], hves);
-                else if (settings[3] && settings[4]) hh = count(words[i], hveAim, hveCourses);
-                else if (settings[3]) hh = count (words[i], hveAim);
-                else if (settings[4]) hh = count (words[i], hveCourses);
+            // Count number of occurrences of each word
+            for (int i = 0; i < words.length; i++) {
 
                 // If word already exists it has already been counted. No purpose of counting it again.
-                wordsNum.putIfAbsent(words[i], new Integer[]{jh, hh});
+                if (!wordsNum.containsKey(words[i])) {
+                    int jh = count(words[i], jobs);
+                    int hh = 0;
 
-                counter++;
-                System.out.println("Progress " + 100 * counter / (totalTopics * topicSize) + " %");
+                    // [Jobs Swe, Jobs Eng, HVE Full, HVE goals, HVE Courses]
+                    if (settings[2]) hh = count(words[i], hves);
+                    else if (settings[3] && settings[4]) hh = count(words[i], hveAim, hveCourses);
+                    else if (settings[3]) hh = count (words[i], hveAim);
+                    else if (settings[4]) hh = count (words[i], hveCourses);
+
+                    wordsNum.put(words[i], new Integer[]{jh, hh});
+                }
+
+                progress++;
+                System.out.println("Progress " + 100 * progress / (totalTopics * topicSize) + " %");
             }
         }
 
@@ -138,18 +141,22 @@ public class Analyser {
 
         for (String key : dataset.keySet()) {
 
-            /**
-             * For debug
-             */
+            // String contains all words of the file
             String temp = dataset.get(key).toLowerCase();
-            if (temp.contains(keyword)) {
-                String temp2 = temp.substring(temp.indexOf(keyword), temp.indexOf(keyword) + 20);
-                System.out.println(temp2);
-                counter++;
+
+            // Does the file contain the searched keyword?
+            if (temp.contains(keyword.toLowerCase())) {
+
+                // Does it match exactly (not just the beginning of the word) ?
+                String word = temp.substring(temp.indexOf(keyword)).split("[\s\n\\.\\,\\!]+")[0];
+                if (keyword.toLowerCase().equals(word)) {
+                    if (keyword.toLowerCase().equals("arbeta")) System.out.println(keyword + "\t\t==\t\t" + word);
+                    counter++;
+                }
+//                else System.out.println(keyword + "\t\t!=\t\t" + word);
 
             }
 
-//            if (dataset.get(key).toLowerCase().contains(keyword)) counter++;
         }
 
         return counter;
@@ -166,19 +173,33 @@ public class Analyser {
         int counter = 0;
 
         for (String set1key : dataset1.keySet()) {
+            boolean found = false;
 
-            if (dataset1.get(set1key).toLowerCase().contains(keyword.toLowerCase())) counter++;  // found in file
-            else {
+            // Does the file contain the searched keyword?
+            if (dataset1.get(set1key).toLowerCase().contains(keyword.toLowerCase())) {
+
+                // String contains all words of the file
+                String temp = dataset1.get(set1key).toLowerCase();
+
+                // Does it match exactly (not just the beginning of the word) ?
+                String word = temp.substring(temp.indexOf(keyword)).split("[\s\n\\.\\,\\!]+")[0];
+                if (keyword.toLowerCase().equals(word)) found = true;
+
+            }
+            if (!found) {
                 // find corresponding file
                 for (String set2key : dataset2.keySet()) {
                     if (!set2key.contains(set1key.split("_")[1])) continue;
                     if (dataset2.get(set2key).toLowerCase().contains(keyword.toLowerCase())) {
                         // found in second file
-                        counter++;
+//                        counter++;
+                        found = true;
                         break;
                     }
                 }
             }
+
+            if (found) counter++;
         }
 
         return counter;
