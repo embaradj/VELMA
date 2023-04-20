@@ -19,6 +19,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -30,7 +31,9 @@ public class Controller implements ActionListener {
     private final DataModel model;
 
     public Controller(DataModel model) {
+
         this.model = model;
+
     }
 
     protected void setView(JFrame viewFrame) {
@@ -104,6 +107,8 @@ public class Controller implements ActionListener {
         Dialog dia = pane.createDialog(null ,"Please wait");
         Modeller modeller = new Modeller(model);
 
+        setupModelListener();
+
         // Begin the analyzing off the EDT
         new Thread(() -> {
             SwingUtilities.invokeLater(() -> {
@@ -116,7 +121,7 @@ public class Controller implements ActionListener {
             SwingUtilities.invokeLater(() -> {
                 dia.setVisible(false);
 //                new DetailsForm(model.getLDATopics());
-                new TopicSelectorForm(model.getLDATopics());
+                new TopicSelectorForm2(model, model.getLDATopics());
 
                 // Used for printing out the found words in a copy-paste friendly manner
 //                String out = String.join("", model.getLDATopics().values()).replaceAll("\\[", "");
@@ -124,6 +129,17 @@ public class Controller implements ActionListener {
 //                System.out.println(out2.replaceAll(", ", "\n"));
             });
         }).start();
+    }
+
+    /**
+     * Listens to the model and acts when the topics are ready for analysing
+     */
+    private void setupModelListener() {
+        model.addListener(e -> {
+            if (e.getPropertyName().equals("topicsready")) {
+                Analyser analyser = new Analyser(model.getLDATopics());
+            }
+        });
     }
 
     /**

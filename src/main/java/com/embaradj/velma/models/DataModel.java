@@ -4,7 +4,6 @@ import com.embaradj.velma.results.SearchHit;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -16,7 +15,7 @@ public class DataModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     private final LinkedList<Hve> hves = new LinkedList<>();
     private final LinkedList<Job> jobs = new LinkedList<>();
-    private final HashMap<String, String> LDATopics = new HashMap<>();
+    private HashMap<String, String> LDATopics = new HashMap<>();
     private HashMap<String, Integer> processed = new HashMap<>();
     private HashMap<String, Integer> total = new HashMap<>();
     private HashMap<String, Boolean> isSearched = new HashMap<>();
@@ -52,6 +51,13 @@ public class DataModel {
 
     public void clearLDATopics() {
         LDATopics.clear();
+    }
+
+    public void updateLDATopics(HashMap<String, String> newTopics) {
+        System.out.println("LDA topics updated in model");
+        LDATopics = newTopics;
+        support.firePropertyChange("topicsready",0,1);
+
     }
 
     /**

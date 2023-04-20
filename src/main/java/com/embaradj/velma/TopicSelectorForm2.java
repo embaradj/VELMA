@@ -1,10 +1,13 @@
 package com.embaradj.velma;
 
+import com.embaradj.velma.models.DataModel;
+
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Inner class representing each topic's selection and controls in the GUI
@@ -64,7 +67,8 @@ public class TopicSelectorForm2 extends JFrame {
 
 
     public static void main(String[] args) {
-        new TopicSelectorForm2(getDummyTopics());
+        // If the class is run on its own (for testing)..
+        new TopicSelectorForm2(new DataModel(), getDummyTopics());
     }
 
     private static HashMap<String, String> getDummyTopics() {
@@ -75,9 +79,16 @@ public class TopicSelectorForm2 extends JFrame {
         return map;
     }
     private HashMap<String, TopicSelectionPanel> topicSelector = new HashMap<>();
+    private HashMap<String, String> topics;
+    private DataModel model;
 
-    public TopicSelectorForm2(HashMap<String, String> topics) {
+    public TopicSelectorForm2(DataModel model, HashMap<String, String> topics) {
+        this.model = model;
+        this.topics = topics;
+        setupGui();
+    }
 
+    private void setupGui() {
         setTitle("Select and edit topics");
         setSize(750, 700);
         setLocationRelativeTo(null);    // Position the frame in the center of the screen
@@ -110,30 +121,67 @@ public class TopicSelectorForm2 extends JFrame {
         gbc.gridx = 1;
         gbc.gridy = 1;
         mainPanel.add(okBtn, gbc);
-        okBtn.addActionListener((e) -> {
-            for (Map.Entry<String, TopicSelectionPanel> map : topicSelector.entrySet()) {
-
-                if (!map.getValue().checked()) {
-                    System.out.println("Topic " + map.getKey() + " was unchecked.. removing..");
-                    topics.remove(map.getKey());
-                    continue;
-                }
-
-                String topicName = map.getValue().getTopicName();  // The name currently in the textbox
-
-                if (!map.getKey().equals(topicName)) {
-                    System.out.println("Updating topic name " + map.getKey() + " to " + topicName);
-                    topics.replace(map.getKey(), topicName);
-                }
-
-            }
-
-            // todo: get the new hashmap our of here back to the controller to feed into the analyser
-        });
-
+        okBtn.addActionListener((e) -> { okClicked(); });
         setContentPane(mainPanel);
         setVisible(true);
 
+    }
+
+    private void okClicked() {
+
+        // Check legal inputs
+        Set<String> topicNames = new HashSet<>();
+
+        boolean oneSelected = false;
+
+        for (TopicSelectionPanel topicSelection : topicSelector.values()) {
+
+            // Check that at least one topic is selected
+            if (topicSelection.checked()) { oneSelected = true; }
+
+            String topicName = topicSelection.getTopicName();  // The name currently in the textbox
+
+            // Check if any selected topic has an empty name
+            if (topicSelection.checked() && topicName.isEmpty()) {
+                showWarning("All topics need to have a name");
+                return;
+            }
+
+            // Check if several selected topics has the same name
+            if (topicSelection.checked() && !topicNames.add(topicName)) {
+                showWarning("All topics need to have unique names");
+                return;
+            }
+        }
+
+        if (!oneSelected) {
+            showWarning("You must select at least one topic");
+            return;
+        }
+
+        for (Map.Entry<String, TopicSelectionPanel> map : topicSelector.entrySet()) {
+
+            if (!map.getValue().checked()) {
+                System.out.println("Topic " + map.getKey() + " was unchecked.. removing..");
+                topics.remove(map.getKey());
+                continue;
+            }
+
+            String topicName = map.getValue().getTopicName();  // The name currently in the textbox
+
+            if (!map.getKey().equals(topicName)) {
+                System.out.println("Updating topic name " + map.getKey() + " to " + topicName);
+
+                // These two lines renames the key
+                String temp = topics.remove(map.getKey());
+                topics.put(topicName, temp);
+
+            }
+
+        }
+
+        model.updateLDATopics(topics);
+        dispose();
     }
 
     private void createSelection(JComponent panel, HashMap<String, String> topics) {
@@ -161,5 +209,9 @@ public class TopicSelectorForm2 extends JFrame {
 
 
 
+    }
+
+    private void showWarning(String warning) {
+        JOptionPane.showMessageDialog(null, warning);
     }
 }
