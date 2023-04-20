@@ -63,11 +63,10 @@ public class Modeller {
         // Hyperparameter optimization
         // Will change alpha and beta to allow for some topics to be more pronounced
         // Needs further testing before use
-//        model.setOptimizeInterval(20);
+//        model.setOptimizeInterval(10);
 
-//        model.setRandomSeed(42);
 
-//         Build the LDA model
+        // Build the LDA model
         try {
             model.estimate();
         } catch (IOException e) {
@@ -85,9 +84,6 @@ public class Modeller {
 
         // Used for creating the noise identification files
 //        new NoiseIdentify(instances);
-
-        // Used for evaluating the modeller
-//        new Evaluator(instances);
     }
 
     /**

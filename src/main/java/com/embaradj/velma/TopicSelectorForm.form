@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.embaradj.velma.TopicSelectorForm">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <background color="-6251589"/>
+      <foreground color="-16449020"/>
+      <preferredSize width="500" height="500"/>
+    </properties>
+    <border type="line" title="test"/>
+    <children>
+      <scrollpane id="d77cb" binding="scrollPane">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="10.0" weighty="5.0"/>
+        </constraints>
+        <properties>
+          <background color="-12500974"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="d4b48" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+            <constraints/>
+            <properties>
+              <editable value="false"/>
+              <font name="Courier 10 Pitch" size="26" style="1"/>
+              <rows value="1"/>
+              <text value="Identified topics"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+    </children>
+  </grid>
+</form>

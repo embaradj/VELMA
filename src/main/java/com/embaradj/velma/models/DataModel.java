@@ -4,7 +4,6 @@ import com.embaradj.velma.results.SearchHit;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -16,10 +15,11 @@ public class DataModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     private final LinkedList<Hve> hves = new LinkedList<>();
     private final LinkedList<Job> jobs = new LinkedList<>();
-    private final HashMap<String, String> LDATopics = new HashMap<>();
+    private HashMap<String, String> LDATopics = new HashMap<>();
     private HashMap<String, Integer> processed = new HashMap<>();
     private HashMap<String, Integer> total = new HashMap<>();
     private HashMap<String, Boolean> isSearched = new HashMap<>();
+    private String analyserResults = "";
 
     // Used by the View to listen for changes in the Model
     public void addListener(final PropertyChangeListener listener) {
@@ -53,6 +53,20 @@ public class DataModel {
     public void clearLDATopics() {
         LDATopics.clear();
     }
+
+    public void updateLDATopics(HashMap<String, String> newTopics) {
+        System.out.println("LDA topics updated in model");
+        LDATopics = newTopics;
+        support.firePropertyChange("topicsready",0,1);
+
+    }
+
+    public void setAnalyserResults(String results) {
+        this.analyserResults = results;
+        support.firePropertyChange("analyserready", 0, 1);
+    }
+
+    public String getAnalyserResults() { return this.analyserResults; }
 
     /**
      * Sets the total number of hits for a certain type

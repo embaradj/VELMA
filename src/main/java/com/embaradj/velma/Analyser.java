@@ -1,7 +1,11 @@
 package com.embaradj.velma;
 
+import com.embaradj.velma.models.DataModel;
+
 import java.io.File;
 import java.nio.file.Files;
+import java.text.DecimalFormat;
+import java.util.Formatter;
 import java.util.HashMap;
 
 /**
@@ -18,20 +22,22 @@ public class Analyser {
     private HashMap<String, String> hveCourses = new HashMap<>();
     private HashMap<String, String> topics;
     private final boolean[] settings;
+    private DataModel model;
 
     /**
      * If class is run by itself it will use some fake topics
      * @param args
      */
     public static void main(String[] args) {
-        new Analyser(createTestTopics());
+        new Analyser(new DataModel(), createTestTopics());
     }
 
     /**
      * Constructor, parses the global settings and starts the analysing
      * @param topics Topics to analyse
      */
-    public Analyser(HashMap<String, String> topics) {
+    public Analyser(DataModel model, HashMap<String, String> topics) {
+        this.model = model;
         this.topics = topics;
         settings = Settings.getAnalyserSelection();
         String jobsPath = Settings.rawdataPath + "/job";
@@ -86,7 +92,7 @@ public class Analyser {
     /**
      * Runs the analysing process
      */
-    private void doAnalyse() {
+    protected String doAnalyse() {
         System.out.println("Analyser running..\nProgress 0 %");
 
         // Contains number of hits [0] jobs, [1] HVEs
@@ -122,7 +128,7 @@ public class Analyser {
             }
         }
 
-        printResults(wordsNum);
+        return generateResults(wordsNum);
     }
 
     /**
@@ -183,53 +189,66 @@ public class Analyser {
         return false;
     }
 
-    private void printResults(HashMap<String, Integer[]> wordsNum) {
+    private String generateResults(HashMap<String, Integer[]> wordsNum) {
+
+        StringBuilder sb = new StringBuilder();
+
         int totalHves = (settings[2])? hves.size() : hveAim.size();
         int topicSize = getTopicSize();
         final int margin = 30;
 
-        System.out.println("\nDone analysing " +
+        sb.append("\nDone analysing " +
                 ((settings[0])?"\n Swedish jobs":"" ) +
                 ((settings[1])?"\n English jobs":"" ) +
                 ((settings[2])?"\n Full HVE's":"" ) +
                 ((settings[3])?"\n HVE aims":"" ) +
                 ((settings[4])?"\n HVE courses":"" ));
 
-        System.out.println("\n\nTotal number of jobs: " + jobs.size());
-        System.out.println("Total number of HVEs: " + totalHves);
+        sb.append("\n\nTotal number of jobs: " + jobs.size() + "\n");
+        sb.append("Total number of HVEs: " + totalHves + "\n");
 
         // PRINT HEADER
-        printSpaces(margin);
-        System.out.print("Jobs");
-        printSpaces(11);
-        System.out.println("HVEs");
+        printSpaces(margin, sb);
+        sb.append("Jobs");
+        printSpaces(11,sb);
+        sb.append("HVEs\n");
+
+        final DecimalFormat df = new DecimalFormat("0.0");
 
         topics.forEach((topicName, topic) -> {            // Each topic
             String[] words = topic.split(", ");
             int[] total = sum(words, wordsNum);
-            System.out.print(topicName);
-            printSpaces(margin - topicName.length());
-            String jSumString = total[0] + " (" + 100 * total[0] / (jobs.size() * topicSize) + "%)";
-            System.out.print(jSumString);
-            printSpaces(15 - jSumString.length());
-            System.out.println(total[1] + " (" + 100 * total[1] / (totalHves * topicSize) + "%)");
+            sb.append(topicName);
+            printSpaces(margin - topicName.length(), sb);
+            String jSumString = total[0] + " (" + df.format(100d * total[0] / (jobs.size() * topicSize)) + "%)";
+            sb.append(jSumString);
+            printSpaces(15 - jSumString.length(), sb);
+            sb.append(total[1] + " (" + df.format(100d * total[1] / (totalHves * topicSize)) + "%)\n");
+
 
             for (int i = 0; i < words.length; i++) {    // Each word in the topic
 
                 Integer sum[] = wordsNum.get(words[i]);
-                String jobString = sum[0] + " (" + 100 * sum[0] / total[0] + "%)";
-                String hveString = sum[1] + " (" + 100 * sum[1] / total[1] + "%)";
 
-                printSpaces(3);
-                System.out.print(words[i]);
-                printSpaces(margin-(3 + words[i].length()));
+                String jobString = sum[0] + " (" + df.format(100d * sum[0] / total[0]) + "%)";
+                String hveString = sum[1] + " (" + df.format(100d * sum[1] / total[1]) + "%)\n";
 
-                System.out.print(jobString);
-                printSpaces(15 - jobString.length());
-                System.out.println(hveString);
+                printSpaces(3, sb);
+                sb.append(words[i]);
+                printSpaces(margin-(3 + words[i].length()), sb);
+
+                sb.append(jobString);
+                printSpaces(15 - jobString.length(), sb);
+                sb.append(hveString);
             }
 
         });
+
+        String results = sb.toString();
+        System.out.println(results);
+        model.setAnalyserResults(results);
+
+        return results;
     }
 
     /**
@@ -251,8 +270,8 @@ public class Analyser {
         return new int[]{j,h};
     }
 
-    private void printSpaces(int spaces){
-        for (int i = 0; i < spaces; i++) System.out.print(" ");
+    private void printSpaces(int spaces, StringBuilder sb){
+        for (int i = 0; i < spaces; i++) sb.append(" ");
     }
 
     private int getTopicSize() {

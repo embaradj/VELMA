@@ -5,8 +5,6 @@ import com.embaradj.velma.models.SearchHitWrapper;
 import com.embaradj.velma.results.SearchHit;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 /**
  * Represents the view of the MVC pattern
