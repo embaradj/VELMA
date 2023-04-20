@@ -121,7 +121,7 @@ public class Controller implements ActionListener {
             SwingUtilities.invokeLater(() -> {
                 dia.setVisible(false);
 //                new DetailsForm(model.getLDATopics());
-                new TopicSelectorForm2(model, model.getLDATopics());
+                new TopicSelectorForm(model, model.getLDATopics());
 
 //                new Thread(() -> new Analyser(model.getLDATopics())).start();
 
