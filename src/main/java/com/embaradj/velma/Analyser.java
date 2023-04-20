@@ -3,24 +3,21 @@ package com.embaradj.velma;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Keyword analyser for topics extracted with LDA.
- * The percentages calculated for each topic in regard to possible max outcome, which is when;
- * all words of a topic is found at least once in every document of the dataset, which gives 100%
+ * The percentage for each topic is calculated in regard to possible max outcome, which is when;
+ * all words of a topic is found at least once in every document of the dataset. The percentage for
+ * each keyword is in regard to the total number of hits of its topic.
  */
 public class Analyser {
 
-    private final String hvePath = "resources/rawdata/hve";
-    private final String jobsPath = "resources/rawdata/job";
     private HashMap<String, String> jobs = new HashMap<>();
     private HashMap<String, String> hves = new HashMap<>();
     private HashMap<String, String> hveAim = new HashMap<>();
     private HashMap<String, String> hveCourses = new HashMap<>();
     private HashMap<String, String> topics;
-    private boolean[] settings;
-
+    private final boolean[] settings;
 
     /**
      * If class is run by itself it will use some fake topics
@@ -37,16 +34,14 @@ public class Analyser {
     public Analyser(HashMap<String, String> topics) {
         this.topics = topics;
         settings = Settings.getAnalyserSelection();
+        String jobsPath = Settings.rawdataPath + "/job";
+        String hvePath = Settings.rawdataPath + "/hve";
 
         if (settings[0]) readFiles(jobs, jobsPath + "/swe");           // Job ads Swe
         if (settings[1]) readFiles(jobs, jobsPath + "/eng");           // Job ads Eng
         if (settings[2]) readFiles(hves, hvePath + "/full");           // HVE full
         if (settings[3]) readFiles(hveAim, hvePath + "/aim");          // HVE aims
         if (settings[4]) readFiles(hveCourses, hvePath + "/courses");  // HVE courses
-
-        //totalJobs = jobs.size();
-        // If both HVE aims and courses are selected the total number must be divided by two
-        //totalHves = (settings[3] && settings[4])? hves.size() / 2 : hves.size();
 
         doAnalyse();
     }
@@ -94,7 +89,7 @@ public class Analyser {
     private void doAnalyse() {
         System.out.println("Analyser running..\nProgress 0 %");
 
-        // Number of hits [0] jobs, [1] HVEs
+        // Contains number of hits [0] jobs, [1] HVEs
         HashMap<String, Integer[]> wordsNum = new HashMap<>();
 
         int progress = 0;
@@ -140,23 +135,7 @@ public class Analyser {
         int counter = 0;
 
         for (String key : dataset.keySet()) {
-
-            // String contains all words of the file
-            String temp = dataset.get(key).toLowerCase();
-
-            // Does the file contain the searched keyword?
-            if (temp.contains(keyword.toLowerCase())) {
-
-                // Does it match exactly (not just the beginning of the word) ?
-                String word = temp.substring(temp.indexOf(keyword)).split("[\s\n\\.\\,\\!]+")[0];
-                if (keyword.toLowerCase().equals(word)) {
-                    if (keyword.toLowerCase().equals("arbeta")) System.out.println(keyword + "\t\t==\t\t" + word);
-                    counter++;
-                }
-//                else System.out.println(keyword + "\t\t!=\t\t" + word);
-
-            }
-
+            if (wordInFile(keyword, dataset.get(key))) counter++;
         }
 
         return counter;
@@ -172,111 +151,54 @@ public class Analyser {
     private int count(String keyword, HashMap<String, String> dataset1, HashMap<String, String> dataset2) {
         int counter = 0;
 
-        for (String set1key : dataset1.keySet()) {
-            boolean found = false;
-
-            // Does the file contain the searched keyword?
-            if (dataset1.get(set1key).toLowerCase().contains(keyword.toLowerCase())) {
-
-                // String contains all words of the file
-                String temp = dataset1.get(set1key).toLowerCase();
-
-                // Does it match exactly (not just the beginning of the word) ?
-                String word = temp.substring(temp.indexOf(keyword)).split("[\s\n\\.\\,\\!]+")[0];
-                if (keyword.toLowerCase().equals(word)) found = true;
-
-            }
-            if (!found) {
-                // find corresponding file
-                for (String set2key : dataset2.keySet()) {
-                    if (!set2key.contains(set1key.split("_")[1])) continue;
-                    if (dataset2.get(set2key).toLowerCase().contains(keyword.toLowerCase())) {
-                        // found in second file
-//                        counter++;
-                        found = true;
-                        break;
+        for (String key1 : dataset1.keySet()) {
+            if (wordInFile(keyword, dataset1.get(key1))) counter++;
+            else {
+                // find corresponding key in second map
+                for (String key2 : dataset2.keySet()) {
+                    if (key2.split("_")[1].equals(key1.split("_")[1])) {
+                        if (wordInFile(keyword, dataset2.get(key2))) {
+                            counter++;
+                            break;
+                        }
                     }
                 }
             }
-
-            if (found) counter++;
         }
 
         return counter;
     }
 
     /**
-     * Counts the number of files (HashMap values) in which the supplied word is found
-     * @param keyword The word to look for
-     * @param dataset Where to look
-     * @return Number of files the keyword exists in
+     * Checks if a word is present in a text
+     * @param keyword the word
+     * @param file the text
+     * @return whether present
      */
-    private int count_old(String keyword, HashMap<String, String> dataset) {
-        int counter = 0;
-
-        for (Map.Entry<String, String> set : dataset.entrySet()) {      // Each file
-            String file = set.getKey();                                 // Variable only for debugging
-            //String[] value = set.getValue().split("[^A-ö]+");
-            String[] words = set.getValue().split("[\s\n\\.\\,\\!]+");
-
-            for (int i = 0; i < words.length; i++) {                    // Each word
-                if (keyword.toLowerCase().equals(words[i].toLowerCase())) {
-                    counter++;
-                    break;  // If the word is found jump to the next file
-                }
-            }
-        }
-
-        return counter;
-    }
-
-    private int count_old(String keyword, HashMap<String, String> dataset1, HashMap<String, String> dataset2) {
-        int counter = 0;
-
-        for (Map.Entry<String, String> set1 : dataset1.entrySet()) {
-            String[] words = set1.getValue().split("[\s\n\\.\\,\\!]+");
-
-            for (int i = 0; i < words.length; i++) {
-                if (find(keyword, words[i], set1.getKey(), dataset2)) counter++;
-            }
-        }
-
-        return counter;
-    }
-
-    private boolean find(String keyword, String word, String set1Key, HashMap<String, String> dataset2) {
-
-        if (keyword.toLowerCase().equals(word.toLowerCase())) return true;
-        else {
-            // If the word was not found in the first file, look in the second
-            // locate "twin" file
-            for (String filename : dataset2.keySet()) {
-                // Find the corresponding file in second dataset
-                if (filename.contains(set1Key.split("_")[1])) {
-                    // Split up the contents of the file
-                    String[] words2 = dataset2.get(filename).split("[\s\n\\.\\,\\!]+");
-                    // Iterate over the words and check if is the keyword
-                    for (int j = 0; j < words2.length; j++) {
-                        if (keyword.toLowerCase().equals(words2[j].toLowerCase())) {
-                            return true;
-                        }
-                    }
-                }
-            }
+    private boolean wordInFile(String keyword, String file) {
+        String[] words = file.split("[\s\n\\.\\,\\!]+");
+        for (int i = 0; i < words.length; i++) {
+            if (keyword.toLowerCase().equals(words[i].toLowerCase())) return true;
         }
         return false;
     }
-
 
     private void printResults(HashMap<String, Integer[]> wordsNum) {
         int totalHves = (settings[2])? hves.size() : hveAim.size();
         int topicSize = getTopicSize();
         final int margin = 30;
 
+        System.out.println("\nDone analysing " +
+                ((settings[0])?"\n Swedish jobs":"" ) +
+                ((settings[1])?"\n English jobs":"" ) +
+                ((settings[2])?"\n Full HVE's":"" ) +
+                ((settings[3])?"\n HVE aims":"" ) +
+                ((settings[4])?"\n HVE courses":"" ));
+
         System.out.println("\n\nTotal number of jobs: " + jobs.size());
         System.out.println("Total number of HVEs: " + totalHves);
 
-        // HEADER
+        // PRINT HEADER
         printSpaces(margin);
         System.out.print("Jobs");
         printSpaces(11);
@@ -300,7 +222,7 @@ public class Analyser {
 
                 printSpaces(3);
                 System.out.print(words[i]);
-                printSpaces(30-(3 + words[i].length()));
+                printSpaces(margin-(3 + words[i].length()));
 
                 System.out.print(jobString);
                 printSpaces(15 - jobString.length());
@@ -310,6 +232,12 @@ public class Analyser {
         });
     }
 
+    /**
+     * Calculates the sum of an array of words
+     * @param words an array of words
+     * @param map the map containing the number of words
+     * @return the sum
+     */
     private int[] sum(String[] words, HashMap<String, Integer[]> map) {
 
         int j = 0;

@@ -20,6 +20,7 @@ import java.util.List;
 public class Settings {
     private static final Settings settings = new Settings();
     protected static final double VERSION = 1.0D;
+    public static final String rawdataPath = "resources/rawdata";
     private final String HELPFILE = "/help.rtf";
     private static final boolean DEBUG = true;
     private static final String SUSA_API_BASE_URI =
@@ -93,9 +94,9 @@ public class Settings {
         numTopics = 5;
         threads = 16; // 16 threads used for testing
         iterations = 2000; // 2000 iterations used for testing
-        // Analyser: Jobs Swe, Jobs Eng, HVE Full, HVE goals, HVE Courses
-        analyserSelection = new boolean[]{true, true, true, false, false};
-//        analyserSelection = new boolean[]{true, true, false, true, true};
+//         Analyser: Jobs Swe, Jobs Eng, HVE Full, HVE goals, HVE Courses
+//        analyserSelection = new boolean[]{true, true, true, false, false};
+        analyserSelection = new boolean[]{true, true, false, true, true};
         words = 7;
     }
 
