@@ -4,6 +4,8 @@ import com.embaradj.velma.models.DataModel;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.text.DecimalFormat;
+import java.util.Formatter;
 import java.util.HashMap;
 
 /**
@@ -211,21 +213,25 @@ public class Analyser {
         printSpaces(11,sb);
         sb.append("HVEs\n");
 
+        final DecimalFormat df = new DecimalFormat("0.0");
+
         topics.forEach((topicName, topic) -> {            // Each topic
             String[] words = topic.split(", ");
             int[] total = sum(words, wordsNum);
             sb.append(topicName);
             printSpaces(margin - topicName.length(), sb);
-            String jSumString = total[0] + " (" + 100 * total[0] / (jobs.size() * topicSize) + "%)";
+            String jSumString = total[0] + " (" + df.format(100d * total[0] / (jobs.size() * topicSize)) + "%)";
             sb.append(jSumString);
             printSpaces(15 - jSumString.length(), sb);
-            sb.append(total[1] + " (" + 100 * total[1] / (totalHves * topicSize) + "%)\n");
+            sb.append(total[1] + " (" + df.format(100d * total[1] / (totalHves * topicSize)) + "%)\n");
+
 
             for (int i = 0; i < words.length; i++) {    // Each word in the topic
 
                 Integer sum[] = wordsNum.get(words[i]);
-                String jobString = sum[0] + " (" + 100 * sum[0] / total[0] + "%)";
-                String hveString = sum[1] + " (" + 100 * sum[1] / total[1] + "%)\n";
+
+                String jobString = sum[0] + " (" + df.format(100d * sum[0] / total[0]) + "%)";
+                String hveString = sum[1] + " (" + df.format(100d * sum[1] / total[1]) + "%)\n";
 
                 printSpaces(3, sb);
                 sb.append(words[i]);
