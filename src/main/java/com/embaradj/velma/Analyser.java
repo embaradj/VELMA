@@ -18,6 +18,7 @@ public class Analyser {
     private HashMap<String, String> hveCourses = new HashMap<>();
     private HashMap<String, String> topics;
     private final boolean[] settings;
+    private String results = "";
 
     /**
      * If class is run by itself it will use some fake topics
@@ -43,7 +44,7 @@ public class Analyser {
         if (settings[3]) readFiles(hveAim, hvePath + "/aim");          // HVE aims
         if (settings[4]) readFiles(hveCourses, hvePath + "/courses");  // HVE courses
 
-        doAnalyse();
+//        doAnalyse();
     }
 
     /**
@@ -86,7 +87,7 @@ public class Analyser {
     /**
      * Runs the analysing process
      */
-    private void doAnalyse() {
+    protected void doAnalyse() {
         System.out.println("Analyser running..\nProgress 0 %");
 
         // Contains number of hits [0] jobs, [1] HVEs
@@ -184,52 +185,63 @@ public class Analyser {
     }
 
     private void printResults(HashMap<String, Integer[]> wordsNum) {
+
+        StringBuilder sb = new StringBuilder();
+
         int totalHves = (settings[2])? hves.size() : hveAim.size();
         int topicSize = getTopicSize();
         final int margin = 30;
 
-        System.out.println("\nDone analysing " +
+        sb.append("\nDone analysing " +
                 ((settings[0])?"\n Swedish jobs":"" ) +
                 ((settings[1])?"\n English jobs":"" ) +
                 ((settings[2])?"\n Full HVE's":"" ) +
                 ((settings[3])?"\n HVE aims":"" ) +
                 ((settings[4])?"\n HVE courses":"" ));
 
-        System.out.println("\n\nTotal number of jobs: " + jobs.size());
-        System.out.println("Total number of HVEs: " + totalHves);
+        sb.append("\n\nTotal number of jobs: " + jobs.size() + "\n");
+        sb.append("Total number of HVEs: " + totalHves + "\n");
 
         // PRINT HEADER
-        printSpaces(margin);
-        System.out.print("Jobs");
-        printSpaces(11);
-        System.out.println("HVEs");
+        printSpaces(margin, sb);
+        sb.append("Jobs");
+        printSpaces(11,sb);
+        sb.append("HVEs\n");
 
         topics.forEach((topicName, topic) -> {            // Each topic
             String[] words = topic.split(", ");
             int[] total = sum(words, wordsNum);
-            System.out.print(topicName);
-            printSpaces(margin - topicName.length());
+            sb.append(topicName);
+            printSpaces(margin - topicName.length(), sb);
             String jSumString = total[0] + " (" + 100 * total[0] / (jobs.size() * topicSize) + "%)";
-            System.out.print(jSumString);
-            printSpaces(15 - jSumString.length());
-            System.out.println(total[1] + " (" + 100 * total[1] / (totalHves * topicSize) + "%)");
+            sb.append(jSumString);
+            printSpaces(15 - jSumString.length(), sb);
+            sb.append(total[1] + " (" + 100 * total[1] / (totalHves * topicSize) + "%)\n");
 
             for (int i = 0; i < words.length; i++) {    // Each word in the topic
 
                 Integer sum[] = wordsNum.get(words[i]);
                 String jobString = sum[0] + " (" + 100 * sum[0] / total[0] + "%)";
-                String hveString = sum[1] + " (" + 100 * sum[1] / total[1] + "%)";
+                String hveString = sum[1] + " (" + 100 * sum[1] / total[1] + "%)\n";
 
-                printSpaces(3);
-                System.out.print(words[i]);
-                printSpaces(margin-(3 + words[i].length()));
+                printSpaces(3, sb);
+                sb.append(words[i]);
+                printSpaces(margin-(3 + words[i].length()), sb);
 
-                System.out.print(jobString);
-                printSpaces(15 - jobString.length());
-                System.out.println(hveString);
+                sb.append(jobString);
+                printSpaces(15 - jobString.length(), sb);
+                sb.append(hveString);
             }
 
         });
+
+
+        results = sb.toString();
+        System.out.println(results);
+    }
+
+    protected String getResults() {
+        return this.results;
     }
 
     /**
@@ -251,8 +263,8 @@ public class Analyser {
         return new int[]{j,h};
     }
 
-    private void printSpaces(int spaces){
-        for (int i = 0; i < spaces; i++) System.out.print(" ");
+    private void printSpaces(int spaces, StringBuilder sb){
+        for (int i = 0; i < spaces; i++) sb.append(" ");
     }
 
     private int getTopicSize() {
