@@ -19,6 +19,11 @@ public class DetailsForm extends JFrame {
     private JButton closeBtn;
     private JTextPane textPane;
 
+    public static void main(String[] args) {
+        new DetailsForm("Dummy title", "Some dummy here\nThis list of monospaced typefaces details standard" +
+                "monospaced fonts used in classical ... Fixed · Fixed sample.png. Fixedsys · Fixedsys font sample-withText ...");
+    }
+
     /**
      * Overloaded constructor in order to use the same form for both SearchHits and help menu
      */
@@ -94,15 +99,29 @@ public class DetailsForm extends JFrame {
         textPane.setCaretPosition(0);
     }
 
+    /**
+     * Used by Analyser to display its results
+     * @param title of the window
+     * @param text the results text
+     */
     public DetailsForm(String title, String text) {
         this();
         setTitle(title);
+
+        // Use a monospaced form in order for the printed results to align correctly
+        Font font = new Font("Courier", Font.PLAIN, 18);
+        textPane.setFont(font);
+
         StyledDocument doc = textPane.getStyledDocument();
+
         try {
             doc.insertString(doc.getLength(), text, null);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
+
+        this.setSize(textPane.getWidth() + 50, textPane.getHeight());
+        textPane.setCaretPosition(0);
     }
 
     /**
