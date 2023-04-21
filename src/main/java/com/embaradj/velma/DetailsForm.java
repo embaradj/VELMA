@@ -109,7 +109,7 @@ public class DetailsForm extends JFrame {
         setTitle(title);
 
         // Use a monospaced form in order for the printed results to align correctly
-        Font font = new Font("Courier", Font.PLAIN, 18);
+        Font font = new Font("Monospaced", Font.PLAIN, 18);
         textPane.setFont(font);
 
         StyledDocument doc = textPane.getStyledDocument();
