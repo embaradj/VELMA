@@ -27,10 +27,6 @@ public class DataModel implements StatusProvider {
         support.addPropertyChangeListener(listener);
     }
 
-    public void removeListener(final PropertyChangeListener listener) {
-        support.removePropertyChangeListener(listener);
-    }
-
     public boolean isSearched(String type) {
         return isSearched.getOrDefault(type, false);
     }
@@ -95,7 +91,6 @@ public class DataModel implements StatusProvider {
 
     public void setLoadProgress(int progress) {
         support.firePropertyChange("loadingprogress", null, progress);
-        if (progress >= 99) support.firePropertyChange("loadingfinished", null,1);
     }
 
 

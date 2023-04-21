@@ -91,7 +91,7 @@ public class Controller implements ActionListener {
 
         // Show work-in-progress animation
         LoadingPane lp = new LoadingPane("Performing Topic Modelling..");
-        JDialog dialog = lp.createDialog("Please wait");
+        JDialog dialog = lp.createDialog(null, "Please wait");
 
         // Begin the analyzing off the EDT
         new Thread(() -> {
