@@ -92,7 +92,7 @@ public class Analyser {
     /**
      * Runs the analysing process
      */
-    protected String doAnalyse() {
+    private void doAnalyse() {
         System.out.println("Analyser running..\nProgress 0 %");
 
         // Contains number of hits [0] jobs, [1] HVEs
@@ -128,7 +128,7 @@ public class Analyser {
             }
         }
 
-        return generateResults(wordsNum);
+        generateResults(wordsNum);
     }
 
     /**
@@ -189,7 +189,7 @@ public class Analyser {
         return false;
     }
 
-    private String generateResults(HashMap<String, Integer[]> wordsNum) {
+    private void generateResults(HashMap<String, Integer[]> wordsNum) {
 
         StringBuilder sb = new StringBuilder();
 
@@ -210,7 +210,7 @@ public class Analyser {
         // PRINT HEADER
         printSpaces(margin, sb);
         sb.append("Jobs");
-        printSpaces(11,sb);
+        printSpaces(15,sb);
         sb.append("HVEs\n");
 
         final DecimalFormat df = new DecimalFormat("0.0");
@@ -218,37 +218,48 @@ public class Analyser {
         topics.forEach((topicName, topic) -> {            // Each topic
             String[] words = topic.split(", ");
             int[] total = sum(words, wordsNum);
+
+            // TOPIC
             sb.append(topicName);
-            printSpaces(margin - topicName.length(), sb);
-            String jSumString = total[0] + " (" + df.format(100d * total[0] / (jobs.size() * topicSize)) + "%)";
+            printSpaces(margin + 6 - topicName.length(), sb);
+            String jSumString = "(" + df.format(100d * total[0] / (jobs.size() * topicSize)) + "%)";
             sb.append(jSumString);
-            printSpaces(15 - jSumString.length(), sb);
-            sb.append(total[1] + " (" + df.format(100d * total[1] / (totalHves * topicSize)) + "%)\n");
+            printSpaces(19 - jSumString.length(), sb);
+            sb.append("(" + df.format(100d * total[1] / (totalHves * topicSize)) + "%)\n");
 
 
             for (int i = 0; i < words.length; i++) {    // Each word in the topic
 
                 Integer sum[] = wordsNum.get(words[i]);
 
-                String jobString = sum[0] + " (" + df.format(100d * sum[0] / total[0]) + "%)";
-                String hveString = sum[1] + " (" + df.format(100d * sum[1] / total[1]) + "%)\n";
+                String jobSumString = "" + sum[0];
+                String jobPerString = "(" + df.format(100d * sum[0] / total[0]) + "%)";
+                String hveSumString = "" + sum[1];
+                String hvePerString = "(" + df.format(100d * sum[1] / total[1]) + "%)\n";
 
+                // KEYWORD
                 printSpaces(3, sb);
                 sb.append(words[i]);
                 printSpaces(margin-(3 + words[i].length()), sb);
 
-                sb.append(jobString);
-                printSpaces(15 - jobString.length(), sb);
-                sb.append(hveString);
+                // JOBS
+                sb.append(jobSumString);
+                printSpaces(6 - jobSumString.length(), sb);
+                sb.append(jobPerString);
+                printSpaces(13 - jobPerString.length(), sb);
+
+                // HVES
+                sb.append(hveSumString);
+                printSpaces(6 - hveSumString.length(), sb);
+                sb.append(hvePerString);
             }
 
         });
 
         String results = sb.toString();
-        System.out.println(results);
+        if (Settings.debug()) System.out.println(results);
         model.setAnalyserResults(results);
 
-        return results;
     }
 
     /**
