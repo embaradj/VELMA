@@ -133,7 +133,7 @@ public class Controller implements ActionListener {
 
             else if (e.getPropertyName().equals("analyserready")) {
                 SwingUtilities.invokeLater(() -> {
-                    new DetailsForm("LDA Results", model.getAnalyserResults()).setSize(700, 800);
+                    new DetailsForm("Results", model.getAnalyserResults()).setSize(700, 800);
                 });
 
             }

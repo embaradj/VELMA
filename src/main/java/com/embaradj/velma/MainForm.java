@@ -120,7 +120,7 @@ public class MainForm extends JFrame {
 
                         if (searchHit.getType().equals("hve")) {
                             listModel1.addElement(searchHit);
-                            if (finished) progressText = "Finished downloading " + searchHitWrapper.getTotal() + " HVEs";
+                            if (finished) progressText = "Finished downloading " + searchHitWrapper.getTotal() + " HVE curricula";
                             progressBar1.setValue(progress);
                             progressBar1.setString(progressText);
                             srcHveBtn.setEnabled(finished);

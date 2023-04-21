@@ -202,21 +202,21 @@ public class Analyser {
         final int margin = 25;
 
         sb.append("Done analysing: " +
-                ((settings[0])?"\nSwedish jobs":"" ) +
-                ((settings[1])?"\nEnglish jobs":"" ) +
-                ((settings[2])?"\nFull HVE's":"" ) +
-                ((settings[3])?"\nHVE aims":"" ) +
-                ((settings[4])?"\nHVE courses":"" ));
+                ((settings[0])?"\nSwedish jobs ads":"" ) +
+                ((settings[1])?"\nEnglish jobs ads":"" ) +
+                ((settings[2])?"\nFull HVE curricula":"" ) +
+                ((settings[3])?"\nAim of HVE programmes":"" ) +
+                ((settings[4])?"\nCourses of HVE programmes":"" ));
 
         sb.append("\n\nTotal number of jobs: " + jobs.size() + "\n");
-        sb.append("Total number of HVEs: " + totalHves + "\n");
+        sb.append("Total number of HVE curricula: " + totalHves + "\n");
 
         // PRINT HEADER
         sb.append("\n");
         printSpaces(margin + 3, sb);
-        sb.append("Jobs");
+        sb.append("Job ads");
         printSpaces(15,sb);
-        sb.append("HVEs\n");
+        sb.append("HVE curricula\n");
 
         final DecimalFormat df = new DecimalFormat("0.0");
 

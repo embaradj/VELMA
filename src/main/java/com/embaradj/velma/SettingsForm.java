@@ -93,7 +93,7 @@ public class SettingsForm extends JFrame {
         createButtons();
 
 
-        setSize(600, 700);
+        setSize(450, 725);
         setLocationRelativeTo(null);    // Position the frame in the center of the screen
         setVisible(true);
 //        pack();
@@ -178,9 +178,9 @@ public class SettingsForm extends JFrame {
         engJobCheck = new JCheckBox("English", selection[1]);
 
         hveCheck = new JCheckBox("HVE", (selection[2] || selection[3]) || selection[4]);
-        fullHveCheck = new JCheckBox("Full HVE text (including goals and courses)", selection[2]);
-        goalsHveCheck = new JCheckBox("Aim", selection[3]);
-        courseHveCheck = new JCheckBox("Courses", selection[4]);
+        fullHveCheck = new JCheckBox("Full curricula", selection[2]);
+        goalsHveCheck = new JCheckBox("Aim of programmes", selection[3]);
+        courseHveCheck = new JCheckBox("Courses of programmes", selection[4]);
 
         // Visually group these checkboxes by adding an extra left-margin to them
         Insets extraMargin = new Insets(0, 15, 0, 0);
