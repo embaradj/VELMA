@@ -199,20 +199,21 @@ public class Analyser {
 
         int totalHves = (settings[2])? hves.size() : hveAim.size();
         int topicSize = getTopicSize();
-        final int margin = 30;
+        final int margin = 25;
 
-        sb.append("\nDone analysing " +
-                ((settings[0])?"\n Swedish jobs":"" ) +
-                ((settings[1])?"\n English jobs":"" ) +
-                ((settings[2])?"\n Full HVE's":"" ) +
-                ((settings[3])?"\n HVE aims":"" ) +
-                ((settings[4])?"\n HVE courses":"" ));
+        sb.append("Done analysing: " +
+                ((settings[0])?"\nSwedish jobs":"" ) +
+                ((settings[1])?"\nEnglish jobs":"" ) +
+                ((settings[2])?"\nFull HVE's":"" ) +
+                ((settings[3])?"\nHVE aims":"" ) +
+                ((settings[4])?"\nHVE courses":"" ));
 
         sb.append("\n\nTotal number of jobs: " + jobs.size() + "\n");
         sb.append("Total number of HVEs: " + totalHves + "\n");
 
         // PRINT HEADER
-        printSpaces(margin, sb);
+        sb.append("\n");
+        printSpaces(margin + 3, sb);
         sb.append("Jobs");
         printSpaces(15,sb);
         sb.append("HVEs\n");
@@ -225,11 +226,11 @@ public class Analyser {
 
             // TOPIC
             sb.append(topicName);
-            printSpaces(margin + 6 - topicName.length(), sb);
-            String jSumString = "(" + df.format(100d * total[0] / (jobs.size() * topicSize)) + "%)";
+            printSpaces(margin + 7 - topicName.length(), sb);
+            String jSumString = df.format(100d * total[0] / (jobs.size() * topicSize)) + "%";
             sb.append(jSumString);
             printSpaces(19 - jSumString.length(), sb);
-            sb.append("(" + df.format(100d * total[1] / (totalHves * topicSize)) + "%)\n");
+            sb.append(df.format(100d * total[1] / (totalHves * topicSize)) + "%\n");
 
 
             for (int i = 0; i < words.length; i++) {    // Each word in the topic
@@ -258,6 +259,7 @@ public class Analyser {
                 sb.append(hvePerString);
             }
 
+            sb.append("\n");
         });
 
         String results = sb.toString();
