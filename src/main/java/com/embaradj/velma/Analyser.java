@@ -93,7 +93,8 @@ public class Analyser {
      * Runs the analysing process
      */
     private void doAnalyse() {
-        System.out.println("Analyser running..\nProgress 0 %");
+        if (Settings.debug()) System.out.println("Analyser running..\nProgress 0 %");
+        model.setLoadProgress(0);
 
         // Contains number of hits [0] jobs, [1] HVEs
         HashMap<String, Integer[]> wordsNum = new HashMap<>();
@@ -124,7 +125,10 @@ public class Analyser {
                 }
 
                 progress++;
-                System.out.println("Progress " + 100 * progress / (totalTopics * topicSize) + " %");
+
+                int realp = 100 * progress / (totalTopics * topicSize);
+                if (Settings.debug()) System.out.println("Progress " + realp + " %");
+                model.setLoadProgress(realp);
             }
         }
 

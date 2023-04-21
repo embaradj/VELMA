@@ -17,9 +17,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -86,40 +83,24 @@ public class Controller implements ActionListener {
 //            return;
 //        }
         model.clearLDATopics();
-        ImageIcon icon = null;
-        try {
-            InputStream is = this.getClass().getResourceAsStream("/load.gif");
-            Image image = Toolkit.getDefaultToolkit().createImage(IOUtils.toByteArray(is));
-            icon = new ImageIcon(image);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        JLabel iconLabel = new JLabel(icon);
-        JPanel iconPanel = new JPanel();
-        iconPanel.setLayout(new BorderLayout());
-        iconPanel.add(iconLabel, BorderLayout.CENTER);
-        JOptionPane pane = new JOptionPane();
-        pane.setMessage(iconPanel);
-        pane.setOptionType(JOptionPane.DEFAULT_OPTION);
-        pane.setMessageType(JOptionPane.PLAIN_MESSAGE);
-        pane.setOptions(new Object[] { });
+
         File file = new File("resources/rawdata/");
-        Dialog dia = pane.createDialog(null ,"Please wait");
         Modeller modeller = new Modeller(model);
 
         setupModelListener();
 
+        // Show work-in-progress animation
+        LoadingPane lp = new LoadingPane("Performing Topic Modelling..");
+        JDialog dialog = lp.createDialog("Please wait");
+
         // Begin the analyzing off the EDT
         new Thread(() -> {
-            SwingUtilities.invokeLater(() -> {
-                dia.setVisible(true);
-            });
-
+            SwingUtilities.invokeLater(() -> dialog.setVisible(true));
             modeller.worker(file);
             modeller.saveModel();
 
             SwingUtilities.invokeLater(() -> {
-                dia.setVisible(false);
+                dialog.setVisible(false);
                 new TopicSelectorForm(model, model.getLDATopics());
 
                 // Used for printing out the found words in a copy-paste friendly manner
@@ -137,6 +118,12 @@ public class Controller implements ActionListener {
         model.addListener(e -> {
             if (e.getPropertyName().equals("topicsready")) {
                 Runnable runnable = () -> {
+
+                    // Show work-in-progress animation
+                    SwingUtilities.invokeLater(() -> {
+                        new LoadingPane("Performing Keyword Analysing..", model);
+                    });
+
                     new Analyser(model, model.getLDATopics());
                 };
 

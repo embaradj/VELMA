@@ -1,5 +1,6 @@
 package com.embaradj.velma.models;
 
+import com.embaradj.velma.StatusProvider;
 import com.embaradj.velma.results.SearchHit;
 
 import java.beans.PropertyChangeListener;
@@ -11,7 +12,7 @@ import java.util.LinkedList;
  * Represents the model of the MVC pattern
  * The View subscribes to the members of this object
  */
-public class DataModel {
+public class DataModel implements StatusProvider {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     private final LinkedList<Hve> hves = new LinkedList<>();
     private final LinkedList<Job> jobs = new LinkedList<>();
@@ -24,6 +25,10 @@ public class DataModel {
     // Used by the View to listen for changes in the Model
     public void addListener(final PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
+    }
+
+    public void removeListener(final PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
     }
 
     public boolean isSearched(String type) {
@@ -86,6 +91,11 @@ public class DataModel {
         processed.compute(type, (k,v) -> ++v);
         if (processed.get(type) >= total.get(type)) isSearched.put(type, true);
         support.firePropertyChange("progress", null, new SearchHitWrapper(hit, total.get(type), processed.get(type)));
+    }
+
+    public void setLoadProgress(int progress) {
+        support.firePropertyChange("loadingprogress", null, progress);
+        if (progress >= 99) support.firePropertyChange("loadingfinished", null,1);
     }
 
 
