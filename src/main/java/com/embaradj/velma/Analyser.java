@@ -96,7 +96,7 @@ public class Analyser {
         if (Settings.debug()) System.out.println("Analyser running..\nProgress 0 %");
         model.setLoadProgress(0);
 
-        // Contains number of hits [0] jobs, [1] HVEs
+        // String: word, Int[0]: number of job docs containing word, Int[1]: number of hve docs containing word
         HashMap<String, Integer[]> wordsNum = new HashMap<>();
 
         int progress = 0;
@@ -222,6 +222,9 @@ public class Analyser {
 
         topics.forEach((topicName, topic) -> {            // Each topic
             String[] words = topic.split(", ");
+
+            // Number of documents containing keywords of this topic (a document containing several keywords of the
+            // topic is counted the same number of times) [0]: jobs, [1]: hve
             int[] total = sum(words, wordsNum);
 
             // TOPIC
