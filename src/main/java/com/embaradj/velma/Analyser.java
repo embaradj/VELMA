@@ -238,6 +238,7 @@ public class Analyser {
 
             for (int i = 0; i < words.length; i++) {    // Each word in the topic
 
+                // Number of [0] job- and [1] hve- documents containing the keyword
                 Integer sum[] = wordsNum.get(words[i]);
 
                 String jobSumString = "" + sum[0];
