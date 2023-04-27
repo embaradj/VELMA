@@ -99,13 +99,24 @@ public class Analyser {
         // String: word, Int[0]: number of job docs containing word, Int[1]: number of hve docs containing word
         HashMap<String, Integer[]> wordsNum = new HashMap<>();
 
+        // String: topic, Int[0]: number of job docs containing all words of topic, Int[1]: number of hve docs containing all words of topic
+        HashMap<String, Integer[]> allNum = new HashMap<>();
+
         int progress = 0;
         int totalTopics = topics.values().size();
         int topicSize = getTopicSize();
 
-        for (String topic : topics.values()) {              // Each topic
+//        for (String topic : topics.values()) {              // Each topic
+        for (String topicKey : topics.keySet()) {
+            String topic = topics.get(topicKey);
 
             String[] words = topic.split(", ");
+
+            // NEW -- Count documents containing all words of the topic
+            int fjobs = countFull(words, jobs);
+            int fhves = countFull(words, hves); // todo: now counting full hves, doesn't care about settings
+            allNum.put(topicKey, new Integer[] {fjobs, fhves});
+
 
             // Count number of occurrences of each word
             for (int i = 0; i < words.length; i++) {
@@ -132,7 +143,40 @@ public class Analyser {
             }
         }
 
-        generateResults(wordsNum);
+        generateResults(wordsNum, allNum);
+    }
+
+    /**
+     * Counts the number of documents containing all the keywords
+     * @param keywords The keywords
+     * @param dataset key is the "file", value is the content
+     * @return Number of documents containing ALL keywords
+     */
+    private int countFull(String[] keywords, HashMap<String, String> dataset ){
+        int counter = 0;
+
+        for (String key : dataset.keySet()) {               // Look in every "file"
+            boolean allHave = true;
+            for (int i = 0; i < keywords.length; i++) {     // Check that all keywords exists
+                if (!wordInFile(keywords[i], dataset.get(key))) allHave = false;
+            }
+
+            if (allHave) counter++;
+        }
+
+        return counter;
+    }
+
+    // todo if necessary finish this method (hve aims + hve goals)
+    private int countFull(String[] keywords, HashMap<String, String> dataset1, HashMap<String, String> dataset2) {
+        int counter = 0;
+
+        for (int i = 0; i < keywords.length; i++) {
+            boolean allHave = true;
+
+        }
+
+        return counter;
     }
 
     /**
@@ -193,7 +237,7 @@ public class Analyser {
         return false;
     }
 
-    private void generateResults(HashMap<String, Integer[]> wordsNum) {
+    private void generateResults(HashMap<String, Integer[]> wordsNum, HashMap<String, Integer[]> allNum) {
 
         StringBuilder sb = new StringBuilder();
 
@@ -223,6 +267,12 @@ public class Analyser {
         topics.forEach((topicName, topic) -> {            // Each topic
             String[] words = topic.split(", ");
 
+            // Count number of documents that contain all the keywords of this topic
+            int hve = 0;
+            for (String w : words) {    // Each word of this topic
+
+            }
+
             // Number of documents containing keywords of this topic (a document containing several keywords of the
             // topic is counted the same number of times) [0]: jobs, [1]: hve
             int[] total = sum(words, wordsNum);
@@ -233,7 +283,14 @@ public class Analyser {
             String jSumString = df.format(100d * total[0] / (jobs.size() * topicSize)) + "%";
             sb.append(jSumString);
             printSpaces(19 - jSumString.length(), sb);
-            sb.append(df.format(100d * total[1] / (totalHves * topicSize)) + "%\n");
+            sb.append(df.format(100d * total[1] / (totalHves * topicSize)) + "%");
+
+            // NEW
+            sb.append("     ");
+            sb.append(df.format(100d * allNum.get(topicName)[0] / jobs.size()) + "%");
+            sb.append("     ");
+            sb.append(df.format(100d * allNum.get(topicName)[1] / totalHves) + "%\n");
+
 
 
             for (int i = 0; i < words.length; i++) {    // Each word in the topic
