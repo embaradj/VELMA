@@ -188,7 +188,7 @@ public class Analyser {
     private boolean wordInFile(String keyword, String file) {
         String[] words = file.split("[\s\n\\.\\,\\!]+");
         for (int i = 0; i < words.length; i++) {
-            if (keyword.toLowerCase().equals(words[i].toLowerCase())) return true;
+            if (keyword.toLowerCase().equals(words[i].toLowerCase().replaceAll("[^\\wåäöÅÄÖ\\s]", ""))) return true;
         }
         return false;
     }
