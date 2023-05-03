@@ -267,12 +267,6 @@ public class Analyser {
         topics.forEach((topicName, topic) -> {            // Each topic
             String[] words = topic.split(", ");
 
-            // Count number of documents that contain all the keywords of this topic
-            int hve = 0;
-            for (String w : words) {    // Each word of this topic
-
-            }
-
             // Number of documents containing keywords of this topic (a document containing several keywords of the
             // topic is counted the same number of times) [0]: jobs, [1]: hve
             int[] total = sum(words, wordsNum);
