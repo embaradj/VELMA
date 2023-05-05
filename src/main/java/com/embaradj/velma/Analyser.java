@@ -85,7 +85,7 @@ public class Analyser {
         testTopics.put("TOPIC 1", "experience, team, work, development, working, software, skills");
         testTopics.put("TOPIC 2", "personalexpressen, konsulter, uppdrag, kunder, offentliga, gentemot, tid");
         testTopics.put("TOPIC 3", "erfarenhet, ansökan, arbeta, arbete, arbetar, se, utveckling");
-        testTopics.put("TOPIC 4", "erfarenhet, arbeta, hos, kunder, söker, team, tjänsten");
+        testTopics.put("TOPIC 4", "erfarenhet, arbeta, hos, kunder, söker, team, upphandlingsteam");
         return testTopics;
     }
 
@@ -188,7 +188,7 @@ public class Analyser {
     private boolean wordInFile(String keyword, String file) {
         String[] words = file.split("[\s\n\\.\\,\\!]+");
         for (int i = 0; i < words.length; i++) {
-            if (keyword.toLowerCase().equals(words[i].toLowerCase().replaceAll("[^\\wåäöÅÄÖ\\s]", ""))) return true;
+            if (keyword.toLowerCase().equals(words[i].toLowerCase())) return true;
         }
         return false;
     }
