@@ -67,11 +67,11 @@ public class Modeller {
 
 
         // Build the LDA model
-        try {
-            model.estimate();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            model.estimate();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
         // Find topics and top words
         List<Object[]> topicWords = Arrays.stream(model.getTopWords(Settings.getWords())).toList();
@@ -84,6 +84,9 @@ public class Modeller {
 
         // Used for creating the noise identification files
 //        new NoiseIdentify(instances);
+
+        // Used for evaluating the modeller
+        new Evaluator(instances);
     }
 
     /**
