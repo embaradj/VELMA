@@ -5,7 +5,7 @@ import com.embaradj.velma.models.DataModel;
 import java.io.File;
 import java.nio.file.Files;
 import java.text.DecimalFormat;
-import java.util.Formatter;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -65,7 +65,6 @@ public class Analyser {
 
             for (File file : files) {
                 if (!file.isFile()) continue;
-//                System.out.println("Reading file " + file.getName());
                 map.put(file.getName(), Files.readString(file.toPath()));
             }
 
@@ -94,7 +93,7 @@ public class Analyser {
      */
     private void doAnalyse() {
         if (Settings.debug()) System.out.println("Analyser running..\nProgress 0 %");
-        model.setLoadProgress(0);
+
 
         // String: word, Int[0]: number of job docs containing word, Int[1]: number of hve docs containing word
         HashMap<String, Integer[]> wordsNum = new HashMap<>();
@@ -103,6 +102,8 @@ public class Analyser {
         HashMap<String, Integer[]> allNum = new HashMap<>();
 
         int progress = 0;
+        model.setLoadProgress(progress);
+
         int totalTopics = topics.values().size();
         int topicSize = getTopicSize();
 
@@ -114,10 +115,18 @@ public class Analyser {
 
             // NEW -- Count documents containing all words of the topic
             int fjobs = countFull(words, jobs);
-            int fhves = countFull(words, hves); // todo: now counting full hves, doesn't care about settings
+
+            int fhves = 0;
+            if (settings[3] && settings[4]) fhves = countFull(words, hveAim, hveCourses);
+            else{
+                if (settings[2]) fhves = countFull(words, hves);
+                if (settings[3]) fhves = countFull(words, hveAim);
+                if (settings[4]) fhves = countFull(words, hveCourses);
+            }
+
             allNum.put(topicKey, new Integer[] {fjobs, fhves});
 
-
+            /*
             // Count number of occurrences of each word
             for (int i = 0; i < words.length; i++) {
 
@@ -136,14 +145,18 @@ public class Analyser {
                 }
 
                 progress++;
-
                 int realp = 100 * progress / (totalTopics * topicSize);
-                if (Settings.debug()) System.out.println("Progress " + realp + " %");
-                model.setLoadProgress(realp);
-            }
-        }
+             */
 
-        generateResults(wordsNum, allNum);
+
+            progress++;
+            int realp = 100 * progress / (totalTopics);
+            if (Settings.debug()) System.out.println("Progress " + realp + " %");
+            model.setLoadProgress(realp);
+            }
+
+        //generateResults(wordsNum, allNum);
+        generateResults(allNum);
     }
 
     /**
@@ -158,7 +171,10 @@ public class Analyser {
         for (String key : dataset.keySet()) {               // Look in every "file"
             boolean allHave = true;
             for (int i = 0; i < keywords.length; i++) {     // Check that all keywords exists
-                if (!wordInFile(keywords[i], dataset.get(key))) allHave = false;
+                if (!wordInFile(keywords[i], dataset.get(key))) {
+                    allHave = false;
+                    break;
+                }
             }
 
             if (allHave) counter++;
@@ -167,13 +183,39 @@ public class Analyser {
         return counter;
     }
 
-    // todo if necessary finish this method (hve aims + hve goals)
+
+    /**
+     * Counts the number of "documents" in which all keywords are present. A "document" in this meaning is the sum of the
+     * content from respective "file" in both of the datasets. I.e. two different files originating from the same HVE
+     * are considered one document.
+     * @param keywords what we are looking for
+     * @param dataset1 ex. Hve Aims
+     * @param dataset2 ec. Hve Goals
+     * @return Number of documents containing ALL keywords
+     */
     private int countFull(String[] keywords, HashMap<String, String> dataset1, HashMap<String, String> dataset2) {
         int counter = 0;
 
-        for (int i = 0; i < keywords.length; i++) {
+        // Iterate over the first dataset to see if all keywords are present in it
+        for (String key1 : dataset1.keySet()) {
             boolean allHave = true;
+            for (int i = 0; i < keywords.length; i++) {
+                if (!wordInFile(keywords[i], dataset1.get(key1))) {
 
+                    // We ran into a word that is not present in the document of dataset1, lets look for
+                    // it in the same file of dataset2.
+                    for (String key2 : dataset2.keySet()) {
+                        if (key2.split("_")[1].equals(key1.split("_")[1])) {
+
+                            // Corresponding file found, check if word is present in it
+                            if (!wordInFile(keywords[i], dataset2.get(key2))) allHave = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (allHave) counter++;
         }
 
         return counter;
@@ -235,6 +277,44 @@ public class Analyser {
             if (keyword.toLowerCase().equals(words[i].toLowerCase())) return true;
         }
         return false;
+    }
+
+    /**
+     * NEW
+     * @param allnum
+     */
+    private void generateResults(HashMap<String, Integer[]> allnum) {
+        StringBuilder sb = new StringBuilder();
+
+        int totalHves = (settings[2])? hves.size() : hveAim.size();
+
+        sb.append("Done analysing: " +
+                ((settings[0])?"\nSwedish job ads":"" ) +
+                ((settings[1])?"\nEnglish job ads":"" ) +
+                ((settings[2])?"\nFull HVE curricula":"" ) +
+                ((settings[3])?"\nAim of HVE programmes":"" ) +
+                ((settings[4])?"\nCourses of HVE programmes":"" ));
+
+        sb.append("\n\nTotal number of job ads: " + jobs.size() + "\n");
+        sb.append("Total number of HVE curricula: " + totalHves + "\n");
+
+        // PRINT HEADER
+        sb.append("\n");
+        printSpaces(12, sb);
+        sb.append("Labour");
+        printSpaces(2,sb);
+        sb.append("HVE\n");
+
+        topics.forEach((topicName, topic) -> {
+            sb.append(topicName + "\t\t" + allnum.get(topicName)[0] + "\t\t" + allnum.get(topicName)[1] + "\t(");
+            for (String word : topic.split(",")) sb.append(word + ",");
+            sb.append(")\n");
+        });
+
+        String results = sb.toString();
+        if (Settings.debug()) System.out.println(results);
+        model.setAnalyserResults(results);
+
     }
 
     private void generateResults(HashMap<String, Integer[]> wordsNum, HashMap<String, Integer[]> allNum) {
