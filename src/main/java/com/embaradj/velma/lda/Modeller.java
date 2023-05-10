@@ -65,13 +65,15 @@ public class Modeller {
         // Needs further testing before use
 //        model.setOptimizeInterval(10);
 
+        model.setRandomSeed(42);
+
 
         // Build the LDA model
-//        try {
-//            model.estimate();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            model.estimate();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         // Find topics and top words
         List<Object[]> topicWords = Arrays.stream(model.getTopWords(Settings.getWords())).toList();
@@ -86,7 +88,7 @@ public class Modeller {
 //        new NoiseIdentify(instances);
 
         // Used for evaluating the modeller
-        new Evaluator(instances);
+//        new Evaluator(instances);
     }
 
     /**
@@ -99,7 +101,7 @@ public class Modeller {
         pipeList.add(new CharSequenceLowercase());
 
         // Specifies the tokens with regex, includes Unicode letters for non-English text
-        Pattern tokenPattern = Pattern.compile("[\\p{L}\\p{M}]+");
+        Pattern tokenPattern = Pattern.compile("[\\p{L}\\p{M}#+]+");
 
         // Tokenize the raw strings
         pipeList.add(new CharSequence2TokenSequence(tokenPattern));
