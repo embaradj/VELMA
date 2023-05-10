@@ -9,6 +9,7 @@ import com.embaradj.velma.models.DataModel;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -71,6 +72,7 @@ public class Modeller {
         // Build the LDA model
         try {
             model.estimate();
+            saveResults();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -89,6 +91,24 @@ public class Modeller {
 
         // Used for evaluating the modeller
 //        new Evaluator(instances);
+    }
+
+    /**
+     * Save the results of the LDA to file.
+     * The file will be named according to what datasets are used in the LDA.
+     */
+    private void saveResults() {
+        StringBuilder preFix = new StringBuilder();
+        for (String selCorp : Settings.getCorporapreFixes()) {
+            preFix.append(selCorp).append("_");
+        }
+        Path path = Path.of("resources/" + preFix + "topics.txt");
+
+        try {
+            model.printTopWords(path.toFile(), Settings.getWords(), true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
