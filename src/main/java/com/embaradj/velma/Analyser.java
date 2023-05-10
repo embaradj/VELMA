@@ -3,7 +3,10 @@ package com.embaradj.velma;
 import com.embaradj.velma.models.DataModel;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -284,6 +287,13 @@ public class Analyser {
      * @param allnum
      */
     private void generateResults(HashMap<String, Integer[]> allnum) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Topic")
+                .append("\t")
+                .append("Job")
+                .append("\t")
+                .append("HVE")
+                .append("\n");
         StringBuilder sb = new StringBuilder();
 
         int totalHves = (settings[2])? hves.size() : hveAim.size();
@@ -309,10 +319,17 @@ public class Analyser {
             sb.append(topicName + "\t\t" + allnum.get(topicName)[0] + "\t\t" + allnum.get(topicName)[1] + "\t(");
             for (String word : topic.split(",")) sb.append(word + ",");
             sb.append(")\n");
+            builder.append(topicName)
+                    .append("\t")
+                    .append(allnum.get(topicName)[0])
+                    .append("\t")
+                    .append(allnum.get(topicName)[1])
+                    .append("\n");
         });
 
         String results = sb.toString();
         if (Settings.debug()) System.out.println(results);
+        saveResults(builder);
         model.setAnalyserResults(results);
 
     }
@@ -401,6 +418,25 @@ public class Analyser {
         if (Settings.debug()) System.out.println(results);
         model.setAnalyserResults(results);
 
+    }
+
+    /**
+     * Saves the result to file.
+     * File is named after the dataset chosen in settings.
+     * @param builder
+     */
+    private void saveResults(StringBuilder builder) {
+        StringBuilder preFix = new StringBuilder();
+        for (String selCorp : Settings.getCorporapreFixes()) {
+            preFix.append(selCorp).append("_");
+        }
+        Path path = Path.of("resources/" + preFix + "results.txt");
+
+        try {
+            Files.writeString(path, builder.toString(), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

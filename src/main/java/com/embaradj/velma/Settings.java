@@ -95,8 +95,7 @@ public class Settings {
         threads = 16; // 16 threads used for testing
         iterations = 50; // 2000 iterations used for testing
 //         Analyser: Jobs Swe, Jobs Eng, HVE Full, HVE goals, HVE Courses
-        analyserSelection = new boolean[]{true, true, true, false, false};
-//        analyserSelection = new boolean[]{true, true, false, true, true};
+        analyserSelection = new boolean[]{true, true, false, true, true};
         words = 3;
     }
 
