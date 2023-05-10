@@ -84,8 +84,9 @@ public class Controller implements ActionListener {
 //        }
         model.clearLDATopics();
 
-        File file = new File("resources/rawdata/");
-        Modeller modeller = new Modeller(model);
+        File hveFile = new File("resources/rawdata/hve/");
+        File jobFile = new File("resources/rawdata/job/");
+//        Modeller modeller = new Modeller(model);
 
         setupModelListener();
 
@@ -96,8 +97,11 @@ public class Controller implements ActionListener {
         // Begin the analyzing off the EDT
         new Thread(() -> {
             SwingUtilities.invokeLater(() -> dialog.setVisible(true));
-            modeller.worker(file);
-            modeller.saveModel();
+//            modeller.worker(hveFile);
+//            modeller.saveModel();
+
+            new Modeller(model).worker(hveFile);
+            new Modeller(model).worker(jobFile);
 
             SwingUtilities.invokeLater(() -> {
                 dialog.setVisible(false);

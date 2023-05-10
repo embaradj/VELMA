@@ -85,7 +85,7 @@ public class Analyser {
         testTopics.put("TOPIC 1", "experience, team, work, development, working, software, skills");
         testTopics.put("TOPIC 2", "personalexpressen, konsulter, uppdrag, kunder, offentliga, gentemot, tid");
         testTopics.put("TOPIC 3", "erfarenhet, ansökan, arbeta, arbete, arbetar, se, utveckling");
-        testTopics.put("TOPIC 4", "erfarenhet, arbeta, hos, kunder, söker, team, tjänsten");
+        testTopics.put("TOPIC 4", "erfarenhet, arbeta, hos, kunder, söker, team, upphandlingsteam");
         return testTopics;
     }
 
