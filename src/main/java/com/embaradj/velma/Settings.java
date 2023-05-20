@@ -89,9 +89,9 @@ public class Settings {
      * Set the default Analyser settings
      */
     private static void setDefaultAnalyser() {
-        alpha = 0.1;
-        beta = 0.1;
-        numTopics = 3;
+        alpha = 0.10;
+        beta = 0.10;
+        numTopics = 5;
         threads = 16; // 16 threads used for testing
         iterations = 50; // 2000 iterations used for testing
 //         Analyser: Jobs Swe, Jobs Eng, HVE Full, HVE goals, HVE Courses

@@ -18,7 +18,6 @@ import java.util.HashMap;
  * each keyword is in regard to the total number of hits of its topic.
  */
 public class Analyser {
-
     private HashMap<String, String> jobs = new HashMap<>();
     private HashMap<String, String> hves = new HashMap<>();
     private HashMap<String, String> hveAim = new HashMap<>();
@@ -275,7 +274,8 @@ public class Analyser {
      * @return whether present
      */
     private boolean wordInFile(String keyword, String file) {
-        String[] words = file.split("[\s\n\\.\\,\\!]+");
+        String[] words = file.split("[^\\wåäöÅÄÖ+#]+");
+
         for (int i = 0; i < words.length; i++) {
             if (keyword.toLowerCase().equals(words[i].toLowerCase())) return true;
         }
