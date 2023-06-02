@@ -22,7 +22,7 @@ public class Settings {
     protected static final double VERSION = 1.0D;
     public static final String rawdataPath = "resources/rawdata";
     private final String HELPFILE = "/help.rtf";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private static final String SUSA_API_BASE_URI =
             "https://susanavet2.skolverket.se/api/1.1/infos?configuration=program&degree=true&organisationForm=yrkesh%C3%B6gskoleutbildning&subjectIds=395&size=";
     private static final String MYH_URI = "https://w3d3-integration-service.myh.se/1.0/search";
